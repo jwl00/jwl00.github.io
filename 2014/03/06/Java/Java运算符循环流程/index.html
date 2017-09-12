@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="什么也不留下">
+  <meta name="keyword" content="hexo-theme, Android">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      Java运算符循环流程 | JWL博客
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>JWL博客</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>Java运算符循环流程</h2>
+  <p class="post-date">2014-03-06</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content"><a id="more"></a>
+<h1 id="Java运算符循环流程"><a href="#Java运算符循环流程" class="headerlink" title="Java运算符循环流程"></a>Java运算符循环流程</h1><p>[TOC]</p>
+<h2 id="运算符operator"><a href="#运算符operator" class="headerlink" title="运算符operator"></a>运算符operator</h2><p>就是对常量和变量进行操作的符号。</p>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p>算术运算符，赋值运算符，比较运算符，逻辑运算符，位运算符，三目运算符</p>
+<p>注：定义变量应该int x = 3；应该说把3赋值给int类型的x；</p>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>//定义变量</p>
+<p>int x = 3;  //把3赋值给int类型的变量x</p>
+<p>int y = 4;</p>
+<p>System.out.println(x/y); //整数相除只能得到整数—–》结果是0</p>
+<p>//我就想得到小数，该肿么办呢?</p>
+<pre><code>//只需要把操作的数据中任意的一个数据变为浮点数
+
+System.out.println(x*1.0/y);----------à结果是3
+</code></pre><p>A:整数相除只能得到整数。如果想得到小数，必须把数据变化为浮点数类型</p>
+<pre><code>B:/获取的是除法操作的商，%获取的是除法操作的余数
+</code></pre><h3 id="算术运算符"><a href="#算术运算符" class="headerlink" title="算术运算符"></a>算术运算符</h3><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170313_204424.png" alt="snipaste_20170313_204424"></p>
+<p>++,–运算符的使用：</p>
+<pre><code>单独使用：
+
+   放在操作数的前面和后面效果一样。(这种用法是我们比较常见的)
+
+   //x++;
+
+   //y--;
+
+参与运算使用：
+
+   放在操作数的前面，先自增或者自减，然后再参与运算。
+
+   放在操作数的后面，先参与运算，再自增或者自减。
+
+   int a = 3;
+
+   //int c = a++;--------à结果是3
+</code></pre><h4 id="练习题"><a href="#练习题" class="headerlink" title="练习题"></a>练习题</h4><p>第一题：</p>
+<pre><code>int a = 10;
+
+int b = 10;
+
+int c = 10;
+
+
+
+a = b++;
+
+c = --a;
+
+b = ++a;
+
+a = c--;
+
+请分别计算出a,b,c的值
+
+
+
+第二题：
+
+int x = 4;
+
+int y = (x++)+(++x)+(x*10);
+
+请分别计算出x,y的值      
+</code></pre><p>参考答案：</p>
+<ol>
+<li><p>a=9,b=10,c=8</p>
+</li>
+<li><p>70</p>
+</li>
+</ol>
+<h4 id="的用法："><a href="#的用法：" class="headerlink" title="+的用法："></a>+的用法：</h4><pre><code>A:加法
+
+B:正号
+
+C:字符串连接符
+</code></pre><h3 id="赋值运算符"><a href="#赋值运算符" class="headerlink" title="赋值运算符"></a>赋值运算符</h3><p>基本的赋值运算符：=</p>
+<p>把=右边的数据赋值给左边。</p>
+<p>扩展的赋值运算符：+=,-=,*=,/=,%=</p>
+<pre><code>+=把左边和右边做加法，然后赋值给左边
+</code></pre><h4 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h4><p>short s=1, s = s+1; short s=1, s+=1;上面两个代码有没有问题，如果有，那里有问题</p>
+<p>第一个有问题，short参与数值运算时，先被转换成int类型的数据，第二个正确</p>
+<p>扩展的赋值运算符其实隐含了一个强制类型转换。</p>
+<pre><code>s+= 1;
+
+不是等价于 s = s + 1;
+
+而是等价于 s = (s的数据类型)(s + 1);
+</code></pre><h3 id="关系运算符"><a href="#关系运算符" class="headerlink" title="关系运算符"></a>关系运算符</h3><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170313_204449.png" alt="snipaste_20170313_204449"></p>
+<h3 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h3><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170313_204501.png" alt="snipaste_20170313_204501"></p>
+<p>l  “&amp;”和“&amp;&amp;”的区别：</p>
+<p>•    单&amp;时，左边无论真假，右边都进行运算；</p>
+<p>•    双&amp;时，如果左边为真，右边参与运算，如果左边为假，那么右边不参与运算。</p>
+<pre><code>“|”和“||”的区别同理，双或时，左边为真，右边不参与运算。
+</code></pre><h3 id="位运算符"><a href="#位运算符" class="headerlink" title="位运算符"></a>位运算符</h3><table>
+<thead>
+<tr>
+<th><strong>位运算符</strong></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>运算符</strong></td>
+<td><strong>运算</strong></td>
+<td><strong>范例</strong></td>
+</tr>
+<tr>
+<td><strong>&lt;&lt;</strong></td>
+<td><strong>左移</strong></td>
+<td><strong>3 &lt;&lt; 2 = 12  –&gt; 3*2*2=12</strong></td>
+</tr>
+<tr>
+<td><strong>&gt;&gt;</strong></td>
+<td><strong>右移</strong></td>
+<td><strong>3 &gt;&gt; 1 =  1  –&gt; 3/2=1</strong></td>
+</tr>
+<tr>
+<td><strong>&gt;&gt;&gt;</strong></td>
+<td><strong>无符号右移</strong></td>
+<td><strong>3 &gt;&gt;&gt; 1 =  1 –&gt; 3/2=1</strong></td>
+</tr>
+<tr>
+<td><strong>&amp;</strong></td>
+<td><strong>位与运算</strong></td>
+<td><strong>6 &amp; 3 = 2</strong></td>
+</tr>
+<tr>
+<td>**\</td>
+<td>**</td>
+<td><strong>位或运算</strong></td>
+<td>**6 \</td>
+<td>3 = 7**</td>
+</tr>
+<tr>
+<td><strong>^</strong></td>
+<td><strong>位异或运算</strong></td>
+<td><strong>6 ^ 3 = 5</strong></td>
+</tr>
+<tr>
+<td><strong>~</strong></td>
+<td><strong>位反码</strong></td>
+<td><strong>~6 = -7</strong></td>
+</tr>
+</tbody>
+</table>
+<h4 id="案例-1"><a href="#案例-1" class="headerlink" title="案例"></a>案例</h4><p>System.out.println(3&amp; 4);</p>
+<pre><code>   System.out.println(3| 4);
+
+   System.out.println(3^ 4);
+
+   System.out.println(~3);
+
+分析：因为是位运算，所以我们必须先把数据换算成二进制。
+
+
+
+3的二进制：11
+
+   0000000000000000 00000000 00000011
+
+4的二进制：100
+
+   0000000000000000 00000000 00000100
+
+
+
+&amp;位与运算：有0则0。
+
+   0000000000000000 00000000 00000011
+
+   &amp;00000000 00000000 00000000 00000100
+
+   -----------------------------------
+
+   0000000000000000 00000000 00000000
+
+   结果是：0
+
+
+
+|位或运算：有1则1。
+
+   0000000000000000 00000000 00000011
+
+   |00000000 00000000 00000000 00000100
+
+   -----------------------------------
+
+   0000000000000000 00000000 00000111
+
+   结果是：7
+
+
+
+^位异或运算：相同则0，不同则1。
+
+   0000000000000000 00000000 00000011
+
+   &amp;00000000 00000000 00000000 00000100
+
+   -----------------------------------
+
+   0000000000000000 00000000 00000111
+
+   结果是：7
+
+
+
+~按位取反运算符：0变1，1变0
+
+   0000000000000000 00000000 00000011
+
+   ~11111111 11111111 11111111 11111100 (补码)
+
+
+
+   补码：1111111111111111 11111111 11111100
+
+   反码：1111111111111111 11111111 11111011
+
+   原码：1000000000000000 00000000 00000100
+
+   结果是：-4
+</code></pre><p>^的特点：一个数据对另一个数据位异或两次，该数本身不变。</p>
+<h4 id="练习题-1"><a href="#练习题-1" class="headerlink" title="练习题"></a>练习题</h4><p>把两个数值相掉</p>
+<p>//方式1：使用第三方变量(开发中用的)</p>
+<pre><code>intc = a;
+
+a= b;
+
+b= c;
+
+System.out.println(&quot;a:&quot;+a+&quot;,b:&quot;+b);
+
+System.out.println(&quot;------------&quot;);
+
+//方式2：用位异或实现(面试用)
+
+//左边：a,b,a
+
+//右边：a ^ b
+
+a= a ^ b;
+
+b= a ^ b; //a ^ b ^ b = a
+
+a= a ^ b; //a ^ b ^ a = b
+
+System.out.println(&quot;a:&quot;+a+&quot;,b:&quot;+b);
+
+//方式3：用变量相加的做法
+
+a= a + b; //a=30
+
+b= a - b; //b=10
+
+a= a - b; //a=20
+
+System.out.println(&quot;a:&quot;+a+&quot;,b:&quot;+b);
+
+//方式4：一句话搞定
+
+b= (a+b) - (a=b); //b=30-20=10,a=20
+
+System.out.println(&quot;a:&quot;+a+&quot;,b:&quot;+b);
+</code></pre><h4 id="其他位运算符"><a href="#其他位运算符" class="headerlink" title="其他位运算符"></a>其他位运算符</h4><p>&lt;&lt;:左移 左边最高位丢弃，右边补齐0</p>
+<p>>&gt;:右移 最高位是0，左边补齐0；最高为是1，左边补齐1</p>
+<p>>&gt;&gt;:无符号右移 无论最高位是0还是1，左边补齐0</p>
+<p>//&lt;&lt; 把&lt;&lt;左边的数据乘以2的移动次幂</p>
+<pre><code>System.out.println(3&lt;&lt; 2); //3*2^2 = 3*4 = 12;
+
+
+
+//&gt;&gt;把&gt;&gt;左边的数据除以2的移动次幂
+
+System.out.println(24&gt;&gt; 2); //24 / 2^2 = 24 / 4 = 6
+
+System.out.println(24&gt;&gt;&gt; 2);
+
+
+
+System.out.println(-24&gt;&gt; 2); //依旧是-24/4 = -6
+</code></pre><p>计算出3的二进制：11</p>
+<pre><code>   0000000000000000 00000000 00000011
+
+(00)00000000000000 00000000 0000001100
+
+
+
+&gt;&gt;的移动： 
+
+计算出24的二进制：11000
+
+   原码：10000000 00000000 00000000 00011000
+
+   反码：11111111 11111111 11111111 11100111
+
+   补码：11111111 11111111 11111111 11101000
+
+
+
+   1111111111111111 11111111 11101000
+
+   111111111111111111 11111111 111010(00) 补码
+
+
+
+   补码：1111111111 11111111 11111111 111010
+
+   反码：1111111111 11111111 11111111 111001
+
+   原码：1000000000 00000000 00000000 000110
+
+
+
+   结果：-6
+
+
+
+&gt;&gt;&gt;的移动：
+
+   计算出24的二进制：11000
+
+   原码：10000000 00000000 00000000 00011000
+
+   反码：11111111 11111111 11111111 11100111
+
+   补码：11111111 11111111 11111111 11101000
+
+
+
+   1111111111111111 11111111 11101000
+
+   001111111111111111 11111111 111010(00)
+
+
+
+   结果：
+</code></pre><ol>
+<li><p>获取三个整数中的最大值</p>
+<p>  inta = 10;</p>
+<p>  intb = 30;</p>
+<p>  intc = 20;</p>
+</li>
+</ol>
+<pre><code>//分两步：
+
+//A:先比较a,b的最大值
+
+//B:拿a,b的最大值在和c进行比较
+
+inttemp = ((a &gt; b)? a: b);
+
+//System.out.println(temp);
+
+intmax1 = (temp &gt; c? temp: c);
+
+System.out.println(&quot;max1:&quot;+max1);
+</code></pre><h2 id="流程控制语句"><a href="#流程控制语句" class="headerlink" title="流程控制语句"></a>流程控制语句</h2><pre><code>(1)顺序结构 从上往下，依次执行
+
+(2)选择结构 按照不同的选择，执行不同的代码
+
+(3)循环结构 做一些重复的代码
+</code></pre><h3 id="if语句"><a href="#if语句" class="headerlink" title="if语句"></a>if语句</h3><h4 id="三种格式"><a href="#三种格式" class="headerlink" title="三种格式"></a>三种格式</h4><pre><code>A:格式1
+
+    if(比较表达式) {
+
+       语句体;
+
+    }
+
+
+
+    执行流程：
+
+       判断比较表达式的值，看是true还是false
+
+       如果是true，就执行语句体
+
+       如果是false，就不执行语句体
+
+
+
+B:格式2
+
+    if(比较表达式) {
+
+       语句体1;
+
+    }else{
+
+       语句体2;
+
+    }
+
+
+
+    执行流程：
+
+       判断比较表达式的值，看是true还是false
+
+       如果是true，就执行语句体1
+
+       如果是false，就执行语句体2
+
+
+
+C:格式3
+
+    if(比较表达式1) {
+
+       语句体1;
+
+    }elseif(比较表达式2){
+
+       语句体2;
+
+    }
+
+    ...
+
+    else{
+
+       语句体n+1;
+
+    }
+</code></pre><h4 id="三元运算符和if语句第二种格式的关系"><a href="#三元运算符和if语句第二种格式的关系" class="headerlink" title="三元运算符和if语句第二种格式的关系"></a>三元运算符和if语句第二种格式的关系</h4><p>所有的三元运算符能够实现的，if语句的第二种格式都能实现。</p>
+<p>反之不成立。</p>
+<p>如果if语句第二种格式控制的语句体是输出语句，就不可以。</p>
+<p>因为三元运算符是一个运算符，必须要有一个结果返回，不能是一个输出语句</p>
+</section>
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#Java笔记" >
+    <span class="tag-code">Java笔记</span>
+  </a>
+
+      </div>
+    
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="alipay-code">
+            <div class="code-image"></div>
+            <b>使用支付宝打赏</b>
+          </span>
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+    </div>
+    <div class="qrcode">
+      <canvas id="share-qrcode"></canvas>
+      <p class="notice">扫描二维码，分享此文章</p>
+    </div>
+    
+      <div id="comments"></div>
+    
+  </article>
+</main>
+
+<script>
+  (function () {
+    var url = 'http://bbbb.ml/2014/03/06/Java/Java运算符循环流程/';
+    var banner = 'http://osk1xe27i.bkt.clouddn.com/1.jpg'
+    if (banner !== 'undefined') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "jwl00";
+    if (gitmentConfig != "undefined") {
+      var gitment = new Gitment({
+        id: "Java运算符循环流程",
+        owner: "jwl00",
+        repo: "jwl00.github.io",
+        oauth: {
+          client_id: "ae21ad25810b1f2cc193",
+          client_secret: "7b6bb525adfeee63bd087132d98e6fd015d49ed8"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

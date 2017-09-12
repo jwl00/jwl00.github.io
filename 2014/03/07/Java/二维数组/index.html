@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="什么也不留下">
+  <meta name="keyword" content="hexo-theme, Android">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      二维数组 | JWL博客
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>JWL博客</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>二维数组</h2>
+  <p class="post-date">2014-03-07</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content"><a id="more"></a>
+<h1 id="二维数组"><a href="#二维数组" class="headerlink" title="二维数组"></a>二维数组</h1><h2 id="二维数组-1"><a href="#二维数组-1" class="headerlink" title="二维数组"></a>二维数组</h2><h3 id="表示方法"><a href="#表示方法" class="headerlink" title="表示方法"></a>表示方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">A:数据类型[][] 数组名 = <span class="keyword">new</span> 数据类型[m][n];</div><div class="line">B:数据类型[][] 数组名 = <span class="keyword">new</span> 数据类型[m][];</div><div class="line">C:数据类型[][] 数组名 = <span class="keyword">new</span> 数据类型[][]&#123;&#123;...&#125;,&#123;...&#125;,&#123;...&#125;&#125;;</div><div class="line">D:数据类型[][] 数组名 = &#123;&#123;...&#125;,&#123;...&#125;,&#123;...&#125;&#125;;</div></pre></td></tr></table></figure>
+<h3 id="二维数组的内存示意图"><a href="#二维数组的内存示意图" class="headerlink" title="二维数组的内存示意图"></a>二维数组的内存示意图</h3><p><img src="http://oaxelf1sk.bkt.clouddn.com/堆.png" alt="堆"></p>
+<blockquote>
+<p>在这里首先先初始化最外层的一位数组（引用类型，初始值是null），然后内层数组开始初始化（默认是0），并且把内层的地址值给外层的数组，外层再把总地址值交给栈。</p>
+</blockquote>
+<p><strong>注意</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span>[] array = &#123;<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">9</span>,<span class="number">8</span>&#125;;</div></pre></td></tr></table></figure>
+<p>这里的数组在内存中是在堆中，因为他省略了new。</p>
+<h2 id="练习题"><a href="#练习题" class="headerlink" title="练习题"></a>练习题</h2><ul>
+<li>求出下面打印的语句</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ArgsDemo</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="keyword">int</span> a = <span class="number">10</span>;</div><div class="line">		<span class="keyword">int</span> b = <span class="number">20</span>;</div><div class="line">		System.out.println(<span class="string">"a:"</span>+a+<span class="string">",b:"</span>+b); <span class="comment">//a:10,b:20</span></div><div class="line">		change(a,b);</div><div class="line">		System.out.println(<span class="string">"a:"</span>+a+<span class="string">",b:"</span>+b); <span class="comment">//???	a:10,b:20</span></div><div class="line"></div><div class="line">		<span class="keyword">int</span>[] arr = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;; </div><div class="line">		change(arr);</div><div class="line">		System.out.println(arr[<span class="number">1</span>]); <span class="comment">//???	4</span></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">change</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span> </span>&#123; <span class="comment">//a=10,b=20</span></div><div class="line">		System.out.println(<span class="string">"a:"</span>+a+<span class="string">",b:"</span>+b); <span class="comment">//a:10,b:20</span></div><div class="line">		a = b;	<span class="comment">//a=20</span></div><div class="line">		b = a + b; <span class="comment">//b=40</span></div><div class="line">		System.out.println(<span class="string">"a:"</span>+a+<span class="string">",b:"</span>+b); <span class="comment">//a:20,b:40</span></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">change</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123; <span class="comment">//arr=&#123;1,2,3,4,5&#125;;</span></div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> x=<span class="number">0</span>; x&lt;arr.length; x++) &#123;</div><div class="line">			<span class="keyword">if</span>(arr[x]%<span class="number">2</span>==<span class="number">0</span>) &#123;</div><div class="line">				arr[x]*=<span class="number">2</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="comment">//arr=&#123;1,4,3,8,5&#125;;</span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>写出各处打印的值是多少？？？？</p>
+<p><strong>参考答案</strong></p>
+<blockquote>
+<p><strong>基本数据类型由实际参数传递给形参时传递的是值，引用数据类型传递的是数据的引用</strong></p>
+</blockquote>
+<p>我们可以画出它的内存图：</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/ice_screenshot_20160726-163627.png" alt="ice_screenshot_20160726-163627"></p>
+<p>每个在栈内的方法有他的数据，区别只是栈内的数据的来源，一个是数值，一个是引用的地址。</p>
+<blockquote>
+<p>基本类型：形式参数的改变对实际参数没有影响。    </p>
+<p>引用类型：形式参数的改变直接影响实际参数。</p>
+</blockquote>
+<ul>
+<li>某个公司采用公用电话传递数据信息，数据是小于8位的整数，为了确保安全，传递过程中需要加密，加密规则如下：首先将数据倒序，然后将每位数字都加上5，再用和除以10的余数代替该数字，最后将第一位和最后一位数字交换。 请任意给定一个小于8位的整数，然后，把加密后的结果在控制台打印出来。 </li>
+</ul>
+<blockquote>
+<p>分析可知：</p>
+<p>首先确定位数，然后把数字转换成数组，在进行操作</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">	<span class="comment">//定义一个数据</span></div><div class="line">	<span class="keyword">int</span> number = <span class="number">123456</span>;</div><div class="line">	</div><div class="line">	<span class="comment">//定义一个数组</span></div><div class="line">	<span class="keyword">int</span>[] arr = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">8</span>];</div><div class="line">	</div><div class="line">	<span class="comment">//把数据中每一位上的数据获取到后存储到数组中</span></div><div class="line">	<span class="comment">/*</span></div><div class="line"><span class="comment">	int index = 0;</span></div><div class="line"><span class="comment">	arr[index] = number%10; //arr[0]=6;</span></div><div class="line"><span class="comment">	index++;</span></div><div class="line"><span class="comment">	arr[index] = number/10%10; //arr[1]=5;</span></div><div class="line"><span class="comment">	index++;</span></div><div class="line"><span class="comment">	arr[index] = mumber/10/10%10; //arr[2]=4;</span></div><div class="line"><span class="comment">	*/</span></div><div class="line">	</div><div class="line">	<span class="comment">//通过观察这个代码，我们发现应该是可以通过循环改进的</span></div><div class="line">	<span class="keyword">int</span> index = <span class="number">0</span>;</div><div class="line">	</div><div class="line">	<span class="keyword">while</span>(number &gt; <span class="number">0</span>) &#123; <span class="comment">//number=123456,number=12345,number=1234,number=123,number=12,number=1,number=0</span></div><div class="line">		arr[index] = number%<span class="number">10</span>; <span class="comment">//arr[0]=6,arr[1]=5,arr[2]=4,arr[3]=3,arr[4]=2,arr[5]=1</span></div><div class="line">		index++;<span class="comment">//index=1,index=2,index=3,index=4,index=5,index=6</span></div><div class="line">		number/=<span class="number">10</span>;<span class="comment">//number=12345,number=1234,number=123,number=12,number=1,number=0</span></div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="comment">//然后将每位数字都加上5，再用和除以10的余数代替该数字</span></div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> x=<span class="number">0</span>; x&lt;index; x++) &#123;</div><div class="line">		arr[x] += <span class="number">5</span>;</div><div class="line">		arr[x] %= <span class="number">10</span>;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="comment">//最后将第一位和最后一位数字交换</span></div><div class="line">	<span class="keyword">int</span> temp = arr[<span class="number">0</span>];</div><div class="line">	arr[<span class="number">0</span>] = arr[index-<span class="number">1</span>];</div><div class="line">	arr[index-<span class="number">1</span>] = temp;</div><div class="line">	</div><div class="line">	<span class="comment">//输出数据</span></div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> x=<span class="number">0</span>; x&lt;index; x++) &#123;</div><div class="line">		System.out.print(arr[x]);</div><div class="line">	&#125;</div><div class="line">	System.out.println();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里的重点是把int型的整数每个数字提取出来：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> num = <span class="number">12345679</span>;</div><div class="line"><span class="keyword">int</span> index = <span class="number">0</span>;</div><div class="line"><span class="keyword">int</span>[] array = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">9</span>];</div><div class="line"><span class="keyword">while</span> (num &gt; <span class="number">0</span>) &#123;</div><div class="line">    array[index] = num % <span class="number">10</span>;</div><div class="line">    num /= <span class="number">10</span>;</div><div class="line">    index++;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>改进后的代码是：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">	<span class="comment">//创建键盘录入对象</span></div><div class="line">	Scanner sc = <span class="keyword">new</span> Scanner(System.in);</div><div class="line">	</div><div class="line">	<span class="comment">//请输入一个数据</span></div><div class="line">	System.out.println(<span class="string">"请输入一个数据(小于8位)："</span>);</div><div class="line">	<span class="keyword">int</span> number = sc.nextInt();</div><div class="line">	</div><div class="line">	<span class="comment">//写功能实现把number进行加密</span></div><div class="line">	<span class="comment">//调用</span></div><div class="line">	String result = jiaMi(number);</div><div class="line">	System.out.println(<span class="string">"加密后的结果是："</span>+result);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">	需求：写一个功能，把数据number实现加密。</span></div><div class="line"><span class="comment">	两个明确：</span></div><div class="line"><span class="comment">		返回值类型：String 做一个字符串的拼接。</span></div><div class="line"><span class="comment">		参数列表：int number</span></div><div class="line"><span class="comment">*/</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">jiaMi</span><span class="params">(<span class="keyword">int</span> number)</span> </span>&#123;</div><div class="line">	<span class="comment">//定义数组</span></div><div class="line">	<span class="keyword">int</span>[] arr = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">8</span>];</div><div class="line">	</div><div class="line">	<span class="comment">//定义索引</span></div><div class="line">	<span class="keyword">int</span> index = <span class="number">0</span>;</div><div class="line">	</div><div class="line">	<span class="comment">//把number中的数据想办法放到数组中</span></div><div class="line">	<span class="keyword">while</span>(number &gt; <span class="number">0</span>) &#123;</div><div class="line">		arr[index] = number%<span class="number">10</span>;</div><div class="line">		index++;</div><div class="line">		number /= <span class="number">10</span>;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="comment">//把每个数据加5，然后对10取得余数</span></div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> x=<span class="number">0</span>; x&lt;index; x++) &#123;</div><div class="line">		arr[x] += <span class="number">5</span>;</div><div class="line">		arr[x] %= <span class="number">10</span>;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="comment">//把第一位和最后一位交换</span></div><div class="line">	<span class="keyword">int</span> temp = arr[<span class="number">0</span>];</div><div class="line">	arr[<span class="number">0</span>] = arr[index-<span class="number">1</span>];</div><div class="line">	arr[index-<span class="number">1</span>] = temp;</div><div class="line">	</div><div class="line">	<span class="comment">//把数组的元素拼接成一个字符串返回</span></div><div class="line">	<span class="comment">//定义一个空内容字符串</span></div><div class="line">	String s = <span class="string">""</span>;</div><div class="line">	</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> x=<span class="number">0</span>; x&lt;index; x++) &#123;</div><div class="line">		s += arr[x];</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="keyword">return</span> s;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>善于运用while，注意while的条件</p>
+<h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><h3 id="面向对象特称"><a href="#面向对象特称" class="headerlink" title="面向对象特称"></a>面向对象特称</h3><ul>
+<li>封装(encapsulation)</li>
+<li>继承(inheritance)</li>
+<li>多态(polymorphism)</li>
+</ul>
+<h3 id="类和对象的关系"><a href="#类和对象的关系" class="headerlink" title="类和对象的关系"></a>类和对象的关系</h3><blockquote>
+<p>类是一组相关的属相（成员属性）和行为（成员行为）的集合，是一个抽象概念，对象是该类的具体表现形式，具体存在的个体。</p>
+</blockquote>
+<h3 id="对象的内存图"><a href="#对象的内存图" class="headerlink" title="对象的内存图"></a>对象的内存图</h3><ul>
+<li>一个对象的内存图</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Phone</span> </span>&#123;</div><div class="line">	<span class="comment">//品牌</span></div><div class="line">	String brand;</div><div class="line">	<span class="comment">//价格</span></div><div class="line">	<span class="keyword">int</span> price;</div><div class="line">	<span class="comment">//颜色</span></div><div class="line">	String color;</div><div class="line">	</div><div class="line">	<span class="comment">//打电话的方法</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"给"</span>+name+<span class="string">"打电话"</span>);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="comment">//发短信的方法</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sendMessage</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"群发短信"</span>);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="comment">//玩游戏的方法</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">playGame</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"玩游戏"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">PhoneDemo</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="comment">//创建手机对象</span></div><div class="line">		<span class="comment">//类名 对象名 = new 类名();</span></div><div class="line">		Phone p = <span class="keyword">new</span> Phone();</div><div class="line">		</div><div class="line">		<span class="comment">//直接输出成员变量值</span></div><div class="line">		System.out.println(p.brand+<span class="string">"---"</span>+p.price+<span class="string">"---"</span>+p.color);</div><div class="line">		</div><div class="line">		<span class="comment">//给成员变量赋值</span></div><div class="line">		p.brand = <span class="string">"诺基亚"</span>;</div><div class="line">		p.price = <span class="number">100</span>;</div><div class="line">		p.color = <span class="string">"灰色"</span>;</div><div class="line">		<span class="comment">//再次输出</span></div><div class="line">		System.out.println(p.brand+<span class="string">"---"</span>+p.price+<span class="string">"---"</span>+p.color);</div><div class="line">		</div><div class="line">		<span class="comment">//调用方法</span></div><div class="line">		p.call(<span class="string">"林青霞"</span>);</div><div class="line">		p.sendMessage();</div><div class="line">		p.playGame();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上图创建两个类，而且都用含有方法，所以应该在方法区开辟空间，开始执行main方法，遇到类名和对象名开始声明变量，所以main方法入栈，在main方法中开辟p对象的空间，而且看到new，所以在堆中开辟new Phone的空间，此时的初始值是brand是null，price是0，color是null，打印结果；</p>
+<p>然后由栈中的对象p控制phone的索引值，给堆中的元素值，此时堆中的元素有值，打印输出结果；</p>
+<p>p对象调用方法，所以方法区中的方法入栈，执行操作，当方法完成之后，销毁方法，释放内存；</p>
+<p>最后mian方法被销毁，内存释放。</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/ice_screenshot_20160726-163742.png" alt="ice_screenshot_20160726-163742"></p>
+<ul>
+<li>三个对象的内存示意图</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//修改上面的代码</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">PhoneDemo</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="comment">//创建手机对象</span></div><div class="line">		<span class="comment">//类名 对象名 = new 类名();</span></div><div class="line">		Phone p = <span class="keyword">new</span> Phone();</div><div class="line">		</div><div class="line">		<span class="comment">//直接输出成员变量值</span></div><div class="line">		System.out.println(p.brand+<span class="string">"---"</span>+p.price+<span class="string">"---"</span>+p.color);</div><div class="line">		</div><div class="line">		<span class="comment">//给成员变量赋值</span></div><div class="line">		p.brand = <span class="string">"诺基亚"</span>;</div><div class="line">		p.price = <span class="number">100</span>;</div><div class="line">		p.color = <span class="string">"灰色"</span>;</div><div class="line">		<span class="comment">//再次输出</span></div><div class="line">		System.out.println(p.brand+<span class="string">"---"</span>+p.price+<span class="string">"---"</span>+p.color);</div><div class="line">		</div><div class="line">		<span class="comment">//调用方法</span></div><div class="line">		p.call(<span class="string">"林青霞"</span>);</div><div class="line">		p.sendMessage();</div><div class="line">		p.playGame();</div><div class="line">		</div><div class="line">		Phone p2 = p；</div><div class="line">		p2.brand = <span class="string">"iphone"</span>;</div><div class="line">		p2.price = <span class="number">5000</span>;</div><div class="line">		p2.color = <span class="string">"green"</span>;</div><div class="line">		System.out.println(p.brand+<span class="string">"---"</span>+p.price+<span class="string">"---"</span>+p.color);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>注意</strong></p>
+<p>只有在上述代码中Phone p2 = p；这样才是吧p的引用传递给p2，加入是：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">p2.brand = p.brand;</div></pre></td></tr></table></figure>
+<p>这样只是传递一个值，而没有把引用传递给p2，当p2操作时，p对象对应堆内的数据值不变</p>
+</section>
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#Java笔记" >
+    <span class="tag-code">Java笔记</span>
+  </a>
+
+      </div>
+    
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="alipay-code">
+            <div class="code-image"></div>
+            <b>使用支付宝打赏</b>
+          </span>
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+    </div>
+    <div class="qrcode">
+      <canvas id="share-qrcode"></canvas>
+      <p class="notice">扫描二维码，分享此文章</p>
+    </div>
+    
+      <div id="comments"></div>
+    
+  </article>
+</main>
+
+<script>
+  (function () {
+    var url = 'http://bbbb.ml/2014/03/07/Java/二维数组/';
+    var banner = 'http://osk1xe27i.bkt.clouddn.com/1.jpg'
+    if (banner !== 'undefined') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "jwl00";
+    if (gitmentConfig != "undefined") {
+      var gitment = new Gitment({
+        id: "二维数组",
+        owner: "jwl00",
+        repo: "jwl00.github.io",
+        oauth: {
+          client_id: "ae21ad25810b1f2cc193",
+          client_secret: "7b6bb525adfeee63bd087132d98e6fd015d49ed8"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="什么也不留下">
+  <meta name="keyword" content="hexo-theme, Android">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      JavaDoc、代码块、继承 | JWL博客
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>JWL博客</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>JavaDoc、代码块、继承</h2>
+  <p class="post-date">2014-03-07</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content"><a id="more"></a>
+<h1 id="JavaDoc、代码块、继承"><a href="#JavaDoc、代码块、继承" class="headerlink" title="JavaDoc、代码块、继承"></a>JavaDoc、代码块、继承</h1><p>[TOC]</p>
+<h2 id="javaDoc使用"><a href="#javaDoc使用" class="headerlink" title="javaDoc使用"></a>javaDoc使用</h2><blockquote>
+<p>说明：使用/<em>*    </em>/ 可以生成说明文档</p>
+</blockquote>
+<p><strong>制作过程</strong></p>
+<pre><code>A:写一个工具类
+B:对这个类加入文档注释        
+C:用工具解析文档注释
+    javadoc工具
+D:格式
+    javadoc -d 目录 -author -version ArrayTool.java
+</code></pre><p>其中文件头是@author 和@version</p>
+<p>方法前是@param和@return</p>
+<blockquote>
+<p>java.lang包不需要导包，看api时要看版本</p>
+<p>math.random()方法返回大于等于0小于1</p>
+</blockquote>
+<h2 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h2><ul>
+<li>局部代码块</li>
+</ul>
+<p>用于限定变量的生命周期</p>
+<ul>
+<li>构造代码块</li>
+</ul>
+<p>在类的成员变量的位置，用{}括起来，作用是可以吧多个构造方法的共同代码放到一起，对对象进行初始化，每次新建对象都会执行这个构造代码块。</p>
+<ul>
+<li>静态代码块</li>
+</ul>
+<p>在类的成员变量的位置，用{}括起来，用static修饰，作用是对类进行初始化，因为静态随着类的加载而加载。</p>
+<blockquote>
+<p>三者的执行顺序是：静态代码块—》构造代码块—–》<strong>构造方法</strong></p>
+</blockquote>
+<p>示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</div><div class="line">	<span class="keyword">static</span> &#123;</div><div class="line">		System.out.println(<span class="string">"Student 静态代码块"</span>);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	&#123;</div><div class="line">		System.out.println(<span class="string">"Student 构造代码块"</span>);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"Student 构造方法"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">StudentDemo</span> </span>&#123;</div><div class="line">	<span class="keyword">static</span> &#123;</div><div class="line">		System.out.println(<span class="string">"林青霞都60了，我很伤心"</span>);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"我是main方法"</span>);</div><div class="line">		</div><div class="line">		Student s1 = <span class="keyword">new</span> Student();</div><div class="line">		Student s2 = <span class="keyword">new</span> Student();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>内存流程：</p>
+<ol>
+<li>加载StudentDemo类，随着类的加载静态代码块执行；</li>
+<li>加载main方法，打印；</li>
+<li>加载Student类，随着类的加载静态代码块执行；</li>
+<li>在栈中为s1开辟内存空间；</li>
+<li>在堆中为new Student（）申请空间，同时执行构造代码块；</li>
+<li>默认初始化和显示初始化；</li>
+<li>调用构造方法，在打印语句；</li>
+<li>把堆内存地址赋值给s1；</li>
+</ol>
+<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><h3 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h3><ul>
+<li><p>提高了代码的复用性</p>
+<p>多个类相同的成员可以放到同一个类中</p>
+</li>
+<li><p>提高了代码的维护性</p>
+<p>如果功能的代码需要修改，修改一处即可</p>
+</li>
+<li><p>让类与类之间产生了关系，是多态的前提</p>
+<p>其实这也是继承的一个弊端：类的耦合性很强</p>
+</li>
+</ul>
+<blockquote>
+<p>开发时要低耦合，高内聚</p>
+</blockquote>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ol>
+<li>java只是支持单继承不支持多继承</li>
+<li>java支持多级继承</li>
+<li>只能继承非私有的成员（成员变量和成员方法），其实这也是一个弊端—》打破了封装性；</li>
+<li>子类不能继承父类的构造方法，但是可以通过super来访问；</li>
+</ol>
+<h3 id="this和super的用法"><a href="#this和super的用法" class="headerlink" title="this和super的用法"></a>this和super的用法</h3><ol>
+<li>访问成员变量：this.成员变量    super.成员变量</li>
+<li>访问构造方法：this（参数）       super（参数）</li>
+<li>访问成员方法：this.成员方法      super.成员方法</li>
+</ol>
+<h3 id="继承中构造方法的关系"><a href="#继承中构造方法的关系" class="headerlink" title="继承中构造方法的关系"></a>继承中构造方法的关系</h3><blockquote>
+<p>子类所有的构造方法（无论子类有无参数）默认都会先访问父类的无参构造方法</p>
+<p>子类的每一个构造方法默认语句都是：super（）；</p>
+</blockquote>
+<h3 id="父类中没有无参构造方法的错误"><a href="#父类中没有无参构造方法的错误" class="headerlink" title="父类中没有无参构造方法的错误"></a>父类中没有无参构造方法的错误</h3><p>当类中自己没有写构造方法时，系统会自己添加一个无参构造方法但是当用户自己添加一个带参的构造方法，那么由于子类的所有构造方法都要访问父类的无参构造方法（此时没有），那么编译就会报错。</p>
+<p>解决方法：</p>
+<ol>
+<li>使用super显示调用父类的带参构造方法；</li>
+<li>在父类中添加无参构造方法；</li>
+<li>还可以用this（）和super（）结合的方式；</li>
+</ol>
+<blockquote>
+<p>在写类时，应该养成良好的编程习惯，主动添加无参构造方法 </p>
+</blockquote>
+<p><strong>this或者super调用构造方法时必须放在第一条语句，如果没有放在第一条语句就可能对父类的数据进行多次初始化</strong></p>
+<h3 id="练习题"><a href="#练习题" class="headerlink" title="练习题"></a>练习题</h3><p>####父类和子类的初始化流程</p>
+<p>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fu</span> </span>&#123;</div><div class="line">	<span class="keyword">static</span> &#123;</div><div class="line">		System.out.println(<span class="string">"静态代码块Fu"</span>);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	&#123;</div><div class="line">		System.out.println(<span class="string">"构造代码块Fu"</span>);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Fu</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"构造方法Fu"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Zi</span> <span class="keyword">extends</span> <span class="title">Fu</span> </span>&#123;</div><div class="line">	<span class="keyword">static</span> &#123;</div><div class="line">		System.out.println(<span class="string">"静态代码块Zi"</span>);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	&#123;</div><div class="line">		System.out.println(<span class="string">"构造代码块Zi"</span>);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Zi</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"构造方法Zi"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExtendsTest</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		Zi z = <span class="keyword">new</span> Zi();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>一个类的初始化顺序：静态代码块—》构造代码块—》构造方法；</li>
+<li>多个类的初始化顺序：</li>
+</ul>
+<ol>
+<li>首先是子类加载，但是此时有extends父类所以先加载父类，执行父类的静态代码块；</li>
+<li>加载子类，执行子类的静态代码块；</li>
+<li>看到new开始在堆中初始化数据；</li>
+<li>执行子类的构造方法，但是会默认执行父类的构造方法，在父类的构造方法之前会执行构造代码块；</li>
+<li>然后执行父类的构造方法；</li>
+<li>回到子类，执行子类的构造代码块，再执行子类的构造方法；</li>
+</ol>
+<p>执行结构：</p>
+<p>静态代码块Fu<br>静态代码块Zi<br>构造代码块Fu<br>构造方法Fu<br>构造代码块Zi<br>构造方法Zi</p>
+<h4 id="看程序写结果"><a href="#看程序写结果" class="headerlink" title="看程序写结果"></a>看程序写结果</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">X</span> </span>&#123;</div><div class="line">	Y b = <span class="keyword">new</span> Y();</div><div class="line">	X() &#123;</div><div class="line">		System.out.print(<span class="string">"X"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Y</span> </span>&#123;</div><div class="line">	Y() &#123;</div><div class="line">		System.out.print(<span class="string">"Y"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Z</span> <span class="keyword">extends</span> <span class="title">X</span> </span>&#123;</div><div class="line">	Y y = <span class="keyword">new</span> Y();</div><div class="line">	Z() &#123;</div><div class="line">		<span class="comment">//super</span></div><div class="line">		System.out.print(<span class="string">"Z"</span>);</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="keyword">new</span> Z(); </div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>一个类的初始化会首先初始化静态代码块，然后初始化成员变量（成员变量有基本变量和引用变量），成员变量的初始化会首先进行默认初始化，然后是显示初始化，最后是构造方法初始化；</p>
+<p>分析类的初始化，应该首先从main方法开始：</p>
+<ol>
+<li>初始化z，看到z有extends所以应该先初始化x；</li>
+<li>x初始化成员变量，初始化y；</li>
+<li>y初始化成员变量打印y；</li>
+<li>回到x，打印x；</li>
+<li>回到z，看到new y（）；</li>
+<li>初始化y，打印语句；</li>
+<li>执行构造方法，打印z；</li>
+</ol>
+<p>最后结果是：yxyz</p>
+<h3 id="重写Override"><a href="#重写Override" class="headerlink" title="重写Override"></a>重写Override</h3><p>子类中出现和父类一模一样的方法（包扩方法声明和方法参数）</p>
+<blockquote>
+<p>方法重载时在本类中出现的方法名一样，参数类列表不同的方法，与返回值无关；</p>
+<p>Override：方法重写<br>Overload：方法重载</p>
+</blockquote>
+<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><ul>
+<li>父类私有的方法不能重写</li>
+<li>重写父类方法时访问权限不能更低，最好是一致；</li>
+<li>父类静态方法，子类必须通过静态实现重写</li>
+</ul>
+</section>
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#Java笔记" >
+    <span class="tag-code">Java笔记</span>
+  </a>
+
+      </div>
+    
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="alipay-code">
+            <div class="code-image"></div>
+            <b>使用支付宝打赏</b>
+          </span>
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+    </div>
+    <div class="qrcode">
+      <canvas id="share-qrcode"></canvas>
+      <p class="notice">扫描二维码，分享此文章</p>
+    </div>
+    
+      <div id="comments"></div>
+    
+  </article>
+</main>
+
+<script>
+  (function () {
+    var url = 'http://bbbb.ml/2014/03/07/Java/JavaDoc、代码块、继承/';
+    var banner = 'http://osk1xe27i.bkt.clouddn.com/1.jpg'
+    if (banner !== 'undefined') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "jwl00";
+    if (gitmentConfig != "undefined") {
+      var gitment = new Gitment({
+        id: "JavaDoc、代码块、继承",
+        owner: "jwl00",
+        repo: "jwl00.github.io",
+        oauth: {
+          client_id: "ae21ad25810b1f2cc193",
+          client_secret: "7b6bb525adfeee63bd087132d98e6fd015d49ed8"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>
