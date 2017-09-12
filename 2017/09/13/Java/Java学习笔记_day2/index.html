@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="什么也不留下">
+  <meta name="keyword" content="hexo-theme, Android">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      JWL博客
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>JWL博客</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2></h2>
+  <p class="post-date">2017-09-13</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content"><h1 id="Java学习笔记-day2"><a href="#Java学习笔记-day2" class="headerlink" title="Java学习笔记_day2"></a>Java学习笔记_day2</h1><p>[TOC]</p>
+<h2 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h2><p>组成关键字的字母全部小写</p>
+<p>goto和const作为保留字存在,目前并不使用</p>
+<h3 id="常见关键字"><a href="#常见关键字" class="headerlink" title="常见关键字"></a>常见关键字</h3><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170313_204018.png" alt="snipaste_20170313_204018"></p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170313_204039.png" alt="snipaste_20170313_204039"></p>
+<h2 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h2><p>就是给类,接口,方法,变量variable等起名字时使用的字符序列</p>
+<h3 id="组成规则"><a href="#组成规则" class="headerlink" title="组成规则"></a>组成规则</h3><p>l  英文大小写字母</p>
+<p>l  数字字符</p>
+<p>l  $和_</p>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><p>l  不能以数字开头</p>
+<p>l  不能是Java中的关键字</p>
+<p>l  区分大小写</p>
+<h3 id="命名规则"><a href="#命名规则" class="headerlink" title="命名规则"></a>命名规则</h3><ol>
+<li>包(其实就是文件夹,用于解决相同类名问题)</li>
+</ol>
+<p>全部是小写</p>
+<p>单级包：haotianyi</p>
+<p>多级包：cn.hty</p>
+<ol>
+<li>类或者接口</li>
+</ol>
+<p>一个单词：首字母大写</p>
+<p>多个单词：每个大单词首字母大写     ShowAllAge</p>
+<ol>
+<li>方法和变量</li>
+</ol>
+<p>一个单词:单词的首字母小写  age</p>
+<p>多个单词：从第二个单词开始，单词的首字母大写   showAllAge</p>
+<ol>
+<li>常量</li>
+</ol>
+<p>一个单词：每个字母全部大写</p>
+<p>多个单词：每个字母全部大写，单词之间用下划线隔开</p>
+<h2 id="Java中注释"><a href="#Java中注释" class="headerlink" title="Java中注释"></a>Java中注释</h2><p>l  单行注释</p>
+<p>格式： //注释文字</p>
+<p>l  多行注释</p>
+<p>格式： /<em>  注释文字  </em>/</p>
+<p>l  文档注释</p>
+<p>格式：/<em>* 注释文字 </em>/</p>
+<p>多行注释不可以嵌套使用，单行才可以嵌套使用</p>
+<p>文档注释主要是被javadoc工具解析成一个说明书</p>
+<p>先写注释在写代码</p>
+<h3 id="注释的作用"><a href="#注释的作用" class="headerlink" title="注释的作用"></a>注释的作用</h3><p>解释说明程序，提高程序的阅读性</p>
+<p>可以帮助我们排错</p>
+<h2 id="常量constant"><a href="#常量constant" class="headerlink" title="常量constant"></a>常量constant</h2><p>在程序执行的过程中其值不可以发生改变</p>
+<h3 id="Java中常量分类"><a href="#Java中常量分类" class="headerlink" title="Java中常量分类"></a>Java中常量分类</h3><ol>
+<li>字面值常量</li>
+</ol>
+<p>字符串常量  用双引号括起来的内容</p>
+<p>整数常量       所有整数</p>
+<p>12,23</p>
+<p>小数常量       所有小数</p>
+<p>12.34,56.78</p>
+<p>字符常量       用单引号括起来的内容</p>
+<p>‘a’,’A’,’0’</p>
+<p>布尔常量       较为特有，只有true和false</p>
+<p>空常量      null(数组部分讲解)</p>
+<ol>
+<li>自定义常量</li>
+</ol>
+<h3 id="不同进制的数据组成"><a href="#不同进制的数据组成" class="headerlink" title="不同进制的数据组成"></a>不同进制的数据组成</h3><p>二进制  </p>
+<p>由0,1组成。以0b开头</p>
+<p>八进制  </p>
+<p>由0,1,…7组成。以0开头</p>
+<p>十进制  </p>
+<p>由0,1,…9组成。整数默认是十进制的</p>
+<p>十六进制    </p>
+<p>由0,1,…9,a,b,c,d,e,f(大小写均可)。以0x开头 </p>
+<h4 id="不同进制之间的转换"><a href="#不同进制之间的转换" class="headerlink" title="不同进制之间的转换"></a>不同进制之间的转换</h4><p>l  十进制到其他进制</p>
+<p>用原始数据除以要转换的进制数，直到被除数是0为止，然后从下到上得到余数</p>
+<p>l  其他进制到十进制</p>
+<p>用每位的数字在乘以进制的不同次幂</p>
+<h4 id="由符号数据表示法"><a href="#由符号数据表示法" class="headerlink" title="由符号数据表示法"></a>由符号数据表示法</h4><p>在计算机内，有符号数有3种表示法：原码、反码和补码。所有数据的运算都是采用补码进行的。</p>
+<p>原码</p>
+<p>就是二进制定点表示法，即最高位为符号位，“0”表示正，“1”表示负，其余位表示数值的大小。</p>
+<p>反码</p>
+<p>正数的反码与其原码相同；负数的反码是对其原码逐位取反，但符号位除外。</p>
+<p>补码</p>
+<p>正数的补码与其原码相同；负数的补码是在其反码的末位加1。</p>
+<h2 id="变量variable"><a href="#变量variable" class="headerlink" title="变量variable"></a>变量variable</h2><p>在程序执行的过程中，在某个范围内其值可以发生改变的量</p>
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170313_204211.png" alt="snipaste_20170313_204211"></p>
+<p>Java语言是强类型语言，对于每一种数据都定义了明确的具体数据类型，在内存总分配了不同大小的内存空间</p>
+<h3 id="数据的范围"><a href="#数据的范围" class="headerlink" title="数据的范围"></a>数据的范围</h3><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170313_204232.png" alt="snipaste_20170313_204232"></p>
+<h3 id="数据注意"><a href="#数据注意" class="headerlink" title="数据注意"></a>数据注意</h3><p>一个字节8个比特</p>
+<p>整数默认：int   浮点数默认：double</p>
+<p>如要声明一个常量为 float 型，则需在数字后面加 f 或 F</p>
+<p>声明long型常量可以后加‘ l ’或‘ L ’</p>
+<h3 id="变量注意事项"><a href="#变量注意事项" class="headerlink" title="变量注意事项"></a>变量注意事项</h3><p>作用域  </p>
+<p>变量定义在哪一级大括号中，哪个大括号的范围就是这个变量的作用域。相同的作用域中不能定义两个同名变量。</p>
+<p>初始化值</p>
+<p>没有初始化值不能直接使用</p>
+<p>在一行上建议只定义一个变量</p>
+<p>可以定义多个，但是不建议</p>
+<h2 id="数据类型的转换"><a href="#数据类型的转换" class="headerlink" title="数据类型的转换"></a>数据类型的转换</h2><p>l  默认转换</p>
+<p>byte,short,char—int—long</p>
+<p>byte,short,char相互之间转换，他们参与运算首先转换为int类型</p>
+<p>l  强制转换</p>
+<p>目标类型 变量名=(目标类型)(被转换的数据);</p>
+<p>byte，short在定义的时候，他们接收的其实是一个int类型的值。</p>
+<p>这个是自己做了一个数据检测的，如果不再它们的范围内，就报错。</p>
+<h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><ol>
+<li><p>byte b =130;有没有问题?如果我想让赋值正确，可以怎么做?结果是多少呢?</p>
+</li>
+<li><p>字符参与运算</p>
+<pre><code>是查找ASCII里面的值
+
+&apos;a&apos;    97
+
+&apos;A&apos;    65
+
+&apos;0&apos;    48
+</code></pre></li>
+<li><p>下面两种方式有区别吗?</p>
+<pre><code>float f1 = 12.345f;
+
+float f2 = (float)12.345;
+</code></pre></li>
+</ol>
+<p>下面的程序有问题吗，如果有，在哪里呢?</p>
+<pre><code>byte b1 = 3;
+
+byte b2 = 4;
+
+byte b3 = b1 + b2;
+
+byte b4 = 3 + 4;
+</code></pre><p>参考：</p>
+<p>1用原码反码补码来计算</p>
+<pre><code>我们要想知道结果是什么，就应该知道是如何进行计算的。
+
+而我们又知道计算机中数据的运算都是补码进行的。
+
+而要得到补码，首先要计算出数据的二进制。
+
+
+
+A:获取130这个数据的二进制。
+
+    00000000 0000000000000000 10000010
+
+    这是130的原码，也是反码，还是补码。
+
+B:做截取操作，截成byte类型的了。
+
+    10000010 
+
+    这个结果是补码。
+
+C:已知补码求原码。
+
+           符号位     数值位
+
+    补码：  1          0000010
+
+
+
+    反码：  1          0000001
+
+
+
+    原码：  1          1111110
+</code></pre><p>2是f1就是float类型的数据但是f2是int去掉前面三个字节截取而得</p>
+<p>3两个byte类型的数据相加直接转换成int类型，由低级向高级装换可以隐士转换，高级向低级转换一定要显示，是b3错误，换成short一样错误。</p>
+<p>常量，先把结果计算出来，然后看是否在byte的范围内，如果在就不报错。</p>
+<h2 id="复习题"><a href="#复习题" class="headerlink" title="复习题"></a>复习题</h2><p>1:在定义Long或者Float类型变量的时候，要加L或者f。</p>
+<p> 整数默认是int类型，浮点数默认是double。</p>
+<p> byte，short在定义的时候，他们接收的其实是一个int类型的值。</p>
+<p> 这个是自己做了一个数据检测的，如果不再它们的范围内，就报错。</p>
+<p>2:byte值的问题</p>
+<pre><code>byteb1 = 127;
+
+byteb2 = (byte)128; //-128
+
+byteb3 = (byte)129; //-127
+
+byteb4 = (byte)130; //-126
+
+
+
+byte的范围：-128 ~ 127
+
+
+
+128：10000000
+
+-128：10000000 (这里的1即是符号位，也是数值位)
+</code></pre><p>3:数据类型转换之默认转换</p>
+<pre><code>byte,short,char-- int -- long -- float -- double
+
+
+
+long:8个字节
+
+float：4个字节
+
+
+
+A:它们底层的存储结构不同。
+
+B:float表示的数据范围比long的范围要大
+
+   long：2^63-1
+
+   float：3.4*10^38 &gt; 2*10^38 &gt; 2*8^38 =2*2^3^38 = 2*2^114 &gt; 2^63-1
+</code></pre><p>4:Java语言中的字符char可以存储一个中文汉字吗?为什么呢?</p>
+<pre><code>可以。因为java语言中的字符占用两个字节。
+
+
+
+Java语言采用的是Unicode编码。
+</code></pre></section>
+    
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="alipay-code">
+            <div class="code-image"></div>
+            <b>使用支付宝打赏</b>
+          </span>
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+    </div>
+    <div class="qrcode">
+      <canvas id="share-qrcode"></canvas>
+      <p class="notice">扫描二维码，分享此文章</p>
+    </div>
+    
+      <div id="comments"></div>
+    
+  </article>
+</main>
+
+<script>
+  (function () {
+    var url = 'http://bbbb.ml/2017/09/13/Java/Java学习笔记_day2/';
+    var banner = ''
+    if (banner !== 'undefined') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "jwl00";
+    if (gitmentConfig != "undefined") {
+      var gitment = new Gitment({
+        id: "",
+        owner: "jwl00",
+        repo: "jwl00.github.io",
+        oauth: {
+          client_id: "ae21ad25810b1f2cc193",
+          client_secret: "7b6bb525adfeee63bd087132d98e6fd015d49ed8"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

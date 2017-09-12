@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="什么也不留下">
+  <meta name="keyword" content="hexo-theme, Android">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      JWL博客
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>JWL博客</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2></h2>
+  <p class="post-date">2017-09-13</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content"><h1 id="04-说说BroadcastReceiver那些事"><a href="#04-说说BroadcastReceiver那些事" class="headerlink" title="04-说说BroadcastReceiver那些事"></a>04-说说BroadcastReceiver那些事</h1><p>[TOC]</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>　　广播是一种广泛运用的在应用程序之间传输信息的机制，主要用来监听系统或者应用发出的广播信息，然后根据广播信息作为相应的逻辑处理，也可以用来传输少量、频率低的数据。</p>
+<p>　　在实现开机启动服务和网络状态改变、电量变化、短信和来电时通过接收系统的广播让应用程序作出相应的处理。</p>
+<p>　　BroadcastReceiver 自身并不实现图形用户界面，但是当它收到某个通知后， BroadcastReceiver 可以通过启动 Service 、启动 Activity 或是 NotificationMananger 提醒用户。</p>
+<p>　　当系统或应用发出广播时，将会扫描系统中的所有广播接收者，通过action匹配将广播发送给相应的接收者，接收者收到广播后将会产生一个广播接收者的实例，执行其中的onReceiver()这个方法；特别需要注意的是这个实例的生命周期只有10秒，如果10秒内没执行结束onReceiver()，系统将会报错。　 　　 　　</p>
+<p>​       在onReceiver()执行完毕之后，该实例将会被销毁，所以不要在onReceiver()中执行耗时操作，也不要在里面创建子线程处理业务（因为可能子线程没处理完，接收者就被回收了，那么子线程也会跟着被回收掉）；正确的处理方法就是通过in调用activity或者service处理业务。</p>
+<h3 id="注册广播"><a href="#注册广播" class="headerlink" title="注册广播"></a>注册广播</h3><p>　　BroadcastReceiver的注册方式有且只有两种，一种是静态注册（推荐使用），另外一种是动态注册，广播接收者在注册后就开始监听系统或者应用之间发送的广播消息。</p>
+<p>定义自己的BroadcastReceiver 类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">public class MyBroadcastReceiver extends BroadcastReceiver &#123;</div><div class="line"></div><div class="line">// action 名称</div><div class="line">String SMS_RECEIVED = &quot;android.provider.Telephony.SMS_RECEIVED&quot; ;</div><div class="line"></div><div class="line">    public void onReceive(Context context, Intent intent) &#123;</div><div class="line"></div><div class="line">       if (intent.getAction().equals( SMS_RECEIVED )) &#123;</div><div class="line">           // 一个receiver可以接收多个action的，即可以有多个intent-filter，需要在onReceive里面对intent.getAction(action name)进行判断。</div><div class="line">       &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="动态注册"><a href="#动态注册" class="headerlink" title="动态注册"></a>动态注册</h4><ul>
+<li>在Activity中声明BroadcastReceiver的扩展对象，在onResume中注册，onPause中卸载.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">public class MainActivity extends Activity &#123;</div><div class="line">    MyBroadcastReceiver receiver;</div><div class="line">    @Override</div><div class="line">     protected void onResume() &#123;</div><div class="line">        // 动态注册广播 (代码执行到这才会开始监听广播消息，并对广播消息作为相应的处理)</div><div class="line">        receiver = new MyBroadcastReceiver();</div><div class="line">        IntentFilter intentFilter = new IntentFilter( &quot;android.provider.Telephony.SMS_RECEIVED&quot; );</div><div class="line">        registerReceiver( receiver , intentFilter);</div><div class="line"></div><div class="line">        super.onResume();</div><div class="line">    &#125;</div><div class="line">    @Override</div><div class="line">    protected void onPause() &#123;  </div><div class="line">        // 撤销注册 (撤销注册后广播接收者将不会再监听系统的广播消息)</div><div class="line">        unregisterReceiver(receiver);</div><div class="line">        super.onPause();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="静态注册"><a href="#静态注册" class="headerlink" title="静态注册"></a>静态注册</h4><p>在AndroidManifest.xml的application里面定义receiver并设置要接收的action。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt; receiver android:name = &quot;.MyBroadcastReceiver&quot; &gt; </div><div class="line"></div><div class="line"> &lt; intent-filter android:priority = &quot;777&quot; &gt;             </div><div class="line">&lt;action android:name = &quot;android.provider.Telephony.SMS_RECEIVED&quot; /&gt;</div><div class="line">&lt;/ intent-filter &gt; </div><div class="line"></div><div class="line">&lt;/ receiver &gt;</div></pre></td></tr></table></figure>
+<p>这里的priority取值是　-1000到1000，值越大优先级越高，同时注意加上系统接收短信的限权。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt; uses-permission android:name =&quot;android.permission.RECEIVE_SMS&quot; /&gt;</div></pre></td></tr></table></figure>
+<p>　　静态注册的广播接收者是一个常驻在系统中的全局监听器，当你在应用中配置了一个静态的BroadcastReceiver，安装了应用后而无论应用是否处于运行状态，广播接收者都是已经常驻在系统中了。同时应用里的所有receiver都在清单文件里面，方便查看。　 　　 　　</p>
+<p>​       要销毁掉静态注册的广播接收者，可以通过调用PackageManager将Receiver禁用。</p>
+<h3 id="发送自定义广播"><a href="#发送自定义广播" class="headerlink" title="发送自定义广播"></a>发送自定义广播</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Intent intent = new Intent();</div><div class="line">intent.setAction(&quot;haotianyi.win.start&quot;);</div><div class="line">sendBroadcast(intent);</div></pre></td></tr></table></figure>
+<h3 id="两者区别"><a href="#两者区别" class="headerlink" title="两者区别"></a>两者区别</h3><p>　　1、静态注册的广播接收者一经安装就常驻在系统之中，不需要重新启动唤醒接收者；动态注册的广播接收者随着应用的生命周期，由registerReceiver开始监听，由unregisterReceiver撤销监听，如果应用退出后，没有撤销已经注册的接收者应用应用将会报错。</p>
+<p>　　2、当广播接收者通过intent启动一个activity或者service时，如果intent中无法匹配到相应的组件。　 　　</p>
+<p>​       动态注册的广播接收者将会导致应用报错 　　而静态注册的广播接收者将不会有任何报错，因为自从应用安装完成后，广播接收者跟应用已经脱离了关系。　</p>
+<h2 id="详细介绍"><a href="#详细介绍" class="headerlink" title="详细介绍"></a>详细介绍</h2><p>BroadcastReceiver有两种形式一种是有序广播也就是在接受的时候是按照顺序来接受的，高优先级先接受广播，而且可以中断广播和向广播中添加数据；另一种就是无序广播，当广播发出的时候所有的广播都可以接受，而且是同时接受的的，区别是两者的发送广播的方法不同。</p>
+<h3 id="有序广播"><a href="#有序广播" class="headerlink" title="有序广播"></a>有序广播</h3><p>使用sendOrderedBroadcast来发送广播，也就是一种特殊的Intent（意图），中断广播的方法：abortBroadcast可以中断广播的继续发送。</p>
+<p>广播的优先级是使用AndroidManifest中的priority属性，注意这个属性是放在intent-filter中的：</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp161102_024825.png" alt="sp161102_024825"></p>
+<p>在上面的例子中在建立一个Broadcast，注意要使用sendOrderedBroadcast</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp161102_025528.png" alt="sp161102_025528"></p>
+<h4 id="传递数据"><a href="#传递数据" class="headerlink" title="传递数据"></a>传递数据</h4><p>在不同的优先级中的广播传递数据：</p>
+<p>更改MyService的onReceive方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">    @Override</div><div class="line">    public void onReceive(Context context, Intent intent) &#123;</div><div class="line">        System.out.println(&quot;收到&quot;);</div><div class="line">        Bundle bundle = new Bundle();</div><div class="line">        bundle.putString(&quot;nihao&quot;,&quot;你好&quot;);</div><div class="line">        setResultExtras(bundle);</div><div class="line">//        abortBroadcast();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>然后在更改MyService2的onReceive方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">public void onReceive(Context context, Intent intent) &#123;</div><div class="line">    Bundle hello = getResultExtras(true);</div><div class="line">    System.out.println(&quot;收到22&quot;+&quot;---------&quot;+hello.get(&quot;nihao&quot;));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>打印截图：</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp161102_030000.png" alt="sp161102_030000"></p>
+<p>注意两对方法： setResultExtras(bundle)和getResultExtras(true)</p>
+<h4 id="实战-短信拦截"><a href="#实战-短信拦截" class="headerlink" title="实战-短信拦截"></a>实战-短信拦截</h4><p>注意这是在6.0版本之前的代码，6.0之后还要更多的权限（暂时不讨论）</p>
+<p>首先就是把MyService能够接受系统的广播： </p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp161102_030615.png" alt="sp161102_030615"></p>
+<p>权限设置成最大的整数，然后在添加权限：</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp161102_030740.png" alt="sp161102_030740"></p>
+<p>这时更改onService中的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">    @Override</div><div class="line">    public void onReceive(Context context, Intent intent) &#123;</div><div class="line">        System.out.println(&quot;收到&quot;);</div><div class="line">//        Bundle bundle = new Bundle();</div><div class="line">//        bundle.putString(&quot;nihao&quot;,&quot;你好&quot;);</div><div class="line">//        setResultExtras(bundle);</div><div class="line">        abortBroadcast();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>这时当手机接受短信的是就完成拦截了</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/BB44E9~1.GIF" alt="img"></p>
+<h4 id="读取短信内容"><a href="#读取短信内容" class="headerlink" title="读取短信内容"></a>读取短信内容</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Object[] objects = (Object[]) intent.getExtras().get(&quot;pdus&quot;);</div><div class="line"></div><div class="line">for (Object object : objects) &#123;// 短信最多140字节,</div><div class="line">    // 超出的话,会分为多条短信发送,所以是一个数组,因为我们的短信指令很短,所以for循环只执行一次</div><div class="line">    SmsMessage message = SmsMessage.createFromPdu((byte[]) object);</div><div class="line">    String originatingAddress = message.getOriginatingAddress();// 短信来源号码</div><div class="line">    String messageBody = message.getMessageBody();// 短信内容</div><div class="line"></div><div class="line">    System.out.println(originatingAddress + &quot;:&quot; + messageBody);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当再次接受短信：<br><img src="http://oaxelf1sk.bkt.clouddn.com/sp161102_031046.png" alt="sp161102_031046"></p>
+<h3 id="无序广播"><a href="#无序广播" class="headerlink" title="无序广播"></a>无序广播</h3><p>就是正常广播，使用方法就是sendBroadcast方法不同，二期不能中断广播；</p>
+<p>作为一个全局的“监听者”，系统在很多任务都会发出广播，而且利用这个广播也可以作为跨进程通信的手段。</p>
+<h4 id="实例-开机自动启动"><a href="#实例-开机自动启动" class="headerlink" title="实例-开机自动启动"></a>实例-开机自动启动</h4><p>添加一个action： </p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp161102_031934.png" alt="sp161102_031934"></p>
+<p>然后在添加一个权限：</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp161102_031942.png" alt="sp161102_031942"></p>
+<p>最后更改代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">public void onReceive(Context context, Intent intent) &#123;</div><div class="line">    System.out.println(&quot;开机自动启动成功&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp161102_031916.png" alt="sp161102_031916"></p>
+<h4 id="实战-手机电量过低"><a href="#实战-手机电量过低" class="headerlink" title="实战-手机电量过低"></a>实战-手机电量过低</h4><p>一个action：<br><img src="http://oaxelf1sk.bkt.clouddn.com/sp161102_032357.png" alt="sp161102_032357"></p>
+<p>一个权限：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;action android:name=&quot;android.intent.action.BATTERY_CHANGED&quot;/&gt;</div></pre></td></tr></table></figure>
+<p>一个结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">public void onReceive(Context context, Intent intent) &#123;  </div><div class="line">        int currLevel = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);  //当前电量  　</div><div class="line"></div><div class="line">        int total = intent.getIntExtra(BatteryManager.EXTRA_SCALE, 1);    //总电量  </div><div class="line">        int percent = currLevel * 100 / total;  </div><div class="line">        Log.i(TAG, &quot;battery: &quot; + percent + &quot;%&quot;);  </div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h4 id="网络状态"><a href="#网络状态" class="headerlink" title="网络状态"></a>网络状态</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;action android:name=&quot;android.net.conn.CONNECTIVITY_CHANGE&quot;/&gt;  </div><div class="line">&lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot;/&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">public static boolean isNetworkAvailable(Context context) &#123;  </div><div class="line">      ConnectivityManager mgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);  </div><div class="line">      NetworkInfo[] info = mgr.getAllNetworkInfo();  </div><div class="line">      if (info != null) &#123;  </div><div class="line">          for (int i = 0; i &lt; info.length; i++) &#123;  </div><div class="line">    if (info[i].getState() == NetworkInfo.State.CONNECTED) &#123;  </div><div class="line">                  return true;  </div><div class="line">              &#125;  </div><div class="line">          &#125;  </div><div class="line">      &#125;  </div><div class="line">      return false;  </div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<h3 id="异步广播"><a href="#异步广播" class="headerlink" title="异步广播"></a>异步广播</h3><p>​    使用方法：sendStickyBroadcast() ：</p>
+<p>​    发出的Intent当接收Activity（动态注册）重新处于onResume状态之后就能再次接受到最后一个Intent，就是说sendStickyBroadcast发出的最后一个Intent会被保留，下次当Activity处于活跃的时候又会接受到它。</p>
+<p>​    发这个广播需要权限：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;uses-permission android:name=&quot;android.permission.BROADCAST_STICKY&quot; /&gt;</div></pre></td></tr></table></figure>
+<p>​    卸载该广播：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">removeStickyBroadcast(intent);</div></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>静态广播接收的处理器是由PackageManagerService负责，当手机启动或者新安装了应用的时候，PackageManagerService会扫描手机中所有已安装的APP应用，将AndroidManifest.xml中有关注册广播的信息解析出来，存储至一个全局静态变量当中。</li>
+<li>动态广播接收的处理器是由ActivityManagerService负责，当APP的服务或者进程起来之后，执行了注册广播接收的代码逻辑，即进行加载，最后会存储在一个另外的全局静态变量中。需要注意的是：</li>
+</ul>
+<p>　　 1、 这个并非是一成不变的，当程序被杀死之后，已注册的动态广播接收器也会被移出全局变量，直到下次程序启动，再进行动态广播的注册，当然这里面的顺序也已经变更了一次。</p>
+<p>　　 2、这里也并没完整的进行广播的排序，只记录的注册的先后顺序，并未有结合优先级的处理。</p>
+<ul>
+<li>广播发出的时候，广播接收者接收的顺序如下：</li>
+</ul>
+<p>　　１．当广播为<strong>普通广播</strong>时，有如下的接收顺序：</p>
+<p>​    无视优先级 　　</p>
+<p>​    动态优先于静态 　　</p>
+<p>​    同优先级的动态广播接收器，<strong>先注册的大于后注册的</strong> 　　</p>
+<p>​    同优先级的静态广播接收器，<strong>先扫描的大于后扫描的</strong>　</p>
+<p>　　２．如果广播为<strong>有序广播</strong>，那么会将动态广播处理器和静态广播处理器合并在一起处理广播的消息，最终确定广播接收的顺序：　 　　 　　</p>
+<p>​    优先级高的先接收　 　　</p>
+<p>​    同优先级的动静态广播接收器，<strong>动态优先于静态</strong> 　　</p>
+<p>​    同优先级的动态广播接收器，<strong>先注册的大于后注册的</strong> 　　</p>
+<p>​    同优先级的静态广播接收器，<strong>先扫描的大于后扫描的</strong>　</p>
+</section>
+    
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="alipay-code">
+            <div class="code-image"></div>
+            <b>使用支付宝打赏</b>
+          </span>
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+    </div>
+    <div class="qrcode">
+      <canvas id="share-qrcode"></canvas>
+      <p class="notice">扫描二维码，分享此文章</p>
+    </div>
+    
+      <div id="comments"></div>
+    
+  </article>
+</main>
+
+<script>
+  (function () {
+    var url = 'http://bbbb.ml/2017/09/13/Android/04-说说BroadcastReceiver那些事/';
+    var banner = ''
+    if (banner !== 'undefined') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "jwl00";
+    if (gitmentConfig != "undefined") {
+      var gitment = new Gitment({
+        id: "",
+        owner: "jwl00",
+        repo: "jwl00.github.io",
+        oauth: {
+          client_id: "ae21ad25810b1f2cc193",
+          client_secret: "7b6bb525adfeee63bd087132d98e6fd015d49ed8"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

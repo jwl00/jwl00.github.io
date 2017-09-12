@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="什么也不留下">
+  <meta name="keyword" content="hexo-theme, Android">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      JWL博客
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>JWL博客</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2></h2>
+  <p class="post-date">2017-09-13</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content"><h1 id="ButterKnife的使用"><a href="#ButterKnife的使用" class="headerlink" title="ButterKnife的使用"></a>ButterKnife的使用</h1><p>[TOC]</p>
+<h2 id="基本说明"><a href="#基本说明" class="headerlink" title="基本说明"></a>基本说明</h2><p>作者环境：as2.2+gradle-2.14.1</p>
+<h2 id="配置环境"><a href="#配置环境" class="headerlink" title="配置环境"></a>配置环境</h2><ul>
+<li>在build.gradle（project）中配置：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">classpath &apos;com.neenbedankt.gradle.plugins:android-apt:1.8&apos;</div></pre></td></tr></table></figure>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp160923_110114.png" alt="sp160923_110114"></p>
+<ul>
+<li>在build.gradle（modle：app）中配置：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">apply plugin: &apos;android-apt&apos;</div></pre></td></tr></table></figure>
+<p>然后在dependencies中配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">compile &apos;com.jakewharton:butterknife:8.4.0&apos;</div><div class="line">apt &apos;com.jakewharton:butterknife-compiler:8.4.0&apos;</div></pre></td></tr></table></figure>
+<p>然后开始sync，会有错误不用管一路向下，基本成功。</p>
+<h2 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h2><h3 id="在activity中使用"><a href="#在activity中使用" class="headerlink" title="在activity中使用"></a>在activity中使用</h3><p>在setContentView后面加上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ButterKnife.bind(this);</div></pre></td></tr></table></figure>
+<p>在前面绑定一些view，来做测试：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">@BindView(R.id.imageView)</div><div class="line">ImageView mImageView;</div><div class="line">@BindView(R.id.button)</div><div class="line">Button mButton;</div><div class="line">@BindView(R.id.activity_main)</div><div class="line">RelativeLayout mActivityMain;</div><div class="line"></div><div class="line">@Override</div><div class="line">protected void onCreate(Bundle savedInstanceState) &#123;</div><div class="line">    super.onCreate(savedInstanceState);</div><div class="line">    setContentView(R.layout.activity_main);</div><div class="line">    ButterKnife.bind(this);</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">@OnClick(R.id.button)</div><div class="line">public void onClick() &#123;</div><div class="line">    Log.d(&quot;tag&quot;,&quot;success&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在as中推荐Android Butterknife Zelezny插件快速生成bingView</p>
+<h3 id="在fragment中使用"><a href="#在fragment中使用" class="headerlink" title="在fragment中使用"></a>在fragment中使用</h3><p>在fragment中的解析view的时候绑定fragment：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">View view = inflater.inflate(R.layout.fragment_temp, container, false);</div><div class="line">ButterKnife.bind(this, view);</div></pre></td></tr></table></figure>
+<p>然后bindview和OnClick方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">@OnClick(R.id.button3)</div><div class="line">public void onClick() &#123;</div><div class="line">    Toast.makeText(getActivity(),&quot;success&quot;,Toast.LENGTH_SHORT).show();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>完整代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">@BindView(R.id.button3)</div><div class="line">Button mButton3;</div><div class="line">@BindView(R.id.button4)</div><div class="line">Button mButton4;</div><div class="line"></div><div class="line">public TempFragment() &#123;</div><div class="line">    // Required empty public constructor</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">@Override</div><div class="line">public View onCreateView(LayoutInflater inflater, ViewGroup container,</div><div class="line">                         Bundle savedInstanceState) &#123;</div><div class="line">    // Inflate the layout for this fragment</div><div class="line">    View view = inflater.inflate(R.layout.fragment_temp, container, false);</div><div class="line">    ButterKnife.bind(this, view);</div><div class="line">    return view;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@OnClick(R.id.button3)</div><div class="line">public void onClick() &#123;</div><div class="line">    Toast.makeText(getActivity(),&quot;success&quot;,Toast.LENGTH_SHORT).show();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>运行效果：</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp160923_111715.png" alt="sp160923_111715"></p>
+<h3 id="绑定各种视图资源"><a href="#绑定各种视图资源" class="headerlink" title="绑定各种视图资源"></a>绑定各种视图资源</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">@BindColor(R.color.colorPrimary)</div><div class="line">int mColor;</div><div class="line">@BindString(R.string.app_name)</div><div class="line">String name;</div><div class="line">@BindDrawable(R.drawable.temp)</div><div class="line">Drawable mDrawable;</div><div class="line">@BindView(R.id.button5)</div><div class="line">Button mButton5;</div></pre></td></tr></table></figure>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp160923_113016.png" alt="sp160923_113016"></p>
+<h4 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">@OnClick(R.id.button5)</div><div class="line">public void onClick2() &#123;</div><div class="line">    mButton5.setBackground(mDrawable);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>对应的xml文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</div><div class="line">&lt;selector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;</div><div class="line">&lt;item android:state_checkable=&quot;true&quot; android:drawable=&quot;@android:color/holo_blue_bright&quot;/&gt;</div><div class="line">    &lt;item android:drawable=&quot;@android:color/holo_red_light&quot;/&gt;</div><div class="line">&lt;/selector&gt;</div></pre></td></tr></table></figure>
+<p><strong>运行结果</strong></p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp160923_113105.png" alt="sp160923_113105"></p>
+<blockquote>
+<p>注意：ButterKnife.bind(this, view)一定是在使用绑定的view之前否则会报错</p>
+</blockquote>
+<h2 id="进阶使用"><a href="#进阶使用" class="headerlink" title="进阶使用"></a>进阶使用</h2><h3 id="在adapter中使用"><a href="#在adapter中使用" class="headerlink" title="在adapter中使用"></a>在adapter中使用</h3><p>在viewholder中的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">static class ViewHolder &#123;</div><div class="line"></div><div class="line">    @BindView(R.id.textView)</div><div class="line">    TextView mTextView1;</div><div class="line">    @BindView(R.id.textView2)</div><div class="line">    TextView mTextView2;</div><div class="line"></div><div class="line">    public ViewHolder(View view) &#123;</div><div class="line">        ButterKnife.bind(this, view);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注意在构造方法中一定要传入一个view</p>
+<p><strong>完整代码</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line">public class TempAdapter&lt;T&gt; extends BaseAdapter &#123;</div><div class="line"></div><div class="line">    private List&lt;T&gt; mList;</div><div class="line"></div><div class="line">    public TempAdapter(List&lt;T&gt; list) &#123;</div><div class="line">        mList = list;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public int getCount() &#123;</div><div class="line">        if (mList != null) &#123;</div><div class="line">            return mList.size();</div><div class="line">        &#125;</div><div class="line">        return 0;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public Object getItem(int position) &#123;</div><div class="line">        return mList.get(position);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public long getItemId(int position) &#123;</div><div class="line">        return position;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public View getView(int position, View convertView, ViewGroup parent) &#123;</div><div class="line">        ViewHolder viewHolder;</div><div class="line">        if (convertView != null) &#123;</div><div class="line">            viewHolder = (ViewHolder) convertView.getTag();</div><div class="line">        &#125; else &#123;</div><div class="line">            convertView = View.inflate(BaseApplication.getmContext(), R.layout.item, null);</div><div class="line">            viewHolder = new ViewHolder(convertView);</div><div class="line">            convertView.setTag(viewHolder);</div><div class="line">        &#125;</div><div class="line">        viewHolder.mTextView1.setText(mList.get(position)+&quot;&quot;);</div><div class="line">        viewHolder.mTextView2.setText(mList.get(position)+&quot;&quot;);</div><div class="line"></div><div class="line">        return convertView;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    static class ViewHolder &#123;</div><div class="line"></div><div class="line">        @BindView(R.id.textView)</div><div class="line">        TextView mTextView1;</div><div class="line">        @BindView(R.id.textView2)</div><div class="line">        TextView mTextView2;</div><div class="line"></div><div class="line">        public ViewHolder(View view) &#123;</div><div class="line">            ButterKnife.bind(this, view);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>最后在fragment中给listview添加adapter：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mLv.setAdapter(new TempAdapter&lt;String&gt;(mMlist));</div></pre></td></tr></table></figure>
+<p><strong>item代码</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</div><div class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</div><div class="line">              android:orientation=&quot;vertical&quot;</div><div class="line">              android:layout_width=&quot;match_parent&quot;</div><div class="line">              android:layout_height=&quot;match_parent&quot;&gt;</div><div class="line"></div><div class="line">    &lt;TextView</div><div class="line">        android:text=&quot;TextView&quot;</div><div class="line">        android:layout_width=&quot;match_parent&quot;</div><div class="line">        android:layout_height=&quot;wrap_content&quot; android:id=&quot;@+id/textView&quot;/&gt;</div><div class="line">    &lt;TextView</div><div class="line">        android:text=&quot;TextView&quot;</div><div class="line">        android:layout_width=&quot;match_parent&quot;</div><div class="line">        android:layout_height=&quot;wrap_content&quot; android:id=&quot;@+id/textView2&quot;/&gt;</div><div class="line">&lt;/LinearLayout&gt;</div></pre></td></tr></table></figure>
+<p><strong>运行结果</strong></p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp160923_115244.png" alt="sp160923_115244"></p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>在fragment中使用butterknife要注意一定要解绑：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mUnbinder = ButterKnife.bind(this, view);</div><div class="line"></div><div class="line">@Override</div><div class="line">public void onDestroyView() &#123;</div><div class="line">    super.onDestroyView();</div><div class="line">    mUnbinder.unbind();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>参考自：<a href="http://jakewharton.github.io/butterknife/" target="_blank" rel="external">butterKnife官方文档</a></p>
+</section>
+    
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="alipay-code">
+            <div class="code-image"></div>
+            <b>使用支付宝打赏</b>
+          </span>
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+    </div>
+    <div class="qrcode">
+      <canvas id="share-qrcode"></canvas>
+      <p class="notice">扫描二维码，分享此文章</p>
+    </div>
+    
+      <div id="comments"></div>
+    
+  </article>
+</main>
+
+<script>
+  (function () {
+    var url = 'http://bbbb.ml/2017/09/13/projects/ButterKnife使用/';
+    var banner = ''
+    if (banner !== 'undefined') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "jwl00";
+    if (gitmentConfig != "undefined") {
+      var gitment = new Gitment({
+        id: "",
+        owner: "jwl00",
+        repo: "jwl00.github.io",
+        oauth: {
+          client_id: "ae21ad25810b1f2cc193",
+          client_secret: "7b6bb525adfeee63bd087132d98e6fd015d49ed8"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

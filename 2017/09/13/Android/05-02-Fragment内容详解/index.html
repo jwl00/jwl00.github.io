@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="什么也不留下">
+  <meta name="keyword" content="hexo-theme, Android">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      JWL博客
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>JWL博客</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2></h2>
+  <p class="post-date">2017-09-13</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content"><h1 id="05-02-Fragment内容详解"><a href="#05-02-Fragment内容详解" class="headerlink" title="05-02-Fragment内容详解"></a>05-02-Fragment内容详解</h1><p>[TOC]</p>
+<h2 id="和Activity交互"><a href="#和Activity交互" class="headerlink" title="和Activity交互"></a>和Activity交互</h2><ul>
+<li>调用fragment的函数findFragmentById()或者findFragmentByTag()</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ExampleFragment fragment = (ExampleFragment) getFragmentManager().findFragmentById(R.id.example_fragment);</div></pre></td></tr></table></figure>
+<ul>
+<li>在Fragment中可以通过getActivity得到当前绑定的Activity的实例。</li>
+<li>创建activity事件回调函数，在fragment内部定义一个回调接口，宿主activity来实现它。</li>
+</ul>
+<h3 id="通信机制"><a href="#通信机制" class="headerlink" title="通信机制"></a>通信机制</h3><p>​    考虑Fragment的重复使用，所以必须降低Fragment与Activity的耦合，而且Fragment更不应该直接操作别的Fragment，毕竟Fragment操作应该由它的管理者Activity来决定，所有大部分的逻辑应该放到Activity中</p>
+<h4 id="使用回调接口"><a href="#使用回调接口" class="headerlink" title="使用回调接口"></a>使用回调接口</h4><p>改进MyFragment代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">public void onClick(View v) &#123;</div><div class="line">    </div><div class="line">    ((onFragmentClickListener) getActivity()).onClick();</div><div class="line">&#125;</div><div class="line"></div><div class="line">public interface onFragmentClickListener &#123;</div><div class="line">    void onClick();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="使用set方法"><a href="#使用set方法" class="headerlink" title="使用set方法"></a>使用set方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">onFragmentClickListener mListener;</div><div class="line"></div><div class="line">@Override</div><div class="line">public void onClick(View v) &#123;</div><div class="line">    if (mListener != null) &#123;</div><div class="line">        mListener.onClick();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public interface onFragmentClickListener &#123;</div><div class="line">    void onClick();</div><div class="line">&#125;    </div><div class="line"></div><div class="line">public void setFragemntClickListener(onFragmentClickListener listener) &#123;</div><div class="line">    mListener = listener;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>activity在使用时候一定要显示调用setFragemntClickListener方法</p>
+<h2 id="配置发生变化"><a href="#配置发生变化" class="headerlink" title="配置发生变化"></a>配置发生变化</h2><p>运行时配置发生变化，最常见的就是屏幕发生旋转，生命周期：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">24547-24547 W/ty: ----Fragment---onCreate----</div><div class="line">24547-24547 W/ty: -------onCreate------</div><div class="line">24547-24547 W/ty: ----Fragment---onCreateView----</div><div class="line">24547-24547 W/ty: ----Fragment---onActivityCreated----</div><div class="line">24547-24547 W/ty: ----Fragment---onCreate----</div><div class="line">24547-24547 W/ty: ----Fragment---onCreateView----</div><div class="line">24547-24547 W/ty: ----Fragment---onActivityCreated----</div><div class="line">24547-24547 W/ty: -------onStart------</div><div class="line">24547-24547 W/ty: ----Fragment---onStart----</div><div class="line">24547-24547 W/ty: ----Fragment---onStart----</div><div class="line">24547-24547 W/ty: -------onResume------</div><div class="line">24547-24547 W/ty: ----Fragment---onResume----</div><div class="line">24547-24547 W/ty: ----Fragment---onResume----</div></pre></td></tr></table></figure>
+<p>可以看出当屏幕旋转的时候，系统多创建出一个fragment</p>
+<blockquote>
+<p>当屏幕发生旋转，Activity发生重新启动，默认的Activity中的Fragment也会跟着Activity重新创建；这样造成当旋转的时候，本身存在的Fragment会重新启动，然后当执行Activity的onCreate时，又会再次实例化一个新的Fragment</p>
+</blockquote>
+<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><p>可以使用actiivty中的savedInstanceState参数来判断是否从新创建fragment：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">protected void onCreate(Bundle savedInstanceState) &#123;</div><div class="line">    super.onCreate(savedInstanceState);</div><div class="line">    Log.w(&quot;ty&quot;, &quot;-------onCreate------&quot;);</div><div class="line">    setContentView(R.layout.activity_main);</div><div class="line">    if (savedInstanceState==null)&#123;</div><div class="line">        mFragmentOne = new MyFragment();</div><div class="line">        FragmentManager fragmentManager = getFragmentManager();</div><div class="line">        mTransaction = fragmentManager.beginTransaction();</div><div class="line">        mTransaction.add(R.id.fl,mFragmentOne,&quot;replace&quot;);</div><div class="line">        mTransaction.commit();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>判断一下是否有数据就可以了，生命周期：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">27814-27814 W/ty: ----Fragment---onCreate----</div><div class="line">27814-27814 W/ty: -------onCreate------</div><div class="line">27814-27814 W/ty: ----Fragment---onCreateView----</div><div class="line">27814-27814 W/ty: ----Fragment---onActivityCreated----</div><div class="line">27814-27814 W/ty: -------onStart------</div><div class="line">27814-27814 W/ty: ----Fragment---onStart----</div><div class="line">27814-27814 W/ty: -------onResume------</div><div class="line">27814-27814 W/ty: ----Fragment---onResume----</div></pre></td></tr></table></figure>
+<h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><h3 id="FragmentPagerAdapter与FragmentStatePagerAdapter"><a href="#FragmentPagerAdapter与FragmentStatePagerAdapter" class="headerlink" title="FragmentPagerAdapter与FragmentStatePagerAdapter"></a>FragmentPagerAdapter与FragmentStatePagerAdapter</h3><p>主要区别就在与对于fragment是否销毁，下面细说：</p>
+<p>FragmentStatePagerAdapter 会销毁不需要的fragment。事务提交后，activity的 Fragment-<br>Manager 中的fragment会被彻底移除。 FragmentStatePagerAdapter 类名中的“state”表明：在<br>销毁fragment时，可在 onSaveInstanceState(Bundle) 方法中保存fragment的 Bundle 信息。用户切换回来时，保存的实例状态可用来恢复生成新的fragment</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170303_110741.png" alt=""></p>
+<p>相比之下， FragmentPagerAdapter 有不同的做法。对于不再需要的fragment， Fragment-<br>PagerAdapter 会选择调用事务的 detach(Fragment) 方法来处理它，而非 remove(Fragment) 方<br>法。也就是说， FragmentPagerAdapter 只是销毁了fragment的视图，fragment实例还保留在<br>FragmentManager 中。因此， FragmentPagerAdapter 创建的fragment永远不会被销毁</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170303_110750.png" alt=""></p>
+<p>​    如上所说，使用FragmentStatePagerAdapter当然更省内存，但是销毁新建也是需要时间的。一般情况下，如果你是制作主页面，就3、4个Tab，那么可以选择使用FragmentPagerAdapter，如果你是用于ViewPager展示数量特别多的条目时，那么建议使用FragmentStatePagerAdapter。</p>
+<h3 id="Activity启动fragment"><a href="#Activity启动fragment" class="headerlink" title="Activity启动fragment"></a>Activity启动fragment</h3><p>模拟带有参数的启动，也就是数据从activity到fragemnt，只不过发生在fragment创建的过程中，使用newInstance模式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">public class ContentFragment extends Fragment  </div><div class="line">&#123;  </div><div class="line">  </div><div class="line">    private String mArgument;  </div><div class="line">    public static final String ARGUMENT = &quot;argument&quot;;  </div><div class="line">  </div><div class="line">    @Override  </div><div class="line">    public void onCreate(Bundle savedInstanceState)  </div><div class="line">    &#123;  </div><div class="line">        super.onCreate(savedInstanceState);  </div><div class="line">        // mArgument = getActivity().getIntent().getStringExtra(ARGUMENT);  </div><div class="line">        Bundle bundle = getArguments();  </div><div class="line">        if (bundle != null)  </div><div class="line">            mArgument = bundle.getString(ARGUMENT);  </div><div class="line">  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    /** </div><div class="line">     * 传入需要的参数，设置给arguments </div><div class="line">     * @param argument </div><div class="line">     * @return </div><div class="line">     */  </div><div class="line">    public static ContentFragment newInstance(String argument)  </div><div class="line">    &#123;  </div><div class="line">        Bundle bundle = new Bundle();  </div><div class="line">        bundle.putString(ARGUMENT, argument);  </div><div class="line">        ContentFragment contentFragment = new ContentFragment();  </div><div class="line">        contentFragment.setArguments(bundle);  </div><div class="line">        return contentFragment;  </div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h3 id="fragment启动特定的activity"><a href="#fragment启动特定的activity" class="headerlink" title="fragment启动特定的activity"></a>fragment启动特定的activity</h3><p>可以使用startActivityForResult和onActivityResult</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">public void onActivityResult(int requestCode, int resultCode, Intent data) &#123;</div><div class="line">    super.onActivityResult(requestCode, resultCode, data);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="BaseFragment抽象标准代码"><a href="#BaseFragment抽象标准代码" class="headerlink" title="BaseFragment抽象标准代码"></a>BaseFragment抽象标准代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">public abstract class BaseFragment extends FragmentActivity  </div><div class="line">&#123;  </div><div class="line">    protected abstract Fragment createFragment();  </div><div class="line">      </div><div class="line">    @Override  </div><div class="line">    protected void onCreate(Bundle savedInstanceState)  </div><div class="line">    &#123;  </div><div class="line">  </div><div class="line">        super.onCreate(savedInstanceState);  </div><div class="line">        setContentView(R.layout.activity_single_fragment);  </div><div class="line">      </div><div class="line">        FragmentManager fm = getSupportFragmentManager();  </div><div class="line">        Fragment fragment =fm.findFragmentById(R.id.id_fragment_container);  </div><div class="line">          </div><div class="line">        if(fragment == null )  </div><div class="line">        &#123;  </div><div class="line">            fragment = createFragment() ;  </div><div class="line">              </div><div class="line">            fm.beginTransaction().add(R.id.id_fragment_container,fragment).commit();  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>子类：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">public class ContentActivity extends BaseFragment  </div><div class="line">&#123;  </div><div class="line">    private ContentFragment mContentFragment;  </div><div class="line">  </div><div class="line">    @Override  </div><div class="line">    protected Fragment createFragment()  </div><div class="line">    &#123;  </div><div class="line">        String title = getIntent().getStringExtra(ContentFragment.ARGUMENT);  </div><div class="line">  </div><div class="line">        mContentFragment = ContentFragment.newInstance(title);  </div><div class="line">        return mContentFragment;  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><a href="http://blog.csdn.net/lmj623565791/article/details/37992017" target="_blank" rel="external">http://blog.csdn.net/lmj623565791/article/details/37992017</a></p>
+<p><a href="http://blog.csdn.net/forever_crying/article/details/8238863/" target="_blank" rel="external">http://blog.csdn.net/forever_crying/article/details/8238863/</a></p>
+<p><a href="https://github.com/HaoTianYi/ForAndroidInterview/blob/master/android/Fragment%20%E5%85%A8%E8%A7%A3%E6%9E%90.md" target="_blank" rel="external">https://github.com/HaoTianYi/ForAndroidInterview/blob/master/android/Fragment%20%E5%85%A8%E8%A7%A3%E6%9E%90.md</a></p>
+<p><a href="http://blog.csdn.net/lmj623565791/article/details/42628537" target="_blank" rel="external">http://blog.csdn.net/lmj623565791/article/details/42628537</a></p>
+<p>感谢以上作者的辛勤劳动</p>
+</section>
+    
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="alipay-code">
+            <div class="code-image"></div>
+            <b>使用支付宝打赏</b>
+          </span>
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+    </div>
+    <div class="qrcode">
+      <canvas id="share-qrcode"></canvas>
+      <p class="notice">扫描二维码，分享此文章</p>
+    </div>
+    
+      <div id="comments"></div>
+    
+  </article>
+</main>
+
+<script>
+  (function () {
+    var url = 'http://bbbb.ml/2017/09/13/Android/05-02-Fragment内容详解/';
+    var banner = ''
+    if (banner !== 'undefined') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "jwl00";
+    if (gitmentConfig != "undefined") {
+      var gitment = new Gitment({
+        id: "",
+        owner: "jwl00",
+        repo: "jwl00.github.io",
+        oauth: {
+          client_id: "ae21ad25810b1f2cc193",
+          client_secret: "7b6bb525adfeee63bd087132d98e6fd015d49ed8"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

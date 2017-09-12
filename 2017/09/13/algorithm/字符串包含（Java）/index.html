@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="什么也不留下">
+  <meta name="keyword" content="hexo-theme, Android">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      JWL博客
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>JWL博客</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2></h2>
+  <p class="post-date">2017-09-13</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content"><h1 id="字符串包含（Java）"><a href="#字符串包含（Java）" class="headerlink" title="字符串包含（Java）"></a>字符串包含（Java）</h1><p>[TOC]</p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定两个分别由字母组成的字符串A和字符串B，字符串B的长度比字符串A短。请问，如何最快地判断字符串B中所有字母是否都在字符串A里？</p>
+<p>为了简单起见，我们规定输入的字符串只包含大写英文字母，请实现函数bool StringContains(string &amp;A, string &amp;B)</p>
+<p>比如，如果是下面两个字符串：</p>
+<p>String 1：ABCD</p>
+<p>String 2：BAD</p>
+<p>答案是true，即String2里的字母在String1里也都有，或者说String2是String1的真子集。</p>
+<p>如果是下面两个字符串：</p>
+<p>String 1：ABCD</p>
+<p>String 2：BCE</p>
+<p>答案是false，因为字符串String2里的E字母不在字符串String1里。</p>
+<p>同时，如果string1：ABCD，string 2：AA，同样返回true。</p>
+<h2 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h2><p>思路一：遍历字符串B，判断每一个字符是否出现在字符串A中，时间复杂度O(n*m)，空间复杂度O(1)</p>
+<p>增加一个数据，用来记录光标的移动</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">    System.out.println(con(<span class="keyword">new</span> <span class="keyword">char</span>[]&#123;<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>&#125;, <span class="keyword">new</span> <span class="keyword">char</span>[]&#123;<span class="string">'B'</span>&#125;));</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">con</span><span class="params">(<span class="keyword">char</span>[] charA, <span class="keyword">char</span>[] charB)</span> </span>&#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; charB.length; i++) &#123;</div><div class="line">        <span class="keyword">int</span> index;</div><div class="line">        <span class="keyword">for</span> (index = <span class="number">0</span>; (index &lt; charA.length) &amp;&amp; (charA[index] != charB[i]); index++) &#123;</div><div class="line"></div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (index&gt;=charA.length)&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>思路二：先对两个字符串排序，然后同时遍历字符串A和B，判断B中的每一个字符是否都在字符串A中。时间复杂度O(nlogn)，空间复杂度O(1)</p>
+<p>这次增加两个光标，用于指定两个char类型的数组：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">    <span class="keyword">char</span>[] charA = &#123;<span class="string">'D'</span>, <span class="string">'A'</span>, <span class="string">'C'</span>&#125;;</div><div class="line">    <span class="keyword">char</span>[] charB = &#123;<span class="string">'D'</span>, <span class="string">'C'</span>&#125;;</div><div class="line">    sort(charA);</div><div class="line">    sort(charB);</div><div class="line">    System.out.println(con(charA, charB));</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">con</span><span class="params">(<span class="keyword">char</span>[] charA, <span class="keyword">char</span>[] charB)</span> </span>&#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> a = <span class="number">0</span>, b = <span class="number">0</span>; b &lt; charB.length; ) &#123;</div><div class="line">        <span class="keyword">while</span> ((a &lt; charA.length) &amp;&amp; (charA[a] &lt; charA[b])) &#123;</div><div class="line">            ++a;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> ((a&gt;charA.length)||(charA[a]&gt;charB[b]))&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        &#125;</div><div class="line">        ++b;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">&#125;</div><div class="line"> <span class="comment">/**</span></div><div class="line"><span class="comment"> * 选择排序算法</span></div><div class="line"><span class="comment"> * 在未排序序列中找到最小元素，存放到排序序列的起始位置</span></div><div class="line"><span class="comment"> * 再从剩余未排序元素中继续寻找最小元素，然后放到排序序列第二个位置。</span></div><div class="line"><span class="comment"> * 以此类推，直到所有元素均排序完毕。</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(<span class="keyword">char</span>[] chars)</span> </span>&#123;</div><div class="line">    <span class="keyword">char</span> temp;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; chars.length; i++) &#123;</div><div class="line">        <span class="keyword">int</span> min = i;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; chars.length; j++) &#123;</div><div class="line">            <span class="keyword">if</span> (chars[min] &gt; chars[j]) &#123;</div><div class="line">                min = j;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        temp = chars[i];</div><div class="line">        chars[i] = chars[min];</div><div class="line">        chars[min] = temp;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>思路三：将每一个字符映射到一个素数上，对字符串A中的每一个字符表示的素数，求累积；然后遍历字符串B，用每一个字符表示的素数去除字符串A的累积，判断余数是否为0。时间复杂度：O(n)，空间复杂度O(1)。可能存在的问题：乘积时可能会溢出。</p>
+<p>假设有一个仅由字母组成字串，让每个字母与一个素数对应，从2开始，往后类推，A对应2，B对应3，C对应5，……。遍历第一个字串，把每个字母对应素数相乘。最终会得到一个整数。</p>
+<p>利用上面字母和素数的对应关系，对应第二个字符串中的字母，然后轮询，用每个字母对应的素数除前面得到的整数。如果结果有余数，说明结果为false。如果整个过程中没有余数，则说明第二个字符串是第一个的子集了（判断是不是真子集，可以比较两个字符串对应的素数乘积，若相等则不是真子集）。</p>
+<p>思路总结如下：</p>
+<ol>
+<li>按照从小到大的顺序，用26个素数分别与字符’A’到’Z’一一对应。</li>
+<li>遍历长字符串，求得每个字符对应素数的乘积。</li>
+<li>遍历短字符串，判断乘积能否被短字符串中的字符对应的素数整除。</li>
+<li>输出结果。</li>
+</ol>
+<p>如前所述，算法的时间复杂度为O(m+n)的最好的情况为O(n)（遍历短的字符串的第一个数，与长字符串素数的乘积相除，即出现余数，便可退出程序，返回false），n为长字串的长度，空间复杂度为O(1)。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">     <span class="keyword">char</span>[] charA = &#123;<span class="string">'D'</span>, <span class="string">'A'</span>, <span class="string">'C'</span>&#125;;</div><div class="line">     <span class="keyword">char</span>[] charB = &#123;<span class="string">'D'</span>, <span class="string">'C'</span>&#125;;</div><div class="line">     System.out.println(con(charA, charB));</div><div class="line"> &#125;</div><div class="line"></div><div class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">con</span><span class="params">(<span class="keyword">char</span>[] charA, <span class="keyword">char</span>[] charB)</span> </span>&#123;</div><div class="line">     <span class="keyword">int</span>[] p = &#123;<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">13</span>, <span class="number">17</span>, <span class="number">19</span>, <span class="number">23</span>, <span class="number">29</span>, <span class="number">31</span>,</div><div class="line">             <span class="number">37</span>, <span class="number">41</span>, <span class="number">43</span>, <span class="number">47</span>, <span class="number">53</span>, <span class="number">59</span>, <span class="number">61</span>, <span class="number">67</span>, <span class="number">71</span>, <span class="number">73</span>, <span class="number">79</span>, <span class="number">83</span>, <span class="number">89</span>, <span class="number">97</span>, <span class="number">101</span>&#125;;</div><div class="line">     <span class="keyword">int</span> sum = <span class="number">1</span>;</div><div class="line">     <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; charA.length; i++) &#123;</div><div class="line">         sum *= p[charA[i] - <span class="string">'A'</span>];</div><div class="line">     &#125;</div><div class="line">     <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; charB.length; i++) &#123;</div><div class="line">         <span class="keyword">if</span> (sum % p[charB[i] - <span class="string">'A'</span>] != <span class="number">0</span>) &#123;</div><div class="line">             <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">         &#125;</div><div class="line">     &#125;</div><div class="line">     <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<p>思路四：如果可以使用Java中的数据结构，HashMap和Set可以很方便地解决问题；如果不能，我们可以构造一个“签名”，将每一个字符映射为整数(范围：0到26)，然后遍历A中的每一个字符，将32位整数的对应位置1(整数初始为0)，最后遍历B中的每一个字符，判断每一个字符代表的整数在整数中是否已置位。时间复杂度O(n)，空间复杂度O(1)，思路四为最优算法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 位与( &amp; )</span></div><div class="line"><span class="comment">// 位与：第一个操作数的的第n位于第二个操作数的第n位如果都是1，那么结果的第n为也为1，否则为0</span></div><div class="line">System.out.println(<span class="number">5</span> &amp; <span class="number">3</span>);<span class="comment">// 结果为1</span></div><div class="line">System.out.println(<span class="number">4</span> &amp; <span class="number">1</span>);<span class="comment">// 结果为0</span></div><div class="line">	</div><div class="line"><span class="comment">// 位或( | )</span></div><div class="line"><span class="comment">// 第一个操作数的的第n位于第二个操作数的第n位 只要有一个是1，那么结果的第n为也为1，否则为0</span></div><div class="line">System.out.println(<span class="number">5</span> | <span class="number">3</span>);<span class="comment">// 结果为7</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 左移( &lt;&lt; )</span></div><div class="line"><span class="comment">// 0000 0000 0000 0000 0000 0000 0000 0101 然后左移2位后，低位补0：//</span></div><div class="line"><span class="comment">// 0000 0000 0000 0000 0000 0000 0001 0100 换算成10进制为20</span></div><div class="line">System.out.println(<span class="number">5</span> &lt;&lt; <span class="number">2</span>);<span class="comment">// 运行结果是20</span></div></pre></td></tr></table></figure>
+<p>左移运算符就是相当于第一个数乘以2的第二个数次方，就是5<code>*</code>2<code>*</code>2</p>
+<p>char是当成int来计算的，所以在也可以表示成<code>0000 0000 0000 0000 0000 0000 0000 0000</code></p>
+<p>每一位都代表2的几次方，所以可以使用<code>1 &lt;&lt; (charA[i] - &#39;A&#39;)</code>把数组中的某一个数据变成了上面32个0中间的一个1，也就是某一位，而且某一位只能代表一个字符</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">hashCheck</span><span class="params">(<span class="keyword">char</span>[] s1, <span class="keyword">char</span>[] s2)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> mask = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">char</span> c: s1) &#123;</div><div class="line">        mask = mask | (<span class="number">1</span> &lt;&lt; (c - <span class="string">'A'</span>));</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">char</span> c: s2) &#123;</div><div class="line">        <span class="keyword">if</span> ((mask &amp; (<span class="number">1</span> &lt;&lt; (c - <span class="string">'A'</span>))) == <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>先求位运算可以使得数据最大化，也就是那一个位上有1，再求与运算，可以得出在s2中是否有那一个位</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>整理自：<a href="https://github.com/julycoding/The-Art-Of-Programming-By-July/blob/master/ebook/code/java/chapter1/1.2：字符串包含.java" target="_blank" rel="external">https://github.com/julycoding/The-Art-Of-Programming-By-July/blob/master/ebook/code/java/chapter1/1.2：字符串包含.java</a></p>
+<p><a href="https://github.com/julycoding/The-Art-Of-Programming-By-July/blob/master/ebook/zh/01.02.md" target="_blank" rel="external">https://github.com/julycoding/The-Art-Of-Programming-By-July/blob/master/ebook/zh/01.02.md</a></p>
+<p><a href="http://aijuans.iteye.com/blog/1850655" target="_blank" rel="external">http://aijuans.iteye.com/blog/1850655</a></p>
+<p><a href="http://www.cnblogs.com/0201zcr/p/4764427.html" target="_blank" rel="external">http://www.cnblogs.com/0201zcr/p/4764427.html</a></p>
+</section>
+    
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="alipay-code">
+            <div class="code-image"></div>
+            <b>使用支付宝打赏</b>
+          </span>
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+    </div>
+    <div class="qrcode">
+      <canvas id="share-qrcode"></canvas>
+      <p class="notice">扫描二维码，分享此文章</p>
+    </div>
+    
+      <div id="comments"></div>
+    
+  </article>
+</main>
+
+<script>
+  (function () {
+    var url = 'http://bbbb.ml/2017/09/13/algorithm/字符串包含（Java）/';
+    var banner = ''
+    if (banner !== 'undefined') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "jwl00";
+    if (gitmentConfig != "undefined") {
+      var gitment = new Gitment({
+        id: "",
+        owner: "jwl00",
+        repo: "jwl00.github.io",
+        oauth: {
+          client_id: "ae21ad25810b1f2cc193",
+          client_secret: "7b6bb525adfeee63bd087132d98e6fd015d49ed8"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

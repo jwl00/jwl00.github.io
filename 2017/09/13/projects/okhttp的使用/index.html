@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="什么也不留下">
+  <meta name="keyword" content="hexo-theme, Android">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      JWL博客
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>JWL博客</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2></h2>
+  <p class="post-date">2017-09-13</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content"><h1 id="okHttp3-4-1的使用"><a href="#okHttp3-4-1的使用" class="headerlink" title="okHttp3.4.1的使用"></a>okHttp3.4.1的使用</h1><p>[TOC]</p>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>整理自：<a href="http://blog.csdn.net/iispring/article/details/51661195" target="_blank" rel="external">http://blog.csdn.net/iispring/article/details/51661195</a></p>
+<p>Okhttp请求的数据会进行相应的缓存处理，下次再进行请求时，如果服务器告知304（表明数据没有发生变化），那么就直接从缓存中读取数据，降低了重复请求的数量</p>
+<h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><p>在gradle中添加：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">compile &apos;com.squareup.okhttp3:okhttp:3.3.1&apos;</div></pre></td></tr></table></figure>
+<h2 id="核心类"><a href="#核心类" class="headerlink" title="核心类"></a>核心类</h2><p>我们在使用Okhttp进行开发的时候，主要牵扯到以下几个核心类：OkHttpClient、Request、Call 和 Response。</p>
+<h3 id="okhttpclient"><a href="#okhttpclient" class="headerlink" title="okhttpclient"></a>okhttpclient</h3><p>OkHttpClient表示了HTTP请求的客户端类，在绝大多数的App中，我们只应该执行一次new OkHttpClient()，将其作为全局的实例进行保存，从而在App的各处都只使用这一个实例对象，这样所有的HTTP请求都可以共用Response缓存、共用线程池以及共用连接池。</p>
+<p>默认情况下，直接执行OkHttpClient client = new OkHttpClient()就可以实例化一个OkHttpClient对象。</p>
+<p>可以配置OkHttpClient的一些参数，比如超时时间、缓存目录、代理、Authenticator等，那么就需要用到内部类OkHttpClient.Builder，设置如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">OkHttpClient client = new OkHttpClient.Builder().</div><div class="line">        readTimeout(30, TimeUnit.SECONDS).</div><div class="line">        cache(cache).</div><div class="line">        proxy(proxy).</div><div class="line">        authenticator(authenticator).</div><div class="line">        build();</div></pre></td></tr></table></figure>
+<p>OkHttpClient本身不能设置参数，需要借助于其内部类Builder设置参数，参数设置完成后，调用Builder的build方法得到一个配置好参数的OkHttpClient对象。这些配置的参数会对该OkHttpClient对象所生成的所有HTTP请求都有影响。</p>
+<p>有时候我们想单独给某个网络请求设置特别的几个参数，比如只想让某个请求的超时时间设置为一分钟，但是还想保持OkHttpClient对象中的其他的参数设置，那么可以调用OkHttpClient对象的<code>newBuilder()</code>方法，代码如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">OkHttpClient client = ...</div><div class="line"></div><div class="line">OkHttpClient clientWith60sTimeout = client.newBuilder().</div><div class="line">        readTimeout(60, TimeUnit.SECONDS).</div><div class="line">        build();</div></pre></td></tr></table></figure>
+<p>就是在前一个的client中再次设置builder</p>
+<h3 id="requset"><a href="#requset" class="headerlink" title="requset"></a>requset</h3><p>Request类封装了请求报文信息：请求的Url地址、请求的方法（如GET、POST等）、各种请求头（如Content-Type、Cookie）以及可选的请求体。一般通过内部类Request.Builder的链式调用生成Request对象。</p>
+<h3 id="call"><a href="#call" class="headerlink" title="call"></a>call</h3><p>Call代表了一个实际的HTTP请求，它是连接Request和Response的桥梁，通过Request对象的<code>newCall()</code>方法可以得到一个Call对象。Call对象既支持同步获取数据，也可以异步获取数据。</p>
+<ul>
+<li>执行Call对象的<code>execute()</code>方法，会阻塞当前线程去获取数据，该方法返回一个Response对象。</li>
+<li>执行Call对象的<code>enqueue()</code>方法，不会阻塞当前线程，该方法接收一个Callback对象，当异步获取到数据之后，会回调执行Callback对象的相应方法。如果请求成功，则执行Callback对象的onResponse方法，并将Response对象传入该方法中；如果请求失败，则执行Callback对象的onFailure方法。</li>
+</ul>
+<h3 id="Response"><a href="#Response" class="headerlink" title="Response"></a>Response</h3><p>Response类封装了响应报文信息：状态吗（200、404等）、响应头（Content-Type、Server等）以及可选的响应体。可以通过Call对象的<code>execute()</code>方法获得Response对象，异步回调执行Callback对象的onResponse方法时也可以获取Response对象。</p>
+<h2 id="同步get请求"><a href="#同步get请求" class="headerlink" title="同步get请求"></a>同步get请求</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * 同步的get请求，不常用</div><div class="line"> *</div><div class="line"> * @param url</div><div class="line"> * @return</div><div class="line"> */</div><div class="line">public String syncGetByUrl(String url) &#123;</div><div class="line">    Request request = new Request.Builder().url(url).build();</div><div class="line">    Response response = null;</div><div class="line">    try &#123;</div><div class="line">        response = mOkHttpClient.newCall(request).execute();</div><div class="line">        if (response.isSuccessful()) &#123;</div><div class="line">            return response.body().string();</div><div class="line">        &#125;</div><div class="line">    &#125; catch (IOException e) &#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125;</div><div class="line">    return null;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>核心就是调用execute方法</p>
+<p>下面对以上代码进行简单说明：</p>
+<ul>
+<li><p>client执行newCall方法会得到一个Call对象，表示一个新的网络请求。</p>
+</li>
+<li><p>Call对象的execute方法是同步方法，会阻塞当前线程，其返回Response对象。</p>
+</li>
+<li><p>通过Response对象的<code>isSuccessful()</code>方法可以判断请求是否成功。</p>
+</li>
+<li><p>通过Response的<code>headers()</code>方法可以得到响应头<a href="http://square.github.io/okhttp/3.x/okhttp/okhttp3/Headers.html" target="_blank" rel="external">Headers</a>对象，可以通过for循环索引遍历所有的响应头的名称和值。可以通过<code>Headers.name(index)</code>方法获取响应头的名称，通过<code>Headers.value(index)</code>方法获取响应头的值。</p>
+</li>
+<li><p>除了索引遍历，通过<code>Headers.get(headerName)</code>方法也可以获取某个响应头的值，比如通过headers.get(“Content-Type”)获得服务器返回给客户端的数据类型。但是服务器返回给客户端的响应头中有可能有多个重复名称的响应头，比如在某个请求中，服务器要向客户端设置多个Cookie，那么会写入多个<code>Set-Cookie</code>响应头，且这些<code>Set-Cookie</code>响应头的值是不同的，访问百度首页，可以看到有7个<code>Set-Cookie</code>的响应头，如下图所示：</p>
+<p><img src="http://img.blog.csdn.net/20160614225714171" alt="这里写图片描述"></p>
+<p>为了解决同时获取多个name相同的响应头的值，<code>Headers</code>中提供了一个<code>public List values(String name)</code>方法，该方法会返回一个<code>List</code>对象，所以此处通过Headers对象的values(‘Set-Cookie’)可以获取全部的Cookie信息，如果调用Headers对象的get(‘Set-Cookie’)方法，那么只会获取最后一条Cookie信息。</p>
+</li>
+<li><p>通过Response对象的<code>body()</code>方法可以得到响应体<a href="http://square.github.io/okhttp/3.x/okhttp/okhttp3/ResponseBody.html" target="_blank" rel="external">ResponseBody</a>对象，调用其<code>string()</code>方法可以很方便地将响应体中的数据转换为字符串，该方法会将所有的数据放入到内存之中，所以如果数据超过1M，最好不要调用<code>string()</code>方法以避免占用过多内存，这种情况下可以考虑将数据当做Stream流处理。</p>
+</li>
+</ul>
+<h2 id="异步get请求"><a href="#异步get请求" class="headerlink" title="异步get请求"></a>异步get请求</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line">   * 异步请求指定的url，并且返回的是json字符串</div><div class="line">   *</div><div class="line">   * @param url</div><div class="line">   * @param callBack</div><div class="line">   */</div><div class="line">  public void asyncGetJsonStringByUrl(String url, final SuccessJsonString callBack) &#123;</div><div class="line">      final Request request = new Request.Builder().url(url).build();</div><div class="line">      mOkHttpClient.newCall(request).enqueue(new Callback() &#123;</div><div class="line">          @Override</div><div class="line">          public void onFailure(Call call, IOException e) &#123;</div><div class="line">              e.printStackTrace();</div><div class="line">          &#125;</div><div class="line"></div><div class="line">          @Override</div><div class="line">          public void onResponse(Call call, Response response) throws IOException &#123;</div><div class="line">              if (response != null &amp;&amp; response.isSuccessful()) &#123;</div><div class="line">                  onSuccessJsonString(response.body().string(), callBack);</div><div class="line">              &#125;</div><div class="line">          &#125;</div><div class="line">      &#125;);</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<p>就是调用enquence方法</p>
+<h2 id="okhttp的封装"><a href="#okhttp的封装" class="headerlink" title="okhttp的封装"></a>okhttp的封装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div><div class="line">227</div><div class="line">228</div><div class="line">229</div><div class="line">230</div><div class="line">231</div><div class="line">232</div><div class="line">233</div><div class="line">234</div><div class="line">235</div><div class="line">236</div><div class="line">237</div><div class="line">238</div><div class="line">239</div><div class="line">240</div><div class="line">241</div><div class="line">242</div><div class="line">243</div><div class="line">244</div><div class="line">245</div><div class="line">246</div><div class="line">247</div><div class="line">248</div><div class="line">249</div><div class="line">250</div><div class="line">251</div><div class="line">252</div><div class="line">253</div><div class="line">254</div><div class="line">255</div><div class="line">256</div><div class="line">257</div><div class="line">258</div><div class="line">259</div><div class="line">260</div><div class="line">261</div><div class="line">262</div><div class="line">263</div><div class="line">264</div><div class="line">265</div><div class="line">266</div><div class="line">267</div><div class="line">268</div><div class="line">269</div><div class="line">270</div><div class="line">271</div><div class="line">272</div><div class="line">273</div><div class="line">274</div><div class="line">275</div><div class="line">276</div><div class="line">277</div><div class="line">278</div><div class="line">279</div><div class="line">280</div><div class="line">281</div><div class="line">282</div><div class="line">283</div><div class="line">284</div><div class="line">285</div><div class="line">286</div></pre></td><td class="code"><pre><div class="line">package win.haotinayi.okhttp;</div><div class="line"></div><div class="line">import android.graphics.Bitmap;</div><div class="line">import android.graphics.BitmapFactory;</div><div class="line">import android.os.Handler;</div><div class="line">import android.os.Looper;</div><div class="line">import android.view.View;</div><div class="line"></div><div class="line">import org.json.JSONObject;</div><div class="line"></div><div class="line">import java.io.IOException;</div><div class="line">import java.util.Map;</div><div class="line"></div><div class="line">import okhttp3.Call;</div><div class="line">import okhttp3.Callback;</div><div class="line">import okhttp3.FormBody;</div><div class="line">import okhttp3.MediaType;</div><div class="line">import okhttp3.OkHttpClient;</div><div class="line">import okhttp3.Request;</div><div class="line">import okhttp3.RequestBody;</div><div class="line">import okhttp3.Response;</div><div class="line"></div><div class="line">/**</div><div class="line"> * @author HaoTianYi hao.ty@haotianyi.win</div><div class="line"> * @version v1.0</div><div class="line"> * @des 实现上传可下载的工具类</div><div class="line"> * @time 2016/10/1 15:51</div><div class="line"> */</div><div class="line"></div><div class="line">public class OkManger &#123;</div><div class="line">    private OkHttpClient mOkHttpClient;</div><div class="line">    //  防止多个线程同时访问造成异常,并且使用单例模式</div><div class="line">    private volatile static OkManger mOkManger;</div><div class="line">    private Handler mHandler;</div><div class="line">    //  提交json数据</div><div class="line">    private static final MediaType JSON = MediaType.parse(&quot;application/json;charset=utf-8&quot;);</div><div class="line">    //  提交字符串</div><div class="line">    private static final MediaType MEDIA_TYPE_MARKDOWN = MediaType.parse(&quot;text/x-markdwon;charset=utf-8&quot;);</div><div class="line"></div><div class="line">    private OkManger() &#123;</div><div class="line">        mOkHttpClient = new OkHttpClient();</div><div class="line">        mHandler = new Handler(Looper.getMainLooper());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    //使用单例模式，注意私有的构造方法，公共的获取实例方法</div><div class="line">    public static OkManger getInstance() &#123;</div><div class="line">        OkManger instance = null;</div><div class="line">        if (mOkManger == null) &#123;</div><div class="line">            synchronized (OkManger.class) &#123;</div><div class="line">                if (instance == null) &#123;</div><div class="line">                    instance = new OkManger();</div><div class="line">                    mOkManger = instance;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return instance;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 同步的get请求，不常用</div><div class="line">     *</div><div class="line">     * @param url</div><div class="line">     * @return</div><div class="line">     */</div><div class="line">    public String syncGetByUrl(String url) &#123;</div><div class="line">        Request request = new Request.Builder().url(url).build();</div><div class="line">        Response response = null;</div><div class="line">        try &#123;</div><div class="line">            response = mOkHttpClient.newCall(request).execute();</div><div class="line">            if (response.isSuccessful()) &#123;</div><div class="line">                return response.body().string();</div><div class="line">            &#125;</div><div class="line">        &#125; catch (IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">        return null;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 返回的结果是json字符串</div><div class="line">     *</div><div class="line">     * @param jsonValue</div><div class="line">     * @param callBack</div><div class="line">     */</div><div class="line">    private void onSuccessJsonString(final String jsonValue, final SuccessJsonString callBack) &#123;</div><div class="line">        mHandler.post(new Runnable() &#123;</div><div class="line">            @Override</div><div class="line">            public void run() &#123;</div><div class="line">                if (callBack != null) &#123;</div><div class="line">                    try &#123;</div><div class="line">                        callBack.onResponse(jsonValue);</div><div class="line">                    &#125; catch (Exception e) &#123;</div><div class="line">                        e.printStackTrace();</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 异步请求指定的url，并且返回的是json字符串</div><div class="line">     *</div><div class="line">     * @param url</div><div class="line">     * @param callBack</div><div class="line">     */</div><div class="line">    public void asyncGetJsonStringByUrl(String url, final SuccessJsonString callBack) &#123;</div><div class="line">        final Request request = new Request.Builder().url(url).build();</div><div class="line">        mOkHttpClient.newCall(request).enqueue(new Callback() &#123;</div><div class="line">            @Override</div><div class="line">            public void onFailure(Call call, IOException e) &#123;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            @Override</div><div class="line">            public void onResponse(Call call, Response response) throws IOException &#123;</div><div class="line">                if (response != null &amp;&amp; response.isSuccessful()) &#123;</div><div class="line">                    onSuccessJsonString(response.body().string(), callBack);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 异步请求指定的url，并且返回的是jsonObject</div><div class="line">     *</div><div class="line">     * @param url</div><div class="line">     * @param callBack</div><div class="line">     */</div><div class="line">    public void asyncGetJsonObjectByUrl(String url, final SuccessJsonObject callBack) &#123;</div><div class="line">        final Request request = new Request.Builder().url(url).build();</div><div class="line">        mOkHttpClient.newCall(request).enqueue(new Callback() &#123;</div><div class="line">            @Override</div><div class="line">            public void onFailure(Call call, IOException e) &#123;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            @Override</div><div class="line">            public void onResponse(Call call, Response response) throws IOException &#123;</div><div class="line">                if (response != null &amp;&amp; response.isSuccessful()) &#123;</div><div class="line">                    onSuccessJosnObject(response.body().string(), callBack);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 返回值是jsonObject</div><div class="line">     *</div><div class="line">     * @param josnValue</div><div class="line">     * @param callBack</div><div class="line">     */</div><div class="line">    private void onSuccessJosnObject(final String josnValue, final SuccessJsonObject callBack) &#123;</div><div class="line">        mHandler.post(new Runnable() &#123;</div><div class="line">            @Override</div><div class="line">            public void run() &#123;</div><div class="line">                if (callBack != null) &#123;</div><div class="line">                    try &#123;</div><div class="line">                        callBack.onResponse(new JSONObject(josnValue));</div><div class="line">                    &#125; catch (Exception e) &#123;</div><div class="line">                        e.printStackTrace();</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 返回的结果是byte[]字符串</div><div class="line">     *</div><div class="line">     * @param data</div><div class="line">     * @param callBack</div><div class="line">     */</div><div class="line">    private void onSuccessBytes(final byte[] data, final SuccessBytes callBack) &#123;</div><div class="line">        mHandler.post(new Runnable() &#123;</div><div class="line">            @Override</div><div class="line">            public void run() &#123;</div><div class="line">                if (callBack != null) &#123;</div><div class="line">                    try &#123;</div><div class="line">                        callBack.onResponse(data);</div><div class="line">                    &#125; catch (Exception e) &#123;</div><div class="line">                        e.printStackTrace();</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 异步请求指定的url，并且返回的是byte[]</div><div class="line">     *</div><div class="line">     * @param url</div><div class="line">     * @param callBack</div><div class="line">     */</div><div class="line">    public void asyncGetByteByUrl(String url, final SuccessBytes callBack) &#123;</div><div class="line">        final Request request = new Request.Builder().url(url).build();</div><div class="line">        mOkHttpClient.newCall(request).enqueue(new Callback() &#123;</div><div class="line">            @Override</div><div class="line">            public void onFailure(Call call, IOException e) &#123;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            @Override</div><div class="line">            public void onResponse(Call call, Response response) throws IOException &#123;</div><div class="line">                if (response != null &amp;&amp; response.isSuccessful()) &#123;</div><div class="line">                    onSuccessBytes(response.body().bytes(), callBack);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 异步请求指定的url，并且返回的是bitmap</div><div class="line">     *</div><div class="line">     * @param url</div><div class="line">     * @param callBack</div><div class="line">     */</div><div class="line">    public void asyncGetImageByUrl(String url, final SuccessBitmap callBack) &#123;</div><div class="line">        final Request request = new Request.Builder().url(url).build();</div><div class="line">        mOkHttpClient.newCall(request).enqueue(new Callback() &#123;</div><div class="line">            @Override</div><div class="line">            public void onFailure(Call call, IOException e) &#123;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            @Override</div><div class="line">            public void onResponse(Call call, Response response) throws IOException &#123;</div><div class="line">                if (response != null &amp;&amp; response.isSuccessful()) &#123;</div><div class="line">                    Bitmap bitmap = BitmapFactory.decodeByteArray(response.body().bytes(), 0, response.body().bytes().length);</div><div class="line">                    callBack.onResponse(bitmap);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 异步请求指定的url，并且返回的是post</div><div class="line">     *</div><div class="line">     * @param url</div><div class="line">     * @param params</div><div class="line">     * @param callBack</div><div class="line">     */</div><div class="line">    public void sendForm(String url, Map&lt;String, String&gt; params, final SuccessJsonObject callBack) &#123;</div><div class="line">        FormBody.Builder formBody = new FormBody.Builder();</div><div class="line">        if (params != null &amp;&amp; !params.isEmpty()) &#123;</div><div class="line">            for (Map.Entry&lt;String, String&gt; param : params.entrySet()) &#123;</div><div class="line">                formBody.add(param.getKey(), param.getValue());</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        RequestBody requsetBody = formBody.build();</div><div class="line">        Request request = new Request.Builder().url(url).post(requsetBody).build();</div><div class="line">        mOkHttpClient.newCall(request).enqueue(new Callback() &#123;</div><div class="line">            @Override</div><div class="line">            public void onFailure(Call call, IOException e) &#123;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            @Override</div><div class="line">            public void onResponse(Call call, Response response) throws IOException &#123;</div><div class="line">                if (response != null &amp;&amp; response.isSuccessful()) &#123;</div><div class="line">                    onSuccessJosnObject(response.body().string(), callBack);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    //真正去处理json的接口</div><div class="line">    public interface SuccessJsonString &#123;</div><div class="line">        void onResponse(String result);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    //真正去处理返回值是jsonObject的接口</div><div class="line">    public interface SuccessJsonObject &#123;</div><div class="line">        void onResponse(JSONObject result);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    //真正去处理返回值是byte[]的接口</div><div class="line">    public interface SuccessBytes &#123;</div><div class="line">        void onResponse(byte[] result);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public interface SuccessBitmap &#123;</div><div class="line">        void onResponse(Bitmap bitmap);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></section>
+    
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="alipay-code">
+            <div class="code-image"></div>
+            <b>使用支付宝打赏</b>
+          </span>
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+    </div>
+    <div class="qrcode">
+      <canvas id="share-qrcode"></canvas>
+      <p class="notice">扫描二维码，分享此文章</p>
+    </div>
+    
+      <div id="comments"></div>
+    
+  </article>
+</main>
+
+<script>
+  (function () {
+    var url = 'http://bbbb.ml/2017/09/13/projects/okhttp的使用/';
+    var banner = ''
+    if (banner !== 'undefined') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "jwl00";
+    if (gitmentConfig != "undefined") {
+      var gitment = new Gitment({
+        id: "",
+        owner: "jwl00",
+        repo: "jwl00.github.io",
+        oauth: {
+          client_id: "ae21ad25810b1f2cc193",
+          client_secret: "7b6bb525adfeee63bd087132d98e6fd015d49ed8"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

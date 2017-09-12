@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="什么也不留下">
+  <meta name="keyword" content="hexo-theme, Android">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      JWL博客
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>JWL博客</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2></h2>
+  <p class="post-date">2017-09-13</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content"><h1 id="Android-IPC����-���л�"><a href="#Android-IPC����-���л�" class="headerlink" title="Android IPC����-���л�"></a>Android IPC����-���л�</h1><p>[TOC]</p>
+<h2 id="���л�����"><a href="#���л�����" class="headerlink" title="���л�����"></a>���л�����</h2><p>���л� (Serialization)��������״̬��Ϣת��Ϊ���Դ洢����������ʽ�Ĺ��̡������л��ڼ䣬�������䵱ǰ״̬д�뵽��ʱ���־��Դ洢�����Ժ󣬿���ͨ���Ӵ洢���ж�ȡ�������л�������״̬�����´����ö�����</p>
+<p>���л������壺</p>
+<ol>
+<li>�����Ա������󣬱����������ֽ����е������ļ����ö�����������ObjectOutputStream�����������������洢�ڱ��أ��������̣��������л�-�־û����̣���������ʹ�������Ѿ������л�-�־û���������ʱ���ö�����������ObjectInputStream��ȡ�����������ݣ����ص������С�</li>
+<li>ͨ�����л������������д��ݶ�����</li>
+<li>ͨ�����л������ڽ��̼䴫�ݶ�����</li>
+</ol>
+<h3 id="���л��k�ʽ"><a href="#���л��k�ʽ" class="headerlink" title="���л��ķ�ʽ"></a>���л��ķ�ʽ</h3><ul>
+<li>ʵ��Serializable�ӿ�</li>
+<li>ʵ��parcelable�ӿ�</li>
+</ul>
+<h3 id="���ַ�ʽ������"><a href="#���ַ�ʽ������" class="headerlink" title="���ַ�ʽ������"></a>���ַ�ʽ������</h3><ol>
+<li>Serializeble��java�����л���ʽ��Parcelable��Android���е����л���ʽ</li>
+<li>��ʹ���ڴ���ʱ����Parcelable��Serializable���ܸߣ������Ƽ�ʹ��Parcelable��</li>
+<li>Serializable�����л���ʱ����������������ʱ�������Ӷ�����Ƶ����GC��</li>
+<li>Parcelable����ʹ����Ҫ�����ݴ洢�ڴ����ϵ���������ΪParcelable���ܺܺõı�֤���ݵĳ������������б仯�������¡�����SerializableЧ�ʵ͵㣬 Ҳ���ᳫ�ã��������������£����ǽ�������Serializable��</li>
+</ol>
+<h2 id="ʹ��Serializeble"><a href="#ʹ��Serializeble" class="headerlink" title="ʹ��Serializeble"></a>ʹ��Serializeble</h2><p>ֻ������Ҫ���л�����ʵ��Serializable ���ɣ�ϵͳ���Զ��������л���һ��Ҫ����serialVersionUID��</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">public class Student implements Serializable &#123;</div><div class="line">    private String name;</div><div class="line">    private int age;</div><div class="line"></div><div class="line">    private static final long serialVersionUID = 21455356667888L;</div><div class="line"></div><div class="line">    public String getName() &#123;</div><div class="line">        return name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setName(String name) &#123;</div><div class="line">        this.name = name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public int getAge() &#123;</div><div class="line">        return age;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setAge(int age) &#123;</div><div class="line">        this.age = age;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="��Activity�е�ʹ��"><a href="#��Activity�е�ʹ��" class="headerlink" title="��Activity�е�ʹ��"></a>��Activity�е�ʹ��</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">// serializable���󴫵ݷ���</div><div class="line">	    Student student = new Student();</div><div class="line">        student.setAge(18);</div><div class="line">        student.setName(&quot;����&quot;);</div><div class="line">        Intent intent = new Intent(MainActivity.this, Main2Activity.class);</div><div class="line">        Bundle bundle = new Bundle();</div><div class="line">        bundle.putSerializable(&quot;ser_key&quot;, student);</div><div class="line">        intent.putExtras(bundle);</div><div class="line">        startActivity(intent);</div><div class="line">  //����ֱ�����ö���������      </div><div class="line">        intent.putExtra(&quot;extra_key&quot;,student);</div><div class="line">        startActivity(intent);</div><div class="line">        </div><div class="line">       </div><div class="line">// serializable������ȡ����</div><div class="line">Student student1 = (Student) getIntent().getSerializableExtra(&quot;ser_key&quot;);</div></pre></td></tr></table></figure>
+<h2 id="Parcelable��ʹ��"><a href="#Parcelable��ʹ��" class="headerlink" title="Parcelable��ʹ��"></a>Parcelable��ʹ��</h2><p>��Ҫʵ��������Ҫ�ķ�����һ���ӿڡ�</p>
+<p>writeToParcel��describeContents���ֱ�����д�����ݵ�Parcel�Լ�����������writeToParcel���ǿ�������Ϊ��д��Parcel��describeContents����һ��Ĭ�Ϸ���0���ɡ�</p>
+<p>��Ҫʵ�ֽӿڣ�public final static ?Parcelable.Creator<parcelableclass> CREATOR�����Ǹ����ر��Ľӿڣ���Լ���������ӿڵ������㻹���ܸ��ģ�ֻ����CREATOR������ǰ����������Ҫʱpublic final static��</parcelableclass></p>
+<p>CREATOR�ӿڵ�ʵ���У�������������createFromParcel�����Կ����Ǵ�Parcel�л�ȡ�������Ϸ���writeToParcel����Ӧ����newArray�����ض��������󣩡�</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/ecc4da65-1d0d-49bd-bf76-f8c2efe7a62e.png" alt="ecc4da65-1d0d-49bd-bf76-f8c2efe7a62e"></p>
+<h3 id="����ʹ��"><a href="#����ʹ��" class="headerlink" title="����ʹ��"></a>����ʹ��</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line">public class StudentP implements Parcelable &#123;</div><div class="line"></div><div class="line">    private String name;</div><div class="line">    private int age;</div><div class="line"></div><div class="line">    public String getName() &#123;</div><div class="line">        return name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setName(String name) &#123;</div><div class="line">        this.name = name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public int getAge() &#123;</div><div class="line">        return age;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setAge(int age) &#123;</div><div class="line">        this.age = age;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    protected StudentP(Parcel in) &#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static final Creator&lt;StudentP&gt; CREATOR = new Creator&lt;StudentP&gt;() &#123;</div><div class="line">        @Override</div><div class="line">        public StudentP createFromParcel(Parcel in) &#123;</div><div class="line">            StudentP studentP = new StudentP(in);</div><div class="line">            studentP.setName(in.readString());</div><div class="line">            studentP.setAge(in.readInt());</div><div class="line">            return studentP;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        @Override</div><div class="line">        public StudentP[] newArray(int size) &#123;</div><div class="line">            return new StudentP[size];</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public int describeContents() &#123;</div><div class="line">        return 0;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void writeToParcel(Parcel dest, int flags) &#123;</div><div class="line">        dest.writeString(name);</div><div class="line">        dest.writeInt(age);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="��Activity��ʹ��"><a href="#��Activity��ʹ��" class="headerlink" title="��Activity��ʹ��"></a>��Activity��ʹ��</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"> // parcelable���󴫵ݷ���</div><div class="line">	    StudentP studentP = new StudentP();</div><div class="line">        studentP.setAge(18);</div><div class="line">        studentP.setName(&quot;����&quot;);</div><div class="line">        Intent intent = new Intent(MainActivity.this, Main2Activity.class);</div><div class="line">        intent.putExtra(&quot;p_key&quot;,studentP);</div><div class="line">        startActivity(intent);</div><div class="line">// parcelable������ȡ����</div><div class="line">studentP studentP1 = (studentP)getIntent().getParcelableExtra(&quot;p_key&quot;);</div></pre></td></tr></table></figure>
+<p>�����Դ����б���</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">// parcelable����List���ݷ���</div><div class="line">public void setParcelableListMethod() &#123;</div><div class="line">    ArrayList&lt;Person&gt; personList = new ArrayList&lt;Person&gt;();</div><div class="line">    Person person1 = new Person();</div><div class="line">    person1.setmName(&quot;������&quot;);</div><div class="line">    person1.setmSex(&quot;��&quot;);</div><div class="line">    person1.setmAge(45);</div><div class="line">    personList.add(person1);</div><div class="line">    Person person2 = new Person();</div><div class="line">    person2.setmName(&quot;Ѧ��&quot;);</div><div class="line">    person2.setmSex(&quot;��&quot;);</div><div class="line">    person2.setmAge(15);</div><div class="line">    personList.add(person2);</div><div class="line">    Intent intent = new Intent(this, PersonTest.class);</div><div class="line">    Bundle bundle = new Bundle();</div><div class="line">    bundle.putParcelableArrayList(PAR_LIST_KEY, personList);</div><div class="line">    intent.putExtras(bundle);</div><div class="line">    startActivity(intent);</div><div class="line">&#125;</div><div class="line"></div><div class="line">// parcelable������ȡ����</div><div class="line">public ArrayList&lt;Person&gt; getParcelableMethod()&#123;</div><div class="line">    ArrayList&lt;Person&gt; mPersonList = 				getIntent().getParcelableExtra(PAR_LIST_KEY);</div><div class="line">	return mPersonList;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="�ο�"><a href="#�ο�" class="headerlink" title="�ο�"></a>�ο�</h2><p><a href="http://blog.csdn.net/qq_23547831/article/details/51779528" target="_blank" rel="external">http://blog.csdn.net/qq_23547831/article/details/51779528</a></p>
+<p><a href="http://www.jianshu.com/p/a60b609ec7e7" target="_blank" rel="external">http://www.jianshu.com/p/a60b609ec7e7</a></p>
+<p><a href="http://www.cnblogs.com/xyczero/p/4021245.html" target="_blank" rel="external">http://www.cnblogs.com/xyczero/p/4021245.html</a></p>
+<p>blog.csdn.net/yangzhaomuma/article/details/50452651</p>
+</section>
+    
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="alipay-code">
+            <div class="code-image"></div>
+            <b>使用支付宝打赏</b>
+          </span>
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+    </div>
+    <div class="qrcode">
+      <canvas id="share-qrcode"></canvas>
+      <p class="notice">扫描二维码，分享此文章</p>
+    </div>
+    
+      <div id="comments"></div>
+    
+  </article>
+</main>
+
+<script>
+  (function () {
+    var url = 'http://bbbb.ml/2017/09/13/Android/Android IPC机制-序列化/';
+    var banner = ''
+    if (banner !== 'undefined') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "jwl00";
+    if (gitmentConfig != "undefined") {
+      var gitment = new Gitment({
+        id: "",
+        owner: "jwl00",
+        repo: "jwl00.github.io",
+        oauth: {
+          client_id: "ae21ad25810b1f2cc193",
+          client_secret: "7b6bb525adfeee63bd087132d98e6fd015d49ed8"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

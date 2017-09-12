@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="什么也不留下">
+  <meta name="keyword" content="hexo-theme, Android">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      JWL博客
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>JWL博客</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2></h2>
+  <p class="post-date">2017-09-13</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content"><h1 id="RxJava操作符"><a href="#RxJava操作符" class="headerlink" title="RxJava操作符"></a>RxJava操作符</h1><p>[TOC]</p>
+<h2 id="创建操作"><a href="#创建操作" class="headerlink" title="创建操作"></a>创建操作</h2><h3 id="create"><a href="#create" class="headerlink" title="create"></a>create</h3><p>使用OnSubscribe从头创建一个Observable，这种方法比较简单。需要注意的是，使用该方法创建时，建议在OnSubscribe#call方法中检查订阅状态，以便及时停止发射数据或者运算。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">Observable.create(<span class="keyword">new</span> Observable.OnSubscribe&lt;String&gt;()&#123;</div><div class="line"></div><div class="line">     <span class="meta">@Override</span></div><div class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(Subscriber&lt;? <span class="keyword">super</span> String&gt; subscriber)</span> </span>&#123;</div><div class="line">         subscriber.onNext(<span class="string">"doubi"</span>);</div><div class="line">     &#125;</div><div class="line"> &#125;).subscribe(<span class="keyword">new</span> Observer&lt;String&gt;() &#123;</div><div class="line">     <span class="meta">@Override</span></div><div class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCompleted</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">     &#125;</div><div class="line"></div><div class="line">     <span class="meta">@Override</span></div><div class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</div><div class="line"></div><div class="line">     &#125;</div><div class="line"></div><div class="line">     <span class="meta">@Override</span></div><div class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">         Log.e(TAG, <span class="string">"onNext: "</span>+s );</div><div class="line">     &#125;</div><div class="line"> &#125;);</div></pre></td></tr></table></figure>
+<h3 id="from"><a href="#from" class="headerlink" title="from"></a>from</h3><p>将一个Iterable, 一个Future, 或者一个数组，内部通过代理的方式转换成一个Observable；遍历ArrayList：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">        ArrayList&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">        list.add(<span class="string">"doubi"</span>);</div><div class="line">        list.add(<span class="string">"hello"</span>);</div><div class="line"></div><div class="line">        Observable.from(list).subscribe(<span class="keyword">new</span> Action1&lt;String&gt;() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">                Log.e(TAG, <span class="string">"call: "</span>+s );</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line"><span class="comment">//或者另外一种方式</span></div><div class="line">       Observable.from(list).subscribe(<span class="keyword">new</span> Observer&lt;String&gt;() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCompleted</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</div><div class="line"></div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">                Log.e(TAG, <span class="string">"onNext: "</span>+s );</div><div class="line">            &#125;</div><div class="line">        &#125;);</div></pre></td></tr></table></figure>
+<h3 id="just"><a href="#just" class="headerlink" title="just"></a>just</h3><p>将一个或多个对象转换成发射这个或这些对象的一个Observable，比如在线程中睡眠5秒：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Observable.just(<span class="keyword">null</span>).</div><div class="line">        subscribe(<span class="keyword">new</span> Action1&lt;Object&gt;() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(Object o)</span> </span>&#123;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            Thread.sleep(<span class="number">5000</span>);</div><div class="line">            Log.e(TAG, <span class="string">"call: ----------"</span> );</div><div class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="timer"><a href="#timer" class="headerlink" title="timer"></a>timer</h3><p>创建一个在给定的延时之后发射数据项为0的<code>Observable</code>，延迟5秒发送信息：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Observable.just(<span class="keyword">null</span>).timer(<span class="number">5</span>, TimeUnit.SECONDS).subscribe(<span class="keyword">new</span> Action1&lt;Long&gt;() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(Long aLong)</span> </span>&#123;</div><div class="line">        Log.e(TAG, <span class="string">"call: "</span>+aLong );<span class="comment">//结果是0</span></div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>Create<br>通过调用观察者的方法从头创建一个Observable</p>
+<p>Empty/Never/Throw<br>创建行为受限的特殊Observable</p>
+<p>Defer<br>在观察者订阅之前不创建这个Observable，为每一个观察者创建一个新的Observable</p>
+<p>Just<br>将对象或者对象集合转换为一个会发射这些对象的Observable</p>
+<p>From<br>将其它的对象或数据结构转换为Observable</p>
+<p>Range<br>创建发射指定范围的整数序列的Observable,range操作符,发射从start开始的count个数</p>
+<p>Interval<br>间隔一定时间发送一个数字,从0开始.本身运行在Schedulers.computation() 线程内</p>
+<p>Repeat<br>Repeat作用在Observable上,会对其重复发射count次</p>
+<h2 id="变换操作"><a href="#变换操作" class="headerlink" title="变换操作"></a>变换操作</h2><h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><p>用来把一个事件转换为另一个事件。<br>map()操作符就是用于变换Observable对象的，map操作符返回一个Observable对象，这样就可以实现链式调用，在一个Observable对象上多次使用map操作符，最终将最简洁的数据传递给Subscriber对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">Observable.just(<span class="string">"hello world"</span>).map(<span class="keyword">new</span> Func1&lt;String, Integer&gt;() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">call</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">2017</span>;</div><div class="line">    &#125;</div><div class="line">&#125;).map(<span class="keyword">new</span> Func1&lt;Integer, String&gt;() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">call</span><span class="params">(Integer integer)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> integer+<span class="string">"----"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;).subscribe(<span class="keyword">new</span> Action1&lt;String&gt;() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">        System.out.println(s);</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p><strong>func第一个泛型是输入的类型，第二个是输出的类型</strong></p>
+<p>action中的输入是事件源的输入，而不是监听者的信息，just是构建一个监听者，不参与事件的转换</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">Observable.just(<span class="string">"hello world"</span>).subscribe(<span class="keyword">new</span> Observer&lt;String&gt;() &#123;</div><div class="line">     <span class="meta">@Override</span></div><div class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCompleted</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">     &#125;</div><div class="line"></div><div class="line">     <span class="meta">@Override</span></div><div class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</div><div class="line"></div><div class="line">     &#125;</div><div class="line"></div><div class="line">     <span class="meta">@Override</span></div><div class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">         Log.e(TAG, <span class="string">"onNext:"</span>+s );</div><div class="line">     &#125;</div><div class="line"> &#125;);</div></pre></td></tr></table></figure>
+<p>上面的just就参与了事件流的转化，运行结果：<br><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170315_072633.png" alt="snipaste_20170315_072633"></p>
+<h3 id="flatmap"><a href="#flatmap" class="headerlink" title="flatmap"></a>flatmap</h3><p>Observable.flatMap()接收一个Observable的输出作为输入，同时输出另外一个Observable。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> Observable&lt;List&lt;String&gt;&gt; getStudent() &#123;</div><div class="line">    List&lt;String&gt; list = Arrays.asList(<span class="string">"123"</span>, <span class="string">"456"</span>, <span class="string">"doubi"</span>);</div><div class="line">    <span class="keyword">return</span> Observable.just(list);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//调用函数</span></div><div class="line">     getStudent().flatMap(<span class="keyword">new</span> Func1&lt;List&lt;String&gt;, Observable&lt;String&gt;&gt;() &#123;</div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> Observable&lt;String&gt; <span class="title">call</span><span class="params">(List&lt;String&gt; strings)</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> Observable.from(strings);</div><div class="line">        &#125;</div><div class="line">    &#125;).subscribe(<span class="keyword">new</span> Action1&lt;String&gt;() &#123;</div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">            Log.e(TAG, <span class="string">"call: "</span> + s);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div></pre></td></tr></table></figure>
+<h3 id="其他-1"><a href="#其他-1" class="headerlink" title="其他"></a>其他</h3><p>Buffer<br>缓存，可以简单的理解为缓存，它定期从Observable收集数据到一个集合，然后把这些数据集合打包发射，而不是一次发射一个</p>
+<p>FlatMap<br>扁平映射，将Observable发射的数据变换为Observables集合，然后将这些Observable发射的数据平坦化的放进一个单独的Observable，可以认为是一个将嵌套的数据结构展开的过程。</p>
+<p>GroupBy<br>分组，将原来的Observable分拆为Observable集合，将原始Observable发射的数据按Key分组，每一个Observable发射一组不同的数据</p>
+<p>Map<br>映射，通过对序列的每一项都应用一个函数变换Observable发射的数据，实质是对序列中的每一项执行一个函数，函数的参数就是这个数据项</p>
+<p>Scan<br>扫描， 连续地对数据序列的每一项应用一个函数，然后连续发射结果,每一项结果基于之前的结果.累加器函数.</p>
+<p>Window<br>窗口，定期将来自Observable的数据分拆成一些Observable窗口，然后发射这些窗口，而不是每次发射一项。类似于Buffer，但Buffer发射的是数据，Window发射的是Observable，每一个Observable发射原始Observable的数据的一个子集</p>
+<p>toList<br>Returns an Observable that emits a single item, a list composed of all the items emitted by the source Observable. 将一个Observable转换为一个List.</p>
+<h2 id="过滤操作"><a href="#过滤操作" class="headerlink" title="过滤操作"></a>过滤操作</h2><h3 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h3><p>更改刚刚的flatmap的代码，只要含有<code>doubi</code>的字符串</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">getStudent().flatMap(<span class="keyword">new</span> Func1&lt;List&lt;String&gt;, Observable&lt;String&gt;&gt;() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Observable&lt;String&gt; <span class="title">call</span><span class="params">(List&lt;String&gt; strings)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> Observable.from(strings);</div><div class="line">    &#125;</div><div class="line">&#125;).filter(<span class="keyword">new</span> Func1&lt;String, Boolean&gt;() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Boolean <span class="title">call</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (s.contains(<span class="string">"12"</span>))&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    &#125;</div><div class="line">&#125;).subscribe(<span class="keyword">new</span> Action1&lt;String&gt;() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">        Log.e(TAG, <span class="string">"call: "</span> + s);</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="其他-2"><a href="#其他-2" class="headerlink" title="其他"></a>其他</h2><p>throttleWithTimeout<br>源Observable每次发射出来一个数据后就会进行计时,如果在设定好的时间结束前源Observable有新的数据发射出来，这个数据就会被丢弃，同时重新开始计时。</p>
+<p>Debounce<br>只有在空闲了一段时间后才发射数据，通俗的说，就是如果一段时间没有操作，就执行一次操作.还可以根据一个函数来进行限流。这个函数的返回值是一个临时Observable，<br>如果源Observable在发射一个新的数据的时候，上一个数据根据函数所生成的临时Observable还没有结束,没有调用onComplete，那么上一个数据就会被过滤掉。如果是最后一个,还是会发射.</p>
+<p>Distinct<br>去重，过滤掉所有的重复数据项</p>
+<p>DistinctUtilChanged<br>过滤掉相邻的重复项</p>
+<p>ElementAt<br>取值，取特定位置的数据项</p>
+<p>Filter<br>过滤，过滤掉没有通过谓词测试的数据项，只发射通过测试的</p>
+<p>First<br>取满足条件的第一个,如无满足条件数据抛出异常.可以使用takeFisrt(),仅会调动onComplete.<br>有null数据时会抛空指针异常,要判空处理.<br>只取满足条件的第一个数据.可以和BlockingObservable连用。可以Observable.toBlocking或者BlockingObservable.from方法来将一个Observable对象转化为BlockingObservable对象</p>
+<p>Last<br>末项，只发射最后一条数据.</p>
+<p>IgnoreElements<br>忽略所有的数据，只保留终止通知(onError或onCompleted)</p>
+<p>Sample<br>取样，定期发射最新的数据，等于是数据抽样，有的实现里叫ThrottleFirst</p>
+<p>throttleFirst<br>会定期发射这个时间段里源Observable发射的第一个数据</p>
+<p>Skip<br>跳过前面的若干项数据</p>
+<p>SkipLast<br>跳过后面的若干项数据</p>
+<p>Take<br>只保留前面的若干项数据</p>
+<p>TakeLast<br>只保留后面的若干项数据</p>
+<p>takeFirst<br>有null数据时会抛空指针异常,要判空处理<br>和first一样，但在所有数据不满足条件时不会抛出异常，仅仅调用onComplete.</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://m.2cto.com/kf/201606/516356.html" target="_blank" rel="external">http://m.2cto.com/kf/201606/516356.html</a></p>
+<p><a href="http://www.jianshu.com/p/88779bda6691" target="_blank" rel="external">http://www.jianshu.com/p/88779bda6691</a></p>
+<p><a href="http://blog.csdn.net/maplejaw_/article/details/52396175" target="_blank" rel="external">http://blog.csdn.net/maplejaw_/article/details/52396175</a></p>
+<p><a href="http://blog.csdn.net/job_hesc/article/details/46242117" target="_blank" rel="external">http://blog.csdn.net/job_hesc/article/details/46242117</a></p>
+</section>
+    
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="alipay-code">
+            <div class="code-image"></div>
+            <b>使用支付宝打赏</b>
+          </span>
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+    </div>
+    <div class="qrcode">
+      <canvas id="share-qrcode"></canvas>
+      <p class="notice">扫描二维码，分享此文章</p>
+    </div>
+    
+      <div id="comments"></div>
+    
+  </article>
+</main>
+
+<script>
+  (function () {
+    var url = 'http://bbbb.ml/2017/09/13/lib/RxJava操作符/';
+    var banner = ''
+    if (banner !== 'undefined') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "jwl00";
+    if (gitmentConfig != "undefined") {
+      var gitment = new Gitment({
+        id: "",
+        owner: "jwl00",
+        repo: "jwl00.github.io",
+        oauth: {
+          client_id: "ae21ad25810b1f2cc193",
+          client_secret: "7b6bb525adfeee63bd087132d98e6fd015d49ed8"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="什么也不留下">
+  <meta name="keyword" content="hexo-theme, Android">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      JWL博客
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>JWL博客</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2></h2>
+  <p class="post-date">2017-09-13</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content"><h1 id="Java学习笔记-day17"><a href="#Java学习笔记-day17" class="headerlink" title="Java学习笔记_day17"></a>Java学习笔记_day17</h1><p>[TOC]</p>
+<h2 id="常用快捷键"><a href="#常用快捷键" class="headerlink" title="常用快捷键"></a>常用快捷键</h2><ul>
+<li>ctrl + shift + o 导包</li>
+<li>ctrl + shift + t 快速查找某个类</li>
+<li>先按ctrl + 2 ,再点L, 创建变量并命名</li>
+<li>ctrl + o , 在当前类中,快速查找某个方法</li>
+<li>ctrl + k, 向下查找某个字符串</li>
+<li>ctrl + shift + k, 向上查找某个字符串</li>
+<li>alt + 左方向键 跳转上一个页面</li>
+</ul>
+<h2 id="toStrring源码分析"><a href="#toStrring源码分析" class="headerlink" title="toStrring源码分析"></a>toStrring源码分析</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">代码：</div><div class="line">	Collection c = <span class="keyword">new</span> ArrayList();</div><div class="line">	c.add(<span class="string">"hello"</span>);</div><div class="line">	c.add(<span class="string">"world"</span>);</div><div class="line">	c.add(<span class="string">"java"</span>);</div><div class="line">	</div><div class="line">	System.out.println(c);</div><div class="line">	</div><div class="line">为什么c输出的不是地址值呢?</div><div class="line">	A:Collection c = <span class="keyword">new</span> ArrayList();</div><div class="line">		这是多态，所以输出c的toString()方法，其实是输出ArrayList的toString()</div><div class="line">	B:看ArrayList的toString()</div><div class="line">		而我们在ArrayList里面却没有发现toString()。</div><div class="line">		以后遇到这种情况，也不要担心，你认为有，它却没有，就应该去它父亲里面看看。</div><div class="line">	C:toString()的方法源码</div><div class="line">	</div><div class="line">		<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">	        Iterator&lt;E&gt; it = iterator(); <span class="comment">//集合本身调用迭代器方法，得到集合迭代器</span></div><div class="line">	        <span class="keyword">if</span> (! it.hasNext())</div><div class="line">	            <span class="keyword">return</span> <span class="string">"[]"</span>;</div><div class="line">	</div><div class="line">	        StringBuilder sb = <span class="keyword">new</span> StringBuilder();</div><div class="line">	        sb.append(<span class="string">'['</span>);</div><div class="line">	        <span class="keyword">for</span> (;;) &#123;</div><div class="line">	            E e = it.next(); <span class="comment">//e=hello,world,java</span></div><div class="line">	            sb.append(e == <span class="keyword">this</span> ? <span class="string">"(this Collection)"</span> : e);</div><div class="line">	            <span class="keyword">if</span> (! it.hasNext())</div><div class="line">	            	<span class="comment">//[hello, world, java]</span></div><div class="line">	                <span class="keyword">return</span> sb.append(<span class="string">']'</span>).toString();</div><div class="line">	            sb.append(<span class="string">','</span>).append(<span class="string">' '</span>);</div><div class="line">	        &#125;</div><div class="line">	    &#125;</div></pre></td></tr></table></figure>
+<h2 id="建立一个用户登录案例"><a href="#建立一个用户登录案例" class="headerlink" title="建立一个用户登录案例"></a>建立一个用户登录案例</h2><h3 id="分包"><a href="#分包" class="headerlink" title="分包"></a>分包</h3><pre><code>A:功能划分
+B:模块划分
+C:先按模块划分，再按功能划分
+</code></pre><p>pojo       简单的Java对象（Plain Old Java Object）</p>
+<p>impl   接口的实现</p>
+<p>如果方法的参数小于等于3个那么正常写，如果大于三个就传入一个对象。</p>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>多个对象共享同一个成员变量，用静态；</p>
+<p>循环里面如果有switch，并且在switch里面有break，那么结束的不是循环，而是switch语句，可以使用：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">System.exit(<span class="number">0</span>);</div></pre></td></tr></table></figure>
+<h2 id="Set集合"><a href="#Set集合" class="headerlink" title="Set集合"></a>Set集合</h2><p>无序(存储顺序和取出顺序不一致),唯一，有相同的数据存入集合，集合只是存入不同的，<strong>相同的元素存一个</strong></p>
+<h3 id="HasHSet的set方法源码分析"><a href="#HasHSet的set方法源码分析" class="headerlink" title="HasHSet的set方法源码分析"></a>HasHSet的set方法源码分析</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//首先hashSet继承自set类</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">HashSet</span> <span class="keyword">implements</span> <span class="title">Set</span> </span>&#123;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Object PRESENT = <span class="keyword">new</span> Object();</div><div class="line">	<span class="keyword">private</span> <span class="keyword">transient</span> HashMap&lt;E,Object&gt; map;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">HashSet</span><span class="params">()</span> </span>&#123;</div><div class="line">		map = <span class="keyword">new</span> HashMap&lt;&gt;();</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">add</span><span class="params">(E e)</span> </span>&#123; <span class="comment">//e=hello,world</span></div><div class="line">        <span class="keyword">return</span> map.put(e, PRESENT)==<span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>他的本质应用就是HashMap，hashMap的源码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">HashMap</span> <span class="keyword">implements</span> <span class="title">Map</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> V <span class="title">put</span><span class="params">(K key, V value)</span> </span>&#123; <span class="comment">//key=e=hello,world</span></div><div class="line">	</div><div class="line">		<span class="comment">//看哈希表是否为空，如果空，就开辟空间</span></div><div class="line">        <span class="keyword">if</span> (table == EMPTY_TABLE) &#123;</div><div class="line">            inflateTable(threshold);</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="comment">//判断对象是否为null</span></div><div class="line">        <span class="keyword">if</span> (key == <span class="keyword">null</span>)</div><div class="line">            <span class="keyword">return</span> putForNullKey(value);</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> hash = hash(key); <span class="comment">//和对象的hashCode()方法相关</span></div><div class="line">        </div><div class="line">        <span class="comment">//在哈希表中查找hash值</span></div><div class="line">        <span class="keyword">int</span> i = indexFor(hash, table.length);</div><div class="line">        <span class="keyword">for</span> (Entry&lt;K,V&gt; e = table[i]; e != <span class="keyword">null</span>; e = e.next) &#123;</div><div class="line">        	<span class="comment">//这次的e其实是第一次的world</span></div><div class="line">            Object k;</div><div class="line">            <span class="keyword">if</span> (e.hash == hash &amp;&amp; ((k = e.key) == key || key.equals(k))) &#123;</div><div class="line">                V oldValue = e.value;</div><div class="line">                e.value = value;</div><div class="line">                e.recordAccess(<span class="keyword">this</span>);</div><div class="line">                <span class="keyword">return</span> oldValue;</div><div class="line">                <span class="comment">//走这里其实是没有添加元素</span></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        modCount++;</div><div class="line">        addEntry(hash, key, value, i); <span class="comment">//把元素添加</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">transient</span> <span class="keyword">int</span> hashSeed = <span class="number">0</span>;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">final</span> <span class="keyword">int</span> <span class="title">hash</span><span class="params">(Object k)</span> </span>&#123; <span class="comment">//k=key=e=hello,</span></div><div class="line">        <span class="keyword">int</span> h = hashSeed;</div><div class="line">        <span class="keyword">if</span> (<span class="number">0</span> != h &amp;&amp; k <span class="keyword">instanceof</span> String) &#123;</div><div class="line">            <span class="keyword">return</span> sun.misc.Hashing.stringHash32((String) k);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        h ^= k.hashCode(); <span class="comment">//这里调用的是对象的hashCode()方法</span></div><div class="line"></div><div class="line">        <span class="comment">// This function ensures that hashCodes that differ only by</span></div><div class="line">        <span class="comment">// constant multiples at each bit position have a bounded</span></div><div class="line">        <span class="comment">// number of collisions (approximately 8 at default load factor).</span></div><div class="line">        h ^= (h &gt;&gt;&gt; <span class="number">20</span>) ^ (h &gt;&gt;&gt; <span class="number">12</span>);</div><div class="line">        <span class="keyword">return</span> h ^ (h &gt;&gt;&gt; <span class="number">7</span>) ^ (h &gt;&gt;&gt; <span class="number">4</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>通过查看add方法的源码，我们知道这个方法底层依赖 两个方法：hashCode()和equals()。</p>
+</blockquote>
+<p>按照方法的步骤来说：    先看hashCode()值是否相同</p>
+<p>​    相同:继续走equals()方法</p>
+<p>​        返回true：    说明元素重复，就不添加</p>
+<p>​        返回false：说明元素不重复，就添加到集合</p>
+<p>​    不同：就直接把元素添加到集合</p>
+<p>如果类没有重写这两个方法，默认使用的Object()。一般来说不同相同。</p>
+<p>而String类重写了hashCode()和equals()方法，所以，它就可以把内容相同的字符串去掉。只留下一个。</p>
+<h3 id="用hashSet存储引用类型"><a href="#用hashSet存储引用类型" class="headerlink" title="用hashSet存储引用类型"></a>用hashSet存储引用类型</h3><p>示例代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HashSetDemo2</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="comment">// 创建集合对象</span></div><div class="line">		HashSet&lt;Student&gt; hs = <span class="keyword">new</span> HashSet&lt;Student&gt;();</div><div class="line"></div><div class="line">		<span class="comment">// 创建学生对象</span></div><div class="line">		Student s1 = <span class="keyword">new</span> Student(<span class="string">"林青霞"</span>, <span class="number">27</span>);</div><div class="line">		Student s2 = <span class="keyword">new</span> Student(<span class="string">"柳岩"</span>, <span class="number">22</span>);</div><div class="line">		Student s3 = <span class="keyword">new</span> Student(<span class="string">"王祖贤"</span>, <span class="number">30</span>);</div><div class="line">		Student s4 = <span class="keyword">new</span> Student(<span class="string">"林青霞"</span>, <span class="number">27</span>);</div><div class="line">		Student s5 = <span class="keyword">new</span> Student(<span class="string">"林青霞"</span>, <span class="number">20</span>);</div><div class="line">		Student s6 = <span class="keyword">new</span> Student(<span class="string">"范冰冰"</span>, <span class="number">22</span>);</div><div class="line"></div><div class="line">		<span class="comment">// 添加元素</span></div><div class="line">		hs.add(s1);</div><div class="line">		hs.add(s2);</div><div class="line">		hs.add(s3);</div><div class="line">		hs.add(s4);</div><div class="line">		hs.add(s5);</div><div class="line">		hs.add(s6);</div><div class="line"></div><div class="line">		<span class="comment">// 遍历集合</span></div><div class="line">		<span class="keyword">for</span> (Student s : hs) &#123;</div><div class="line">			System.out.println(s.getName() + <span class="string">"---"</span> + s.getAge());</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>运行结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">王祖贤---30</div><div class="line">范冰冰---22</div><div class="line">林青霞---20</div><div class="line">林青霞---27</div><div class="line">柳岩---22</div><div class="line">林青霞---27</div></pre></td></tr></table></figure>
+<p>没有反映出唯一的性质，但是可以看出它是无序的。</p>
+<p>为了使上面的代码达到如下目的：</p>
+<p>  需求：存储自定义对象，并保证元素的唯一性<br>  要求：如果两个对象的成员变量值都相同，则为同一个元素。</p>
+<p>改进stutend类，新增两个方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</div><div class="line">	<span class="keyword">final</span> <span class="keyword">int</span> prime = <span class="number">31</span>;</div><div class="line">	<span class="keyword">int</span> result = <span class="number">1</span>;</div><div class="line">	result = prime * result + age;</div><div class="line">	result = prime * result + ((name == <span class="keyword">null</span>) ? <span class="number">0</span> : name.hashCode());</div><div class="line">	<span class="keyword">return</span> result;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</div><div class="line">	<span class="keyword">if</span> (<span class="keyword">this</span> == obj)</div><div class="line">		<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">	<span class="keyword">if</span> (obj == <span class="keyword">null</span>)</div><div class="line">		<span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">	<span class="keyword">if</span> (getClass() != obj.getClass())</div><div class="line">		<span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">	Student other = (Student) obj;</div><div class="line">	<span class="keyword">if</span> (age != other.age)</div><div class="line">		<span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">	<span class="keyword">if</span> (name == <span class="keyword">null</span>) &#123;</div><div class="line">		<span class="keyword">if</span> (other.name != <span class="keyword">null</span>)</div><div class="line">			<span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> (!name.equals(other.name))</div><div class="line">		<span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">	<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="LinkEdHashSet"><a href="#LinkEdHashSet" class="headerlink" title="LinkEdHashSet"></a>LinkEdHashSet</h3><p>LinkedHashSet:底层数据结构由哈希表和链表组成。哈希表保证元素的唯一性。链表保证元素有素。(存储和取出是一致)</p>
+<h3 id="TreeSet"><a href="#TreeSet" class="headerlink" title="TreeSet"></a>TreeSet</h3><p>能够对元素按照某种规则进行排序，底层是二叉树结构，是TreeMap。</p>
+<h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><p>排序（是指按照某种顺序排列，而不是像list的进出有顺序）和唯一</p>
+<h4 id="排列方式"><a href="#排列方式" class="headerlink" title="排列方式"></a>排列方式</h4><ol>
+<li>自然排序（无参构造方法默认排序方法）</li>
+<li>比较器排序（带参构造函数）</li>
+</ol>
+<blockquote>
+<p>comparable自然排序</p>
+</blockquote>
+<h4 id="本质比较依赖"><a href="#本质比较依赖" class="headerlink" title="本质比较依赖"></a>本质比较依赖</h4><p>真正的比较是依赖于元素的compareTo()方法，而这个方法是定义在 Comparable里面的。<br>所以，你要想重写该方法，就必须是先实现 Comparable接口。这个接口表示的就是自然排序。</p>
+<h4 id="使用TreeSet存储引用类型的数据"><a href="#使用TreeSet存储引用类型的数据" class="headerlink" title="使用TreeSet存储引用类型的数据"></a>使用TreeSet存储引用类型的数据</h4><p><strong>javaBean必须实现comparable接口，同时重写compareTo方法,没有实现会报错</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//目的:TreeSet存储自定义对象并保证排序和唯一</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Student s)</span> </span>&#123;</div><div class="line">		<span class="comment">// 这里返回什么，其实应该根据我的排序规则来做</span></div><div class="line">		<span class="comment">// 按照年龄排序,主要条件</span></div><div class="line">		<span class="keyword">int</span> num = <span class="keyword">this</span>.age - s.age;</div><div class="line">		<span class="comment">// 次要条件</span></div><div class="line">		<span class="comment">// 年龄相同的时候，还得去看姓名是否也相同</span></div><div class="line">		<span class="comment">// 如果年龄和姓名都相同，才是同一个元素</span></div><div class="line">		<span class="keyword">int</span> num2 = num == <span class="number">0</span> ? <span class="keyword">this</span>.name.compareTo(s.name) : num;</div><div class="line">		<span class="keyword">return</span> num2;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<p>而且String类也实现了comparable（自然排序）接口，而且重写了compareTo方法</p>
+<p><strong>如果一个类的元素要想能够进行自然排序，就必须实现自然排序接口Comparable</strong></p>
+<h4 id="使用比较器来排序"><a href="#使用比较器来排序" class="headerlink" title="使用比较器来排序"></a>使用比较器来排序</h4><ul>
+<li>可以使用comparator的实现类来构建treeset</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//需求：请按照姓名的长度排序</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyComparator</span> <span class="keyword">implements</span> <span class="title">Comparator</span>&lt;<span class="title">Student</span>&gt; </span>&#123;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Student s1, Student s2)</span> </span>&#123;</div><div class="line">		<span class="comment">// int num = this.name.length() - s.name.length();</span></div><div class="line">		<span class="comment">// this -- s1</span></div><div class="line">		<span class="comment">// s -- s2</span></div><div class="line">		<span class="comment">// 姓名长度</span></div><div class="line">		<span class="keyword">int</span> num = s1.getName().length() - s2.getName().length();</div><div class="line">		<span class="comment">// 姓名内容</span></div><div class="line">		<span class="keyword">int</span> num2 = num == <span class="number">0</span> ? s1.getName().compareTo(s2.getName()) : num;</div><div class="line">		<span class="comment">// 年龄</span></div><div class="line">		<span class="keyword">int</span> num3 = num2 == <span class="number">0</span> ? s1.getAge() - s2.getAge() : num2;</div><div class="line">		<span class="keyword">return</span> num3;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>可以使用匿名内部类来创建treeSet</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">TreeSet&lt;Student&gt; ts = <span class="keyword">new</span> TreeSet&lt;Student&gt;(<span class="keyword">new</span> Comparator&lt;Student&gt;() &#123;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Student s1, Student s2)</span> </span>&#123;</div><div class="line">		<span class="comment">// 姓名长度</span></div><div class="line">		<span class="keyword">int</span> num = s1.getName().length() - s2.getName().length();</div><div class="line">		<span class="comment">// 姓名内容</span></div><div class="line">		<span class="keyword">int</span> num2 = num == <span class="number">0</span> ? s1.getName().compareTo(s2.getName())</div><div class="line">				: num;</div><div class="line">		<span class="comment">// 年龄</span></div><div class="line">		<span class="keyword">int</span> num3 = num2 == <span class="number">0</span> ? s1.getAge() - s2.getAge() : num2;</div><div class="line">		<span class="keyword">return</span> num3;</div><div class="line">	&#125;</div><div class="line">&#125;);</div><div class="line"><span class="comment">//比较而言更加简单</span></div></pre></td></tr></table></figure>
+<h4 id="保证"><a href="#保证" class="headerlink" title="保证"></a>保证</h4><p>唯一性：是根据比较的返回是否是0来决定。</p>
+<p> 排序：<br>      A:自然排序(元素具备比较性)<br>          让元素所属的类实现自然排序接口 Comparable<br>      B:比较器排序(集合具备比较性)<br>          让集合的构造方法接收一个比较器接口的子类对象 Comparator</p>
+</section>
+    
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="alipay-code">
+            <div class="code-image"></div>
+            <b>使用支付宝打赏</b>
+          </span>
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+    </div>
+    <div class="qrcode">
+      <canvas id="share-qrcode"></canvas>
+      <p class="notice">扫描二维码，分享此文章</p>
+    </div>
+    
+      <div id="comments"></div>
+    
+  </article>
+</main>
+
+<script>
+  (function () {
+    var url = 'http://bbbb.ml/2017/09/13/Java/Java学习笔记_day17/';
+    var banner = ''
+    if (banner !== 'undefined') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "jwl00";
+    if (gitmentConfig != "undefined") {
+      var gitment = new Gitment({
+        id: "",
+        owner: "jwl00",
+        repo: "jwl00.github.io",
+        oauth: {
+          client_id: "ae21ad25810b1f2cc193",
+          client_secret: "7b6bb525adfeee63bd087132d98e6fd015d49ed8"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

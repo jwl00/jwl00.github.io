@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="什么也不留下">
+  <meta name="keyword" content="hexo-theme, Android">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      JWL博客
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>JWL博客</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2></h2>
+  <p class="post-date">2017-09-13</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content"><h1 id="最长回文子串—4种解法（Java版）"><a href="#最长回文子串—4种解法（Java版）" class="headerlink" title="最长回文子串—4种解法（Java版）"></a>最长回文子串—4种解法（Java版）</h1><p>[TOC]</p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个字符串，求它的最长回文子串的长度。</p>
+<h3 id="暴力破解"><a href="#暴力破解" class="headerlink" title="暴力破解"></a>暴力破解</h3><p>最容易想到的就是暴力破解，求出每一个子串，之后判断是不是回文，找到最长的那个。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        System.out.println(longestPalindrome1(<span class="string">"aaba"</span>));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">longestPalindrome1</span><span class="params">(String s)</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">int</span> maxPalinLength = <span class="number">0</span>;</div><div class="line">        String longestPalindrome = <span class="keyword">null</span>;</div><div class="line"></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; s.length(); j++) &#123;</div><div class="line">                <span class="keyword">int</span> len = j - i;</div><div class="line"><span class="comment">//               注意在截取字串的时候好是包头不包尾</span></div><div class="line">                String curr = s.substring(i, j+<span class="number">1</span>);</div><div class="line">                <span class="keyword">if</span> (isRalindrome(curr)) &#123;</div><div class="line">                    <span class="keyword">if</span> (len &gt; maxPalinLength) &#123;</div><div class="line">                        longestPalindrome = curr;</div><div class="line">                        maxPalinLength = len;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> longestPalindrome;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isRalindrome</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length() - <span class="number">1</span>; i++) &#123;</div><div class="line">            <span class="keyword">if</span> (s.charAt(i) != s.charAt(s.length() - <span class="number">1</span> - i)) &#123;</div><div class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h3 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h3><p>回文字符串的子串也是回文，比如P[i,j]（表示以i开始以j结束的子串）是回文字符串，那么P[i+1,j-1]也是回文字符串。这样最长回文子串就能分解成一系列子问题了。</p>
+<p>核心思路就是从左开始遍历，然后不断的从原字符串中拿出1到length-1长度的字串，进行判断</p>
+<p>这里用一个二维数组来表示回文字符串的起始位置和结束位置，值<code>1</code>代表的是回文字符串，<code>0</code>代表不是</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">     System.out.println(longestPalindrome2(<span class="string">"1263625"</span>));<span class="comment">//babcbabcbaccba</span></div><div class="line"> &#125;</div><div class="line"> </div><div class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">longestPalindrome2</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">     <span class="keyword">if</span> (s == <span class="keyword">null</span>)</div><div class="line">         <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line"></div><div class="line">     <span class="keyword">if</span>(s.length() &lt;=<span class="number">1</span>)</div><div class="line">         <span class="keyword">return</span> s;</div><div class="line"></div><div class="line">     <span class="keyword">int</span> maxLen = <span class="number">0</span>;</div><div class="line">     String longestStr = <span class="keyword">null</span>;</div><div class="line"></div><div class="line">     <span class="keyword">int</span> length = s.length();</div><div class="line"></div><div class="line">     <span class="keyword">int</span>[][] table = <span class="keyword">new</span> <span class="keyword">int</span>[length][length];</div><div class="line"></div><div class="line">     <span class="comment">//every single letter is palindrome</span></div><div class="line">     <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; length; i++) &#123;</div><div class="line">         table[i][i] = <span class="number">1</span>;</div><div class="line">     &#125;</div><div class="line">     printTable(table);</div><div class="line"></div><div class="line">     <span class="comment">//e.g. bcba</span></div><div class="line">     <span class="comment">//two consecutive same letters are palindrome</span></div><div class="line">     <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= length - <span class="number">2</span>; i++) &#123;</div><div class="line">         <span class="comment">//System.out.println("i="+i+"  "+s.charAt(i));</span></div><div class="line">         <span class="comment">//System.out.println("i="+i+"  "+s.charAt(i+1));</span></div><div class="line">         <span class="keyword">if</span> (s.charAt(i) == s.charAt(i + <span class="number">1</span>))&#123;</div><div class="line">             table[i][i + <span class="number">1</span>] = <span class="number">1</span>;</div><div class="line">             longestStr = s.substring(i, i + <span class="number">2</span>);</div><div class="line">         &#125;</div><div class="line">     &#125;</div><div class="line">     System.out.println(longestStr);</div><div class="line">     printTable(table);</div><div class="line">     <span class="comment">//condition for calculate whole table</span></div><div class="line">     <span class="keyword">for</span> (<span class="keyword">int</span> l = <span class="number">3</span>; l &lt;= length; l++) &#123;</div><div class="line">         <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= length-l; i++) &#123;</div><div class="line">             <span class="keyword">int</span> j = i + l - <span class="number">1</span>;</div><div class="line">             <span class="keyword">if</span> (s.charAt(i) == s.charAt(j)) &#123;</div><div class="line">                 table[i][j] = table[i + <span class="number">1</span>][j - <span class="number">1</span>];</div><div class="line">                 <span class="keyword">if</span> (table[i][j] == <span class="number">1</span> &amp;&amp; l &gt; maxLen)</div><div class="line">                     longestStr = s.substring(i, j + <span class="number">1</span>);</div><div class="line">             &#125; <span class="keyword">else</span> &#123;</div><div class="line">                 table[i][j] = <span class="number">0</span>;</div><div class="line">             &#125;</div><div class="line">             printTable(table);</div><div class="line">         &#125;</div><div class="line">     &#125;</div><div class="line"></div><div class="line">     <span class="keyword">return</span> longestStr;</div><div class="line"> &#125;</div><div class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printTable</span><span class="params">(<span class="keyword">int</span>[][] x)</span></span>&#123;</div><div class="line">     <span class="keyword">for</span>(<span class="keyword">int</span> [] y : x)&#123;</div><div class="line">         <span class="keyword">for</span>(<span class="keyword">int</span> z: y)&#123;</div><div class="line">             System.out.print(z + <span class="string">" "</span>);</div><div class="line">         &#125;</div><div class="line">         System.out.println();</div><div class="line">     &#125;</div><div class="line">     System.out.println(<span class="string">"------"</span>);</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<p><code>table[i][j] = table[i + 1][j - 1]</code>代码的赋值就是体现P[i,j]（表示以i开始以j结束的子串）是回文字符串，那么P[i+1,j-1]也是回文字符。</p>
+<h3 id="中心扩展"><a href="#中心扩展" class="headerlink" title="中心扩展"></a>中心扩展</h3><p>​    因为回文字符串是以中心轴对称的，所以如果我们从下标 i 出发，用2个指针向 i 的两边扩展判断是否相等，那么只需要对0到n-1的下标都做此操作，就可以求出最长的回文子串。但需要注意的是，回文字符串有奇偶对称之分，即”abcba”与”abba”2种类型，因此需要在代码编写时都做判断。<br>设函数int Palindromic ( string &amp;s, int i ,int j) 是求由下标 i 和 j 向两边扩展的回文串的长度，那么对0至n-1的下标，调用2次此函数：<br>int lenOdd =  Palindromic( str, i, i ) 和 int lenEven = Palindromic (str , i , j )，即可求得以i 下标为奇回文和偶回文的子串长度。<br>接下来以lenOdd和lenEven中的最大值与当前最大值max比较即可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span>  <span class="keyword">static</span> String <span class="title">longestPalindrome</span><span class="params">(String s)</span> </span>&#123;  </div><div class="line">    <span class="keyword">if</span> (s.isEmpty()) &#123;  </div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">if</span> (s.length() == <span class="number">1</span>) &#123;  </div><div class="line">        <span class="keyword">return</span> s;  </div><div class="line">    &#125;  </div><div class="line">    String longest = s.substring(<span class="number">0</span>, <span class="number">1</span>);  </div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++) &#123;  </div><div class="line">        <span class="comment">// get longest palindrome with center of i  </span></div><div class="line">        String tmp = helper(s, i, i);  </div><div class="line">        <span class="keyword">if</span> (tmp.length() &gt; longest.length()) &#123;  </div><div class="line">            longest = tmp;  </div><div class="line">        &#125;  </div><div class="line">  </div><div class="line">        <span class="comment">// get longest palindrome with center of i, i+1  </span></div><div class="line">        tmp = helper(s, i, i + <span class="number">1</span>);  </div><div class="line">        <span class="keyword">if</span> (tmp.length() &gt; longest.length()) &#123;  </div><div class="line">            longest = tmp;  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">return</span> longest;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="comment">// Given a center, either one letter or two letter,  </span></div><div class="line"><span class="comment">// Find longest palindrome  </span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">helper</span><span class="params">(String s, <span class="keyword">int</span> begin, <span class="keyword">int</span> end)</span> </span>&#123;  </div><div class="line">    <span class="keyword">while</span> (begin &gt;= <span class="number">0</span> &amp;&amp; end &lt;= s.length() - <span class="number">1</span>  </div><div class="line">            &amp;&amp; s.charAt(begin) == s.charAt(end)) &#123;  </div><div class="line">        begin--;  </div><div class="line">        end++;  </div><div class="line">    &#125;  </div><div class="line">    String subS = s.substring(begin + <span class="number">1</span>, end);  </div><div class="line">    <span class="keyword">return</span> subS;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;  </div><div class="line">    System.out.println(longestPalindrome(<span class="string">"ABCCBA"</span>));<span class="comment">//babcbabcbaccba  </span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Manacher算法"><a href="#Manacher算法" class="headerlink" title="Manacher算法"></a>Manacher算法</h3><p>参考：<a href="http://pugong.studio/2017/03/14/Manacher算法及其Java实现/" target="_blank" rel="external">Manacher算法及其Java实现</a></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>整理自：<a href="http://blog.csdn.net/soszou/article/details/37312317" target="_blank" rel="external">http://blog.csdn.net/soszou/article/details/37312317</a></p>
+<p><a href="http://www.cnblogs.com/leoin2012/p/3984997.html" target="_blank" rel="external">http://www.cnblogs.com/leoin2012/p/3984997.html</a></p>
+</section>
+    
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="alipay-code">
+            <div class="code-image"></div>
+            <b>使用支付宝打赏</b>
+          </span>
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+    </div>
+    <div class="qrcode">
+      <canvas id="share-qrcode"></canvas>
+      <p class="notice">扫描二维码，分享此文章</p>
+    </div>
+    
+      <div id="comments"></div>
+    
+  </article>
+</main>
+
+<script>
+  (function () {
+    var url = 'http://bbbb.ml/2017/09/13/algorithm/最长回文子串—4种解法（Java版）/';
+    var banner = ''
+    if (banner !== 'undefined') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "jwl00";
+    if (gitmentConfig != "undefined") {
+      var gitment = new Gitment({
+        id: "",
+        owner: "jwl00",
+        repo: "jwl00.github.io",
+        oauth: {
+          client_id: "ae21ad25810b1f2cc193",
+          client_secret: "7b6bb525adfeee63bd087132d98e6fd015d49ed8"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

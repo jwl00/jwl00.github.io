@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="什么也不留下">
+  <meta name="keyword" content="hexo-theme, Android">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      JWL博客
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>JWL博客</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2></h2>
+  <p class="post-date">2017-09-13</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content"><h1 id="12-Android-SQLite详解"><a href="#12-Android-SQLite详解" class="headerlink" title="12-Android SQLite详解"></a>12-Android SQLite详解</h1><p>[TOC]</p>
+<h2 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h2><p>　　Android 不自动提供数据库。在 Android 应用程序中使用 SQLite，必须自己创建数据库，然后创建表、索引，填充数据。Android 提供了 SQLiteOpenHelper 帮助你创建一个数据库，你只要继承 SQLiteOpenHelper 类根据开发应用程序的需要，封装创建和更新数据库使用的逻辑就行了。　 　　 　　</p>
+<p>​    SQLiteOpenHelper 的子类，至少需要实现三个方法：　</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">public class DatabaseHelper extends SQLiteOpenHelper &#123;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * @param context  上下文环境（例如，一个 Activity）</div><div class="line">     * @param name   数据库名字</div><div class="line">     * @param factory  一个可选的游标工厂（通常是 Null）</div><div class="line">     * @param version  数据库模型版本的整数</div><div class="line">     * </div><div class="line">     * 会调用父类 SQLiteOpenHelper的构造函数</div><div class="line">     */ </div><div class="line">    public DatabaseHelper(Context context, String name, CursorFactory factory, int version) &#123;</div><div class="line">        super(context, name, factory, version);</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     *  在数据库第一次创建的时候会调用这个方法</div><div class="line">     *  </div><div class="line">     *根据需要对传入的SQLiteDatabase 对象填充表和初始化数据。</div><div class="line">     */</div><div class="line">    @Override</div><div class="line">    public void onCreate(SQLiteDatabase db) &#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 当数据库需要修改的时候（两个数据库版本不同），Android系统会主动的调用这个方法。</div><div class="line">     * 一般我们在这个方法里边删除数据库表，并建立新的数据库表.</div><div class="line">     */</div><div class="line">    @Override</div><div class="line">    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) &#123;</div><div class="line">        //三个参数，一个 SQLiteDatabase 对象，一个旧的版本号和一个新的版本号</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void onOpen(SQLiteDatabase db) &#123;</div><div class="line">        // 每次成功打开数据库后首先被执行</div><div class="line">        super.onOpen(db);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>继承SQLiteOpenHelper之后就拥有了以下两个方法：</p>
+<ul>
+<li>getReadableDatabase() 　创建或者打开一个查询数据库</li>
+<li>getWritableDatabase()　创建或者打开一个可写数据库</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">DatabaseHelper database = new DatabaseHelper(context);//传入一个上下文参数</div><div class="line">SQLiteDatabase db = null;</div><div class="line">db = database.getWritableDatabase();</div></pre></td></tr></table></figure>
+<p>　　上面这段代码会返回一个 SQLiteDatabase 类的实例，使用这个对象，你就可以查询或者修改数据库。　</p>
+<p>SQLiteDatabase类为我们提供了很多种方法，而较常用的方法如下：</p>
+<blockquote>
+<p>(int) delete(String table,String whereClause,String[] whereArgs)</p>
+</blockquote>
+<p>　　删除数据行</p>
+<blockquote>
+<p>(long) insert(String table,String nullColumnHack,ContentValues values)</p>
+</blockquote>
+<p>　　 添加数据行</p>
+<blockquote>
+<p>(int) update(String table, ContentValues values, String whereClause, String[] whereArgs)</p>
+</blockquote>
+<p>　　更新数据行</p>
+<blockquote>
+<p>(void) execSQL(String sql)</p>
+</blockquote>
+<p>　　 执行一个SQL语句，可以是一个select或其他的sql语句</p>
+<blockquote>
+<p>(void) close()</p>
+</blockquote>
+<p>　　 关闭数据库</p>
+<blockquote>
+<p>(Cursor) query(String table, String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy, String limit)</p>
+</blockquote>
+<p>　　查询指定的数据表返回一个带游标的数据集。</p>
+<p>各参数说明： table：表名称 colums：列名称数组 selection：条件子句，相当于where selectionArgs：条件语句的参数数组 groupBy：分组 having：分组条件 orderBy：排序类 limit：分页查询的限制 Cursor：返回值，相当于结果集ResultSet</p>
+<blockquote>
+<p>(Cursor) rawQuery(String sql, String[] selectionArgs)</p>
+</blockquote>
+<p>　　运行一个预置的SQL语句，返回带游标的数据集（与上面的语句最大的区别就是防止SQL注入）</p>
+<p>　　当你完成了对数据库的操作（例如你的 Activity 已经关闭），需要调用 SQLiteDatabase 的 Close() 方法来释放掉数据库连接。</p>
+<h2 id="创建表和索引"><a href="#创建表和索引" class="headerlink" title="创建表和索引"></a>创建表和索引</h2><p>　　为了创建表和索引，需要调用 SQLiteDatabase 的 execSQL() 方法来执行 DDL 语句。如果没有异常，这个方法没有返回值。例如： 　　</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">db.execSQL(&quot;CREATE TABLE user(_id INTEGER PRIMARY KEY   </div><div class="line">       AUTOINCREMENT, username TEXT, password TEXT);&quot;);</div></pre></td></tr></table></figure>
+<p>　　这条语句会创建一个名为 user的表，表有一个列名为 _id，并且是主键，这列的值是会自动增长的整数。另外还有两列：username( 字符 ) 和 password( 字符 )。 SQLite 会自动为主键列创建索引。 　　</p>
+<p>​    通常情况下，第一次创建数据库时创建了表和索引。要 删除表和索引，需要使用 execSQL() 方法调用 DROP INDEX 和 DROP TABLE 语句。</p>
+<h2 id="添加数据"><a href="#添加数据" class="headerlink" title="添加数据　"></a>添加数据　</h2><p>　有两种方法可以给表添加数据。</p>
+<p>①可以使用 execSQL() 方法执行 INSERT, UPDATE, DELETE 等语句来更新表的数据。execSQL() 方法适用于所有不返回结果的 SQL 语句。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">String sql = &quot;insert into user(username,password) values (&apos;finch&apos;,&apos;123456&apos;);//插入操作的SQL语句</div><div class="line">db.execSQL(sql);//执行SQL语句</div></pre></td></tr></table></figure>
+<p>②使用 SQLiteDatabase 对象的 insert()。　　</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ContentValues cv = new ContentValues();</div><div class="line">cv.put(&quot;username&quot;,&quot;finch&quot;);//添加用户名</div><div class="line">cv.put(&quot;password&quot;,&quot;123456&quot;); //添加密码</div><div class="line">db.insert(&quot;user&quot;,null,cv);//执行插入操作</div></pre></td></tr></table></figure>
+<h2 id="更新数据（修改）"><a href="#更新数据（修改）" class="headerlink" title="更新数据（修改）"></a>更新数据（修改）</h2><p>①使用SQLiteDatabase 对象的 update()方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ContentValues cv = new ContentValues();</div><div class="line">cv.put(&quot;password&quot;,&quot;654321&quot;);//添加要更改的字段及内容</div><div class="line">String whereClause = &quot;username=?&quot;;//修改条件</div><div class="line">String[] whereArgs = &#123;&quot;finch&quot;&#125;;//修改条件的参数</div><div class="line">db.update(&quot;user&quot;,cv,whereClause,whereArgs);//执行修改</div></pre></td></tr></table></figure>
+<p>该方法有四个参数：　 　　</p>
+<ul>
+<li><p>表名； 　　</p>
+</li>
+<li><p>列名和值的 ContentValues 对象；　 　　</p>
+</li>
+<li><p>可选的 WHERE 条件；　 　　</p>
+</li>
+<li><p>可选的填充 WHERE 语句的字符串</p>
+<p>这些字符串会替换 WHERE 条件中的“？”标记，update() 根据条件，更新指定列的值.　</p>
+</li>
+</ul>
+<p>②使用execSQL方式的实现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">String sql = &quot;update [user] set password = &apos;654321&apos; where username=&quot;finch&quot;;//修改的SQL语句</div><div class="line">db.execSQL(sql);//执行修改</div></pre></td></tr></table></figure>
+<h2 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h2><p>①使用SQLiteDatabase 对象的delete()方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">String whereClause = &quot;username=?&quot;;//删除的条件</div><div class="line">String[] whereArgs = &#123;&quot;finch&quot;&#125;;//删除的条件参数</div><div class="line">db.delete(&quot;user&quot;,whereClause,whereArgs);//执行删除</div></pre></td></tr></table></figure>
+<p>②使用execSQL方式的实现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">String sql = &quot;delete from user where username=&quot;finch&quot;;//删除操作的SQL语句</div><div class="line">db.execSQL(sql);//执行删除操作</div></pre></td></tr></table></figure>
+<h2 id="查询数据"><a href="#查询数据" class="headerlink" title="查询数据"></a>查询数据</h2><p>①使用 rawQuery() 直接调用 SELECT 语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Cursor c = db.rawQuery(&quot;select * from user where username=?&quot;,new Stirng[]&#123;&quot;finch&quot;&#125;);</div><div class="line"></div><div class="line">if(cursor.moveToFirst()) &#123;</div><div class="line">    String password = c.getString(c.getColumnIndex(&quot;password&quot;));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>　　返回值是一个 cursor 对象，这个对象的方法可以迭代查询结果。 如果查询是动态的，使用这个方法就会非常复杂。例如，当你需要查询的列在程序编译的时候不能确定，这时候使用 query() 方法会方便很多。</p>
+<p>②通过query实现查询</p>
+<p>　　query() 方法用 SELECT 语句段构建查询。 　　</p>
+<p>​    SELECT 语句内容作为 query() 方法的参数，比如：要查询的表名，要获取的字段名，                WHERE 条件，包含可选的位置参数，去替代 WHERE 条件中位置参数的值，GROUP BY 条件，HAVING 条件。</p>
+<p>所以代码可写成：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Cursor c = db.query(&quot;user&quot;,null,null,null,null,null,null);//查询并获得游标</div><div class="line">if(c.moveToFirst())&#123;//判断游标是否为空</div><div class="line">    for(int i=0;i&lt;c.getCount();i++)&#123;　</div><div class="line">		c.move(i);//移动到指定记录</div><div class="line">		String username = c.getString(c.getColumnIndex(&quot;username&quot;);</div><div class="line">		String password = c.getString(c.getColumnIndex(&quot;password&quot;));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="使用游标"><a href="#使用游标" class="headerlink" title="使用游标"></a>使用游标</h3><p>　　不管你如何执行查询，都会返回一个 Cursor，这是 Android 的 SQLite 数据库游标，使用游标，你可以：　　</p>
+<ul>
+<li>通过使用 getCount() 方法得到结果集中有多少记录；　</li>
+<li>通过 moveToFirst(), moveToNext(), 和 isAfterLast() 方法遍历所有记录；</li>
+<li>通过 getColumnNames() 得到字段名；</li>
+<li>通过 getColumnIndex() 转换成字段号；</li>
+<li>通过 getString()，getInt() 等方法得到给定字段当前记录的值；</li>
+<li>通过 requery() 方法重新执行查询得到游标；</li>
+<li>通过 close() 方法释放游标资源；</li>
+</ul>
+<p>例如，下面代码遍历 user表:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Cursor result=db.rawQuery(&quot;SELECT _id, username, password FROM user&quot;); </div><div class="line">   result.moveToFirst(); </div><div class="line">   while (!result.isAfterLast()) &#123; </div><div class="line">       int id=result.getInt(0); </div><div class="line">       String name=result.getString(1); </div><div class="line">       String password =result.getString(2); </div><div class="line">       // do something useful with these </div><div class="line">       result.moveToNext(); </div><div class="line">     &#125; </div><div class="line">     result.close();</div></pre></td></tr></table></figure>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://github.com/HaoTianYi/ForAndroidInterview/blob/master/android/Android%20SQLite%E7%9A%84%E4%BD%BF%E7%94%A8%E5%85%A5%E9%97%A8.md" target="_blank" rel="external">https://github.com/HaoTianYi/ForAndroidInterview/blob/master/android/Android%20SQLite%E7%9A%84%E4%BD%BF%E7%94%A8%E5%85%A5%E9%97%A8.md</a></p>
+</section>
+    
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="alipay-code">
+            <div class="code-image"></div>
+            <b>使用支付宝打赏</b>
+          </span>
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+    </div>
+    <div class="qrcode">
+      <canvas id="share-qrcode"></canvas>
+      <p class="notice">扫描二维码，分享此文章</p>
+    </div>
+    
+      <div id="comments"></div>
+    
+  </article>
+</main>
+
+<script>
+  (function () {
+    var url = 'http://bbbb.ml/2017/09/13/Android/12-Android SQLite详解/';
+    var banner = ''
+    if (banner !== 'undefined') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "jwl00";
+    if (gitmentConfig != "undefined") {
+      var gitment = new Gitment({
+        id: "",
+        owner: "jwl00",
+        repo: "jwl00.github.io",
+        oauth: {
+          client_id: "ae21ad25810b1f2cc193",
+          client_secret: "7b6bb525adfeee63bd087132d98e6fd015d49ed8"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

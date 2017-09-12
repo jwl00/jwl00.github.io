@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="什么也不留下">
+  <meta name="keyword" content="hexo-theme, Android">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      JWL博客
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>JWL博客</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2></h2>
+  <p class="post-date">2017-09-13</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content"><h1 id="MVP的基本使用"><a href="#MVP的基本使用" class="headerlink" title="MVP的基本使用"></a>MVP的基本使用</h1><p>[TOC]</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>MVP 模式（Model-View-Presenter）可以说是 MVC 模式（Model-View-Controller）在 Android 开发上的一种变种、进化模式。</p>
+<p>在 MVC 模式中，Activity 应该是属于 View 这一层。而实质上，它既承担了 View，同时也包含一些 Controller 的东西在里面。这对于开发与维护来说不太友好，耦合度大高了。把 Activity 的 View 和 Controller 抽离出来就变成了 View 和 Presenter，这就是 MVP 模式。</p>
+<h2 id="MVC模式"><a href="#MVC模式" class="headerlink" title="MVC模式"></a>MVC模式</h2><p>MVC 模式的结构分为三部分，实体层的 Model，视图层的 View，以及控制层的 Controller。</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp161121_161924.png" alt="sp161121_161924"></p>
+<ul>
+<li>其中 View 层其实就是程序的 UI 界面，用于向用户展示数据以及接收用户的输入</li>
+<li>而 Model 层就是 JavaBean 实体类，用于保存实例数据</li>
+<li>Controller 控制器用于更新 UI 界面和数据实例</li>
+</ul>
+<h2 id="MVP-模式"><a href="#MVP-模式" class="headerlink" title="MVP 模式"></a>MVP 模式</h2><p>按照 MVC 的分层，Activity 和 Fragment（后面只说 Activity）应该属于 View 层，用于展示 UI 界面，以及接收用户的输入，此外还要承担一些生命周期的工作。Activity 是在 Android 开发中充当非常重要的角色，特别是 TA 的生命周期的功能，所以开发的时候我们经常把一些业务逻辑直接写在 Activity 里面，这非常直观方便，代价就是 Activity 会越来越臃肿，所以看起来有必要在 Activity 中，把 View 和 Controller 抽离开来，而这就是 MVP 模式的工作了。</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp161121_162259.png" alt="sp161121_162259"></p>
+<p>核心思想：</p>
+<p><strong>MVP 把 Activity 中的 UI 逻辑抽象成 View 接口，把业务逻辑抽象成 Presenter 接口，Model 类还是原来的 Model</strong>。</p>
+<p>这就是 MVP 模式，现在这样的话，Activity 的工作的简单了，只用来响应生命周期，其他工作都丢到 Presenter 中去完成。</p>
+<h2 id="MVP-模式的使用"><a href="#MVP-模式的使用" class="headerlink" title="MVP 模式的使用"></a>MVP 模式的使用</h2><p><img src="http://oaxelf1sk.bkt.clouddn.com/sp161121_164834.png" alt="sp161121_164834"></p>
+<p>上面一张简单的 MVP 模式的 UML 图，从图中可以看出，使用 MVP，至少需要经历以下步骤：</p>
+<ol>
+<li>创建 IPresenter 接口，把所有业务逻辑的接口都放在这里，并创建它的实现 PresenterCompl（在这里可以方便地查看业务功能，由于接口可以有多种实现所以也方便写单元测试）</li>
+<li>创建 IView 接口，把所有视图逻辑的接口都放在这里，其实现类是当前的 Activity/Fragment</li>
+<li>由 UML 图可以看出，Activity 里包含了一个 IPresenter，而 PresenterCompl 里又包含了一个 IView 并且依赖了 Model。Activity 里只保留对 IPresenter 的调用，其它工作全部留到 PresenterCompl 中实现</li>
+<li>Model 并不是必须有的，但是一定会有 View 和 Presenter</li>
+</ol>
+<p>MVP 的主要特点就是把 Activity 里的许多逻辑都抽离到 View 和 Presenter 接口中去，并由具体的实现类来完成。这种写法多了许多 IView 和 IPresenter 的接口</p>
+<h2 id="具体代码"><a href="#具体代码" class="headerlink" title="具体代码"></a>具体代码</h2><p>一个简单的登录界面：</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp161121_173136.png" alt="sp161121_173136"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * @author HaoTianYi hao.ty@haotianyi.win</div><div class="line"> * @version v1.0</div><div class="line"> * @des   作为view的实现</div><div class="line"> * @time 2016-11-21 17:00</div><div class="line"> */</div><div class="line">public class MainActivity extends AppCompatActivity implements IView,View.OnClickListener&#123;</div><div class="line"></div><div class="line">    IPresenter mPresenter;</div><div class="line"></div><div class="line">    private EditText editUser;</div><div class="line">    private EditText editPass;</div><div class="line">    private Button btnLogin;</div><div class="line">    private Button   btnClear;</div><div class="line">    private ProgressBar progressBar;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</div><div class="line">        super.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line"></div><div class="line">        //find view</div><div class="line">        editUser = (EditText) this.findViewById(R.id.et_login_username);</div><div class="line">        editPass = (EditText) this.findViewById(R.id.et_login_password);</div><div class="line">        btnLogin = (Button) this.findViewById(R.id.btn_login_login);</div><div class="line">        btnClear = (Button) this.findViewById(R.id.btn_login_clear);</div><div class="line">        progressBar = (ProgressBar) this.findViewById(R.id.progress_login);</div><div class="line"></div><div class="line">        //set listener</div><div class="line">        btnLogin.setOnClickListener(this);</div><div class="line">        btnClear.setOnClickListener(this);</div><div class="line"></div><div class="line">        //init</div><div class="line">        mPresenter = new PresenterCompl(this);</div><div class="line">        mPresenter.setProgressBarVisiblity(false);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void onClesrText() &#123;</div><div class="line">        editUser.setText(&quot;&quot;);</div><div class="line">        editPass.setText(&quot;&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void onSuccessAndRefuslView(boolean result) &#123;</div><div class="line">        Toast.makeText(MainActivity.this,result?&quot;成功&quot;:&quot;失败&quot;,Toast.LENGTH_SHORT).show();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void onShowDIalog(boolean result) &#123;</div><div class="line">        progressBar.setVisibility(result?View.VISIBLE:View.GONE);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void onClick(View v) &#123;</div><div class="line">        switch (v.getId())&#123;</div><div class="line">            case R.id.btn_login_clear:</div><div class="line">                mPresenter.setClearText();</div><div class="line">                break;</div><div class="line">            case R.id.btn_login_login:</div><div class="line">                mPresenter.setProgressBarVisiblity(true);</div><div class="line">                btnLogin.setEnabled(false);</div><div class="line">                btnClear.setEnabled(false);</div><div class="line">                mPresenter.doLogin(editUser.getText().toString(), editPass.getText().toString());</div><div class="line">                break;</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>IPresenter的写法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * @author HaoTianYi hao.ty@haotianyi.win</div><div class="line"> * @version v1.0</div><div class="line"> * @des   三个方法，控制视图的不同显示</div><div class="line"> * @time 2016-11-21 17:08</div><div class="line"> */</div><div class="line"></div><div class="line">public interface IPresenter &#123;</div><div class="line">    /**</div><div class="line">     * 清空输入框的文字</div><div class="line">     */</div><div class="line">    void setClearText();</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 登录操作</div><div class="line">     * @param name</div><div class="line">     * @param passwd</div><div class="line">     */</div><div class="line">    void doLogin(String name, String passwd);</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 设置progressBar是否显示</div><div class="line">     * @param result</div><div class="line">     */</div><div class="line">    void setProgressBarVisiblity(boolean result);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>IModel的写法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * @author HaoTianYi hao.ty@haotianyi.win</div><div class="line"> * @version v1.0</div><div class="line"> * @des   获得用户的用户名和密码并且判断是否符合规则</div><div class="line"> * @time 2016-11-21 17:03</div><div class="line"> */</div><div class="line"></div><div class="line">public interface IModel &#123;</div><div class="line">    String getName();</div><div class="line">    String getPssword();</div><div class="line">    boolean isSuccess(String name,String password);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>PresenterCompl的写法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">public class PresenterCompl implements IPresenter &#123;</div><div class="line"></div><div class="line">    IView mIView;</div><div class="line">    IModel mIModel;</div><div class="line">    Handler mHandler;</div><div class="line"></div><div class="line">    public PresenterCompl(IView iView) &#123;</div><div class="line">        mIView = iView;</div><div class="line"></div><div class="line">        mHandler = new Handler(Looper.getMainLooper());</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void setClearText() &#123;</div><div class="line">        mIView.onClesrText();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void doLogin(final String name, final String passwd) &#123;</div><div class="line">        mIModel = new ModelCompl(name, passwd);</div><div class="line">        final boolean isSuccess = mIModel.isSuccess(name, passwd);</div><div class="line">        mHandler.postDelayed(new Runnable() &#123;</div><div class="line">            @Override</div><div class="line">            public void run() &#123;</div><div class="line">                mIView.onSuccessAndRefuslView(isSuccess);</div><div class="line">                mIView.onShowDIalog(!isSuccess);</div><div class="line">            &#125;</div><div class="line">        &#125;, 3000);</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void setProgressBarVisiblity(boolean result) &#123;</div><div class="line">        mIView.onShowDIalog(result);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>具体代码：<a href="">GitHub</a></p>
+</section>
+    
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="alipay-code">
+            <div class="code-image"></div>
+            <b>使用支付宝打赏</b>
+          </span>
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+    </div>
+    <div class="qrcode">
+      <canvas id="share-qrcode"></canvas>
+      <p class="notice">扫描二维码，分享此文章</p>
+    </div>
+    
+      <div id="comments"></div>
+    
+  </article>
+</main>
+
+<script>
+  (function () {
+    var url = 'http://bbbb.ml/2017/09/13/Android/Android设计模式MVP/';
+    var banner = ''
+    if (banner !== 'undefined') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "jwl00";
+    if (gitmentConfig != "undefined") {
+      var gitment = new Gitment({
+        id: "",
+        owner: "jwl00",
+        repo: "jwl00.github.io",
+        oauth: {
+          client_id: "ae21ad25810b1f2cc193",
+          client_secret: "7b6bb525adfeee63bd087132d98e6fd015d49ed8"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

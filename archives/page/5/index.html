@@ -115,201 +115,186 @@
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2017/09/13/projects/picasso使用/"></a>
+        <a href="/2017/09/13/Android/09-Android 异步消息处理机制（Handler 、 Looper 、MessageQueue）/"></a>
       </h2>
       <p class="article-date">September 13, 2017</p>
       
       <div class="article-summary">
         
-          picasso基本使用[TOC]
-基本说明picasso的github地址：https://github.com/square/picasso
-picasso是Square公司开源的一个Android图形缓存库，地址http://square.github.io/picasso/，可以实现图 ...
+          09-Android 异步消息处理机制（Handler 、 Looper 、MessageQueue）[TOC]
+Thread，Looper和Handler的关系与Windows系统一样，Android也是消息驱动型的系统。引用一下消息驱动机制的四要素：
+
+接收消息的“消息队列”
+阻塞式地从 ...
         
       </div>
-      <a class="more" href="/2017/09/13/projects/picasso使用/">Read more</a>
+      <a class="more" href="/2017/09/13/Android/09-Android 异步消息处理机制（Handler 、 Looper 、MessageQueue）/">Read more</a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2017/09/13/projects/okhttp的使用/"></a>
+        <a href="/2017/09/13/Android/08-Android View事件分发机制/"></a>
       </h2>
       <p class="article-date">September 13, 2017</p>
       
       <div class="article-summary">
         
-          okHttp3.4.1的使用[TOC]
-说明整理自：http://blog.csdn.net/iispring/article/details/51661195
-Okhttp请求的数据会进行相应的缓存处理，下次再进行请求时，如果服务器告知304（表明数据没有发生变化），那么就直接从缓存中读取 ...
+          08-Android View事件分发机制[TOC]
+相关方法
+
+事件分发：public boolean dispatchTouchEvent(MotionEvent ev)
+
+　　　当有监听到事件时，首先由Activity进行捕获，进入事件分发处理流程。（因为activity没有事件拦截， ...
         
       </div>
-      <a class="more" href="/2017/09/13/projects/okhttp的使用/">Read more</a>
+      <a class="more" href="/2017/09/13/Android/08-Android View事件分发机制/">Read more</a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2017/09/13/projects/EventBus 3.0基本使用/"></a>
+        <a href="/2017/09/13/Android/07-自定义ViewGroup内容详解/"></a>
       </h2>
       <p class="article-date">September 13, 2017</p>
       
       <div class="article-summary">
         
-          EventBus 3.0����ʹ��[TOC]
-����EventBus����һ����Android�ķ���/�����¼����ߡ������������Ǻ����ɵ�ʵ����Android��������֮�䴫����Ϣ�����Ҵ����Ŀɶ��Ը��ã����϶ȸ��͡�
+          07-01自定义ViewGroup基本概念[TOC]
+构造函数的调用流程12345678910111213public class MyViewGroup extends ViewGroup &#123;    public MyViewGroup(Context context) &#12 ...
+        
+      </div>
+      <a class="more" href="/2017/09/13/Android/07-自定义ViewGroup内容详解/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2017/09/13/Android/06-02-自定义view之基本流程/"></a>
+      </h2>
+      <p class="article-date">September 13, 2017</p>
+      
+      <div class="article-summary">
+        
+          06-02-自定义view之基本流程[TOC]
+基本步骤　 1. 继承View类或其子类　
+　 2. 复写view中的一些函数
+　３.为自定义View类增加属性（两种方式）
+　４.绘制控件（导入布局）
+　５.响应用户事件
+　６.定义回调函数（根据自己需求来选择）
+重要方法
+onDraw()
  ...
         
       </div>
-      <a class="more" href="/2017/09/13/projects/EventBus 3.0基本使用/">Read more</a>
+      <a class="more" href="/2017/09/13/Android/06-02-自定义view之基本流程/">Read more</a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2017/09/13/projects/ButterKnife使用/"></a>
+        <a href="/2017/09/13/Android/06-01-自定义View之坐标系和颜色/"></a>
       </h2>
       <p class="article-date">September 13, 2017</p>
       
       <div class="article-summary">
         
-          ButterKnife的使用[TOC]
-基本说明作者环境：as2.2+gradle-2.14.1
-配置环境
-在build.gradle（project）中配置：
-
-1classpath &apos;com.neenbedankt.gradle.plugins:android-apt:1.8& ...
+          06-自定义View坐标系[TOC]
+坐标系​    需要注意view的坐标是相对父容器而言的，包括：getTop()、getBottom()，getLeft()，getRight()。
+1234getTop();       //获取子View左上角距父View顶部的距离getLeft() ...
         
       </div>
-      <a class="more" href="/2017/09/13/projects/ButterKnife使用/">Read more</a>
+      <a class="more" href="/2017/09/13/Android/06-01-自定义View之坐标系和颜色/">Read more</a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2017/09/13/lib/RxJava详细解释/"></a>
+        <a href="/2017/09/13/Android/05-02-Fragment内容详解/"></a>
       </h2>
       <p class="article-date">September 13, 2017</p>
       
       <div class="article-summary">
         
-          RxJava详细解释[TOC]
-简介RxJava 在 GitHub 主页上的自我介绍是 “a library for composing asynchronous and event-based programs using observable sequences for the Java ...
+          05-02-Fragment内容详解[TOC]
+和Activity交互
+调用fragment的函数findFragmentById()或者findFragmentByTag()
+
+1ExampleFragment fragment = (ExampleFragment) getFragmen ...
         
       </div>
-      <a class="more" href="/2017/09/13/lib/RxJava详细解释/">Read more</a>
+      <a class="more" href="/2017/09/13/Android/05-02-Fragment内容详解/">Read more</a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2017/09/13/lib/RxJava操作符/"></a>
+        <a href="/2017/09/13/Android/05-01-Fragment内容详解/"></a>
       </h2>
       <p class="article-date">September 13, 2017</p>
       
       <div class="article-summary">
         
-          RxJava操作符[TOC]
-创建操作create使用OnSubscribe从头创建一个Observable，这种方法比较简单。需要注意的是，使用该方法创建时，建议在OnSubscribe#call方法中检查订阅状态，以便及时停止发射数据或者运算。
-123456789101112131415 ...
+          05–01-Fragment内容详解[TOC]
+概述​    Fragment必须总是被嵌入到一个activity之中，并且fragment的生命周期直接受其宿主activity的生命周期的影响。
+​    应该将每一个fragment设计为模块化的和可复用化的activity组件
+​    ...
         
       </div>
-      <a class="more" href="/2017/09/13/lib/RxJava操作符/">Read more</a>
+      <a class="more" href="/2017/09/13/Android/05-01-Fragment内容详解/">Read more</a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2017/09/13/Java/Java学习笔记_day9/"></a>
+        <a href="/2017/09/13/Android/04-说说BroadcastReceiver那些事/"></a>
       </h2>
       <p class="article-date">September 13, 2017</p>
       
       <div class="article-summary">
         
-          Java学习笔记_day9[TOC]
-final关键字
-final修饰类，该类不能被继承
-final修饰方法，该方法不能被重写
-fina修饰变量，该变量不能再重新被赋值，变量就变成常量
-
-final面试题
-final修饰局部变量引用类型时，是地址值不改变，但是地址值的内容可以改变
-
-fina ...
+          04-说说BroadcastReceiver那些事[TOC]
+简介　　广播是一种广泛运用的在应用程序之间传输信息的机制，主要用来监听系统或者应用发出的广播信息，然后根据广播信息作为相应的逻辑处理，也可以用来传输少量、频率低的数据。
+　　在实现开机启动服务和网络状态改变、电量变化、短信和来电时 ...
         
       </div>
-      <a class="more" href="/2017/09/13/Java/Java学习笔记_day9/">Read more</a>
+      <a class="more" href="/2017/09/13/Android/04-说说BroadcastReceiver那些事/">Read more</a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2017/09/13/Java/Java学习笔记_day8/"></a>
+        <a href="/2017/09/13/Android/03-说说ContentProvider那些事/"></a>
       </h2>
       <p class="article-date">September 13, 2017</p>
       
       <div class="article-summary">
         
-          Java学习笔记[TOC]
-javaDoc使用
-说明：使用/*    / 可以生成说明文档
-
-制作过程
-A:写一个工具类
-B:对这个类加入文档注释        
-C:用工具解析文档注释
-    javadoc工具
-D:格式
-    javadoc -d 目录 -author -versio ...
+          03-说说ContentProvider那些事[TOC]
+简介​        ContentProvider（内容提供者）是Android的四大组件之一，以相对安全的方式封装数据（表）并且提供简易的处理机制和统一的访问接口供其他程序调用。　 　　 　　
+​        Android的数 ...
         
       </div>
-      <a class="more" href="/2017/09/13/Java/Java学习笔记_day8/">Read more</a>
+      <a class="more" href="/2017/09/13/Android/03-说说ContentProvider那些事/">Read more</a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2017/09/13/Java/Java学习笔记_day6/"></a>
+        <a href="/2017/09/13/Android/02-说说Service那些事/"></a>
       </h2>
       <p class="article-date">September 13, 2017</p>
       
       <div class="article-summary">
         
-          Java学习笔记[TOC]
-二维数组表示方法1234A:数据类型[][] 数组名 = new 数据类型[m][n];B:数据类型[][] 数组名 = new 数据类型[m][];C:数据类型[][] 数组名 = new 数据类型[][]&#123;&#123;...&#125;,&#123; ...
+          02-说说Service那些事[TOC]
+简介Service本质作用就是一个没有界面的Activity，它可以在后台执行代码永远不用到前台来，所以一个模块只要不想要与用户交互但是还要执行逻辑就可以使用Service。默认运行在程序的主线程之中。
+重要的方法123456789101112131 ...
         
       </div>
-      <a class="more" href="/2017/09/13/Java/Java学习笔记_day6/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2017/09/13/Java/Java学习笔记_day5/"></a>
-      </h2>
-      <p class="article-date">September 13, 2017</p>
-      
-      <div class="article-summary">
-        
-          Java学习笔记[TOC]
-数组定义格式
-数据类型[]   数组名
-数据类型     数组名[ ]
-
-数组的初始化
-动态初始化:只是指定长度由系统给出初始化值
-
-
-数据类型【】 数组名 =  new    数据类型【数组长度】；
-
-
-静态初始化：只是给定初始化值，长度由系统指定
-
-
-123& ...
-        
-      </div>
-      <a class="more" href="/2017/09/13/Java/Java学习笔记_day5/">Read more</a>
+      <a class="more" href="/2017/09/13/Android/02-说说Service那些事/">Read more</a>
     </article>
   
 
   
     <div class="guide-pager">
   
-    <a class="unvisible" href="/"><span class="page-arrow">←</span> Prev</a>
+    <a href="/archives/page/4/"><span class="page-arrow">← </span>Prev</a>
   
   
-    <a href="/archives/page/2/">Next<span class="page-arrow"> →</span></a>
+    <a href="/archives/page/6/">Next<span class="page-arrow"> →</span></a>
   
 </div>
   

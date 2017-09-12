@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="什么也不留下">
+  <meta name="keyword" content="hexo-theme, Android">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      JWL博客
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>JWL博客</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2></h2>
+  <p class="post-date">2017-09-13</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content"><h1 id="05–01-Fragment内容详解"><a href="#05–01-Fragment内容详解" class="headerlink" title="05–01-Fragment内容详解"></a>05–01-Fragment内容详解</h1><p>[TOC]</p>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>​    <strong>Fragment必须总是被嵌入到一个activity之中</strong>，并且fragment的生命周期直接受其宿主activity的生命周期的影响。</p>
+<p>​    应该将每一个fragment设计为模块化的和可复用化的activity组件</p>
+<p>​    两个重要的支持库类，一个是 Fragment 类（ android.support.v4.app.<br>Fragment ），另一个是 FragmentActivity （ android.support.v4.app.Fragment- Activity ）对应的是<code>getSupportFragmentManager()</code></p>
+<h2 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h2><p>两种使用模式，一个是直接当成普通的view来使用，另外一种是用事务的模式</p>
+<h3 id="静态使用"><a href="#静态使用" class="headerlink" title="静态使用"></a>静态使用</h3><p>首先定义好fragment要显示的内容fragment_my.xml：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</div><div class="line">              xmlns:tools=&quot;http://schemas.android.com/tools&quot;</div><div class="line">              android:layout_width=&quot;match_parent&quot;</div><div class="line">              android:layout_height=&quot;match_parent&quot;</div><div class="line">              tools:context=&quot;com.example.simaxiaochen.fragment.MyFragment&quot;&gt;</div><div class="line"></div><div class="line">    &lt;!-- TODO: Update blank fragment layout --&gt;</div><div class="line">    &lt;Button</div><div class="line">        android:id=&quot;@+id/btn_my_fragment&quot;</div><div class="line">        android:layout_width=&quot;match_parent&quot;</div><div class="line">        android:layout_height=&quot;wrap_content&quot;</div><div class="line">        android:text=&quot;@string/hello_blank_fragment&quot;</div><div class="line">        /&gt;</div><div class="line"></div><div class="line">&lt;/LinearLayout&gt;</div></pre></td></tr></table></figure>
+<p>然后再fragment中使用这个布局：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) &#123;</div><div class="line">    return inflater.inflate(R.layout.fragment_my,null);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>最后在Activity中的布局中引用这个fragment：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">&lt;LinearLayout</div><div class="line">    xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</div><div class="line">    xmlns:tools=&quot;http://schemas.android.com/tools&quot;</div><div class="line">    android:id=&quot;@+id/activity_main&quot;</div><div class="line">    android:layout_width=&quot;match_parent&quot;</div><div class="line">    android:layout_height=&quot;match_parent&quot;</div><div class="line">    android:orientation=&quot;vertical&quot;</div><div class="line">    android:paddingBottom=&quot;@dimen/activity_vertical_margin&quot;</div><div class="line">    android:paddingLeft=&quot;@dimen/activity_horizontal_margin&quot;</div><div class="line">    android:paddingRight=&quot;@dimen/activity_horizontal_margin&quot;</div><div class="line">    android:paddingTop=&quot;@dimen/activity_vertical_margin&quot;</div><div class="line">    tools:context=&quot;com.example.simaxiaochen.fragment.MainActivity&quot;&gt;</div><div class="line"></div><div class="line">    &lt;fragment</div><div class="line">        android:name=&quot;com.example.simaxiaochen.fragment.MyFragment&quot;</div><div class="line">        android:layout_width=&quot;match_parent&quot;</div><div class="line">        android:layout_height=&quot;30dp&quot;</div><div class="line">        /&gt;</div><div class="line">&lt;/LinearLayout&gt;</div></pre></td></tr></table></figure>
+<p>注意name的属性是你要使用fragment的文件名</p>
+<h3 id="动态使用"><a href="#动态使用" class="headerlink" title="动态使用"></a>动态使用</h3><p>在原Activty的布局中增加一个控制按钮和一个真布局：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">&lt;LinearLayout</div><div class="line">    xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</div><div class="line">    xmlns:tools=&quot;http://schemas.android.com/tools&quot;</div><div class="line">    android:id=&quot;@+id/activity_main&quot;</div><div class="line">    android:layout_width=&quot;match_parent&quot;</div><div class="line">    android:layout_height=&quot;match_parent&quot;</div><div class="line">    android:orientation=&quot;vertical&quot;</div><div class="line">    android:paddingBottom=&quot;@dimen/activity_vertical_margin&quot;</div><div class="line">    android:paddingLeft=&quot;@dimen/activity_horizontal_margin&quot;</div><div class="line">    android:paddingRight=&quot;@dimen/activity_horizontal_margin&quot;</div><div class="line">    android:paddingTop=&quot;@dimen/activity_vertical_margin&quot;</div><div class="line">    tools:context=&quot;com.example.simaxiaochen.fragment.MainActivity&quot;&gt;</div><div class="line"></div><div class="line">    &lt;fragment</div><div class="line">        android:name=&quot;com.example.simaxiaochen.fragment.MyFragment&quot;</div><div class="line">        android:layout_width=&quot;match_parent&quot;</div><div class="line">        android:layout_height=&quot;60dp&quot;</div><div class="line">        /&gt;</div><div class="line">    &lt;Button</div><div class="line">        android:text=&quot;显示下一个fragment&quot;</div><div class="line">        android:layout_width=&quot;match_parent&quot;</div><div class="line">        android:layout_height=&quot;60dp&quot;</div><div class="line">        android:onClick=&quot;showFragment&quot;/&gt;</div><div class="line">    &lt;FrameLayout</div><div class="line">        android:id=&quot;@+id/fl&quot;</div><div class="line">        android:layout_width=&quot;match_parent&quot;</div><div class="line">        android:layout_height=&quot;match_parent&quot;/&gt;</div><div class="line">&lt;/LinearLayout&gt;</div></pre></td></tr></table></figure>
+<p>类似新建一个SecondFragment并且建立布局fragment_second.xml：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</div><div class="line">              xmlns:tools=&quot;http://schemas.android.com/tools&quot;</div><div class="line">              android:layout_width=&quot;match_parent&quot;</div><div class="line">              android:layout_height=&quot;match_parent&quot;</div><div class="line">              android:background=&quot;@color/colorPrimary&quot;</div><div class="line">              tools:context=&quot;com.example.simaxiaochen.fragment.MyFragment&quot;&gt;</div><div class="line"></div><div class="line">    &lt;!-- TODO: Update blank fragment layout --&gt;</div><div class="line">    &lt;TextView</div><div class="line">        android:layout_width=&quot;match_parent&quot;</div><div class="line">        android:layout_height=&quot;wrap_content&quot;</div><div class="line">        android:text=&quot;second fragment&quot;/&gt;</div><div class="line"></div><div class="line">&lt;/LinearLayout&gt;</div></pre></td></tr></table></figure>
+<p>在Actiivty中增加控制SecondFragemnt显示的代码，就是开启事务然后再提交</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">public void showFragment(View view) &#123;</div><div class="line">    FragmentManager manager = getFragmentManager();</div><div class="line">    FragmentTransaction transaction = manager.beginTransaction();</div><div class="line">    transaction.replace(R.id.fl,new SecondFragment());</div><div class="line">    transaction.commit();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="相关的类和方法"><a href="#相关的类和方法" class="headerlink" title="相关的类和方法"></a>相关的类和方法</h2><h3 id="主要的类"><a href="#主要的类" class="headerlink" title="主要的类"></a>主要的类</h3><p>android.app.Fragment 主要用于定义Fragment</p>
+<p>android.app.FragmentManager 主要用于在Activity中操作Fragment</p>
+<p>android.app.FragmentTransaction 保证一些列Fragment操作的原子性</p>
+<h3 id="主要的方法"><a href="#主要的方法" class="headerlink" title="主要的方法"></a>主要的方法</h3><p>FragmentTransaction transaction = fm.benginTransatcion();    //开启一个事务</p>
+<p><strong>transaction.add() </strong></p>
+<p>往Activity中添加一个Fragment</p>
+<p><strong>transaction.remove() </strong></p>
+<p>从Activity中移除一个Fragment，如果被移除的Fragment没有添加到回退栈（回退栈后面会详细说），这个Fragment实例将会被销毁。</p>
+<p><strong>transaction.replace()</strong></p>
+<p>使用另一个Fragment替换当前的，实际上就是remove()然后add()的合体~</p>
+<p><strong>transaction.hide()</strong></p>
+<p>隐藏当前的Fragment，仅仅是设为不可见，并不会销毁</p>
+<p><strong>transaction.show()</strong></p>
+<p>显示之前隐藏的Fragment</p>
+<p><strong>transaction.detach()</strong></p>
+<p>会将view从UI中移除,和remove()不同,此时fragment的状态依然由FragmentManager维护。</p>
+<p><strong>transaction.attach()</strong></p>
+<p>重建view视图，附加到UI上并显示。</p>
+<p>transatcion.commit()//提交一个事务</p>
+<blockquote>
+<p>发生State loss这样的错误。主要是因为：commit方法一定要在Activity.onSaveInstance()之前调用。</p>
+</blockquote>
+<p>hide和show方法会保留用户正在使用的数据；remove不会保留数据直接销毁。</p>
+<p>replace相当于是remove和add的合体</p>
+<h2 id="FragmentManager"><a href="#FragmentManager" class="headerlink" title="FragmentManager"></a>FragmentManager</h2><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170303_105121.png" alt=""></p>
+<p>　　在调用commit()之前，可以将事务添加到fragment事务后台栈中（通过调用addToBackStatck()）。这个后台栈由activity管理，并且允许用户通过按BACK键回退到前一个fragment状态。</p>
+<p>​    Activity中有个FragmentManager，其内部维护fragment队列，以及fragment事务的回退栈。</p>
+<h3 id="常见使用方式"><a href="#常见使用方式" class="headerlink" title="常见使用方式"></a>常见使用方式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">FragmentManager fm = getSupportFragmentManager();</div><div class="line">Fragment fragment = fm.findFragmentById(R.id.fragment_container);</div><div class="line">if (fragment == null) &#123;</div><div class="line">	fragment = new CrimeFragment();</div><div class="line">	fm.beginTransaction()</div><div class="line">		.add(R.id.fragment_container, fragment)</div><div class="line">		.commit();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>这里使用FrameLayout组件的ID去得到fragment，注意<strong>判断是否为空</strong></p>
+</blockquote>
+<h3 id="设置回退栈"><a href="#设置回退栈" class="headerlink" title="设置回退栈"></a>设置回退栈</h3><p>首先更改Activity布局文件activity_main.xml：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">&lt;LinearLayout</div><div class="line">    xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</div><div class="line">    xmlns:tools=&quot;http://schemas.android.com/tools&quot;</div><div class="line">    android:id=&quot;@+id/activity_main&quot;</div><div class="line">    android:layout_width=&quot;match_parent&quot;</div><div class="line">    android:layout_height=&quot;match_parent&quot;</div><div class="line">    android:orientation=&quot;vertical&quot;</div><div class="line">    android:paddingBottom=&quot;@dimen/activity_vertical_margin&quot;</div><div class="line">    android:paddingLeft=&quot;@dimen/activity_horizontal_margin&quot;</div><div class="line">    android:paddingRight=&quot;@dimen/activity_horizontal_margin&quot;</div><div class="line">    android:paddingTop=&quot;@dimen/activity_vertical_margin&quot;</div><div class="line">    tools:context=&quot;com.example.simaxiaochen.fragment.MainActivity&quot;&gt;</div><div class="line"></div><div class="line">    &lt;FrameLayout</div><div class="line">        android:id=&quot;@+id/fl&quot;</div><div class="line">        android:layout_width=&quot;match_parent&quot;</div><div class="line">        android:layout_height=&quot;match_parent&quot;/&gt;</div><div class="line"></div><div class="line">&lt;/LinearLayout&gt;</div></pre></td></tr></table></figure>
+<p>在MainActivity中初始化第一个fragment：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">protected void onCreate(Bundle savedInstanceState) &#123;</div><div class="line">    super.onCreate(savedInstanceState);</div><div class="line">    Log.w(&quot;ty&quot;, &quot;-------onCreate------&quot;);</div><div class="line">    setContentView(R.layout.activity_main);</div><div class="line">    mFragmentOne = new MyFragment();</div><div class="line">    FragmentManager fragmentManager = getFragmentManager();</div><div class="line">    mTransaction = fragmentManager.beginTransaction();</div><div class="line">    mTransaction.add(R.id.fl,mFragmentOne,&quot;replace&quot;);</div><div class="line">    mTransaction.commit();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>fragment对应的布局fragment_my.xml:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</div><div class="line">              xmlns:tools=&quot;http://schemas.android.com/tools&quot;</div><div class="line">              android:layout_width=&quot;match_parent&quot;</div><div class="line">              android:layout_height=&quot;match_parent&quot;</div><div class="line">              android:orientation=&quot;horizontal&quot;</div><div class="line">              tools:context=&quot;com.example.simaxiaochen.fragment.MyFragment&quot;&gt;</div><div class="line"></div><div class="line">    &lt;!-- TODO: Update blank fragment layout --&gt;</div><div class="line">    &lt;EditText</div><div class="line">        android:layout_width=&quot;0dp&quot;</div><div class="line">        android:layout_weight=&quot;1&quot;</div><div class="line">        android:layout_height=&quot;80dp&quot;</div><div class="line">        /&gt;</div><div class="line">    &lt;Button</div><div class="line">        android:id=&quot;@+id/btn_my_fragment&quot;</div><div class="line">        android:layout_width=&quot;0dp&quot;</div><div class="line">        android:layout_weight=&quot;1&quot;</div><div class="line">        android:layout_height=&quot;80dp&quot;</div><div class="line">        /&gt;</div><div class="line"></div><div class="line">&lt;/LinearLayout&gt;</div></pre></td></tr></table></figure>
+<p>修改fragment中的代码，并且假如回退：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">public void onClick(View v) &#123;</div><div class="line">    if (v.getId() == R.id.btn_my_fragment) &#123;</div><div class="line">        Log.e(&quot;ty&quot;, &quot;----Fragment---下一个fragment----&quot;);</div><div class="line">        SecondFragment secondFragment = new SecondFragment();</div><div class="line">        FragmentManager fragmentManager = getFragmentManager();</div><div class="line">        FragmentTransaction transaction = fragmentManager.beginTransaction();</div><div class="line">        transaction.replace(R.id.fl, secondFragment,&quot;replace&quot;);</div><div class="line">        transaction.addToBackStack(null);</div><div class="line">        transaction.commit();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当进入第二个fragment中，在按下返回键显示第一个fragment，但是数据丢失</p>
+<h3 id="使用hide方法"><a href="#使用hide方法" class="headerlink" title="使用hide方法"></a>使用hide方法</h3><p>改进onclick方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">    @Override</div><div class="line">    public void onClick(View v) &#123;</div><div class="line">        if (v.getId() == R.id.btn_my_fragment) &#123;</div><div class="line">            Log.e(&quot;ty&quot;, &quot;----Fragment---下一个fragment----&quot;);</div><div class="line">            SecondFragment secondFragment = new SecondFragment();</div><div class="line">            FragmentManager fragmentManager = getFragmentManager();</div><div class="line">            FragmentTransaction transaction = fragmentManager.beginTransaction();</div><div class="line">//            transaction.replace(R.id.fl, secondFragment,&quot;replace&quot;);</div><div class="line">//           改进之后的代码</div><div class="line">            transaction.hide(this);</div><div class="line">            transaction.add(R.id.fl,secondFragment);</div><div class="line">            transaction.addToBackStack(null);</div><div class="line">            transaction.commit();</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>当再次按下返回键之后发现正在编辑的数据没有丢失，生命周期一直在onResume状态，但是replace则调用onPause等生命周期</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>​    当要进行fragment之间的切换时，可以使用transaction.replace也可以使用transaction.hide方法，区别就是hide会保存正在编辑的数据。</p>
+<h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170303_104512.png" alt=""></p>
+<p>　　如果activity的进程被杀掉了，在activity被重新创建时，你需要恢复fragment状态。可以执行fragment的onSaveInstanceState()来保存状态（注意在fragment是在onCreate()，onCreateView()，或onActvityCreate()中进行恢复）。</p>
+<p>　　在生命周期方面,activity与fragment之间一个<strong>很重要的不同</strong>，就是在各自的后台栈中是如何存储的,当activity停止时，<strong>默认</strong>情况下activity被安置在由系统管理的activity后台栈中；　 　　fragment仅当在一个事务被移除时，通过显式调用addToBackStack()请求保存的实例，该fragment才被置于由宿主activity管理的后台栈。　</p>
+<p>官方生命周期示意图：</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/687474703a2f2f696d672e626c6f672e6373646e2e6e65742f3230313630343239313334352017321441.jpg" alt=""></p>
+<h3 id="生命周期方法"><a href="#生命周期方法" class="headerlink" title="生命周期方法"></a>生命周期方法</h3><p><img src="http://oaxelf1sk.bkt.clouddn.com/1354170682_38242014321825.png" alt=""></p>
+<ul>
+<li>onAttach()</li>
+</ul>
+<p>　　当fragment被绑定到activity时调用（Activity会被传入）。</p>
+<ul>
+<li>onCreateView()</li>
+</ul>
+<p>　　将本身的布局构建到activity中去（fragment作为activity界面的一部分） 　　</p>
+<ul>
+<li>onActivityCreated()</li>
+</ul>
+<p>　　当activity的onCreate()函数返回时被调用。</p>
+<ul>
+<li>onDestroyView()</li>
+</ul>
+<p>　　当与fragment关联的视图体系正被移除时被调用。</p>
+<ul>
+<li>onDetach()</li>
+</ul>
+<p>　　当fragment正与activity解除关联时被调用。</p>
+<h3 id="完整的生命周期"><a href="#完整的生命周期" class="headerlink" title="完整的生命周期"></a>完整的生命周期</h3><p>运行上面的例子，一个Activity中包含一个fragment，正常启动的生命周期：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">13421-13421 W/ty: -------onCreate------</div><div class="line">13421-13421 W/ty: ----Fragment---onCreate----</div><div class="line">13421-13421 W/ty: ----Fragment---onCreateView----</div><div class="line">13421-13421 W/ty: ----Fragment---onActivityCreated----</div><div class="line">13421-13421 W/ty: -------onStart------</div><div class="line">13421-13421 W/ty: ----Fragment---onStart----</div><div class="line">13421-13421 W/ty: -------onResume------</div><div class="line">13421-13421 W/ty: ----Fragment---onResume----</div></pre></td></tr></table></figure>
+<p>​    只有activity是onResume状态的时候，fragemnt才可以自己决定自己的生命周期，否则就是完全依赖activity的生命周期。</p>
+<h3 id="屏幕锁定的生命周期"><a href="#屏幕锁定的生命周期" class="headerlink" title="屏幕锁定的生命周期"></a>屏幕锁定的生命周期</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">13421-13421 W/ty: ----Fragment---onPause----</div><div class="line">13421-13421 W/ty: -------onPause------</div><div class="line">13421-13421 W/ty: ----Fragment---onStop----</div><div class="line">13421-13421 W/ty: -------onStop------</div></pre></td></tr></table></figure>
+<h3 id="解锁屏幕"><a href="#解锁屏幕" class="headerlink" title="解锁屏幕"></a>解锁屏幕</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">13421-13421 W/ty: -------onStart------</div><div class="line">13421-13421 W/ty: ----Fragment---onStart----</div><div class="line">13421-13421 W/ty: -------onResume------</div><div class="line">13421-13421 W/ty: ----Fragment---onResume----</div></pre></td></tr></table></figure>
+<h3 id="切换到主页"><a href="#切换到主页" class="headerlink" title="切换到主页"></a>切换到主页</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">13421-13421 W/ty: ----Fragment---onPause----</div><div class="line">13421-13421 W/ty: -------onPause------</div><div class="line">13421-13421 W/ty: ----Fragment---onStop----</div><div class="line">13421-13421 W/ty: -------onStop------</div></pre></td></tr></table></figure>
+<h3 id="回到前台"><a href="#回到前台" class="headerlink" title="回到前台"></a>回到前台</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">13421-13421 W/ty: -------onStart------</div><div class="line">13421-13421 W/ty: ----Fragment---onStart----</div><div class="line">13421-13421 W/ty: -------onResume------</div><div class="line">13421-13421 W/ty: ----Fragment---onResume----</div></pre></td></tr></table></figure>
+<h3 id="使用replace切换fragment"><a href="#使用replace切换fragment" class="headerlink" title="使用replace切换fragment"></a>使用replace切换fragment</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">19864-19864 W/ty: ----Fragment---onPause----</div><div class="line">19864-19864 W/ty: ----Fragment---onStop----</div><div class="line">19864-19864 W/ty: ----Fragment---onDestroyView----</div><div class="line">19864-19864 W/ty: ----SecondFragment---onCreate----</div><div class="line">19864-19864 W/ty: ----SecondFragment---onCreateView----</div><div class="line">19864-19864 W/ty: ----SecondFragment---onActivityCreated----</div><div class="line">19864-19864 W/ty: ----SecondFragment---onStart----</div><div class="line">19864-19864 W/ty: ----SecondFragment---onResume----</div></pre></td></tr></table></figure>
+<h3 id="退出应用"><a href="#退出应用" class="headerlink" title="退出应用"></a>退出应用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">19864-19864 W/ty: ----Fragment---onPause----</div><div class="line">19864-19864 W/ty: -------onPause------</div><div class="line">19864-19864 W/ty: ----Fragment---onStop----</div><div class="line">19864-19864 W/ty: -------onStop------</div><div class="line">19864-19864 W/ty: ----Fragment---onDestroyView----</div><div class="line">19864-19864 W/ty: ----Fragment---onDestroy----</div><div class="line">19864-19864 W/ty: ----Fragment---onDetach----</div><div class="line">19864-19864 W/ty: -------onDestroy------</div></pre></td></tr></table></figure>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><a href="http://blog.csdn.net/lmj623565791/article/details/37992017" target="_blank" rel="external">http://blog.csdn.net/lmj623565791/article/details/37992017</a></p>
+<p><a href="http://blog.csdn.net/forever_crying/article/details/8238863/" target="_blank" rel="external">http://blog.csdn.net/forever_crying/article/details/8238863/</a></p>
+<p><a href="https://github.com/HaoTianYi/ForAndroidInterview/blob/master/android/Fragment%20%E5%85%A8%E8%A7%A3%E6%9E%90.md" target="_blank" rel="external">https://github.com/HaoTianYi/ForAndroidInterview/blob/master/android/Fragment%20%E5%85%A8%E8%A7%A3%E6%9E%90.md</a></p>
+<p><a href="http://blog.csdn.net/lmj623565791/article/details/42628537" target="_blank" rel="external">http://blog.csdn.net/lmj623565791/article/details/42628537</a></p>
+<p>感谢以上作者的辛勤劳动</p>
+</section>
+    
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="alipay-code">
+            <div class="code-image"></div>
+            <b>使用支付宝打赏</b>
+          </span>
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+    </div>
+    <div class="qrcode">
+      <canvas id="share-qrcode"></canvas>
+      <p class="notice">扫描二维码，分享此文章</p>
+    </div>
+    
+      <div id="comments"></div>
+    
+  </article>
+</main>
+
+<script>
+  (function () {
+    var url = 'http://bbbb.ml/2017/09/13/Android/05-01-Fragment内容详解/';
+    var banner = ''
+    if (banner !== 'undefined') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "jwl00";
+    if (gitmentConfig != "undefined") {
+      var gitment = new Gitment({
+        id: "",
+        owner: "jwl00",
+        repo: "jwl00.github.io",
+        oauth: {
+          client_id: "ae21ad25810b1f2cc193",
+          client_secret: "7b6bb525adfeee63bd087132d98e6fd015d49ed8"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>
