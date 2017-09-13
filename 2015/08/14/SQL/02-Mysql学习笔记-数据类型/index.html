@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="什么也不留下">
+  <meta name="keyword" content="hexo-theme, Android">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      02-Mysql学习笔记-数据类型 | JWL博客
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>JWL博客</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>02-Mysql学习笔记-数据类型</h2>
+  <p class="post-date">2015-08-14</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content"><a id="more"></a>
+<h1 id="02-Mysql学习笔记-数据类型"><a href="#02-Mysql学习笔记-数据类型" class="headerlink" title="02-Mysql学习笔记-数据类型"></a>02-Mysql学习笔记-数据类型</h1><h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><p><img src="http://oaxelf1sk.bkt.clouddn.com/sp170112_074411.png" alt="sp170112_074411"></p>
+<h2 id="数值型"><a href="#数值型" class="headerlink" title="数值型"></a>数值型</h2><p>###整数型</p>
+<table>
+<thead>
+<tr>
+<th><strong>类型</strong></th>
+<th><strong>大小</strong></th>
+<th><strong>范围（有符号）</strong></th>
+<th><strong>范围（无符号）</strong></th>
+<th><strong>用途</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TINYINT</td>
+<td>1 字节</td>
+<td>(-128，127)</td>
+<td>(0，255)</td>
+<td>小整数值</td>
+</tr>
+<tr>
+<td>SMALLINT</td>
+<td>2 字节</td>
+<td>(-32 768，32 767)</td>
+<td>(0，65 535)</td>
+<td>大整数值</td>
+</tr>
+<tr>
+<td>MEDIUMINT</td>
+<td>3 字节</td>
+<td>(-8 388 608，8 388 607)</td>
+<td>(0，16 777 215)</td>
+<td>大整数值</td>
+</tr>
+<tr>
+<td>INT或INTEGER</td>
+<td>4 字节</td>
+<td>(-2 147 483 648，2 147 483 647)</td>
+<td>(0，4 294 967 295)</td>
+<td>大整数值</td>
+</tr>
+<tr>
+<td>BIGINT</td>
+<td>8 字节</td>
+<td>(-9 233 372 036 854 775 808，9 223 372 036 854 775 807)</td>
+<td>(0，18 446 744 073 709 551 615)</td>
+<td>极大整数值</td>
+</tr>
+</tbody>
+</table>
+<p>一个字节有8位，所以范围就是2的几次方</p>
+<p>SQL中的数值类型默认有符号———数据类型后面加上 unsigned就是无符号类型</p>
+<p>在Mysql中的数据类型后面的数字表示最终可以<strong>最大显示的宽度</strong>（包括负号）如：-321是四位，但是321是三位；显示宽度不能改变数据的大小—–当宽度小于数字的位数的时候，字段可以正常显示。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">CREATE DATABASE demo2;</div><div class="line">USE demo2;</div><div class="line">CREATE TABLE data(d1 TINYINT UNSIGNED,d2 SMALLINT,d3 TINYINT ,d4 INT ,d5 TINYINT(1) ) CHARSET utf8;</div><div class="line">DESC data;</div></pre></td></tr></table></figure>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp170112_081226.png" alt="sp170112_081226"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">INSERT INTO data VALUES(100,100,100,100,100);</div><div class="line">SELECT *FROM data;</div></pre></td></tr></table></figure>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp170112_081455.png" alt="sp170112_081455"></p>
+<p>当数据的宽度不够现实宽度的时候，系统会自动添加数据宽度；使用0填充的时候数据会自动变成<strong>无符号的数据</strong>——–就是为了报纸固定的数据格式</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="keyword">data</span> <span class="keyword">ADD</span> d6 TINYINT(<span class="number">3</span>) ZEROFILL;</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="keyword">data</span> <span class="keyword">VALUES</span> (<span class="number">100</span>,<span class="number">100</span>,<span class="number">100</span>,<span class="number">100</span>,<span class="number">100</span>,<span class="number">1</span>);</div><div class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="keyword">data</span> <span class="keyword">ADD</span> d7 TINYINT(<span class="number">2</span>) ZEROFILL;</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="keyword">data</span> <span class="keyword">VALUES</span> (<span class="number">100</span>,<span class="number">100</span>,<span class="number">100</span>,<span class="number">100</span>,<span class="number">100</span>,<span class="number">1</span>,<span class="number">1</span>);</div><div class="line">DESC data;</div><div class="line"><span class="keyword">SELECT</span> *</div><div class="line"><span class="keyword">FROM</span> <span class="keyword">data</span>;</div></pre></td></tr></table></figure>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp170112_081935.png" alt="sp170112_081935"></p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp170112_082420.png" alt="sp170112_082420"></p>
+<p>其中的数据变成01和001；</p>
+<h3 id="小数型"><a href="#小数型" class="headerlink" title="小数型"></a>小数型</h3><p>浮点型：小数点浮动，会丢失精度</p>
+<p>定点性：小数点固定，不会丢失精度</p>
+<h4 id="浮点型"><a href="#浮点型" class="headerlink" title="浮点型"></a>浮点型</h4><p>浮点数当超出范围之后会丢失数据</p>
+<table>
+<thead>
+<tr>
+<th><strong>类型</strong></th>
+<th><strong>大小</strong></th>
+<th><strong>范围（有符号）</strong></th>
+<th><strong>范围（无符号）</strong></th>
+<th><strong>用途</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FLOAT</td>
+<td>4 字节</td>
+<td>(-3.402 823 466 E+38，-1.175 494 351 E-38)，0，(1.175 494 351 E-38，3.402 823 466 351 E+38)</td>
+<td>0，(1.175 494 351 E-38，3.402 823 466 E+38)</td>
+<td>单精度浮点数值</td>
+</tr>
+<tr>
+<td>DOUBLE</td>
+<td>8 字节</td>
+<td>(-1.797 693 134 862 315 7 E+308，-2.225 073 858 507 201 4 E-308)，0，(2.225 073 858 507 201 4 E-308，1.797 693 134 862 315 7 E+308)</td>
+<td>0，(2.225 073 858 507 201 4 E-308，1.797 693 134 862 315 7 E+308)</td>
+<td>双精度浮点数值</td>
+</tr>
+</tbody>
+</table>
+<p>float的精度范围是7位，double的精度范围是15位。</p>
+<p>直接使用float表示没有小数部分；float（M,D）其中M表示总长度，D表示小数部分长度</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">CREATE TABLE data_float(f1 FLOAT,f2 FLOAT(10,2),f3 FLOAT(6,4))CHARSET utf8;</div><div class="line">DESC data_float;</div><div class="line">INSERT INTO data_float VALUES (100.10,100.10,10.10);  #符合条件</div><div class="line">INSERT INTO  data_float VALUES (9999999999,99999999.99,99.9999);  #符合条件</div><div class="line">INSERT INTO  data_float VALUES (3e38,2.11e7,10.2222);   #符合条件</div></pre></td></tr></table></figure>
+<p>小数的插入数据的时候可以使用科学记数法也可以直接使用小数；插入的数据整数的部分不能超出长度，但是小数部分可以超出长度，超出的部分自动四舍五入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">INSERT INTO data_float VALUES (100.10,100.10,1000.10);  #Data truncation: Out of range value for column &apos;f3&apos; at row 1</div><div class="line">INSERT INTO data_float VALUES (100.10,100.10,10.101111111);  #符合条件</div></pre></td></tr></table></figure>
+<p> 当浮点数是由于系统的四舍五入导致的整数位超速范围，系统默认是可以的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">SELECT *</div><div class="line">FROM data_float;</div></pre></td></tr></table></figure>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp170112_085138.png" alt="sp170112_085138"></p>
+<h4 id="定点型"><a href="#定点型" class="headerlink" title="定点型"></a>定点型</h4><p>整数部分保证绝对不会丢失精度，小数部分可能丢失精度</p>
+<table>
+<thead>
+<tr>
+<th><strong>类型</strong></th>
+<th>字节大小</th>
+<th><strong>范围（有符号）</strong></th>
+<th><strong>范围（无符号）</strong></th>
+<th><strong>用途</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DECIMAL</td>
+<td>对DECIMAL(M,D) ，如果M&gt;D，为M+2否则为D+2</td>
+<td>依赖于M和D的值</td>
+<td>依赖于M和D的值</td>
+<td>小数值</td>
+</tr>
+</tbody>
+</table>
+<p>M最大值是65，D最大值是30，D的默认值是10</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">CREATE TABLE data_decimal(f1 FLOAT(8,2),d1 DECIMAL(8,2))CHARSET utf8;</div><div class="line">DESC data_decimal;</div><div class="line"></div><div class="line">INSERT INTO data_decimal VALUES (123456.12,123456.12);   #合法数据</div><div class="line">INSERT INTO data_decimal VALUES (123.123456,123.123456);  #合法数据</div><div class="line">--提示Data truncated for column &apos;d1&apos; at row 1  数据被截断</div><div class="line">INSERT INTO data_decimal VALUES (123.123456,123.123456);  #合法数据 </div><div class="line">SELECT *</div><div class="line">FROM data_decimal;</div></pre></td></tr></table></figure>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp170112_090425.png" alt="sp170112_090425"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">show warnings；显示警告</div></pre></td></tr></table></figure>
+<p>浮点数进位导致的长度溢出可以正常的插入，但是定点不行</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp170112_093027.png" alt="sp170112_093027"></p>
+<h2 id="时间和日期"><a href="#时间和日期" class="headerlink" title="时间和日期"></a>时间和日期</h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>大小(字节)</th>
+<th>范围</th>
+<th>格式</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DATE</td>
+<td>3</td>
+<td>1000-01-01/9999-12-31</td>
+<td>YYYY-MM-DD</td>
+<td>日期值</td>
+</tr>
+<tr>
+<td>TIME</td>
+<td>3</td>
+<td>‘-838:59:59’/‘838:59:59’</td>
+<td>HH:MM:SS</td>
+<td>时间值或持续时间</td>
+</tr>
+<tr>
+<td>YEAR</td>
+<td>1</td>
+<td>1901/2155</td>
+<td>YYYY</td>
+<td>年份值</td>
+</tr>
+<tr>
+<td>DATETIME</td>
+<td>8</td>
+<td>1000-01-01 00:00:00/9999-12-31 23:59:59</td>
+<td>YYYY-MM-DD HH:MM:SS</td>
+<td>混合日期和时间值</td>
+</tr>
+<tr>
+<td>TIMESTAMP</td>
+<td>4</td>
+<td>1970-01-01 00:00:00/2037 年某时</td>
+<td>YYYYMMDD HHMMSS</td>
+<td>混合日期和时间值，时间戳</td>
+</tr>
+</tbody>
+</table>
+<p>datatime有零值0000-00-00     00:00:00</p>
+<p>tinestamp和datatime格式完全相同</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">CREATE TABLE data_time(d1 DATETIME,d2 DATE,d3 TIME,d4 TIMESTAMP,d5 YEAR)CHARSET utf8;</div><div class="line">DESC data_time;</div></pre></td></tr></table></figure>
+<p> timestamp有他的特殊性</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp170112_093754.png" alt="sp170112_093754"></p>
+<h4 id="插入时间"><a href="#插入时间" class="headerlink" title="插入时间"></a>插入时间</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">#标准的数据插入格式</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> data_time <span class="keyword">VALUES</span> (<span class="string">'2066-10-10 10:10:10'</span>,<span class="string">'2066-10-10'</span>,<span class="string">'10:10:10'</span>,<span class="string">'2006-10-10 10:10:10'</span>,<span class="number">2066</span>);</div><div class="line">#时间使用负数</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> data_time <span class="keyword">VALUES</span> (<span class="string">'2066-10-10 10:10:10'</span>,<span class="string">'2066-10-10'</span>,<span class="string">'-10:10:10'</span>,<span class="string">'2006-10-10 10:10:10'</span>,<span class="number">2066</span>);</div><div class="line">#这里的负数表示一个时间段</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> data_time <span class="keyword">VALUES</span> (<span class="string">'2066-10-10 10:10:10'</span>,<span class="string">'2066-10-10'</span>,<span class="string">'-321:10:10'</span>,<span class="string">'2006-10-10 10:10:10'</span>,<span class="number">2066</span>);</div><div class="line">#这里的2表示2天，也就是过去的两天和10小时</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> data_time <span class="keyword">VALUES</span> (<span class="string">'2066-10-10 10:10:10'</span>,<span class="string">'2066-10-10'</span>,<span class="string">'-3 10:10:10'</span>,<span class="string">'2006-10-10 10:10:10'</span>,<span class="number">2066</span>);</div><div class="line"></div><div class="line">#year可以使用2位数也可以使用4位数</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> data_time <span class="keyword">VALUES</span> (<span class="string">'2066-10-10 10:10:10'</span>,<span class="string">'2066-10-10'</span>,<span class="string">'10:10:10'</span>,<span class="string">'2006-10-10 10:10:10'</span>,<span class="number">66</span>);</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> data_time <span class="keyword">VALUES</span> (<span class="string">'2066-10-10 10:10:10'</span>,<span class="string">'2066-10-10'</span>,<span class="string">'10:10:10'</span>,<span class="string">'2006-10-10 10:10:10'</span>,<span class="number">70</span>);</div><div class="line"></div><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> data_time;</div></pre></td></tr></table></figure>
+<p>注意时间的两种格式：以及70和66的分别</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp170112_094853.png" alt="sp170112_094853"></p>
+<p>timestap只要该字段被更新，那么时间一定会更新成当前时间</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">UPDATE data_time SET d1 = &apos;1980-10-10 11:11:11&apos; WHERE d5 = &apos;1970&apos;;</div><div class="line">SELECT * FROM data_time;</div></pre></td></tr></table></figure>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp170112_095307.png" alt="sp170112_095307"></p>
+<p>timestamp会更新位当前时间2017年1月12日</p>
+<h2 id="字符串类型"><a href="#字符串类型" class="headerlink" title="字符串类型"></a>字符串类型</h2><p>SQL中把字符串分成了6类：char、varchar、text、blob、enum、set</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>大小</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CHAR</td>
+<td>0-255</td>
+<td>定长字符串</td>
+</tr>
+<tr>
+<td>VARCHAR</td>
+<td>0-65535</td>
+<td>变长字符串</td>
+</tr>
+<tr>
+<td>TINYBLOB</td>
+<td>0-255</td>
+<td>不超过 255 个字符的二进制字符串</td>
+</tr>
+<tr>
+<td>TINYTEXT</td>
+<td>0-255</td>
+<td>短文本字符串</td>
+</tr>
+<tr>
+<td>BLOB</td>
+<td>0-65 535</td>
+<td>二进制形式的长文本数据</td>
+</tr>
+<tr>
+<td>TEXT</td>
+<td>0-65 535</td>
+<td>长文本数据</td>
+</tr>
+<tr>
+<td>MEDIUMBLOB</td>
+<td>0-16 777 215</td>
+<td>二进制形式的中等长度文本数据</td>
+</tr>
+<tr>
+<td>MEDIUMTEXT</td>
+<td>0-16 777 215</td>
+<td>中等长度文本数据</td>
+</tr>
+<tr>
+<td>LONGBLOB</td>
+<td>0-4 294 967 295</td>
+<td>二进制形式的极大文本数据</td>
+</tr>
+<tr>
+<td>LONGTEXT</td>
+<td>0-4 294 967 295</td>
+<td>极大文本数据</td>
+</tr>
+</tbody>
+</table>
+<h3 id="定长字符串"><a href="#定长字符串" class="headerlink" title="定长字符串"></a>定长字符串</h3><p>在定义二维表的时候就已经定义了存储长度，char（L）其中L表示的是字符长度</p>
+<p>例如char（5）在utf8的环境中需要使用4*3 = 12字节来存储</p>
+<h3 id="变长字符串"><a href="#变长字符串" class="headerlink" title="变长字符串"></a>变长字符串</h3><p>varchar在分配空间的时候，按照最大的空间分配，但是实际使用是根据具体的数据来分配的；varchar(L)其中L表示字符的长度，而且会多使用1~2个字节来确定边界，比255小的字符长度用一个字节，比255大使用两个字节；其实1~2是具体用来表示位数的字节，1个字节256位，2个字节65536位，所以使用两个字节就可以表示</p>
+<p>例如：varchar（10）在utf8的环境下占有 10*3+1 = 31个字节</p>
+<p>存储空间（utf8环境之下）</p>
+<table>
+<thead>
+<tr>
+<th>实际数据</th>
+<th>char(4)</th>
+<th>varchar(4)</th>
+<th>char占用字节</th>
+<th>varchar(占用字节)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>abcd</td>
+<td>abcd</td>
+<td>abcd</td>
+<td>4*3=12</td>
+<td>4*3+1=13</td>
+</tr>
+<tr>
+<td>a</td>
+<td>a</td>
+<td>a</td>
+<td>4*3=12</td>
+<td>1*3+1 = 4</td>
+</tr>
+<tr>
+<td></td>
+<td>错误</td>
+<td>错误</td>
+<td>数据超出长度</td>
+<td>数据超出长度</td>
+</tr>
+</tbody>
+</table>
+<p>注意char是定长字符串，空间不变</p>
+<p>当数据的实际长度超过255的时候是<strong>text</strong>；定长浪费空间，但是效率高，如身份证、电话号码；变长省空间但是效率低，如地址。</p>
+<h3 id="文本字符串"><a href="#文本字符串" class="headerlink" title="文本字符串"></a>文本字符串</h3><p>数据量巨大，字符个数超过255使用文本字符串，分类：</p>
+<ol>
+<li>text存储文字（二进制数据通常使用text存储路径）</li>
+<li>blob存储二进制，如文件（通常不用）</li>
+</ol>
+<h3 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h3><p>将事先所有的结果都设计好，实际是哪个使用的数据必须是规定中的一个，使用方式：</p>
+<p>enum（可能出现列表），如enum(‘男’,’女’)；</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp170112_132609.png" alt="sp170112_132609"></p>
+<p>插入数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">INSERT INTO data_enum VALUES (&apos;男&apos;);   #正确的数据</div><div class="line">INSERT INTO data_enum VALUES (&apos;nan&apos;); #数据格式错误</div><div class="line">SELECT *</div><div class="line">FROM data_enum;</div></pre></td></tr></table></figure>
+<p>作用：</p>
+<ol>
+<li>规范数据格式（数据只能是选项中的一个）</li>
+<li>节省空间（枚举实际存储的数值）</li>
+</ol>
+<hr>
+<p>判断实际存储是否是数值？</p>
+<p>解决方案：把结果+0，如果最后的值是0，那么存储的就是字符串，反之是数值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT gender + 0,gender FROM data_enum;</div></pre></td></tr></table></figure>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp170112_133711.png" alt="sp170112_133711"></p>
+<p>那么知道枚举系统中最终存储的是数值</p>
+<p>按照元素出现的顺序，把备选项从<strong>1开始不断向后排列</strong>。</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp170112_134105.png" alt="sp170112_134105"></p>
+<p>因为枚举存储的数值，所以可以<strong>直接插入数值</strong></p>
+<hr>
+<h3 id="集合字符串"><a href="#集合字符串" class="headerlink" title="集合字符串"></a>集合字符串</h3><p>集合字符串和枚举很类似，实际存储的都是数值而不是字符串</p>
+<p>创建：set（集合元素）</p>
+<p>使用：元素类表中的元素，可以使用多个</p>
+<p>示例代码：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> data_set(love <span class="keyword">SET</span>(<span class="string">'q'</span>,<span class="string">'w'</span>,<span class="string">'e'</span>,<span class="string">'r'</span>))<span class="keyword">CHARSET</span> utf8;</div><div class="line">INSERT INTO data_set VALUES (3);     #这里的本质</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> data_set <span class="keyword">VALUES</span> (<span class="string">'q,w'</span>);</div><div class="line"><span class="keyword">SELECT</span> *</div><div class="line"><span class="keyword">FROM</span> data_set;</div></pre></td></tr></table></figure>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp170112_135246.png" alt="sp170112_135246"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">CREATE TABLE data_set(love SET(&apos;q&apos;,&apos;w&apos;,&apos;e&apos;,&apos;r&apos;))CHARSET utf8;</div><div class="line">INSERT INTO data_set VALUES (3);</div><div class="line">INSERT INTO data_set VALUES (&apos;q,w&apos;);</div><div class="line">INSERT INTO data_set VALUES (&apos;q,e,r&apos;);</div><div class="line"></div><div class="line">SELECT love +0 ,love FROM data_set;</div></pre></td></tr></table></figure>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp170112_135638.png" alt="sp170112_135638"></p>
+<p><strong>集合中每一个元素对应二进制中的一个位，选中为1，没有选中就是0，然后再把位数反过来。</strong></p>
+<p>其他实例：</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp170112_135825.png" alt="sp170112_135825"></p>
+<p>所以元素的顺序和插入时候的顺序无关，系统会重新匹配</p>
+<h2 id="Mysql记录长度"><a href="#Mysql记录长度" class="headerlink" title="Mysql记录长度"></a>Mysql记录长度</h2><p>Mysql中任何一条记录的长度不能超过65535个字符（varchar永远达不到理论值）</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp170112_141540.png" alt="sp170112_141540"></p>
+<p>21844是由系统提示得来</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp170112_141746.png" alt="sp170112_141746"></p>
+<h2 id="列属性"><a href="#列属性" class="headerlink" title="列属性"></a>列属性</h2><p>属性列表：NULL/NOT NULL default ,primary key,unique key ,auto_increment,comment</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp170112_144931.png" alt="sp170112_144931"></p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp170112_145011.png" alt="sp170112_145011"></p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp170112_145056.png" alt="sp170112_145056"></p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp170112_145219.png" alt="sp170112_145219"></p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp170112_145158.png" alt="sp170112_145158"></p>
+</section>
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#MySQL" >
+    <span class="tag-code">MySQL</span>
+  </a>
+
+      </div>
+    
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="alipay-code">
+            <div class="code-image"></div>
+            <b>使用支付宝打赏</b>
+          </span>
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+    </div>
+    <div class="qrcode">
+      <canvas id="share-qrcode"></canvas>
+      <p class="notice">扫描二维码，分享此文章</p>
+    </div>
+    
+      <div id="comments"></div>
+    
+  </article>
+</main>
+
+<script>
+  (function () {
+    var url = 'http://bbbb.ml/2015/08/14/SQL/02-Mysql学习笔记-数据类型/';
+    var banner = 'http://osk1xe27i.bkt.clouddn.com/1.jpg'
+    if (banner !== 'undefined') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "jwl00";
+    if (gitmentConfig != "undefined") {
+      var gitment = new Gitment({
+        id: "02-Mysql学习笔记-数据类型",
+        owner: "jwl00",
+        repo: "jwl00.github.io",
+        oauth: {
+          client_id: "ae21ad25810b1f2cc193",
+          client_secret: "7b6bb525adfeee63bd087132d98e6fd015d49ed8"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

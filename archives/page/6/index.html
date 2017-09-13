@@ -115,24 +115,7 @@
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2017/09/13/algorithm/Manacher算法及其Java实现/"></a>
-      </h2>
-      <p class="article-date">September 13, 2017</p>
-      
-      <div class="article-summary">
-        
-          Manacher算法及其Java实现[TOC]
-说明现给定一个已知的字符串str[]，现在想要在O(n)的时间复杂度之内求出一个最长的回文子字符串(正着和倒着顺序读一致)。
-Manacher最早发现了可以用O(n)的时间复杂度来解决该问题，所以这种方法称之为Manacher算法
-实现步骤基本 ...
-        
-      </div>
-      <a class="more" href="/2017/09/13/algorithm/Manacher算法及其Java实现/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2014/03/07/Java/二维数组/">二维数组</a>
+        <a href="/2014/03/07/Java/正则表达式、Math、Random、System、BigInteger、Date、SimpleDateFormat、Calendar/">正则表达式、Math、Random、System、BigInteger、Date、SimpleDateFormat、Calendar</a>
       </h2>
       <p class="article-date">March 7, 2014</p>
       
@@ -145,15 +128,47 @@ Manacher最早发现了可以用O(n)的时间复杂度来解决该问题，所�
       <div class="article-summary">
         
           
-二维数组二维数组表示方法1234A:数据类型[][] 数组名 = new 数据类型[m][n];B:数据类型[][] 数组名 = new 数据类型[m][];C:数据类型[][] 数组名 = new 数据类型[][]&#123;&#123;...&#125;,&#123;...&#125; ...
+正则表达式、Math、Random、System、BigInteger、Date、SimpleDateFormat、Calendar[TOC]
+正则表达式基本规则A:字符
+x 字符 x。举例：&apos;a&apos;表示字符a
+\\ 反斜线字符。
+\n 新行（换行）符 (&apos;\u ...
         
       </div>
-      <a class="more" href="/2014/03/07/Java/二维数组/">Read more</a>
+      <a class="more" href="/2014/03/07/Java/正则表达式、Math、Random、System、BigInteger、Date、SimpleDateFormat、Calendar/">Read more</a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2014/03/07/Java/数组、栈、堆/">数组、栈、堆</a>
+        <a href="/2014/03/07/Java/Java网络编程/">Java网络编程</a>
+      </h2>
+      <p class="article-date">March 7, 2014</p>
+      
+        
+  <a href="/tags#Java笔记" >
+    <span class="tag-code">Java笔记</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          Java网络编程网络网络模型
+三要素ip地址，端口号，传输协议
+
+127.0.0.1 回环地址,可用于测试本机的网络是否有问题. ping 127.0.0.1   
+
+端口号正在运行的程序的标识。
+有效端口：0~65535，其中0~1024系统使用或保留端口。
+协议UDP：
+    把数据打 ...
+        
+      </div>
+      <a class="more" href="/2014/03/07/Java/Java网络编程/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/03/07/Java/集合框架Map/">集合框架：Map</a>
       </h2>
       <p class="article-date">March 7, 2014</p>
       
@@ -166,30 +181,17 @@ Manacher最早发现了可以用O(n)的时间复杂度来解决该问题，所�
       <div class="article-summary">
         
           
-数组、栈、堆[TOC]
-数组定义格式
-数据类型[]   数组名
-数据类型     数组名[ ]
-
-数组的初始化
-动态初始化:只是指定长度由系统给出初始化值
-
-
-数据类型【】 数组名 =  new    数据类型【数组长度】；
-
-
-静态初始化：只是给定初始化值，长度由系统指定
-
-
-123&g ...
+集合框架：MapMap集合将键映射到值的对象。一个映射不能包含重复的键；每个键最多只能映射到一个值。 
+和Collection的区别Map存储元素是键值对，Map集合的键是唯一的，值是可重复的
+Collection存储的是单个元素，Collection的子类Set是唯一的，List是可重复 ...
         
       </div>
-      <a class="more" href="/2014/03/07/Java/数组、栈、堆/">Read more</a>
+      <a class="more" href="/2014/03/07/Java/集合框架Map/">Read more</a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2014/03/07/Java/JavaDoc、代码块、继承/">JavaDoc、代码块、继承</a>
+        <a href="/2014/03/07/Java/集合框架：List/">集合框架：List</a>
       </h2>
       <p class="article-date">March 7, 2014</p>
       
@@ -202,20 +204,85 @@ Manacher最早发现了可以用O(n)的时间复杂度来解决该问题，所�
       <div class="article-summary">
         
           
-JavaDoc、代码块、继承[TOC]
-javaDoc使用
-说明：使用/*    / 可以生成说明文档
+集合框架：List集合框架面向对象语言对事物的体现都是一对象的形式，所以为了方便操作对象，java提供了集合类。
+数组虽然可以存储对象但是长度是固定的，集合长度是可变的，数组可以存储基本数据类型，集合只能存储对象。
+数组和集合的区别
 
-制作过程
-A:写一个工具类
-B:对这个类加入文档注释        
-C:用工具解析文档注释
-    javadoc工具
-D:格式
-    javadoc -d 目录 -author  ...
+
+
+数组
+集合
+
+
+
+
+长度
+长度固定
+长度可变
+
+
+ ...
         
       </div>
-      <a class="more" href="/2014/03/07/Java/JavaDoc、代码块、继承/">Read more</a>
+      <a class="more" href="/2014/03/07/Java/集合框架：List/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/03/07/Java/类、包、修饰符、内部类/">类、包、修饰符、内部类</a>
+      </h2>
+      <p class="article-date">March 7, 2014</p>
+      
+        
+  <a href="/tags#Java笔记" >
+    <span class="tag-code">Java笔记</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+类、包、修饰符、内部类形式参数和返回值类
+形式参数：
+
+
+基本数据类型
+
+引用数据类型
+
+类：要求是该类的对象
+接口：接口也可以new出对象，所以可以作为形式参数传递给方法，一般是传入一个该接口的实现类的对象，同样利用了多态；
+抽象类：类可以new出对象，所以可以作为形式参数传递给方法，一 ...
+        
+      </div>
+      <a class="more" href="/2014/03/07/Java/类、包、修饰符、内部类/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/03/07/Java/集合框架Set/">集合框架：Set</a>
+      </h2>
+      <p class="article-date">March 7, 2014</p>
+      
+        
+  <a href="/tags#Java笔记" >
+    <span class="tag-code">Java笔记</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+集合框架：Set常用快捷键
+ctrl + shift + o 导包
+ctrl + shift + t 快速查找某个类
+先按ctrl + 2 ,再点L, 创建变量并命名
+ctrl + o , 在当前类中,快速查找某个方法
+ctrl + k, 向下查找某个字符串
+ctrl + shift +  ...
+        
+      </div>
+      <a class="more" href="/2014/03/07/Java/集合框架Set/">Read more</a>
     </article>
   
     <article class="article-card">
@@ -264,7 +331,7 @@ case 值1：
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2014/03/07/Java/final、多态、接口、抽象类/">final、多态、接口、抽象类</a>
+        <a href="/2014/03/07/Java/Java多线程相关/">Java多线程相关</a>
       </h2>
       <p class="article-date">March 7, 2014</p>
       
@@ -276,25 +343,43 @@ case 值1：
       
       <div class="article-summary">
         
-          final、多态、接口、抽象类final关键字
-final修饰类，该类不能被继承
-final修饰方法，该方法不能被重写
-fina修饰变量，该变量不能再重新被赋值，变量就变成常量
-
-final面试题
-final修饰局部变量引用类型时，是地址值不改变，但是地址值的内容可以改变
-
-final初始化 ...
+          Java多线程相关[TOC]
+Lock接口Lock 实现提供了比使用 synchronized 方法和语句可获得的更广泛的锁定操作
+基本用法12345678910111213class X &#123;  private final ReentrantLock lock = new Reen ...
         
       </div>
-      <a class="more" href="/2014/03/07/Java/final、多态、接口、抽象类/">Read more</a>
+      <a class="more" href="/2014/03/07/Java/Java多线程相关/">Read more</a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2014/03/06/Java/Java运算符循环流程/">Java运算符循环流程</a>
+        <a href="/2014/03/07/Java/Java多线程/">Java多线程</a>
       </h2>
-      <p class="article-date">March 6, 2014</p>
+      <p class="article-date">March 7, 2014</p>
+      
+        
+  <a href="/tags#Java笔记" >
+    <span class="tag-code">Java笔记</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          Java多线程多线程进程就是正在运行的程序，进程是系统运行资源和调用的独立单位，每一个进程都有自己的内存空间和系统资源
+多进程可以提升CPU的使用率。
+线程是是程序的执行单元。是使用CPU的最基本单位。
+多进程的意义是在多个进程之间，多线程的进程能够有更高的几率签到CPU的执行权
+线程调度分 ...
+        
+      </div>
+      <a class="more" href="/2014/03/07/Java/Java多线程/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/03/07/Java/JavaDoc、代码块、继承/">JavaDoc、代码块、继承</a>
+      </h2>
+      <p class="article-date">March 7, 2014</p>
       
         
   <a href="/tags#Java笔记" >
@@ -305,67 +390,20 @@ final初始化 ...
       <div class="article-summary">
         
           
-Java运算符循环流程[TOC]
-运算符operator就是对常量和变量进行操作的符号。
-分类算术运算符，赋值运算符，比较运算符，逻辑运算符，位运算符，三目运算符
-注：定义变量应该int x = 3；应该说把3赋值给int类型的x；
-实例//定义变量
-int x = 3;  //把3赋值给 ...
+JavaDoc、代码块、继承[TOC]
+javaDoc使用
+说明：使用/*    / 可以生成说明文档
+
+制作过程
+A:写一个工具类
+B:对这个类加入文档注释        
+C:用工具解析文档注释
+    javadoc工具
+D:格式
+    javadoc -d 目录 -author  ...
         
       </div>
-      <a class="more" href="/2014/03/06/Java/Java运算符循环流程/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2014/03/05/Java/Java规范以及进制转换/">Java规范以及进制转换</a>
-      </h2>
-      <p class="article-date">March 5, 2014</p>
-      
-        
-  <a href="/tags#Java笔记" >
-    <span class="tag-code">Java笔记</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          
-Java规范以及进制转换关键字组成关键字的字母全部小写
-goto和const作为保留字存在,目前并不使用
-常见关键字
-
-标识符就是给类,接口,方法,变量variable等起名字时使用的字符序列
-组成规则l  英文大小写字母
-l  数字字符
-l  $和_
-注意事项l  不能以数字开头
-l   ...
-        
-      </div>
-      <a class="more" href="/2014/03/05/Java/Java规范以及进制转换/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2014/03/04/Java/Java相关概念/">01-Java相关概念</a>
-      </h2>
-      <p class="article-date">March 4, 2014</p>
-      
-        
-  <a href="/tags#Java笔记" >
-    <span class="tag-code">Java笔记</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          
-Java相关概念计算机基础常见键盘Ctrl  kangchou   tab   teibou     shift      alt    aiout
-常用快捷键全选    Ctrl+A        复制    Ctrl+C        粘贴    Ctrl+V        剪切    ...
-        
-      </div>
-      <a class="more" href="/2014/03/04/Java/Java相关概念/">Read more</a>
+      <a class="more" href="/2014/03/07/Java/JavaDoc、代码块、继承/">Read more</a>
     </article>
   
 
@@ -375,7 +413,7 @@ Java相关概念计算机基础常见键盘Ctrl  kangchou   tab   teibou     shi
     <a href="/archives/page/5/"><span class="page-arrow">← </span>Prev</a>
   
   
-    <a class="unvisible" href="/">Next <span class="page-arrow">→</span></a>
+    <a href="/archives/page/7/">Next<span class="page-arrow"> →</span></a>
   
 </div>
   

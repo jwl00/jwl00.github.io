@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="什么也不留下">
+  <meta name="keyword" content="hexo-theme, Android">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      集合框架：List | JWL博客
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>JWL博客</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>集合框架：List</h2>
+  <p class="post-date">2014-03-07</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content"><a id="more"></a>
+<h1 id="集合框架：List"><a href="#集合框架：List" class="headerlink" title="集合框架：List"></a>集合框架：List</h1><h2 id="集合框架"><a href="#集合框架" class="headerlink" title="集合框架"></a>集合框架</h2><p>面向对象语言对事物的体现都是一对象的形式，所以为了方便操作对象，java提供了集合类。</p>
+<p>数组虽然可以存储对象但是长度是固定的，集合长度是可变的，数组可以存储基本数据类型，集合只能存储对象。</p>
+<h3 id="数组和集合的区别"><a href="#数组和集合的区别" class="headerlink" title="数组和集合的区别"></a>数组和集合的区别</h3><table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">数组</th>
+<th style="text-align:center">集合</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">长度</td>
+<td style="text-align:center">长度固定</td>
+<td style="text-align:center">长度可变</td>
+</tr>
+<tr>
+<td style="text-align:center">元素</td>
+<td style="text-align:center">同一种</td>
+<td style="text-align:center">可以不同类型</td>
+</tr>
+<tr>
+<td style="text-align:center">数据类型</td>
+<td style="text-align:center">基本类型、引用类型</td>
+<td style="text-align:center">只能是引用类型</td>
+</tr>
+</tbody>
+</table>
+<p>我们得到有个继承体系，在分析问题时我们从具体到抽象，在实现时，我们从抽象到具体，在使用时我们使用具体</p>
+<h3 id="Collection"><a href="#Collection" class="headerlink" title="Collection"></a>Collection</h3><p>是集合的顶层接口，他的子体系有重复的也有唯一的，有序的，无序的</p>
+<h4 id="添加功能"><a href="#添加功能" class="headerlink" title="添加功能"></a>添加功能</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">add</span><span class="params">(Object obj)</span>:添加一个元素</span></div><div class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">addAll</span><span class="params">(Collection c)</span>:添加一个集合的元素</span></div></pre></td></tr></table></figure>
+<h4 id="删除功能"><a href="#删除功能" class="headerlink" title="删除功能"></a>删除功能</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span>:移除所有元素</span></div><div class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">remove</span><span class="params">(Object o)</span>:移除一个元素</span></div><div class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">removeAll</span><span class="params">(Collection c)</span>:移除一个集合的元素</span></div></pre></td></tr></table></figure>
+<h4 id="判断功能"><a href="#判断功能" class="headerlink" title="判断功能"></a>判断功能</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(Object o)</span>：判断集合中是否包含指定的元素</span></div><div class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">containsAll</span><span class="params">(Collection c)</span>：判断集合中是否包含指定的集合元素<span class="params">(包含全部)</span></span></div><div class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span>：判断集合是否为空</span></div></pre></td></tr></table></figure>
+<h4 id="遍历功能"><a href="#遍历功能" class="headerlink" title="遍历功能"></a>遍历功能</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function">Iterator&lt;E&gt; <span class="title">iterator</span><span class="params">()</span><span class="params">(重点)</span></span></div></pre></td></tr></table></figure>
+<h4 id="长度功能"><a href="#长度功能" class="headerlink" title="长度功能"></a>长度功能</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">size</span><span class="params">()</span>:元素的个数，数组是length，string是length（）方法</span></div></pre></td></tr></table></figure>
+<h4 id="交集功能"><a href="#交集功能" class="headerlink" title="交集功能"></a>交集功能</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">retainAll</span><span class="params">(Collection c)</span>:最终的结果保存在调用者，<span class="keyword">boolean</span>表示调用者是否发生改变，可以判断两个集合是否相等，只有两个集合相等时，才返回<span class="keyword">false</span></span></div></pre></td></tr></table></figure>
+<h4 id="把集合转换为数组"><a href="#把集合转换为数组" class="headerlink" title="把集合转换为数组"></a>把集合转换为数组</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Object[] toArray()作用可以实现集合的遍历</div></pre></td></tr></table></figure>
+<h4 id="成员方法iterator"><a href="#成员方法iterator" class="headerlink" title="成员方法iterator"></a>成员方法iterator</h4><p>迭代器，集合的专用遍历方式</p>
+<ul>
+<li>Object next():获取元素,并移动到下一个位置。</li>
+</ul>
+<p>NoSuchElementException：没有这样的元素，因为你已经找到最后了。</p>
+<ul>
+<li>boolean hasNext():如果仍有元素可以迭代（是不是有下一个）则返回 true。</li>
+</ul>
+<p>注意以下两端代码含义相同：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Collection c = <span class="keyword">new</span> ArrayList();		</div><div class="line">Iterator it = c.iterator();</div><div class="line"><span class="keyword">while</span> (it.hasNext()) &#123;</div><div class="line">	Student s = (Student) it.next();</div><div class="line">	System.out.println(s.getName() + <span class="string">"---"</span> + s.getAge());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (Iterator it = c.iterator(); it.hasNext();) &#123;</div><div class="line">	Student s = (Student) it.next();</div><div class="line">	System.out.println(s.getName() + <span class="string">"---"</span> + s.getAge());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注意：</p>
+<p>不要多次使用it.next()方法，因为每次使用都是访问一个对象，可能出现NoSuchElementException 不要多次使用it.next()方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">System.out.println(((Student) it.next()).getName() + <span class="string">"---"</span></div><div class="line">+ ((Student) it.next()).getAge());</div></pre></td></tr></table></figure>
+<p>打印出的年龄和姓名不是同一个人，因为每次调用next方法，都会向下移动光标。</p>
+<p>使用步骤：</p>
+<ol>
+<li>通过集合对象获取迭代器对象</li>
+<li>通过迭代器的hasNext判断是否有元素</li>
+<li>同构迭代器对象的next方法获取元素并移动到下一个位置</li>
+</ol>
+<h4 id="迭代器为什么不定义成一个类"><a href="#迭代器为什么不定义成一个类" class="headerlink" title="迭代器为什么不定义成一个类"></a>迭代器为什么不定义成一个类</h4><p>java中的集合类有很多，而且他们的数据结构不同，存储方式也不同，遍历方式也不同，所以没有定义成迭代器类。而所有的集合都应该有获取元素的操作，所以把他们提取成接口。<strong>真正的实现类在子类的内部类中</strong>。</p>
+<h2 id="List类"><a href="#List类" class="headerlink" title="List类"></a>List类</h2><p>是有序的collection集合（进来有序，出去也有序）可以在每个位置精确控制每个元素，可以使用索引来控制。允许重复的元素。</p>
+<h3 id="添加功能-1"><a href="#添加功能-1" class="headerlink" title="添加功能"></a>添加功能</h3><p>void add(int index,Object element):在指定位置添加元素</p>
+<p>在元素个数+1可以，超过会报错</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">List list = <span class="keyword">new</span> ArrayList();</div><div class="line"></div><div class="line"><span class="comment">// 添加元素</span></div><div class="line">list.add(<span class="string">"hello"</span>);</div><div class="line">list.add(<span class="string">"world"</span>);</div><div class="line">list.add(<span class="string">"java"</span>);</div><div class="line"></div><div class="line"> <span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> index,Object element)</span>:在指定位置添加元素</span></div><div class="line"><span class="function"> list.<span class="title">add</span><span class="params">(<span class="number">1</span>, <span class="string">"android"</span>)</span></span>;<span class="comment">//没有问题</span></div><div class="line"> IndexOutOfBoundsException</div><div class="line"> list.add(<span class="number">11</span>, <span class="string">"javaee"</span>);<span class="comment">//有问题</span></div><div class="line"> list.add(<span class="number">3</span>, <span class="string">"javaee"</span>); <span class="comment">//没有问题</span></div><div class="line"> list.add(<span class="number">4</span>, <span class="string">"javaee"</span>); <span class="comment">//有问题</span></div></pre></td></tr></table></figure>
+<p>###获取功能</p>
+<p>Object get(int index):获取指定位置的元素</p>
+<blockquote>
+<p>List集合的特有遍历功能：size()和get()方法结合使用</p>
+</blockquote>
+<h3 id="列表迭代器"><a href="#列表迭代器" class="headerlink" title="列表迭代器"></a>列表迭代器</h3><p>ListIterator listIterator()：List集合特有的迭代器，该迭代器继承了Iterator迭代器，所以，就可以直接使用hasNext()和next()方法。</p>
+<blockquote>
+<p>Object previous():获取上一个元素</p>
+<p>boolean hasPrevious():判断是否有元素</p>
+</blockquote>
+<p>可能会报错<strong>NoSuchElementException</strong>没有标签，越界</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">	<span class="comment">// 创建List集合对象</span></div><div class="line">	List list = <span class="keyword">new</span> ArrayList();</div><div class="line">	list.add(<span class="string">"hello"</span>);</div><div class="line">	list.add(<span class="string">"world"</span>);</div><div class="line">	list.add(<span class="string">"java"</span>);</div><div class="line"></div><div class="line">	<span class="comment">// ListIterator listIterator()</span></div><div class="line">	ListIterator lit = list.listIterator(); <span class="comment">// 子类对象</span></div><div class="line"></div><div class="line">	<span class="keyword">while</span> (lit.hasPrevious()) &#123;</div><div class="line">		String s = (String) lit.previous();</div><div class="line">		System.out.println(s);</div><div class="line">	&#125;</div><div class="line">	System.out.println(<span class="string">"-----------------"</span>);</div><div class="line"></div><div class="line">	<span class="comment">// 迭代器</span></div><div class="line">	Iterator it = list.iterator();</div><div class="line">	<span class="keyword">while</span> (it.hasNext()) &#123;</div><div class="line">		String s = (String) it.next();</div><div class="line">		System.out.println(s);</div><div class="line">	&#125;</div><div class="line">	System.out.println(<span class="string">"-----------------"</span>);</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注意：ListIterator可以实现逆向遍历，但是必须先正向遍历，才能逆向遍历，所以一般无意义，不使用。</p>
+<h3 id="删除功能-1"><a href="#删除功能-1" class="headerlink" title="删除功能"></a>删除功能</h3><p>Object remove(int index)：根据索引删除元素,返回被删除的元素</p>
+<h3 id="修改功能"><a href="#修改功能" class="headerlink" title="修改功能"></a>修改功能</h3><p>Object set(int index,Object element):根据索引修改元素，返回被修饰的元素</p>
+<h3 id="练习题"><a href="#练习题" class="headerlink" title="练习题"></a>练习题</h3><p>我有一个集合，如下，请问，我想判断里面有没有”world”这个元素，如果有，我就添加一个”javaee”元素，请写代码实现。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">List list = <span class="keyword">new</span> ArrayList();</div><div class="line"><span class="comment">// 添加元素</span></div><div class="line">list.add(<span class="string">"hello"</span>);</div><div class="line">list.add(<span class="string">"world"</span>);</div><div class="line">list.add(<span class="string">"java"</span>);</div><div class="line"></div><div class="line"><span class="comment">// 迭代器遍历</span></div><div class="line">Iterator it = list.iterator();</div><div class="line"><span class="keyword">while</span> (it.hasNext()) &#123;</div><div class="line">	String s = (String) it.next();</div><div class="line">	<span class="keyword">if</span> (<span class="string">"world"</span>.equals(s)) &#123;</div><div class="line">		list.add(<span class="string">"javaee"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>会报错：ConcurrentModificationException</p>
+<p>原因：迭代器是依赖于集合而存在的，在判断成功后，集合的中新添加了元素，而迭代器却不知道，所以就报错了，这个错叫并发修改异常。</p>
+<p>其实这个问题描述的是：迭代器遍历元素的时候，通过集合是不能修改元素的。</p>
+<p>解决办法：</p>
+<ol>
+<li>迭代器迭代元素，迭代器修改元素，<strong>新添加的元素是跟在刚才迭代的元素后面的</strong></li>
+<li>集合遍历元素，集合修改元素(普通for)<strong>新添加的元素在最后添加的</strong></li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 方式1：迭代器迭代元素，迭代器修改元素</span></div><div class="line"><span class="comment">// 而Iterator迭代器却没有添加功能，所以我们使用其子接口ListIterator</span></div><div class="line">ListIterator lit = list.listIterator();</div><div class="line"><span class="keyword">while</span> (lit.hasNext()) &#123;</div><div class="line">	String s = (String) lit.next();</div><div class="line">	<span class="keyword">if</span> (<span class="string">"world"</span>.equals(s)) &#123;</div><div class="line">		lit.add(<span class="string">"javaee"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 方式2：集合遍历元素，集合修改元素(普通for)</span></div><div class="line"><span class="keyword">for</span> (<span class="keyword">int</span> x = <span class="number">0</span>; x &lt; list.size(); x++) &#123;</div><div class="line">	String s = (String) list.get(x);</div><div class="line">	<span class="keyword">if</span> (<span class="string">"world"</span>.equals(s)) &#123;</div><div class="line">		list.add(<span class="string">"javaee"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></section>
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#Java笔记" >
+    <span class="tag-code">Java笔记</span>
+  </a>
+
+      </div>
+    
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="alipay-code">
+            <div class="code-image"></div>
+            <b>使用支付宝打赏</b>
+          </span>
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+    </div>
+    <div class="qrcode">
+      <canvas id="share-qrcode"></canvas>
+      <p class="notice">扫描二维码，分享此文章</p>
+    </div>
+    
+      <div id="comments"></div>
+    
+  </article>
+</main>
+
+<script>
+  (function () {
+    var url = 'http://bbbb.ml/2014/03/07/Java/集合框架：List/';
+    var banner = 'http://osk1xe27i.bkt.clouddn.com/1.jpg'
+    if (banner !== 'undefined') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "jwl00";
+    if (gitmentConfig != "undefined") {
+      var gitment = new Gitment({
+        id: "集合框架：List",
+        owner: "jwl00",
+        repo: "jwl00.github.io",
+        oauth: {
+          client_id: "ae21ad25810b1f2cc193",
+          client_secret: "7b6bb525adfeee63bd087132d98e6fd015d49ed8"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

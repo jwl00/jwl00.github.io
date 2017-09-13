@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="什么也不留下">
+  <meta name="keyword" content="hexo-theme, Android">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      Android IPC机制-Messager | JWL博客
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>JWL博客</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>Android IPC机制-Messager</h2>
+  <p class="post-date">2014-06-12</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content"><a id="more"></a>
+<h1 id="Android-IPC机制-Messager"><a href="#Android-IPC机制-Messager" class="headerlink" title="Android IPC机制-Messager"></a>Android IPC机制-Messager</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>如果你需要能够编写可以在远程进程客户端执行复杂的通信（不仅仅是简单的使用服务 <code>Context.startService</code>将命令发送到它），那么你可以使用<code>Messenger</code>类，而不是写全AIDL文件。</p>
+<h3 id="和Binder以及AIDL区别"><a href="#和Binder以及AIDL区别" class="headerlink" title="和Binder以及AIDL区别"></a>和Binder以及AIDL区别</h3><p>a.只有当你需要来自不同应用的客户端通过IPC（进程间通信）通信来访问你的服务时，并且想在服务里处理多线程的业务，这时就需要使用AIDL。</p>
+<p>b.如果你不需要同时对几个应用进程IPC操作，你最好通过实现Binder接口来创建你的接口。</p>
+<p>c.如果你仍需要执行IPC操作，但不需要处理多线程，使用Messenger来实现接口即可。</p>
+<p>d.无论如何，在实现AIDL之前确保你完全理解Bound Service相关知识。</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">public class MessengerService extends Service &#123;</div><div class="line"></div><div class="line">    private static final int MSG_SUM = 0x110;</div><div class="line"></div><div class="line">    //最好换成HandlerThread的形式</div><div class="line">    private Messenger mMessenger = new Messenger(new Handler() &#123;</div><div class="line">        @Override</div><div class="line">        public void handleMessage(Message msgfromClient) &#123;</div><div class="line">            Message msgToClient = Message.obtain(msgfromClient);//返回给客户端的消息</div><div class="line">            switch (msgfromClient.what) &#123;</div><div class="line">                //msg 客户端传来的消息</div><div class="line">                case MSG_SUM:</div><div class="line">                    msgToClient.what = MSG_SUM;</div><div class="line">                    try &#123;</div><div class="line">                        Log.d(TAG, &quot;handleMessage: 模拟耗时&quot;);</div><div class="line">                        //模拟耗时</div><div class="line">//                        Thread.sleep(2000);</div><div class="line">                        msgToClient.arg2 = msgfromClient.arg1 + msgfromClient.arg2;</div><div class="line">                        msgfromClient.replyTo.send(msgToClient);</div><div class="line">                    &#125; catch (RemoteException e) &#123;</div><div class="line">                        e.printStackTrace();</div><div class="line">                    &#125;</div><div class="line">                    break;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            super.handleMessage(msgfromClient);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public IBinder onBind(Intent intent) &#123;</div><div class="line">        return mMessenger.getBinder();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>服务端就一个Service，可以看到代码相当的简单，只需要去声明一个Messenger对象，然后onBind方法返回mMessenger.getBinder()；</p>
+<p>然后坐等客户端将消息发送到handleMessage想法，根据message.what去判断进行什么操作，然后做对应的操作，最终将结果通过 msgfromClient.replyTo.send(msgToClient);返回。</p>
+<p>replyTo同时把管理信息的messager传递出去，客户端和服务器都可以通过这样来改动数据</p>
+<p>​    可以看到我们这里主要是取出客户端传来的两个数字，然后求和返回，添加了sleep(2000)模拟耗时,注意在实际使用过程中，可以换成在独立开辟的线程中完成耗时操作，比如和HandlerThread结合使用。</p>
+<h3 id="注册文件"><a href="#注册文件" class="headerlink" title="注册文件"></a>注册文件</h3><p>注意指定不同的进程，从而实现不同进程之间的通信</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;service</div><div class="line">            android:name=&quot;.MessengerService&quot;</div><div class="line">            android:enabled=&quot;true&quot;</div><div class="line">            android:exported=&quot;true&quot;</div><div class="line">            android:process=&quot;:ty&quot;&gt;</div><div class="line">            &lt;intent-filter&gt;</div><div class="line">                &lt;action android:name=&quot;com.zhy.aidl.calc&quot;&gt;&lt;/action&gt;</div><div class="line">                &lt;category android:name=&quot;android.intent.category.DEFAULT&quot; /&gt;</div><div class="line">            &lt;/intent-filter&gt;</div><div class="line">        &lt;/service&gt;</div></pre></td></tr></table></figure>
+<h3 id="Actiivty及布局文件"><a href="#Actiivty及布局文件" class="headerlink" title="Actiivty及布局文件"></a>Actiivty及布局文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">&lt;LinearLayout android:id=&quot;@+id/id_ll_container&quot;</div><div class="line">              xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</div><div class="line">              xmlns:tools=&quot;http://schemas.android.com/tools&quot;</div><div class="line">              android:layout_width=&quot;match_parent&quot;</div><div class="line">              android:layout_height=&quot;match_parent&quot;</div><div class="line">              android:orientation=&quot;vertical&quot;</div><div class="line">              android:paddingBottom=&quot;@dimen/activity_vertical_margin&quot;</div><div class="line">              android:paddingLeft=&quot;@dimen/activity_horizontal_margin&quot;</div><div class="line">              android:paddingRight=&quot;@dimen/activity_horizontal_margin&quot;</div><div class="line">              android:paddingTop=&quot;@dimen/activity_vertical_margin&quot;</div><div class="line">              tools:context=&quot;.MainActivity&quot;&gt;</div><div class="line"> </div><div class="line">    &lt;TextView</div><div class="line">        android:id=&quot;@+id/id_tv_callback&quot;</div><div class="line">        android:layout_width=&quot;match_parent&quot;</div><div class="line">        android:layout_height=&quot;wrap_content&quot;</div><div class="line">        android:text=&quot;Messenger Test!&quot;/&gt;</div><div class="line"> </div><div class="line">    &lt;Button android:id=&quot;@+id/id_btn_add&quot;</div><div class="line">            android:layout_width=&quot;wrap_content&quot;</div><div class="line">            android:layout_height=&quot;wrap_content&quot;</div><div class="line">            android:text=&quot;add&quot;/&gt;</div><div class="line"> </div><div class="line">&lt;/LinearLayout&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div></pre></td><td class="code"><pre><div class="line">public class MainActivity extends AppCompatActivity &#123;</div><div class="line">    private static final String TAG = &quot;MainActivity&quot;;</div><div class="line">    private static final int MSG_SUM = 0x110;</div><div class="line"></div><div class="line">    private Button mBtnAdd;</div><div class="line">    private LinearLayout mLyContainer;</div><div class="line">    //显示连接状态</div><div class="line">    private TextView mTvState;</div><div class="line"></div><div class="line">    private Messenger mService;</div><div class="line">    private boolean isConn;</div><div class="line"></div><div class="line"></div><div class="line">    private Messenger mMessenger = new Messenger(new Handler()</div><div class="line">    &#123;</div><div class="line">        @Override</div><div class="line">        public void handleMessage(Message msgFromServer)</div><div class="line">        &#123;</div><div class="line">            switch (msgFromServer.what)</div><div class="line">            &#123;</div><div class="line">                case MSG_SUM:</div><div class="line">                    TextView tv = (TextView) mLyContainer.findViewById(msgFromServer.arg1);</div><div class="line">                    tv.setText(tv.getText() + &quot;=&gt;&quot; + msgFromServer.arg2);</div><div class="line">                    break;</div><div class="line">            &#125;</div><div class="line">            super.handleMessage(msgFromServer);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line"></div><div class="line"></div><div class="line">    private ServiceConnection mConn = new ServiceConnection()</div><div class="line">    &#123;</div><div class="line">        @Override</div><div class="line">        public void onServiceConnected(ComponentName name, IBinder service)</div><div class="line">        &#123;</div><div class="line">            mService = new Messenger(service);</div><div class="line">            isConn = true;</div><div class="line">            mTvState.setText(&quot;connected!&quot;);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        @Override</div><div class="line">        public void onServiceDisconnected(ComponentName name)</div><div class="line">        &#123;</div><div class="line">            mService = null;</div><div class="line">            isConn = false;</div><div class="line">            mTvState.setText(&quot;disconnected!&quot;);</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    private int mA;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    protected void onCreate(Bundle savedInstanceState)</div><div class="line">    &#123;</div><div class="line">        super.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line"></div><div class="line">        //开始绑定服务</div><div class="line">        bindServiceInvoked();</div><div class="line"></div><div class="line">        System.out.println(getPackageName());</div><div class="line"></div><div class="line">        mTvState = (TextView) findViewById(R.id.id_tv_callback);</div><div class="line">        mBtnAdd = (Button) findViewById(R.id.id_btn_add);</div><div class="line">        mLyContainer = (LinearLayout) findViewById(R.id.id_ll_container);</div><div class="line"></div><div class="line">        mBtnAdd.setOnClickListener(new View.OnClickListener()</div><div class="line">        &#123;</div><div class="line">            @Override</div><div class="line">            public void onClick(View v)</div><div class="line">            &#123;</div><div class="line">                try</div><div class="line">                &#123;</div><div class="line">                    int a = mA++;</div><div class="line">                    int b = (int) (Math.random() * 100);</div><div class="line"></div><div class="line">                    //创建一个tv,添加到LinearLayout中</div><div class="line">                    TextView tv = new TextView(MainActivity.this);</div><div class="line">                    tv.setText(a + &quot; + &quot; + b + &quot; = caculating ...&quot;);</div><div class="line">                    tv.setId(a);</div><div class="line">                    mLyContainer.addView(tv);</div><div class="line"></div><div class="line">                    Message msgFromClient = Message.obtain(null, MSG_SUM, a, b);</div><div class="line">                    msgFromClient.replyTo = mMessenger;</div><div class="line">                    if (isConn)</div><div class="line">                    &#123;</div><div class="line">                        //往服务端发送消息</div><div class="line">                        mService.send(msgFromClient);</div><div class="line">                    &#125;</div><div class="line">                &#125; catch (RemoteException e)</div><div class="line">                &#123;</div><div class="line">                    e.printStackTrace();</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private void bindServiceInvoked()</div><div class="line">    &#123;</div><div class="line">        Intent intent = new Intent();</div><div class="line">        intent.setAction(&quot;com.zhy.aidl.calc&quot;);</div><div class="line">        /*</div><div class="line">        从Lollipop开始，service服务必须采用显示方式启动</div><div class="line">        Intent mIntent = new Intent();</div><div class="line">        mIntent.setAction(&quot;XXX.XXX.XXX&quot;);//你定义的service的action</div><div class="line">        mIntent.setPackage(getPackageName());//这里你需要设置你应用的包名</div><div class="line">        context.startService(mIntent);</div><div class="line">        */</div><div class="line">        intent.setPackage(getPackageName());</div><div class="line">        bindService(intent, mConn, Context.BIND_AUTO_CREATE);</div><div class="line">        Log.e(TAG, &quot;bindService invoked !&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    protected void onDestroy()</div><div class="line">    &#123;</div><div class="line">        super.onDestroy();</div><div class="line">        unbindService(mConn);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0723/3216.html" target="_blank" rel="external">http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0723/3216.html</a></p>
+<p><a href="https://developer.android.com/reference/android/app/Service.html#RemoteMessengerServiceSample" target="_blank" rel="external">https://developer.android.com/reference/android/app/Service.html#RemoteMessengerServiceSample</a></p>
+<p><a href="http://blog.csdn.net/cs_lht/article/details/6698468" target="_blank" rel="external">http://blog.csdn.net/cs_lht/article/details/6698468</a></p>
+</section>
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#Android基础" >
+    <span class="tag-code">Android基础</span>
+  </a>
+
+      </div>
+    
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="alipay-code">
+            <div class="code-image"></div>
+            <b>使用支付宝打赏</b>
+          </span>
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+    </div>
+    <div class="qrcode">
+      <canvas id="share-qrcode"></canvas>
+      <p class="notice">扫描二维码，分享此文章</p>
+    </div>
+    
+      <div id="comments"></div>
+    
+  </article>
+</main>
+
+<script>
+  (function () {
+    var url = 'http://bbbb.ml/2014/06/12/Android/Android IPC机制-Messager/';
+    var banner = 'http://osk1xe27i.bkt.clouddn.com/1.jpg'
+    if (banner !== 'undefined') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "jwl00";
+    if (gitmentConfig != "undefined") {
+      var gitment = new Gitment({
+        id: "Android IPC机制-Messager",
+        owner: "jwl00",
+        repo: "jwl00.github.io",
+        oauth: {
+          client_id: "ae21ad25810b1f2cc193",
+          client_secret: "7b6bb525adfeee63bd087132d98e6fd015d49ed8"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

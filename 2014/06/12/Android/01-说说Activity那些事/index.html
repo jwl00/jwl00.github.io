@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="什么也不留下">
+  <meta name="keyword" content="hexo-theme, Android">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      01-说说Activity那些事 | JWL博客
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>JWL博客</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>01-说说Activity那些事</h2>
+  <p class="post-date">2014-06-12</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content"><a id="more"></a>
+<h1 id="01-说说Activity那些事"><a href="#01-说说Activity那些事" class="headerlink" title="01-说说Activity那些事"></a>01-说说Activity那些事</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Activity就是每一个应用的界面，凡事显示在app中的界面都是Activity或者由Activity启动。</p>
+<h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><ul>
+<li>使用as快捷建立Activity</li>
+</ul>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp161025_140448.png" alt="sp161025_140448"></p>
+<ul>
+<li>常规创建</li>
+</ul>
+<ol>
+<li>在app/src/main/AndroidManifest.xml注册</li>
+<li>编写java代码继承自Activity或者它的子类</li>
+</ol>
+<p>自动创建的Activity如下所示： </p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp161025_140733.png" alt="sp161025_140733"></p>
+<p>就是一个activity的标签</p>
+<h3 id="传递数据"><a href="#传递数据" class="headerlink" title="传递数据"></a>传递数据</h3><p>我们现在创建两个Activity由MainActivity向SecondActivity传递一个字符串“HelloWorld”</p>
+<ul>
+<li>在MianActivity中设置带有数据的intent</li>
+</ul>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp161025_141217.png" alt="sp161025_141217"></p>
+<ul>
+<li>startActivityForResult启动activity，第二个参数是请求码</li>
+<li>重写onActivityResult接受数据</li>
+</ul>
+<p><strong>SecondActivity</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">setResult(666);</div><div class="line">String hello = getIntent().getBundleExtra(&quot;hello&quot;).getString(&quot;nihao&quot;);</div></pre></td></tr></table></figure>
+<p>设置结果码—&gt;拿到数据</p>
+<h3 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line">public class MainActivity extends AppCompatActivity &#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</div><div class="line">        super.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line">    &#125;</div><div class="line">//在按钮中注册的方法</div><div class="line">    public void start(View view) &#123;</div><div class="line">        Intent intent = new Intent(MainActivity.this, SecondActivity.class);</div><div class="line">        Bundle bundle = new Bundle();</div><div class="line">        bundle.putString(&quot;nihao&quot;, &quot;HelloWorld&quot;);</div><div class="line">        intent.putExtra(&quot;hello&quot;, bundle);</div><div class="line">        startActivityForResult(intent, 0);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    protected void onActivityResult(int requestCode, int resultCode, Intent data) &#123;</div><div class="line">        if (resultCode == 666) &#123;</div><div class="line">            System.out.println(&quot;世界你好&quot;);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">public class SecondActivity extends AppCompatActivity &#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</div><div class="line">        super.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_second);</div><div class="line"></div><div class="line">        setResult(666);</div><div class="line">        String hello = getIntent().getBundleExtra(&quot;hello&quot;).getString(&quot;nihao&quot;);</div><div class="line"></div><div class="line">        TextView textView = (TextView) findViewById(R.id.tv);</div><div class="line">        textView.setText(hello);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">//在按钮中注册的方法</div><div class="line">    public void finsh(View view) &#123;</div><div class="line">        this.finish();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><p><img src="http://oaxelf1sk.bkt.clouddn.com/sp161025_145514.png" alt="sp161025_145514"></p>
+<ol>
+<li>onCreate方法负责初始化数据、视图、绑定事件的监听</li>
+<li>onStart和onStop是从是否可见的角度分析</li>
+<li>onResume和onPause是从是否在前台的角度分析</li>
+<li>onStart可见不能获得焦点—&gt;onResume可见能获得焦点—-&gt;onPause可见不能获得焦点—-&gt;onStop不可见不能获得焦点</li>
+</ol>
+<p><strong>Android官方周期</strong></p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/687474703a2f2f696d672e626c6f672e6373646e2e6e65742f3230313630343235313731373131303534.png" alt="android"></p>
+<h3 id="正常的生命周期"><a href="#正常的生命周期" class="headerlink" title="正常的生命周期"></a>正常的生命周期</h3><p>onCreate—-&gt;onStart——&gt;onResume——&gt;onPause—–&gt;onStop—–onDestory正好6个生命周期</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp161025_150341.png" alt="sp161025_150341"></p>
+<h3 id="异常生命周期"><a href="#异常生命周期" class="headerlink" title="异常生命周期"></a>异常生命周期</h3><h4 id="用户按主页键"><a href="#用户按主页键" class="headerlink" title="用户按主页键"></a>用户按主页键</h4><p><img src="http://oaxelf1sk.bkt.clouddn.com/sp161025_150427.png" alt="sp161025_150427"></p>
+<p>然后再次返回这个activity：</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp161025_150503.png" alt="sp161025_150503"></p>
+<h4 id="突然来一个电话"><a href="#突然来一个电话" class="headerlink" title="突然来一个电话"></a>突然来一个电话</h4><p><img src="http://oaxelf1sk.bkt.clouddn.com/sp161025_150607.png" alt="sp161025_150607"></p>
+<p>生命周期和上面的一样</p>
+<p><strong>当要启动的另一个Activity主题色是透明的时候那么这时这个Activity不会调用onStop方法</strong></p>
+<p>也就是说它还可见，符合逻辑</p>
+<h4 id="系统配置改变比如说屏幕旋转"><a href="#系统配置改变比如说屏幕旋转" class="headerlink" title="系统配置改变比如说屏幕旋转"></a>系统配置改变比如说屏幕旋转</h4><p><img src="http://oaxelf1sk.bkt.clouddn.com/sp161025_151428.png" alt="sp161025_151428"></p>
+<p>当前的Activity被销毁重新创建</p>
+<p>在屏幕旋转的时候会调用onSaveInstanceState和onRestoreInstanceState用来保存和恢复组件的状态（注意as默认创建的Activity继承自AppCompatActivity，这里的两个方法要使用使用AppCompatActivity中的）</p>
+<p>当状态改变调用onSaveInstanceState保存状态然后调用onRestoreInstanceState恢复状态：</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp161025_152339.png" alt="sp161025_152339"></p>
+<h4 id="旋转屏幕时状态分析"><a href="#旋转屏幕时状态分析" class="headerlink" title="旋转屏幕时状态分析"></a>旋转屏幕时状态分析</h4><p>当屏幕发生旋转后数据会保存到savedInstanceState和onCreate方法中的savedInstanceState</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">protected void onRestoreInstanceState(Bundle savedInstanceState)</div></pre></td></tr></table></figure>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp161025_152628.png" alt="sp161025_152628"></p>
+<p>橙色线表示屏幕旋转</p>
+<p>那么会保存view的哪些信息呢？这要看对应的view的onSaveInstanceState方法，比如EditText的正在编辑的信息就会丢失。</p>
+<p>那么怎么屏蔽屏幕旋转的信息呢？？？</p>
+<p>—————–看法宝——————-</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/11FF08~1.PNG" alt="img"></p>
+<p>只要在activity注册的时候加入configChanges标签就可以，注意假如是屏蔽旋转的话应该是orientation|screenSize两个属性 </p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp161025_153758.png" alt="sp161025_153758"></p>
+<p>从此妈妈再也不用担心我的学习了，哈哈哈！！！！</p>
+<p>####锁屏和屏幕解锁</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170228_095641.png" alt="lock"></p>
+<p>只是调用了onPause和onStop没有销毁Activity</p>
+<p>###可见性</p>
+<p>activity的完整生存期会在 onCreate() 调用和 onDestroy() 调用之间发生。　</p>
+<p>activity的可见生存期会在 onStart() 调用和 onStop() 调用之间发生。系统会在activity的整个生存期内多次调用 onStart() 和onStop()， 因为activity可能会在显示和隐藏之间不断地来回切换。　</p>
+<p>activity的前后台切换会在 onResume() 调用和 onPause() 之间发生。 因为这个状态可能会经常发生转换，为了避免切换迟缓引起的用户等待，这两个方法中的代码应该相当地轻量化。</p>
+<h3 id="activity回收和保存信息"><a href="#activity回收和保存信息" class="headerlink" title="activity回收和保存信息"></a>activity回收和保存信息</h3><blockquote>
+<p>onSaveInstanceState方法</p>
+</blockquote>
+<p>　　在activity　可能被回收之前　调用,用来保存自己的状态和信息，以便回收后重建时恢复数据（在onCreate()或onRestoreInstanceState()中恢复）。旋转屏幕重建activity会调用该方法，但其他情况在onRause()和onStop()状态的activity不一定会调用 ，下面是该方法的文档说明。</p>
+<p>系统灵活的来决定调不调用该方法，<strong>但是如果要调用就一定发生在onStop方法之前，但并不保证发生在onPause的前面还是后面。</strong></p>
+<blockquote>
+<p>onRestoreInstanceState方法</p>
+</blockquote>
+<p>　　这个方法在onStart 和 onPostCreate之间调用，在onCreate中也可以状态恢复，但有时候需要所有布局初始化完成后再恢复状态。</p>
+<h2 id="启动模式"><a href="#启动模式" class="headerlink" title="启动模式"></a>启动模式</h2><p>就是启动Activity的方式：</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp161025_154035.png" alt="sp161025_154035"></p>
+<p>只要在Activity中指定launchMode属性就可以完成启动模式的改变。</p>
+<p>在上面的案例中我们从MainActivity到SecondActivity有木有发现不按下结束键只是返回也能返回到MainActivity，我擦MainActivty那家伙还活着呢？？让我们探究下正常的启动模式</p>
+<h3 id="正常的启动模式"><a href="#正常的启动模式" class="headerlink" title="正常的启动模式"></a>正常的启动模式</h3><p><img src="http://oaxelf1sk.bkt.clouddn.com/sp161025_154620.png" alt="sp161025_154620"></p>
+<p>就是先启动的Activity先入栈，出栈是最后出栈，所以当SecondActivity死后，可以看见MianActivity，在MainActivity中添加一个不断重新启动自己的button</p>
+<p>然后进入Terminal：adb shell 然后dumpsys activity</p>
+<p>查看当前运行的activity：</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp161025_160031.png" alt="sp161025_160031"></p>
+<p>每一个都在栈中。</p>
+<p>新建一个Activity2项目在其中只是设置一个按钮，启动Activity项目中的MianActivity： </p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp161025_160843.png" alt="sp161025_160843"></p>
+<p>发现Activity中的Mian在项目2的栈内，于是有一个结论：</p>
+<p><strong>正常模式启动的Activity，谁启动它，它就在那一个栈</strong></p>
+<h4 id="跨应用启动Activity代码"><a href="#跨应用启动Activity代码" class="headerlink" title="跨应用启动Activity代码"></a>跨应用启动Activity代码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Intent intent = new Intent();     intent.setClassName(&quot;win.haotinayi.activity&quot;,&quot;win.haotinayi.activity.MainActivity&quot;);</div></pre></td></tr></table></figure>
+<p>就是设置包名，在设置Activity的全名</p>
+<h3 id="SingleTop"><a href="#SingleTop" class="headerlink" title="SingleTop"></a>SingleTop</h3><p>就是当要启动的Activity恰好在栈顶的时候，那么就不再重复创建： </p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp161025_161412.png" alt="sp161025_161412"></p>
+<p>无论怎么启动都只有一个实例。</p>
+<h3 id="SingleTask"><a href="#SingleTask" class="headerlink" title="SingleTask"></a>SingleTask</h3><p>栈内单例模式，分为三种情况：</p>
+<ol>
+<li>当有Activity需要的栈时，并且是栈顶，啥也不说了，直接复用</li>
+<li>当有Activity需要的栈时，并且不是栈顶，那么在它上面的全部干掉，自己当大哥</li>
+<li>当没有Activity需要的栈时，创建栈</li>
+</ol>
+<p>把MianActivity设置成SingleTask模式，首先打开Activity项目，让两个Activity同时存在：</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp161025_161956.png" alt="sp161025_161956"></p>
+<p>并且MianActivity不是栈顶，然后在通过Activity2打开MainActivity： </p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp161025_162351.png" alt="sp161025_162351"></p>
+<p>SecondActivity被干掉了，大哥是MianActivity，那么什么是Activity的需要栈呢？<strong>默认是包名</strong></p>
+<p>使用属性taskAffinity可以改掉，现在来一个恶作剧： </p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp161025_162557.png" alt="sp161025_162557"></p>
+<p>这时再次启动项目发现，项目的栈改变了：</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp161025_162720.png" alt="sp161025_162720"></p>
+<h3 id="SingleInstance"><a href="#SingleInstance" class="headerlink" title="SingleInstance"></a>SingleInstance</h3><p>Activity只能单独存在一个栈中，换句话说就是整个手机就你一个实例</p>
+<h3 id="使用Intent来标示启动模式"><a href="#使用Intent来标示启动模式" class="headerlink" title="使用Intent来标示启动模式"></a>使用Intent来标示启动模式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Intent intent = new Intent(MainActivity.this, SecondActivity.class);</div><div class="line">intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);</div><div class="line">startActivity(intent);</div></pre></td></tr></table></figure>
+<p>####标志的分类　　　</p>
+<ul>
+<li>FLAG_ACTIVITY_NEW_TASK</li>
+</ul>
+<p>　　与”singleTask”模式相同，在新的 task 中启动 activity。如果要启动的 activity 已经运行于某 task 中，则那个 task 将调入前台。</p>
+<ul>
+<li>FLAG_ACTIVITY_SINGLE_TOP</li>
+</ul>
+<p>　　与 “singleTop”模式相同，如果要启动的 activity位于back stack 顶，系统不会重新创建目标Activity实例,而是直接复用Task栈顶的Activity。</p>
+<ul>
+<li>FLAG_ACTIVITY_CLEAR_TOP</li>
+</ul>
+<p>　　<strong>此种模式在launchMode中没有对应的属性值。</strong>如果要启动的 activity 已经在当前 task 中运行，则不再启动一个新的实例，且所有在其上面的 activity 将被销毁。</p>
+<h2 id="Activity优先级"><a href="#Activity优先级" class="headerlink" title="Activity优先级"></a>Activity优先级</h2><p>从高到低排序：</p>
+<ol>
+<li>显示且能获得焦点（前台）的Activity</li>
+<li>显示不能获得焦点（非前台），一个打开Dialog的Activity</li>
+<li>不可见，已经处于暂停或者直接onStop后的Activity</li>
+</ol>
+<p>当内存不足的时候低优先级的Activity就会被杀掉，如果一个组件没有放在四大组件中，那么很快被杀死，所以后台任务最好放到一个四大组件中，防止被干掉。</p>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><h3 id="Activity的全屏"><a href="#Activity的全屏" class="headerlink" title="Activity的全屏"></a>Activity的全屏</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// 去除标题栏</div><div class="line">requestWindowFeature(Window.FEATURE_NO_TITLE);</div><div class="line">setContentView(R.layout.activity_main);</div><div class="line">getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);</div></pre></td></tr></table></figure>
+<p>requestWindowFeature要在setContentView调用之前否则会崩溃</p>
+<h3 id="Activity的公开性"><a href="#Activity的公开性" class="headerlink" title="Activity的公开性"></a>Activity的公开性</h3><p>一般设置Activity为非公开的　　</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;activity  </div><div class="line">．．．．．． </div><div class="line">android:exported=&quot;false&quot; /&gt;</div></pre></td></tr></table></figure>
+<p>注意：非公开的Activity不能设置intent-filter，以免被其他activity唤醒（如果拥有相同的intent-filter）。</p>
+</section>
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#Android基础" >
+    <span class="tag-code">Android基础</span>
+  </a>
+
+      </div>
+    
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="alipay-code">
+            <div class="code-image"></div>
+            <b>使用支付宝打赏</b>
+          </span>
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+    </div>
+    <div class="qrcode">
+      <canvas id="share-qrcode"></canvas>
+      <p class="notice">扫描二维码，分享此文章</p>
+    </div>
+    
+      <div id="comments"></div>
+    
+  </article>
+</main>
+
+<script>
+  (function () {
+    var url = 'http://bbbb.ml/2014/06/12/Android/01-说说Activity那些事/';
+    var banner = 'http://osk1xe27i.bkt.clouddn.com/1.jpg'
+    if (banner !== 'undefined') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "jwl00";
+    if (gitmentConfig != "undefined") {
+      var gitment = new Gitment({
+        id: "01-说说Activity那些事",
+        owner: "jwl00",
+        repo: "jwl00.github.io",
+        oauth: {
+          client_id: "ae21ad25810b1f2cc193",
+          client_secret: "7b6bb525adfeee63bd087132d98e6fd015d49ed8"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

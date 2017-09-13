@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="什么也不留下">
+  <meta name="keyword" content="hexo-theme, Android">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      反射&amp;动态代理&amp;设计模式&amp;1.5新特性 | JWL博客
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>JWL博客</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>反射&动态代理&设计模式&1.5新特性</h2>
+  <p class="post-date">2014-03-07</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content"><a id="more"></a>
+<h1 id="反射-amp-动态代理-amp-设计模式-amp-1-5新特性"><a href="#反射-amp-动态代理-amp-设计模式-amp-1-5新特性" class="headerlink" title="反射&amp;动态代理&amp;设计模式&amp;1.5新特性"></a>反射&amp;动态代理&amp;设计模式&amp;1.5新特性</h1><h2 id="反射reflect"><a href="#反射reflect" class="headerlink" title="反射reflect"></a>反射reflect</h2><p>在运行状态，通过任意一个对象，都能够获得该类的任意方法和属性，就是通过class文件对象，去使用该文件中的成员变量，构造方法，成员方法</p>
+<h3 id="类的加载"><a href="#类的加载" class="headerlink" title="类的加载"></a>类的加载</h3><p>当程序要使用某个类但是这个类还没有加载到内存，那么系统会通过架子啊/连接/初始化来对这个类进行初始化</p>
+<ul>
+<li>加载：就是把class文件读入内存，并创建一个对应的class对象，任何类被系统使用时都会创建一个class对象</li>
+<li>连接：首先验证是否有正确的内部结构，然后是准备，此时给静态成员分配内存，并设置初始值</li>
+<li>初始化</li>
+</ul>
+<h3 id="类的加载时机"><a href="#类的加载时机" class="headerlink" title="类的加载时机"></a>类的加载时机</h3><ol>
+<li>创建类的实例</li>
+<li>访问类的静态变量，或者为静态变量赋值</li>
+<li>调用类的静态方法</li>
+<li>使用反射方式来强制创建某个类或接口对应的java.lang.Class对象</li>
+<li>初始化某个类的子类</li>
+<li>直接使用java.exe命令来运行某个主类</li>
+</ol>
+<h3 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h3><p>负责将.class文件加载到内在中，并为之生成对应的Class对象</p>
+<h4 id="Bootstrap-ClassLoader-根类加载器"><a href="#Bootstrap-ClassLoader-根类加载器" class="headerlink" title="Bootstrap ClassLoader 根类加载器"></a>Bootstrap ClassLoader 根类加载器</h4><p>也被称为引导类加载器，负责Java核心类的加载<br>比如System,String等。在JDK中JRE的lib目录下rt.jar文件中</p>
+<h4 id="Extension-ClassLoader-扩展类加载器"><a href="#Extension-ClassLoader-扩展类加载器" class="headerlink" title="Extension ClassLoader 扩展类加载器"></a>Extension ClassLoader 扩展类加载器</h4><p>负责JRE的扩展目录中jar包的加载。<br>在JDK中JRE的lib目录下ext目录</p>
+<h4 id="Sysetm-ClassLoader-系统类加载器"><a href="#Sysetm-ClassLoader-系统类加载器" class="headerlink" title="Sysetm ClassLoader 系统类加载器"></a>Sysetm ClassLoader 系统类加载器</h4><p>负责在JVM启动时加载来自java命令的class文件，以及classpath环境变量所指定的jar包和类路径，包扩自己写的类</p>
+<h3 id="获取class文件对象"><a href="#获取class文件对象" class="headerlink" title="获取class文件对象"></a>获取class文件对象</h3><ul>
+<li><p>Object类的getClass()方法</p>
+</li>
+<li><p>数据类型的静态属性class</p>
+</li>
+<li><p>Class类中的静态方法</p>
+<p>  public static Class forName(String className)要带有包名</p>
+</li>
+</ul>
+<h2 id="Class类"><a href="#Class类" class="headerlink" title="Class类"></a>Class类</h2><p>Class 类的实例表示正在运行的 Java 应用程序中的类和接口</p>
+<h3 id="成员方法"><a href="#成员方法" class="headerlink" title="成员方法"></a>成员方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> Constructor[] getConstructors():所有公共构造方法</div><div class="line"><span class="keyword">public</span> Constructor[] getDeclaredConstructors():所有构造方法</div></pre></td></tr></table></figure>
+<p>注意第一个获得公共的构造方法，第二个获得所有构造方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">	<span class="comment">// 获取字节码文件对象</span></div><div class="line">	Class c = Class.forName(<span class="string">"cn.itcast_01.Person"</span>);</div><div class="line"></div><div class="line">	<span class="comment">// 获取单个构造方法</span></div><div class="line">	<span class="comment">// public Constructor&lt;T&gt; getConstructor(Class&lt;?&gt;... parameterTypes)</span></div><div class="line">	<span class="comment">// 参数表示的是：你要获取的构造方法的构造参数个数及数据类型的class字节码文件对象</span></div><div class="line">	Constructor con = c.getConstructor();<span class="comment">// 返回的是构造方法对象</span></div><div class="line"></div><div class="line">	<span class="comment">// public T newInstance(Object... initargs)</span></div><div class="line">	<span class="comment">// 使用此 Constructor 对象表示的构造方法来创建该构造方法的声明类的新实例，并用指定的初始化参数初始化该实例。</span></div><div class="line">	Object obj = con.newInstance();</div><div class="line">	System.out.println(obj);</div><div class="line">	<span class="comment">// 和下面两行代码含义相同Person p = new Person();</span></div><div class="line">	<span class="comment">// System.out.println(p);</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>Object obj = con.newInstance()本质就是创建一个新的Person对象</p>
+</blockquote>
+<h3 id="应用实例"><a href="#应用实例" class="headerlink" title="应用实例"></a>应用实例</h3><h4 id="获得构造方法"><a href="#获得构造方法" class="headerlink" title="获得构造方法"></a>获得构造方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment"> * 需求：通过反射去获取该构造方法并使用：</span></div><div class="line"><span class="comment"> * public Person(String name, int age, String address)</span></div><div class="line"><span class="comment"> * </span></div><div class="line"><span class="comment"> * 相当于下面代码：</span></div><div class="line"><span class="comment"> * Person p = new Person("林青霞",27,"北京");</span></div><div class="line"><span class="comment"> * System.out.println(p);</span></div><div class="line"><span class="comment"> */</span>	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">		<span class="comment">// 获取字节码文件对象</span></div><div class="line">		Class c = Class.forName(<span class="string">"cn.itcast_01.Person"</span>);</div><div class="line"></div><div class="line">		<span class="comment">// 获取带参构造方法对象</span></div><div class="line">		<span class="comment">// public Constructor&lt;T&gt; getConstructor(Class&lt;?&gt;... parameterTypes)</span></div><div class="line">		Constructor con = c.getConstructor(String.class, <span class="keyword">int</span>.class,</div><div class="line">				String.class);</div><div class="line"></div><div class="line">		<span class="comment">// 通过带参构造方法对象创建对象</span></div><div class="line">		<span class="comment">// public T newInstance(Object... initargs)</span></div><div class="line">		Object obj = con.newInstance(<span class="string">"林青霞"</span>, <span class="number">27</span>, <span class="string">"北京"</span>);</div><div class="line">		</div><div class="line">		System.out.println(obj);</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<p>####获得私有构造方法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment"> * 需求：通过反射获取私有构造方法并使用</span></div><div class="line"><span class="comment"> * private Person(String name)&#123;&#125;</span></div><div class="line"><span class="comment"> * </span></div><div class="line"><span class="comment"> * Person p = new Person("风清扬");</span></div><div class="line"><span class="comment"> * System.out.println(p);</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReflectDemo3</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">		<span class="comment">// 获取字节码文件对象</span></div><div class="line">		Class c = Class.forName(<span class="string">"cn.itcast_01.Person"</span>);</div><div class="line"></div><div class="line">		<span class="comment">// 获取私有构造方法对象</span></div><div class="line">		<span class="comment">// NoSuchMethodException：没有这个方法异常</span></div><div class="line">		<span class="comment">// 原因是一开始我们使用的方法只能获取公共的，下面这种方式就可以了。</span></div><div class="line">		Constructor con = c.getDeclaredConstructor(String.class);</div><div class="line"></div><div class="line">		<span class="comment">// 用该私有构造方法创建对象</span></div><div class="line">		<span class="comment">// IllegalAccessException:非法的访问异常。</span></div><div class="line">		<span class="comment">// 暴力访问</span></div><div class="line">		con.setAccessible(<span class="keyword">true</span>);<span class="comment">// 值为true则指示反射的对象在使用时应该取消Java语言访问检查。</span></div><div class="line">		Object obj = con.newInstance(<span class="string">"风清扬"</span>);</div><div class="line"></div><div class="line">		System.out.println(obj);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="获得成员变量"><a href="#获得成员变量" class="headerlink" title="获得成员变量"></a>获得成员变量</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment"> * 通过发生获取成员变量并使用</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReflectDemo</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">		<span class="comment">// 获取字节码文件对象</span></div><div class="line">		Class c = Class.forName(<span class="string">"cn.itcast_01.Person"</span>);</div><div class="line"></div><div class="line">		<span class="comment">// 获取所有的成员变量</span></div><div class="line">		<span class="comment">// Field[] fields = c.getFields();</span></div><div class="line">		<span class="comment">// Field[] fields = c.getDeclaredFields();</span></div><div class="line">		<span class="comment">// for (Field field : fields) &#123;</span></div><div class="line">		<span class="comment">// System.out.println(field);</span></div><div class="line">		<span class="comment">// &#125;</span></div><div class="line"></div><div class="line">		<span class="comment">/*</span></div><div class="line"><span class="comment">		 * Person p = new Person(); p.address = "北京"; System.out.println(p);</span></div><div class="line"><span class="comment">		 */</span></div><div class="line"></div><div class="line">		<span class="comment">// 通过无参构造方法创建对象</span></div><div class="line">		Constructor con = c.getConstructor();</div><div class="line">		Object obj = con.newInstance();</div><div class="line">		System.out.println(obj);</div><div class="line"></div><div class="line">		<span class="comment">// 获取单个的成员变量</span></div><div class="line">		<span class="comment">// 获取address并对其赋值</span></div><div class="line">		Field addressField = c.getField(<span class="string">"address"</span>);</div><div class="line">		<span class="comment">// public void set(Object obj,Object value)</span></div><div class="line">		<span class="comment">// 将指定对象变量上此 Field 对象表示的字段设置为指定的新值。</span></div><div class="line">		addressField.set(obj, <span class="string">"北京"</span>); <span class="comment">// 给obj对象的addressField字段设置值为"北京"</span></div><div class="line">		System.out.println(obj);</div><div class="line"></div><div class="line">		<span class="comment">// 获取name并对其赋值</span></div><div class="line">		<span class="comment">// NoSuchFieldException</span></div><div class="line">		Field nameField = c.getDeclaredField(<span class="string">"name"</span>);</div><div class="line">		<span class="comment">// IllegalAccessException</span></div><div class="line">		nameField.setAccessible(<span class="keyword">true</span>);</div><div class="line">		nameField.set(obj, <span class="string">"林青霞"</span>);</div><div class="line">		System.out.println(obj);</div><div class="line"></div><div class="line">		<span class="comment">// 获取age并对其赋值</span></div><div class="line">		Field ageField = c.getDeclaredField(<span class="string">"age"</span>);</div><div class="line">		ageField.setAccessible(<span class="keyword">true</span>);</div><div class="line">		ageField.set(obj, <span class="number">27</span>);</div><div class="line">		System.out.println(obj);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="获得方法"><a href="#获得方法" class="headerlink" title="获得方法"></a>获得方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">	<span class="comment">// 获取字节码文件对象</span></div><div class="line">	Class c = Class.forName(<span class="string">"cn.itcast_01.Person"</span>);</div><div class="line"></div><div class="line">	<span class="comment">// 获取所有的方法</span></div><div class="line">	<span class="comment">// Method[] methods = c.getMethods(); // 获取自己的包括父亲的公共方法</span></div><div class="line">	<span class="comment">// Method[] methods = c.getDeclaredMethods(); // 获取自己的所有的方法</span></div><div class="line">	<span class="comment">// for (Method method : methods) &#123;</span></div><div class="line">	<span class="comment">// System.out.println(method);</span></div><div class="line">	<span class="comment">// &#125;</span></div><div class="line"></div><div class="line">	Constructor con = c.getConstructor();</div><div class="line">	Object obj = con.newInstance();</div><div class="line"></div><div class="line">	<span class="comment">/*</span></div><div class="line"><span class="comment">	 * Person p = new Person(); p.show();</span></div><div class="line"><span class="comment">	 */</span></div><div class="line"></div><div class="line">	<span class="comment">// 获取单个方法并使用</span></div><div class="line">	<span class="comment">// public void show()</span></div><div class="line">	<span class="comment">// public Method getMethod(String name,Class&lt;?&gt;... parameterTypes)</span></div><div class="line">	<span class="comment">// 第一个参数表示的方法名，第二个参数表示的是方法的参数的class类型</span></div><div class="line">	Method m1 = c.getMethod(<span class="string">"show"</span>);</div><div class="line">	<span class="comment">// obj.m1(); // 错误</span></div><div class="line">	<span class="comment">// public Object invoke(Object obj,Object... args)</span></div><div class="line">	<span class="comment">// 返回值是Object接收,第一个参数表示对象是谁，第二参数表示调用该方法的实际参数</span></div><div class="line">	m1.invoke(obj); <span class="comment">// 调用obj对象的m1方法</span></div><div class="line"></div><div class="line">	System.out.println(<span class="string">"----------"</span>);</div><div class="line">	<span class="comment">// public void method(String s)</span></div><div class="line">	Method m2 = c.getMethod(<span class="string">"method"</span>, String.class);</div><div class="line">	m2.invoke(obj, <span class="string">"hello"</span>);</div><div class="line">	System.out.println(<span class="string">"----------"</span>);</div><div class="line"></div><div class="line">	<span class="comment">// public String getString(String s, int i)</span></div><div class="line">	Method m3 = c.getMethod(<span class="string">"getString"</span>, String.class, <span class="keyword">int</span>.class);</div><div class="line">	Object objString = m3.invoke(obj, <span class="string">"hello"</span>, <span class="number">100</span>);</div><div class="line">	System.out.println(objString);</div><div class="line">	<span class="comment">// String s = (String)m3.invoke(obj, "hello",100);</span></div><div class="line">	<span class="comment">// System.out.println(s);</span></div><div class="line">	System.out.println(<span class="string">"----------"</span>);</div><div class="line"></div><div class="line">	<span class="comment">// private void function()</span></div><div class="line">	Method m4 = c.getDeclaredMethod(<span class="string">"function"</span>);</div><div class="line">	m4.setAccessible(<span class="keyword">true</span>);</div><div class="line">	m4.invoke(obj);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="通过配置文件方便升级代码"><a href="#通过配置文件方便升级代码" class="headerlink" title="通过配置文件方便升级代码"></a>通过配置文件方便升级代码</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment"> * 通过配置文件运行类中的方法</span></div><div class="line"><span class="comment"> * </span></div><div class="line"><span class="comment"> * 反射：</span></div><div class="line"><span class="comment"> * 		需要有配置文件配合使用。</span></div><div class="line"><span class="comment"> * 		用class.txt代替。</span></div><div class="line"><span class="comment"> * 		并且你知道有两个键。</span></div><div class="line"><span class="comment"> * 			className</span></div><div class="line"><span class="comment"> * 			methodName</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">		<span class="comment">// 反射前的做法</span></div><div class="line">		<span class="comment">// Student s = new Student();</span></div><div class="line">		<span class="comment">// s.love();</span></div><div class="line">		<span class="comment">// Teacher t = new Teacher();</span></div><div class="line">		<span class="comment">// t.love();</span></div><div class="line">		<span class="comment">// Worker w = new Worker();</span></div><div class="line">		<span class="comment">// w.love();</span></div><div class="line">		<span class="comment">// 反射后的做法</span></div><div class="line"></div><div class="line">		<span class="comment">// 加载键值对数据</span></div><div class="line">		Properties prop = <span class="keyword">new</span> Properties();</div><div class="line">		FileReader fr = <span class="keyword">new</span> FileReader(<span class="string">"class.txt"</span>);</div><div class="line">		prop.load(fr);</div><div class="line">		fr.close();</div><div class="line"></div><div class="line">		<span class="comment">// 获取数据</span></div><div class="line">		String className = prop.getProperty(<span class="string">"className"</span>);</div><div class="line">		String methodName = prop.getProperty(<span class="string">"methodName"</span>);</div><div class="line"></div><div class="line">		<span class="comment">// 反射</span></div><div class="line">		Class c = Class.forName(className);</div><div class="line"></div><div class="line">		Constructor con = c.getConstructor();</div><div class="line">		Object obj = con.newInstance();</div><div class="line"></div><div class="line">		<span class="comment">// 调用方法</span></div><div class="line">		Method m = c.getMethod(methodName);</div><div class="line">		m.invoke(obj);</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<h4 id="越过jdk新特性运行源码"><a href="#越过jdk新特性运行源码" class="headerlink" title="越过jdk新特性运行源码"></a>越过jdk新特性运行源码</h4><p>ArrayList<integer>的一个对象，我想在这个集合中添加一个字符串数据，如何实现呢？</integer></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayListDemo</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> NoSuchMethodException,</span></div><div class="line"><span class="function">			SecurityException, IllegalAccessException,</span></div><div class="line"><span class="function">			IllegalArgumentException, InvocationTargetException </span>&#123;</div><div class="line">		<span class="comment">// 创建集合对象</span></div><div class="line">		ArrayList&lt;Integer&gt; array = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</div><div class="line"></div><div class="line">		<span class="comment">// array.add("hello");</span></div><div class="line">		<span class="comment">// array.add(10);</span></div><div class="line"></div><div class="line">		Class c = array.getClass(); <span class="comment">// 集合ArrayList的class文件对象</span></div><div class="line">		Method m = c.getMethod(<span class="string">"add"</span>, Object.class);</div><div class="line"></div><div class="line">		m.invoke(array, <span class="string">"hello"</span>); <span class="comment">// 调用array的add方法，传入的值是hello</span></div><div class="line">		m.invoke(array, <span class="string">"world"</span>);</div><div class="line">		m.invoke(array, <span class="string">"java"</span>);</div><div class="line"></div><div class="line">		System.out.println(array);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在反编译的源码里，没有泛型，所以可以使用反射机制调用源码</p>
+<h2 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h2><p>本来应该自己做的事情，却请了别人来做，被请的人就是代理对象</p>
+<p>在Java中java.lang.reflect包下提供了一个Proxy类和一个InvocationHandler接口，通过使用这个类和接口就可以生成动态代理对象。JDK提供的代理只能针对接口做代理。我们有更强大的代理cglib</p>
+<h3 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h3><p>假设我有两个类，而且这两个类都要实现一个相同的操作</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		UserDao ud = <span class="keyword">new</span> UserDaoImpl();</div><div class="line">		ud.add();</div><div class="line">		ud.delete();</div><div class="line">		ud.update();</div><div class="line">		ud.find();</div><div class="line">		System.out.println(<span class="string">"-----------"</span>);</div><div class="line">		<span class="comment">// 我们要创建一个动态代理对象</span></div><div class="line">		<span class="comment">// Proxy类中有一个方法可以创建动态代理对象</span></div><div class="line">		<span class="comment">// public static Object newProxyInstance(ClassLoader loader,Class&lt;?&gt;[]</span></div><div class="line">		<span class="comment">// interfaces,InvocationHandler h)</span></div><div class="line">		<span class="comment">// 我准备对ud对象做一个代理对象</span></div><div class="line">		MyInvocationHandler handler = <span class="keyword">new</span> MyInvocationHandler(ud);</div><div class="line">		UserDao proxy = (UserDao) Proxy.newProxyInstance(ud.getClass()</div><div class="line">				.getClassLoader(), ud.getClass().getInterfaces(), handler);</div><div class="line">		proxy.add();</div><div class="line">		proxy.delete();</div><div class="line">		proxy.update();</div><div class="line">		proxy.find();</div><div class="line">		System.out.println(<span class="string">"-----------"</span>);</div><div class="line"></div><div class="line">		StudentDao sd = <span class="keyword">new</span> StudentDaoImpl();</div><div class="line">		MyInvocationHandler handler2 = <span class="keyword">new</span> MyInvocationHandler(sd);</div><div class="line">		StudentDao proxy2 = (StudentDao) Proxy.newProxyInstance(sd.getClass()</div><div class="line">				.getClassLoader(), sd.getClass().getInterfaces(), handler2);</div><div class="line">		proxy2.login();</div><div class="line">		proxy2.regist();</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyInvocationHandler</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span> </span>&#123;</div><div class="line">	<span class="keyword">private</span> Object target; <span class="comment">// 目标对象</span></div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MyInvocationHandler</span><span class="params">(Object target)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.target = target;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span></span></div><div class="line"><span class="function">			<span class="keyword">throws</span> Throwable </span>&#123;</div><div class="line">		System.out.println(<span class="string">"权限校验"</span>);</div><div class="line">		Object result = method.invoke(target, args);</div><div class="line">		System.out.println(<span class="string">"日志记录"</span>);</div><div class="line">		<span class="keyword">return</span> result; <span class="comment">// 返回的是代理对象</span></div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">StudentDao</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">login</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">regist</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StudentDaoImpl</span> <span class="keyword">implements</span> <span class="title">StudentDao</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">login</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"登录功能"</span>);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">regist</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"注册功能"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserDao</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">delete</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">find</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserDaoImpl</span> <span class="keyword">implements</span> <span class="title">UserDao</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"添加功能"</span>);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">delete</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"删除功能"</span>);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"修改功能"</span>);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">find</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"查找功能"</span>);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="模板设计模式"><a href="#模板设计模式" class="headerlink" title="模板设计模式"></a>模板设计模式</h2><p>模版方法模式就是定义一个算法的骨架，而将具体的算法延迟到子类中来实现</p>
+<p><a href="http://meigesir.iteye.com/blog/1506484" target="_blank" rel="external">http://meigesir.iteye.com/blog/1506484</a></p>
+<h2 id="装饰设计模式"><a href="#装饰设计模式" class="headerlink" title="装饰设计模式"></a>装饰设计模式</h2><p>装饰模式就是使用被装饰类的一个子类的实例，在客户端将这个子类的实例交给装饰类。是继承的替代方案</p>
+<p><a href="http://jiangnanlove.iteye.com/blog/914120" target="_blank" rel="external">http://jiangnanlove.iteye.com/blog/914120</a></p>
+<h2 id="JDK新特新"><a href="#JDK新特新" class="headerlink" title="JDK新特新"></a>JDK新特新</h2><p>自动装箱和拆箱<br>泛型<br>增强for循环<br>静态导入<br>可变参数<br>枚举</p>
+<h3 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h3><p>枚举类可以有构造器，但必须是private的，它默认的也是private的。枚举项的用法比较特殊：枚举(“”)</p>
+<h4 id="实例代码"><a href="#实例代码" class="headerlink" title="实例代码"></a>实例代码</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">Direction3 dd = Direction3.FRONT;</div><div class="line">dd = Direction3.LEFT;</div><div class="line"></div><div class="line"><span class="keyword">switch</span> (dd) &#123;</div><div class="line"><span class="keyword">case</span> FRONT:</div><div class="line">	System.out.println(<span class="string">"你选择了前"</span>);</div><div class="line">	<span class="keyword">break</span>;</div><div class="line"><span class="keyword">case</span> BEHIND:</div><div class="line">	System.out.println(<span class="string">"你选择了后"</span>);</div><div class="line">	<span class="keyword">break</span>;</div><div class="line"><span class="keyword">case</span> LEFT:</div><div class="line">	System.out.println(<span class="string">"你选择了左"</span>);</div><div class="line">	<span class="keyword">break</span>;</div><div class="line"><span class="keyword">case</span> RIGHT:</div><div class="line">	System.out.println(<span class="string">"你选择了右"</span>);</div><div class="line">	<span class="keyword">break</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Direction3 &#123;</div><div class="line">	FRONT(<span class="string">"前"</span>) &#123;</div><div class="line">		<span class="meta">@Override</span></div><div class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span> </span>&#123;</div><div class="line">			System.out.println(<span class="string">"前"</span>);</div><div class="line">		&#125;</div><div class="line">	&#125;,</div><div class="line">	BEHIND(<span class="string">"后"</span>) &#123;</div><div class="line">		<span class="meta">@Override</span></div><div class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span> </span>&#123;</div><div class="line">			System.out.println(<span class="string">"后"</span>);</div><div class="line">		&#125;</div><div class="line">	&#125;,</div><div class="line">	LEFT(<span class="string">"左"</span>) &#123;</div><div class="line">		<span class="meta">@Override</span></div><div class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span> </span>&#123;</div><div class="line">			System.out.println(<span class="string">"左"</span>);</div><div class="line">		&#125;</div><div class="line">	&#125;,</div><div class="line">	RIGHT(<span class="string">"右"</span>) &#123;</div><div class="line"></div><div class="line">		<span class="meta">@Override</span></div><div class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span> </span>&#123;</div><div class="line">			<span class="comment">// TODO Auto-generated method stub</span></div><div class="line">			</div><div class="line">		&#125;</div><div class="line">		</div><div class="line">	&#125;;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> String name;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="title">Direction3</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.name = name;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> name;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Direction2 &#123;</div><div class="line">	FRONT(<span class="string">"前"</span>), BEHIND(<span class="string">"后"</span>), LEFT(<span class="string">"左"</span>), RIGHT(<span class="string">"右"</span>);</div><div class="line"></div><div class="line">	<span class="keyword">private</span> String name;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="title">Direction2</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.setName(name);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> name;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.name = name;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Direction &#123;</div><div class="line">	FRONT, BEHIND, LEFT, RIGHT;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="枚举的方法"><a href="#枚举的方法" class="headerlink" title="枚举的方法"></a>枚举的方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// &lt;T&gt; T valueOf(Class&lt;T&gt; type,String name)</span></div><div class="line">Direction2 d = Enum.valueOf(Direction2.class, <span class="string">"FRONT"</span>);</div><div class="line">System.out.println(d.getName());</div><div class="line">System.out.println(<span class="string">"----------------"</span>);</div><div class="line"><span class="comment">// values()</span></div><div class="line"><span class="comment">// 此方法虽然在JDK文档中查找不到，但每个枚举类都具有该方法，它遍历枚举类的所有枚举值非常方便</span></div><div class="line">Direction2[] dirs = Direction2.values();</div><div class="line"><span class="keyword">for</span> (Direction2 d2 : dirs) &#123;</div><div class="line">	System.out.println(d2);</div><div class="line">	System.out.println(d2.getName());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="JDK新特性"><a href="#JDK新特性" class="headerlink" title="JDK新特性"></a>JDK新特性</h2><p>二进制字面量<br>数字字面量可以出现下划线<br>switch 语句可以用字符串<br>泛型简化<br>异常的多个catch合并<br>try-with-resources 语句</p>
+<h3 id="二进制字面值量"><a href="#二进制字面值量" class="headerlink" title="二进制字面值量"></a>二进制字面值量</h3><p>只要在二进制数值前面加 0b或者0B<br>举例：<br>​    int x = ob110110</p>
+<h3 id="字面值出现下划线"><a href="#字面值出现下划线" class="headerlink" title="字面值出现下划线"></a>字面值出现下划线</h3><p>为了增强对数值的阅读性，如我们经常把数据用逗号分隔一样。JDK7提供了_对数据分隔。<br>举例：<br>​    int x = 100_1000;<br>注意事项：<br>​    不能出现在进制标识和数值之间<br>​    不能出现在数值开头和结尾<br>​    不能出现在小数点旁边</p>
+<h3 id="泛型简化"><a href="#泛型简化" class="headerlink" title="泛型简化"></a>泛型简化</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ArrayList&lt;String&gt; array = <span class="keyword">new</span> ArrayList&lt;String&gt;();转化成简化版</div><div class="line">ArrayList&lt;String&gt; array = <span class="keyword">new</span> ArrayList&lt;&gt;();</div></pre></td></tr></table></figure>
+<h3 id="try-with-resources"><a href="#try-with-resources" class="headerlink" title="try-with-resources"></a>try-with-resources</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// try(必须是java.lang.AutoCloseable的子类对象)&#123;…&#125;</span></div><div class="line"></div><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">	FileReader fr = <span class="keyword">new</span> FileReader(<span class="string">"a.txt"</span>);</div><div class="line">	FileWriter fw = <span class="keyword">new</span> FileWriter(<span class="string">"b.txt"</span>);</div><div class="line">	<span class="keyword">int</span> ch = <span class="number">0</span>;</div><div class="line">	<span class="keyword">while</span> ((ch = fr.read()) != -<span class="number">1</span>) &#123;</div><div class="line">		fw.write(ch);</div><div class="line">	&#125;</div><div class="line">	fw.close();</div><div class="line">	fr.close();</div><div class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">	e.printStackTrace();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 改进版的代码</span></div><div class="line"><span class="keyword">try</span> (FileReader fr = <span class="keyword">new</span> FileReader(<span class="string">"a.txt"</span>);</div><div class="line">		FileWriter fw = <span class="keyword">new</span> FileWriter(<span class="string">"b.txt"</span>);) &#123;</div><div class="line">	<span class="keyword">int</span> ch = <span class="number">0</span>;</div><div class="line">	<span class="keyword">while</span> ((ch = fr.read()) != -<span class="number">1</span>) &#123;</div><div class="line">		fw.write(ch);</div><div class="line">	&#125;</div><div class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">	e.printStackTrace();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</section>
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#Java笔记" >
+    <span class="tag-code">Java笔记</span>
+  </a>
+
+      </div>
+    
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="alipay-code">
+            <div class="code-image"></div>
+            <b>使用支付宝打赏</b>
+          </span>
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+    </div>
+    <div class="qrcode">
+      <canvas id="share-qrcode"></canvas>
+      <p class="notice">扫描二维码，分享此文章</p>
+    </div>
+    
+      <div id="comments"></div>
+    
+  </article>
+</main>
+
+<script>
+  (function () {
+    var url = 'http://bbbb.ml/2014/03/07/Java/反射&amp;动态代理&amp;设计模式&amp;1.5新特性反射&amp;动态代理&amp;设计模式&amp;1.5新特性/';
+    var banner = 'http://osk1xe27i.bkt.clouddn.com/1.jpg'
+    if (banner !== 'undefined') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "jwl00";
+    if (gitmentConfig != "undefined") {
+      var gitment = new Gitment({
+        id: "反射&动态代理&设计模式&1.5新特性",
+        owner: "jwl00",
+        repo: "jwl00.github.io",
+        oauth: {
+          client_id: "ae21ad25810b1f2cc193",
+          client_secret: "7b6bb525adfeee63bd087132d98e6fd015d49ed8"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

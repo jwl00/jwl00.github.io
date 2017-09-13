@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="什么也不留下">
+  <meta name="keyword" content="hexo-theme, Android">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      类、包、修饰符、内部类 | JWL博客
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>JWL博客</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>类、包、修饰符、内部类</h2>
+  <p class="post-date">2014-03-07</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content"><a id="more"></a>
+<h1 id="类、包、修饰符、内部类"><a href="#类、包、修饰符、内部类" class="headerlink" title="类、包、修饰符、内部类"></a>类、包、修饰符、内部类</h1><h2 id="形式参数和返回值类"><a href="#形式参数和返回值类" class="headerlink" title="形式参数和返回值类"></a>形式参数和返回值类</h2><ul>
+<li>形式参数：</li>
+</ul>
+<ol>
+<li><p>基本数据类型</p>
+</li>
+<li><p>引用数据类型</p>
+<ol>
+<li>类：要求是该类的对象</li>
+<li>接口：接口也可以new出对象，所以可以作为形式参数传递给方法，一般是传入一个该接口的实现类的对象，同样利用了多态；</li>
+<li>抽象类：类可以new出对象，所以可以作为形式参数传递给方法，一抽般用法是把抽象类作为形式参数，但是传入<strong>一个抽象类的实现类</strong>的对象；（利用了多态）</li>
+</ol>
+<p>示例代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Love</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">love</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">LoveDemo</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">(Love l)</span> </span>&#123; <span class="comment">//l; l = new Teacher();  Love l = new Teacher(); 多态</span></div><div class="line">		l.love();</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//定义具体类实现接口</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Teacher</span> <span class="keyword">implements</span> <span class="title">Love</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">love</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"老师爱学生,爱Java,爱林青霞"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TeacherTest</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="comment">//需求：我要测试LoveDemo类中的love()方法</span></div><div class="line">		LoveDemo ld = <span class="keyword">new</span> LoveDemo();</div><div class="line">		Love l = <span class="keyword">new</span> Teacher();</div><div class="line">		ld.method(l);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li>返回值</li>
+</ul>
+<ol>
+<li>基本数据类型</li>
+<li>引用数据类型<ol>
+<li>类：返回的是该类的对象</li>
+<li>抽象类：返回的是该类的实现类的对象</li>
+<li>接口：返回的是该类的子类的实现对象</li>
+</ol>
+</li>
+</ol>
+<p>示例代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Love</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">love</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">LoveDemo</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> Love <span class="title">getLove</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="comment">//Love l = new Teacher();</span></div><div class="line">		<span class="comment">//return l;</span></div><div class="line">		</div><div class="line">		<span class="keyword">return</span> <span class="keyword">new</span> Teacher();</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Teacher1</span> <span class="keyword">implements</span> <span class="title">Love</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">love</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"老师爱学生,爱Java,爱林青霞1111111111"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">//定义具体类实现接口</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Teacher</span> <span class="keyword">implements</span> <span class="title">Love</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">love</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"老师爱学生,爱Java,爱林青霞2222222"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExtendsTest</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="comment">//如何测试呢?</span></div><div class="line">		LoveDemo ld = <span class="keyword">new</span> LoveDemo();</div><div class="line">		Love l = ld.getLove(); <span class="comment">//new Teacher(); Love l = new Teacher(); 多态</span></div><div class="line">		l.love();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里由于LoveDemo的getLove方法返回的是Teacher类型的对象，所以多态的l对象会自动调用love的实现类Teacher；</p>
+<p>如果在getLove方法返回的是new Love那么系统会自动帮你创建一个匿名的实现类的对象；</p>
+<h2 id="包"><a href="#包" class="headerlink" title="包"></a>包</h2><blockquote>
+<p>package语句必须是程序的第一条可执行的代码，package语句在一个class文件中只能有一个，如果没有package语句标示默认无包；</p>
+</blockquote>
+<h3 id="带有包的java文件的运行"><a href="#带有包的java文件的运行" class="headerlink" title="带有包的java文件的运行"></a>带有包的java文件的运行</h3><ul>
+<li>手动<ol>
+<li>编写带有package语句的java文件</li>
+<li>javac编译，并且手动创建包</li>
+<li>把class放进包中，回到最顶层包的根目录</li>
+<li>java运行<strong>是java 包名 文件名</strong></li>
+</ol>
+</li>
+<li><p>自动</p>
+<ol>
+<li>javac编译时加入<strong>javac  -d   .  文件名.java</strong></li>
+<li>只是自动创建包然后在<strong>java 包名  文件名</strong>运行</li>
+</ol>
+<h2 id="权限修饰符"><a href="#权限修饰符" class="headerlink" title="权限修饰符"></a>权限修饰符</h2></li>
+</ul>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/Java学习笔记_day10_权限修饰符.png" alt="Java学习笔记_day10_权限修饰符"></p>
+<p>权限修饰符：public protect  默认  private</p>
+<p>状态修饰符：static  final </p>
+<p>抽象修饰符：abstract</p>
+<p>类：</p>
+<p>​    权限修饰符：默认，public（private不可以）<strong>内部类可以用private修饰</strong></p>
+<p>​    状态修饰符：final（static不可以）<strong>内部类也可以用static</strong></p>
+<p>​    抽象修饰符：abstract </p>
+<p>​    内部类就相当于外部类的一个成员变量，所以可以使用private和static修饰</p>
+<p>成员变量</p>
+<p>​    权限修饰符：都可以</p>
+<p>​    状态修饰符：都可以</p>
+<p>​    抽象修饰符：不可以</p>
+<p>成员方法</p>
+<p>​    权限修饰符：都可以</p>
+<p>​    状态修饰符：都可以</p>
+<p>​    抽象修饰符：都可以</p>
+<h2 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h2><h3 id="访问特点"><a href="#访问特点" class="headerlink" title="访问特点"></a>访问特点</h3><ol>
+<li>内部类可以直接访问外部类的成员变量，包括私有变量；</li>
+<li>外部类不可以直接访问内部类的成员，一定要创建对象；</li>
+</ol>
+<h3 id="内部类的位置"><a href="#内部类的位置" class="headerlink" title="内部类的位置"></a>内部类的位置</h3><ol>
+<li>成员内部类</li>
+<li>局部内部类（在方法里定义的内部类）</li>
+</ol>
+<h3 id="访问不同内部类内的方法"><a href="#访问不同内部类内的方法" class="headerlink" title="访问不同内部类内的方法"></a>访问不同内部类内的方法</h3><ul>
+<li>成员内部类：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//外部类名.内部类名 对象名 = 外部类对象.内部类对象;</span></div><div class="line">Outer.Inner oi = <span class="keyword">new</span> Outer().new Inner();</div><div class="line"></div><div class="line"><span class="comment">//成员内部类被static修饰后的访问方式是：</span></div><div class="line"><span class="comment">//外部类名.内部类名 对象名 = 外部类名.内部类名();</span></div><div class="line">Outer.Inner oi = <span class="keyword">new</span> Outor.Inner();</div><div class="line"><span class="comment">//或者是外部类名.内部类名.方法名</span></div><div class="line">Outer.Inner.show();</div></pre></td></tr></table></figure>
+<ul>
+<li>局部内部类：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//在局部位置，可以创建局部类对象，通过对象调用内部类方法</span></div><div class="line"><span class="comment">//局部内部类访问局部变量，局部变量一定要使用fianl修饰局部变量</span></div></pre></td></tr></table></figure>
+<p>使用final的原因：</p>
+<p>​    因为局部变量会随着方法的调用完毕而销毁，这时候局部对象没有立马从堆内存中消失，还会用到局部变量，所以为了能让局部变量继续使用，就用fianl修饰，这样在堆内存中其实存储的是一个常量值。</p>
+<h3 id="不同内部类的修饰符"><a href="#不同内部类的修饰符" class="headerlink" title="不同内部类的修饰符"></a>不同内部类的修饰符</h3><ul>
+<li><p>成员内部类</p>
+<p>成员内部类可以用static修饰，此时常用是public static，相当于外部类的一个局部变量；</p>
+<p>局部内部类可以用private修饰，相当于外部类的私有成员变量；</p>
+<p>被静态修饰的成员内部类只能访问外部类的静态成员</p>
+</li>
+</ul>
+<h3 id="内部类的面试题"><a href="#内部类的面试题" class="headerlink" title="内部类的面试题"></a>内部类的面试题</h3><ul>
+<li>局部内部类</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">补齐程序(注意:内部类和外部类没有继承关系)</div><div class="line">	<span class="class"><span class="keyword">class</span> <span class="title">Outer</span> </span>&#123;</div><div class="line">		<span class="keyword">public</span> <span class="keyword">int</span> num = <span class="number">10</span>;</div><div class="line">		<span class="class"><span class="keyword">class</span> <span class="title">Inner</span> </span>&#123;</div><div class="line">			<span class="keyword">public</span> <span class="keyword">int</span> num = <span class="number">20</span>;</div><div class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span> </span>&#123;</div><div class="line">				<span class="keyword">int</span> num = <span class="number">30</span>;</div><div class="line">				System.out.println(?);</div><div class="line">				System.out.println(??);</div><div class="line">				System.out.println(???);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">在控制分别输出：<span class="number">30</span>，<span class="number">20</span>，<span class="number">10</span></div></pre></td></tr></table></figure>
+<p>参考答案：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">System.out.println(num);</div><div class="line">System.out.println(<span class="keyword">this</span>.num);</div><div class="line"><span class="comment">//System.out.println(new Outer().num);</span></div><div class="line">System.out.println(Outer.<span class="keyword">this</span>.num);</div></pre></td></tr></table></figure>
+<p>注意：<strong>通过外部类名限制this</strong></p>
+<ul>
+<li>匿名内部类</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">按照要求，补齐代码</div><div class="line">	<span class="class"><span class="keyword">interface</span> <span class="title">Inter</span> </span>&#123; <span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>; &#125;</div><div class="line">	<span class="class"><span class="keyword">class</span> <span class="title">Outer</span> </span>&#123; <span class="comment">//补齐代码 &#125;</span></div><div class="line">	<span class="class"><span class="keyword">class</span> <span class="title">OuterDemo</span> </span>&#123;</div><div class="line">	    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		      Outer.method().show();</div><div class="line">		  &#125;</div><div class="line">	&#125;</div><div class="line">要求在控制台输出”HelloWorld”</div></pre></td></tr></table></figure>
+<p>参考答案：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Inter</span> </span>&#123; </div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>; </div><div class="line">	<span class="comment">//public abstract</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Outer</span> </span>&#123; </div><div class="line">	<span class="comment">//补齐代码</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Inter <span class="title">method</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="comment">//子类对象 -- 子类匿名对象</span></div><div class="line">		<span class="keyword">return</span> <span class="keyword">new</span> Inter() &#123;</div><div class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span> </span>&#123;</div><div class="line">				System.out.println(<span class="string">"HelloWorld"</span>);</div><div class="line">			&#125;</div><div class="line">		&#125;;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">OuterDemo</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		Outer.method().show();</div><div class="line">		<span class="comment">/*</span></div><div class="line"><span class="comment">			1:Outer.method()可以看出method()应该是Outer中的一个静态方法。</span></div><div class="line"><span class="comment">			2:Outer.method().show()可以看出method()方法的返回值是一个对象。</span></div><div class="line"><span class="comment">				又由于接口Inter中有一个show()方法,所以我认为method()方法的返回值类型是一个接口。</span></div><div class="line"><span class="comment">		*/</span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="匿名内部类"><a href="#匿名内部类" class="headerlink" title="匿名内部类"></a>匿名内部类</h3><ul>
+<li>前提：存在一个类或者一个叫接口</li>
+<li>格式是：new 类名或者接口名（）{重写方法；}</li>
+<li>本质：<strong>是一个继承了该类或者实现该接口的子类的匿名对象</strong></li>
+<li>匿名内部类方法的调用：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Inter</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">show2</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Outer</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="comment">//一个方法的时候</span></div><div class="line">		<span class="comment">/*</span></div><div class="line"><span class="comment">		new Inter() &#123;</span></div><div class="line"><span class="comment">			public void show() &#123;</span></div><div class="line"><span class="comment">				System.out.println("show");</span></div><div class="line"><span class="comment">			&#125;</span></div><div class="line"><span class="comment">		&#125;.show();</span></div><div class="line"><span class="comment">		*/</span></div><div class="line">		</div><div class="line">		<span class="comment">//二个方法的时候</span></div><div class="line">		<span class="comment">/*</span></div><div class="line"><span class="comment">		new Inter() &#123;</span></div><div class="line"><span class="comment">			public void show() &#123;</span></div><div class="line"><span class="comment">				System.out.println("show");</span></div><div class="line"><span class="comment">			&#125;</span></div><div class="line"><span class="comment">			</span></div><div class="line"><span class="comment">			public void show2() &#123;</span></div><div class="line"><span class="comment">				System.out.println("show2");</span></div><div class="line"><span class="comment">			&#125;</span></div><div class="line"><span class="comment">		&#125;.show();</span></div><div class="line"><span class="comment">		</span></div><div class="line"><span class="comment">		new Inter() &#123;</span></div><div class="line"><span class="comment">			public void show() &#123;</span></div><div class="line"><span class="comment">				System.out.println("show");</span></div><div class="line"><span class="comment">			&#125;</span></div><div class="line"><span class="comment">			</span></div><div class="line"><span class="comment">			public void show2() &#123;</span></div><div class="line"><span class="comment">				System.out.println("show2");</span></div><div class="line"><span class="comment">			&#125;</span></div><div class="line"><span class="comment">		&#125;.show2();</span></div><div class="line"><span class="comment">		*/</span></div><div class="line">		</div><div class="line">		<span class="comment">//如果我是很多个方法，就很麻烦了</span></div><div class="line">		<span class="comment">//那么，我们有没有改进的方案呢?</span></div><div class="line">		Inter i = <span class="keyword">new</span> Inter() &#123; <span class="comment">//多态</span></div><div class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span> </span>&#123;</div><div class="line">				System.out.println(<span class="string">"show"</span>);</div><div class="line">			&#125;</div><div class="line">			</div><div class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show2</span><span class="params">()</span> </span>&#123;</div><div class="line">				System.out.println(<span class="string">"show2"</span>);</div><div class="line">			&#125;</div><div class="line">		&#125;;</div><div class="line">		</div><div class="line">		i.show();</div><div class="line">		i.show2();</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">InnerClassDemo6</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		Outer o = <span class="keyword">new</span> Outer();</div><div class="line">		o.method();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>匿名内部类的应用：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Person</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">study</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">PersonDemo</span> </span>&#123;</div><div class="line">	<span class="comment">//接口名作为形式参数</span></div><div class="line">	<span class="comment">//其实这里需要的不是接口，而是该接口的实现类的对象</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">(Person p)</span> </span>&#123;</div><div class="line">		p.study();</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//实现类</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">implements</span> <span class="title">Person</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">study</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"好好学习,天天向上"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">InnerClassTest2</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="comment">//测试</span></div><div class="line">		PersonDemo pd = <span class="keyword">new</span> PersonDemo();</div><div class="line">		Person p = <span class="keyword">new</span> Student();</div><div class="line">		pd.method(p);</div><div class="line">		System.out.println(<span class="string">"--------------------"</span>);</div><div class="line">		</div><div class="line">		<span class="comment">//匿名内部类在开发中的使用</span></div><div class="line">		<span class="comment">//匿名内部类的本质是继承类或者实现了接口的子类匿名对象</span></div><div class="line">		pd.method(<span class="keyword">new</span> Person()&#123;</div><div class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">study</span><span class="params">()</span> </span>&#123;</div><div class="line">				System.out.println(<span class="string">"好好学习,天天向上"</span>);</div><div class="line">			&#125;</div><div class="line">		&#125;);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>使用接口名作为形式参数，本质是想要一个接口的实现类对象，而匿名内部类的本质是一个实现了接口的匿名<strong>对象</strong>。</p>
+</section>
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#Java笔记" >
+    <span class="tag-code">Java笔记</span>
+  </a>
+
+      </div>
+    
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="alipay-code">
+            <div class="code-image"></div>
+            <b>使用支付宝打赏</b>
+          </span>
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+    </div>
+    <div class="qrcode">
+      <canvas id="share-qrcode"></canvas>
+      <p class="notice">扫描二维码，分享此文章</p>
+    </div>
+    
+      <div id="comments"></div>
+    
+  </article>
+</main>
+
+<script>
+  (function () {
+    var url = 'http://bbbb.ml/2014/03/07/Java/类、包、修饰符、内部类/';
+    var banner = 'http://osk1xe27i.bkt.clouddn.com/1.jpg'
+    if (banner !== 'undefined') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "jwl00";
+    if (gitmentConfig != "undefined") {
+      var gitment = new Gitment({
+        id: "类、包、修饰符、内部类",
+        owner: "jwl00",
+        repo: "jwl00.github.io",
+        oauth: {
+          client_id: "ae21ad25810b1f2cc193",
+          client_secret: "7b6bb525adfeee63bd087132d98e6fd015d49ed8"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

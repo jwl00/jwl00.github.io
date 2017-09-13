@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="什么也不留下">
+  <meta name="keyword" content="hexo-theme, Android">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      StringBuffer、Arrays、基本包装类 | JWL博客
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>JWL博客</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>StringBuffer、Arrays、基本包装类</h2>
+  <p class="post-date">2014-03-07</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content"><a id="more"></a>
+<h1 id="StringBuffer、Arrays、基本包装类"><a href="#StringBuffer、Arrays、基本包装类" class="headerlink" title="StringBuffer、Arrays、基本包装类"></a>StringBuffer、Arrays、基本包装类</h1><h2 id="StringBuffer"><a href="#StringBuffer" class="headerlink" title="StringBuffer"></a>StringBuffer</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>是一个线程安全的可变字符序列（所以在字符串拼接时不会有空间的浪费）</p>
+<h3 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">StringBuffer</span><span class="params">()</span>:无参构造方法</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">StringBuffer</span><span class="params">(<span class="keyword">int</span> capacity)</span>:指定容量的字符串缓冲区对象</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">StringBuffer</span><span class="params">(String str)</span>:指定字符串内容的字符串缓冲区对象</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>stringBuffer重写了toString方法</p>
+<p>public int capacity（）返回当前的容量，理论值</p>
+<p>public int length（）返回长度字符数，实际值</p>
+</blockquote>
+<p>示例代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringBufferDemo</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="comment">// public StringBuffer():无参构造方法</span></div><div class="line">		StringBuffer sb = <span class="keyword">new</span> StringBuffer();</div><div class="line">		System.out.println(<span class="string">"sb:"</span> + sb);</div><div class="line">		System.out.println(<span class="string">"sb.capacity():"</span> + sb.capacity());</div><div class="line">		System.out.println(<span class="string">"sb.length():"</span> + sb.length());</div><div class="line">		System.out.println(<span class="string">"--------------------------"</span>);</div><div class="line"></div><div class="line">		<span class="comment">// public StringBuffer(int capacity):指定容量的字符串缓冲区对象</span></div><div class="line">		StringBuffer sb2 = <span class="keyword">new</span> StringBuffer(<span class="number">50</span>);</div><div class="line">		System.out.println(<span class="string">"sb2:"</span> + sb2);</div><div class="line">		System.out.println(<span class="string">"sb2.capacity():"</span> + sb2.capacity());</div><div class="line">		System.out.println(<span class="string">"sb2.length():"</span> + sb2.length());</div><div class="line">		System.out.println(<span class="string">"--------------------------"</span>);</div><div class="line"></div><div class="line">		<span class="comment">// public StringBuffer(String str):指定字符串内容的字符串缓冲区对象</span></div><div class="line">		StringBuffer sb3 = <span class="keyword">new</span> StringBuffer(<span class="string">"hello"</span>);</div><div class="line">		System.out.println(<span class="string">"sb3:"</span> + sb3);</div><div class="line">		System.out.println(<span class="string">"sb3.capacity():"</span> + sb3.capacity());</div><div class="line">		System.out.println(<span class="string">"sb3.length():"</span> + sb3.length());</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>打印结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">sb:</div><div class="line">sb.capacity():16</div><div class="line">sb.length():0</div><div class="line">--------------------------</div><div class="line">sb2:</div><div class="line">sb2.capacity():50</div><div class="line">sb2.length():0</div><div class="line">--------------------------</div><div class="line">sb3:hello</div><div class="line">sb3.capacity():21</div><div class="line">sb3.length():5</div></pre></td></tr></table></figure>
+<h3 id="成员方法"><a href="#成员方法" class="headerlink" title="成员方法"></a>成员方法</h3><ul>
+<li><p>public StringBuffer append(XXXX xxx)</p>
+<p>参数将被转换成字符串，就好象使用了 String.valueOf 方法一样。然后，将所得字符串中的字符追加到此序列。</p>
+</li>
+</ul>
+<p>注意：此时返回的是被操作（被添加）的字符串本身</p>
+<p>​    可以把任意类型数据添加到字符串缓冲区里面,并返回字符串缓冲区本身</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">StringBuffer sb = <span class="keyword">new</span> StringBuffer();</div><div class="line"><span class="comment">// public StringBuffer append(String str)</span></div><div class="line"> StringBuffer sb2 = sb.append(<span class="string">"hello"</span>);</div><div class="line"> System.out.println(<span class="string">"sb:"</span> + sb);</div><div class="line"> System.out.println(<span class="string">"sb2:"</span> + sb2);</div><div class="line"> System.out.println(sb == sb2); <span class="comment">// true</span></div><div class="line"></div><div class="line"><span class="comment">// 链式编程</span></div><div class="line">sb.append(<span class="string">"hello"</span>).append(<span class="keyword">true</span>).append(<span class="number">12</span>).append(<span class="number">34.56</span>);</div><div class="line">System.out.println(<span class="string">"sb:"</span> + sb);</div></pre></td></tr></table></figure>
+<ul>
+<li><p>public StringBuffer insert(int offset,String str)</p>
+<p>在指定位置把任意类型的数据插入到字符串缓冲区里面,并返回字符串缓冲区本身</p>
+</li>
+<li><p>public StringBuffer deleteCharAt(int index)</p>
+<p>删除指定位置的字符，并返回本身</p>
+</li>
+<li><p>public StringBuffer delete(int start,int end)</p>
+<p>删除从指定位置开始指定位置结束的内容，并返回本身，<strong>包含开始不包含结束</strong></p>
+<p>删除所有的数据：sb.delete(0, sb.length());</p>
+</li>
+<li><p>public StringBuffer replace(int start,int end,String str)从start开始到end用str替换</p>
+</li>
+<li><p>public StringBuffer reverse()反转功能，返回的是数据本身，本身被改变</p>
+</li>
+<li><p>public String substring(int start)返回的是从start到结束，此时它<strong>本身不变</strong></p>
+</li>
+<li><p>public String substring(int start,int end)注意：以上两个都是返回<strong>string而不是StringBuffer</strong></p>
+</li>
+</ul>
+<h3 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h3><ul>
+<li>String和StringBuffer的转换</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//string-----------&gt;stringBuffer</span></div><div class="line"><span class="comment">// StringBuffer sb = "hello";</span></div><div class="line"><span class="comment">// StringBuffer sb = s;</span></div><div class="line"><span class="comment">// 方式1:通过构造方法</span></div><div class="line">StringBuffer sb = <span class="keyword">new</span> StringBuffer(s);</div><div class="line"><span class="comment">// 方式2：通过append()方法</span></div><div class="line">StringBuffer sb2 = <span class="keyword">new</span> StringBuffer();</div><div class="line">sb2.append(s);</div><div class="line"></div><div class="line"><span class="comment">// StringBuffer --------&gt; String</span></div><div class="line">StringBuffer buffer = <span class="keyword">new</span> StringBuffer(<span class="string">"java"</span>);</div><div class="line"><span class="comment">// String(StringBuffer buffer)</span></div><div class="line"><span class="comment">// 方式1:通过构造方法</span></div><div class="line">String str = <span class="keyword">new</span> String(buffer);</div><div class="line"><span class="comment">// 方式2：通过toString()方法</span></div><div class="line">String str2 = buffer.toString();</div></pre></td></tr></table></figure>
+<ul>
+<li>把数组拼接成一个字符串</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringBufferTest2</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="comment">// 定义一个数组</span></div><div class="line">		<span class="keyword">int</span>[] arr = &#123; <span class="number">44</span>, <span class="number">33</span>, <span class="number">55</span>, <span class="number">11</span>, <span class="number">22</span> &#125;;</div><div class="line"></div><div class="line">		<span class="comment">// 定义功能</span></div><div class="line">		<span class="comment">// 方式1：用String做拼接的方式</span></div><div class="line">		String s1 = arrayToString(arr);</div><div class="line">		System.out.println(<span class="string">"s1:"</span> + s1);</div><div class="line"></div><div class="line">		<span class="comment">// 方式2:用StringBuffer做拼接的方式</span></div><div class="line">		String s2 = arrayToString2(arr);</div><div class="line">		System.out.println(<span class="string">"s2:"</span> + s2);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">// 用StringBuffer做拼接的方式</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">arrayToString2</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</div><div class="line">		StringBuffer sb = <span class="keyword">new</span> StringBuffer();</div><div class="line"></div><div class="line">		sb.append(<span class="string">"["</span>);</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> x = <span class="number">0</span>; x &lt; arr.length; x++) &#123;</div><div class="line">			<span class="keyword">if</span> (x == arr.length - <span class="number">1</span>) &#123;</div><div class="line">				sb.append(arr[x]);</div><div class="line">			&#125; <span class="keyword">else</span> &#123;</div><div class="line">				sb.append(arr[x]).append(<span class="string">", "</span>);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		sb.append(<span class="string">"]"</span>);</div><div class="line"></div><div class="line">		<span class="keyword">return</span> sb.toString();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">// 用String做拼接的方式</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">arrayToString</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</div><div class="line">		String s = <span class="string">""</span>;</div><div class="line"></div><div class="line">		s += <span class="string">"["</span>;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> x = <span class="number">0</span>; x &lt; arr.length; x++) &#123;</div><div class="line">			<span class="keyword">if</span> (x == arr.length - <span class="number">1</span>) &#123;</div><div class="line">				s += arr[x];</div><div class="line">			&#125; <span class="keyword">else</span> &#123;</div><div class="line">				s += arr[x];</div><div class="line">				s += <span class="string">", "</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		s += <span class="string">"]"</span>;</div><div class="line"></div><div class="line">		<span class="keyword">return</span> s;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>字符串的反转</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringBufferTest3</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="comment">// 键盘录入数据</span></div><div class="line">		Scanner sc = <span class="keyword">new</span> Scanner(System.in);</div><div class="line">		System.out.println(<span class="string">"请输入数据："</span>);</div><div class="line">		String s = sc.nextLine();</div><div class="line"></div><div class="line">		<span class="comment">// 方式1：用String做拼接</span></div><div class="line">		String s1 = myReverse(s);</div><div class="line">		System.out.println(<span class="string">"s1:"</span> + s1);</div><div class="line">		<span class="comment">// 方式2：用StringBuffer的reverse()功能</span></div><div class="line">		String s2 = myReverse2(s);</div><div class="line">		System.out.println(<span class="string">"s2:"</span> + s2);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">// 用StringBuffer的reverse()功能</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">myReverse2</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">		<span class="comment">// StringBuffer sb = new StringBuffer();</span></div><div class="line">		<span class="comment">// sb.append(s);</span></div><div class="line"></div><div class="line">		<span class="comment">// StringBuffer sb = new StringBuffer(s);</span></div><div class="line">		<span class="comment">// sb.reverse();</span></div><div class="line">		<span class="comment">// return sb.toString();</span></div><div class="line"></div><div class="line">		<span class="comment">// 简易版</span></div><div class="line">		<span class="keyword">return</span> <span class="keyword">new</span> StringBuffer(s).reverse().toString();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">// 用String做拼接</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">myReverse</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">		String result = <span class="string">""</span>;</div><div class="line"></div><div class="line">		<span class="keyword">char</span>[] chs = s.toCharArray();</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> x = chs.length - <span class="number">1</span>; x &gt;= <span class="number">0</span>; x--) &#123;</div><div class="line">			<span class="comment">// char ch = chs[x];</span></div><div class="line">			<span class="comment">// result += ch;</span></div><div class="line">			result += chs[x];</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="keyword">return</span> result;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>判断一个字符串是否是对称的字符串</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringBufferTest4</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="comment">// 创建键盘录入对象</span></div><div class="line">		Scanner sc = <span class="keyword">new</span> Scanner(System.in);</div><div class="line">		System.out.println(<span class="string">"请输入一个字符串："</span>);</div><div class="line">		String s = sc.nextLine();</div><div class="line"></div><div class="line">		<span class="comment">// 一个一个的比较</span></div><div class="line">		<span class="keyword">boolean</span> b = isSame(s);</div><div class="line">		System.out.println(<span class="string">"b:"</span> + b);</div><div class="line">		</div><div class="line">		<span class="comment">//用字符串缓冲区的反转功能</span></div><div class="line">		<span class="keyword">boolean</span> b2 = isSame2(s);</div><div class="line">		System.out.println(<span class="string">"b2:"</span>+b2);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isSame2</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">new</span> StringBuffer(s).reverse().toString().equals(s);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line"></div><div class="line">	<span class="comment">// public static boolean isSame(String s) &#123;</span></div><div class="line">	<span class="comment">// // 把字符串转成字符数组</span></div><div class="line">	<span class="comment">// char[] chs = s.toCharArray();</span></div><div class="line">	<span class="comment">//</span></div><div class="line">	<span class="comment">// for (int start = 0, end = chs.length - 1; start &lt;= end; start++, end--) &#123;</span></div><div class="line">	<span class="comment">// if (chs[start] != chs[end]) &#123;</span></div><div class="line">	<span class="comment">// return false;</span></div><div class="line">	<span class="comment">// &#125;</span></div><div class="line">	<span class="comment">// &#125;</span></div><div class="line">	<span class="comment">//</span></div><div class="line">	<span class="comment">// return true;</span></div><div class="line">	<span class="comment">// &#125;</span></div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isSame</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">		<span class="keyword">boolean</span> flag = <span class="keyword">true</span>;</div><div class="line"></div><div class="line">		<span class="comment">// 把字符串转成字符数组</span></div><div class="line">		<span class="keyword">char</span>[] chs = s.toCharArray();</div><div class="line"></div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> start = <span class="number">0</span>, end = chs.length - <span class="number">1</span>; start &lt;= end; start++, end--) &#123;</div><div class="line">			<span class="keyword">if</span> (chs[start] != chs[end]) &#123;</div><div class="line">				flag = <span class="keyword">false</span>;</div><div class="line">				<span class="keyword">break</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="keyword">return</span> flag;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注意：在isSame方法中的flag标签的思想，而不是直接返回一个boolean值。</p>
+<blockquote>
+<p>StringBuffer和StringBuilder区别是：builder不安全</p>
+</blockquote>
+<ul>
+<li>String,StringBuffer,StringBuilder的区别?</li>
+</ul>
+<blockquote>
+<p>A:String是内容不可变的，而StringBuffer,StringBuilder都是内容可变的。</p>
+<p>B:StringBuffer是同步的，数据安全,效率低;StringBuilder是不同步的,数据不安全,效率高</p>
+<p>安全不安全指的是多线程的情况</p>
+</blockquote>
+<ul>
+<li>StringBuffer和数组的区别?</li>
+</ul>
+<blockquote>
+<p> 二者都可以看出是一个容器，装其他的数据。</p>
+<p>  但是呢,StringBuffer的数据最终是一个字符串数据。</p>
+<p>  而数组可以放置多种数据，但必须是同一种数据类型的。</p>
+</blockquote>
+<ul>
+<li>写出运行结果</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringBufferDemo</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		String s1 = <span class="string">"hello"</span>;</div><div class="line">		String s2 = <span class="string">"world"</span>;</div><div class="line">		System.out.println(s1 + <span class="string">"---"</span> + s2);<span class="comment">// hello---world</span></div><div class="line">		change(s1, s2);</div><div class="line">		System.out.println(s1 + <span class="string">"---"</span> + s2);<span class="comment">// hello---world</span></div><div class="line"></div><div class="line">		StringBuffer sb1 = <span class="keyword">new</span> StringBuffer(<span class="string">"hello"</span>);</div><div class="line">		StringBuffer sb2 = <span class="keyword">new</span> StringBuffer(<span class="string">"world"</span>);</div><div class="line">		System.out.println(sb1 + <span class="string">"---"</span> + sb2);<span class="comment">// hello---world</span></div><div class="line">		change(sb1, sb2);</div><div class="line">		System.out.println(sb1 + <span class="string">"---"</span> + sb2);<span class="comment">// hello---worldworld</span></div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">change</span><span class="params">(StringBuffer sb1, StringBuffer sb2)</span> </span>&#123;</div><div class="line">		sb1 = sb2;</div><div class="line">		sb2.append(sb1);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">change</span><span class="params">(String s1, String s2)</span> </span>&#123;</div><div class="line">		s1 = s2;</div><div class="line">		s2 = s1 + s2;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p> 形式参数：</p>
+<pre><code>基本类型：形式参数的改变不影响实际参数
+
+引用类型：形式参数的改变直接影响实际参数
+</code></pre></blockquote>
+<p>而string是不可变的，虽然是引用类型但是在做形式参数是当成基本类型来看；String作为参数传递，效果和基本类型作为参数传递是一样的。</p>
+<p>而StringBuffer作为参数传递，基本赋值操作不会改变数值，但是调用方法时会改变数值。</p>
+<h2 id="Array高级"><a href="#Array高级" class="headerlink" title="Array高级"></a>Array高级</h2><h3 id="冒泡算法"><a href="#冒泡算法" class="headerlink" title="冒泡算法"></a>冒泡算法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">int</span> x = <span class="number">0</span>; x &lt; arr.length - <span class="number">1</span>; x++) &#123;</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> y = <span class="number">0</span>; y &lt; arr.length - <span class="number">1</span> - x; y++) &#123;</div><div class="line">		<span class="keyword">if</span> (arr[y] &gt; arr[y + <span class="number">1</span>]) &#123;</div><div class="line">			<span class="keyword">int</span> temp = arr[y];</div><div class="line">			arr[y] = arr[y + <span class="number">1</span>];</div><div class="line">			arr[y + <span class="number">1</span>] = temp;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">int</span> x=<span class="number">0</span>; x&lt;arr.length-<span class="number">1</span>; x++)&#123;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> y=x+<span class="number">1</span>; y&lt;arr.length; y++)&#123;</div><div class="line">		<span class="keyword">if</span>(arr[y] &lt;arr[x])&#123;</div><div class="line">			<span class="keyword">int</span> temp = arr[x];</div><div class="line">			arr[x] = arr[y];</div><div class="line">			 arr[y] = temp;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="练习-1"><a href="#练习-1" class="headerlink" title="练习"></a>练习</h3><p>把字符串中的字符进行排序。举例：”dacgebf” 结果：”abcdefg” </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayTest</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="comment">// 定义一个字符串</span></div><div class="line">		String s = <span class="string">"dacgebf"</span>;</div><div class="line"></div><div class="line">		<span class="comment">// 把字符串转换为字符数组</span></div><div class="line">		<span class="keyword">char</span>[] chs = s.toCharArray();</div><div class="line"></div><div class="line">		<span class="comment">// 把字符数组进行排序</span></div><div class="line">		bubbleSort(chs);</div><div class="line"></div><div class="line">		<span class="comment">//把排序后的字符数组转成字符串</span></div><div class="line">		String result = String.valueOf(chs);</div><div class="line">		</div><div class="line">		<span class="comment">//输出最后的字符串</span></div><div class="line">		System.out.println(<span class="string">"result:"</span>+result);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">// 冒泡排序</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">bubbleSort</span><span class="params">(<span class="keyword">char</span>[] chs)</span> </span>&#123;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> x = <span class="number">0</span>; x &lt; chs.length - <span class="number">1</span>; x++) &#123;</div><div class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> y = <span class="number">0</span>; y &lt; chs.length - <span class="number">1</span> - x; y++) &#123;</div><div class="line">				<span class="keyword">if</span> (chs[y] &gt; chs[y + <span class="number">1</span>]) &#123;</div><div class="line">					<span class="keyword">char</span> temp = chs[y];</div><div class="line">					chs[y] = chs[y + <span class="number">1</span>];</div><div class="line">					chs[y + <span class="number">1</span>] = temp;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h3><blockquote>
+<p>数组元素有序</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayDemo</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="comment">//定义一个数组</span></div><div class="line">		<span class="keyword">int</span>[] arr = &#123;<span class="number">11</span>,<span class="number">22</span>,<span class="number">33</span>,<span class="number">44</span>,<span class="number">55</span>,<span class="number">66</span>,<span class="number">77</span>&#125;;</div><div class="line">		</div><div class="line">		<span class="comment">//写功能实现</span></div><div class="line">		<span class="keyword">int</span> index = getIndex(arr, <span class="number">33</span>);</div><div class="line">		System.out.println(<span class="string">"index:"</span>+index);</div><div class="line">		</div><div class="line">		<span class="comment">//假如这个元素不存在后有什么现象呢?</span></div><div class="line">		index = getIndex(arr, <span class="number">333</span>);</div><div class="line">		System.out.println(<span class="string">"index:"</span>+index);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="comment">/*</span></div><div class="line"><span class="comment">	 * 两个明确：</span></div><div class="line"><span class="comment">	 * 返回值类型：int</span></div><div class="line"><span class="comment">	 * 参数列表：int[] arr,int value</span></div><div class="line"><span class="comment">	 */</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getIndex</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> value)</span></span>&#123;</div><div class="line">		<span class="comment">//定义最大索引，最小索引</span></div><div class="line">		<span class="keyword">int</span> max = arr.length -<span class="number">1</span>;</div><div class="line">		<span class="keyword">int</span> min = <span class="number">0</span>;</div><div class="line">		</div><div class="line">		<span class="comment">//计算出中间索引</span></div><div class="line">		<span class="keyword">int</span> mid = (max +min)/<span class="number">2</span>;</div><div class="line">		</div><div class="line">		<span class="comment">//拿中间索引的值和要查找的值进行比较</span></div><div class="line">		<span class="keyword">while</span>(arr[mid] != value)&#123;</div><div class="line">			<span class="keyword">if</span>(arr[mid]&gt;value)&#123;</div><div class="line">				max = mid - <span class="number">1</span>;</div><div class="line">			&#125;<span class="keyword">else</span> <span class="keyword">if</span>(arr[mid]&lt;value)&#123;</div><div class="line">				min = mid + <span class="number">1</span>;</div><div class="line">			&#125;</div><div class="line">			</div><div class="line">			<span class="comment">//加入判断</span></div><div class="line">			<span class="keyword">if</span>(min &gt; max)&#123;</div><div class="line">				<span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">			&#125;</div><div class="line">			</div><div class="line">			mid = (max +min)/<span class="number">2</span>;</div><div class="line">		&#125;</div><div class="line">		</div><div class="line">		<span class="keyword">return</span> mid;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Arrays类"><a href="#Arrays类" class="headerlink" title="Arrays类"></a>Arrays类</h2><h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><ul>
+<li>public static String toString(Object[] a)把任意类型转换成string类型</li>
+<li>public static void sort(Object[] a)对任意数组进行升序排序，底层是快速排序</li>
+<li>public static int binarySearch(Object[] a,Object key)二分查找</li>
+</ul>
+<blockquote>
+<p>开发原则：只要是对象，我们就要判断该对象是否为null。</p>
+<p>​    if (a == null)<br>​        return “null”;</p>
+</blockquote>
+<h3 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h3><ul>
+<li>toString源码:</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">toString</span><span class="params">(<span class="keyword">int</span>[] a)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (a == <span class="keyword">null</span>)</div><div class="line">        <span class="keyword">return</span> <span class="string">"null"</span>;</div><div class="line">    <span class="keyword">int</span> iMax = a.length - <span class="number">1</span>;</div><div class="line">    <span class="keyword">if</span> (iMax == -<span class="number">1</span>)</div><div class="line">        <span class="keyword">return</span> <span class="string">"[]"</span>;</div><div class="line"></div><div class="line">    StringBuilder b = <span class="keyword">new</span> StringBuilder();</div><div class="line">    b.append(<span class="string">'['</span>);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; ; i++) &#123;</div><div class="line">        b.append(a[i]);</div><div class="line">        <span class="keyword">if</span> (i == iMax)</div><div class="line">            <span class="keyword">return</span> b.append(<span class="string">']'</span>).toString();</div><div class="line">        b.append(<span class="string">", "</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在for循环中不写条件那么永远是true；</p>
+<ul>
+<li>binarySearch二分查找法源码：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">binarySearch0</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> fromIndex, <span class="keyword">int</span> toIndex,</span></span></div><div class="line"><span class="function"><span class="params">                                 <span class="keyword">int</span> key)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> low = fromIndex;</div><div class="line">    <span class="keyword">int</span> high = toIndex - <span class="number">1</span>;</div><div class="line"></div><div class="line">    <span class="keyword">while</span> (low &lt;= high) &#123;</div><div class="line">        <span class="keyword">int</span> mid = (low + high) &gt;&gt;&gt; <span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> midVal = a[mid];</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (midVal &lt; key)</div><div class="line">            low = mid + <span class="number">1</span>;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (midVal &gt; key)</div><div class="line">            high = mid - <span class="number">1</span>;</div><div class="line">        <span class="keyword">else</span></div><div class="line">            <span class="keyword">return</span> mid; <span class="comment">// key found</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> -(low + <span class="number">1</span>);  <span class="comment">// key not found.</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="基本类型的包装类"><a href="#基本类型的包装类" class="headerlink" title="基本类型的包装类"></a>基本类型的包装类</h2><p>把基本数据类型封装成对象的好处是可以在对象中定义更多的方法操作该数据</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">基本数据类型</th>
+<th style="text-align:center">包装数据类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">byte</td>
+<td style="text-align:center">Byte</td>
+</tr>
+<tr>
+<td style="text-align:center">short</td>
+<td style="text-align:center">Short</td>
+</tr>
+<tr>
+<td style="text-align:center">int</td>
+<td style="text-align:center">Integer</td>
+</tr>
+<tr>
+<td style="text-align:center">long</td>
+<td style="text-align:center">Long</td>
+</tr>
+<tr>
+<td style="text-align:center">double</td>
+<td style="text-align:center">Double</td>
+</tr>
+<tr>
+<td style="text-align:center">float</td>
+<td style="text-align:center">Float</td>
+</tr>
+<tr>
+<td style="text-align:center">char</td>
+<td style="text-align:center">Character</td>
+</tr>
+<tr>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">Boolean</td>
+</tr>
+</tbody>
+</table>
+<p>用于基本数据类型与字符串之间的相互转换</p>
+<h3 id="Integer类"><a href="#Integer类" class="headerlink" title="Integer类"></a>Integer类</h3><h4 id="构造方法-1"><a href="#构造方法-1" class="headerlink" title="构造方法"></a>构造方法</h4><ul>
+<li>public Integer(int value)</li>
+<li>public Integer(String s)<strong>这个字符串必须是由数字字符组成</strong></li>
+</ul>
+<h4 id="成员方法-1"><a href="#成员方法-1" class="headerlink" title="成员方法"></a>成员方法</h4><ul>
+<li>int到String的方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// int -- String</span></div><div class="line"><span class="keyword">int</span> number = <span class="number">100</span>;</div><div class="line"><span class="comment">// 方式1</span></div><div class="line">String s1 = <span class="string">""</span> + number;</div><div class="line">System.out.println(<span class="string">"s1:"</span> + s1);</div><div class="line"><span class="comment">// 方式2</span></div><div class="line">String s2 = String.valueOf(number);</div><div class="line">System.out.println(<span class="string">"s2:"</span> + s2);</div><div class="line"><span class="comment">// 方式3</span></div><div class="line"><span class="comment">// int -- Integer -- String</span></div><div class="line">Integer i = <span class="keyword">new</span> Integer(number);</div><div class="line">String s3 = i.toString();</div><div class="line">System.out.println(<span class="string">"s3:"</span> + s3);</div><div class="line"><span class="comment">// 方式4</span></div><div class="line"><span class="comment">// public static String toString(int i)</span></div><div class="line">String s4 = Integer.toString(number);</div><div class="line">System.out.println(<span class="string">"s4:"</span> + s4);</div><div class="line">System.out.println(<span class="string">"-----------------"</span>);</div></pre></td></tr></table></figure>
+<ul>
+<li>string到int</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">String s = <span class="string">"100"</span>;</div><div class="line"><span class="comment">// 方式1</span></div><div class="line"><span class="comment">// String -- Integer -- int</span></div><div class="line">Integer ii = <span class="keyword">new</span> Integer(s);</div><div class="line"><span class="comment">// public int intValue()</span></div><div class="line"><span class="keyword">int</span> x = ii.intValue();</div><div class="line">System.out.println(<span class="string">"x:"</span> + x);</div><div class="line"><span class="comment">//方式2</span></div><div class="line"><span class="comment">//public static int parseInt(String s)</span></div><div class="line"><span class="keyword">int</span> y = Integer.parseInt(s);</div><div class="line">System.out.println(<span class="string">"y:"</span>+y);</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">推荐使用：  </div><div class="line"><span class="keyword">int</span> -- String</div><div class="line">  		String.valueOf(number)</div><div class="line">  </div><div class="line">  String -- <span class="keyword">int</span></div><div class="line">  		Integer.parseInt(s)</div></pre></td></tr></table></figure>
+<ul>
+<li>进制转换</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">toBinaryString</span><span class="params">(<span class="keyword">int</span> i)</span></span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">toOctalString</span><span class="params">(<span class="keyword">int</span> i)</span></span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">toHexString</span><span class="params">(<span class="keyword">int</span> i)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">十进制到其他进制</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">toString</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> radix)</span></span></div><div class="line"><span class="function">由这个我们也看到了进制的范围：2-36</span></div><div class="line"><span class="function">为什么呢?0,...9,a...z相加共36个</span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">其他进制到十进制</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">parseInt</span><span class="params">(String s,<span class="keyword">int</span> radix)</span></span></div></pre></td></tr></table></figure>
+<h4 id="JDK5的新特性"><a href="#JDK5的新特性" class="headerlink" title="JDK5的新特性"></a>JDK5的新特性</h4><ul>
+<li>Integer x = new Integer(4);可以直接写成</li>
+<li>Integer x = 4;//自动装箱。</li>
+<li>x = x + 5;//自动拆箱。通过intValue方法。</li>
+</ul>
+<blockquote>
+<p> 自动装箱：把基本类型转换为包装类类型</p>
+<p>  自动拆箱：把包装类类型转换为基本类型</p>
+</blockquote>
+<p>  注意一个小问题：<br>          在使用时，Integer  x = null;代码就会出现NullPointerException。因为会自动包装成一个对象<br>          建议先判断是否为null，然后再使用。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 定义了一个int类型的包装类类型变量i</span></div><div class="line"><span class="comment">// Integer i = new Integer(100);</span></div><div class="line">Integer ii = <span class="number">100</span>;</div><div class="line">ii += <span class="number">200</span>;</div><div class="line">System.out.println(<span class="string">"ii:"</span> + ii);</div><div class="line"></div><div class="line"><span class="comment">// 通过反编译后的代码</span></div><div class="line"><span class="comment">// Integer ii = Integer.valueOf(100); //自动装箱</span></div><div class="line"><span class="comment">// ii = Integer.valueOf(ii.intValue() + 200); //自动拆箱，再自动装箱</span></div><div class="line"><span class="comment">// System.out.println((new StringBuilder("ii:")).append(ii).toString());</span></div></pre></td></tr></table></figure>
+<h4 id="练习题-gt"><a href="#练习题-gt" class="headerlink" title="练习题&gt;"></a>练习题&gt;</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">Integer i1 = <span class="keyword">new</span> Integer(<span class="number">127</span>);</div><div class="line">Integer i2 = <span class="keyword">new</span> Integer(<span class="number">127</span>);</div><div class="line">System.out.println(i1 == i2);</div><div class="line">System.out.println(i1.equals(i2));</div><div class="line">System.out.println(<span class="string">"-----------"</span>);</div><div class="line"></div><div class="line">Integer i3 = <span class="keyword">new</span> Integer(<span class="number">128</span>);</div><div class="line">Integer i4 = <span class="keyword">new</span> Integer(<span class="number">128</span>);</div><div class="line">System.out.println(i3 == i4);</div><div class="line">System.out.println(i3.equals(i4));</div><div class="line">System.out.println(<span class="string">"-----------"</span>);</div><div class="line"></div><div class="line">Integer i5 = <span class="number">128</span>;</div><div class="line">Integer i6 = <span class="number">128</span>;</div><div class="line">System.out.println(i5 == i6);</div><div class="line">System.out.println(i5.equals(i6));</div><div class="line">System.out.println(<span class="string">"-----------"</span>);</div><div class="line"></div><div class="line">Integer i7 = <span class="number">127</span>;</div><div class="line">Integer i8 = <span class="number">127</span>;</div><div class="line">System.out.println(i7 == i8);</div><div class="line">System.out.println(i7.equals(i8));</div></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：Integer的数据直接赋值，如果在-128到127之间，会直接从缓冲池里获取数据，也就是引用相的地址</p>
+</blockquote>
+<h2 id="Character"><a href="#Character" class="headerlink" title="Character"></a>Character</h2><h3 id="构造方法-2"><a href="#构造方法-2" class="headerlink" title="构造方法"></a>构造方法</h3><blockquote>
+<p>Character(char value). </p>
+</blockquote>
+<h3 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h3><ul>
+<li>public static boolean isUpperCase(char ch):判断给定的字符是否是大写字符</li>
+<li>public static boolean isLowerCase(char ch):判断给定的字符是否是小写字符</li>
+<li>public static boolean isDigit(char ch):判断给定的字符是否是数字字符</li>
+<li>public static char toUpperCase(char ch):把给定的字符转换为大写字符</li>
+<li>public static char toLowerCase(char ch):把给定的字符转换为小写字符</li>
+</ul>
+<h3 id="练习-2"><a href="#练习-2" class="headerlink" title="练习"></a>练习</h3><p>统计一个字符串中大写字母字符，小写字母字符，数字字符出现的次数。(不考虑其他字符)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CharacterTest</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="comment">// 定义三个统计变量。</span></div><div class="line">		<span class="keyword">int</span> bigCount = <span class="number">0</span>;</div><div class="line">		<span class="keyword">int</span> smallCount = <span class="number">0</span>;</div><div class="line">		<span class="keyword">int</span> numberCount = <span class="number">0</span>;</div><div class="line"></div><div class="line">		<span class="comment">// 键盘录入一个字符串。</span></div><div class="line">		Scanner sc = <span class="keyword">new</span> Scanner(System.in);</div><div class="line">		System.out.println(<span class="string">"请输入一个字符串："</span>);</div><div class="line">		String line = sc.nextLine();</div><div class="line"></div><div class="line">		<span class="comment">// 把字符串转换为字符数组。</span></div><div class="line">		<span class="keyword">char</span>[] chs = line.toCharArray();</div><div class="line"></div><div class="line">		<span class="comment">// 历字符数组获取到每一个字符</span></div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> x = <span class="number">0</span>; x &lt; chs.length; x++) &#123;</div><div class="line">			<span class="keyword">char</span> ch = chs[x];</div><div class="line"></div><div class="line">			<span class="comment">// 判断该字符</span></div><div class="line">			<span class="keyword">if</span> (Character.isUpperCase(ch)) &#123;</div><div class="line">				bigCount++;</div><div class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (Character.isLowerCase(ch)) &#123;</div><div class="line">				smallCount++;</div><div class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (Character.isDigit(ch)) &#123;</div><div class="line">				numberCount++;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="comment">// 输出结果即可</span></div><div class="line">		System.out.println(<span class="string">"大写字母："</span> + bigCount + <span class="string">"个"</span>);</div><div class="line">		System.out.println(<span class="string">"小写字母："</span> + smallCount + <span class="string">"个"</span>);</div><div class="line">		System.out.println(<span class="string">"数字字符："</span> + numberCount + <span class="string">"个"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></section>
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#Java笔记" >
+    <span class="tag-code">Java笔记</span>
+  </a>
+
+      </div>
+    
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="alipay-code">
+            <div class="code-image"></div>
+            <b>使用支付宝打赏</b>
+          </span>
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+    </div>
+    <div class="qrcode">
+      <canvas id="share-qrcode"></canvas>
+      <p class="notice">扫描二维码，分享此文章</p>
+    </div>
+    
+      <div id="comments"></div>
+    
+  </article>
+</main>
+
+<script>
+  (function () {
+    var url = 'http://bbbb.ml/2014/03/07/Java/StringBuffer、Arrays、基本包装类/';
+    var banner = 'http://osk1xe27i.bkt.clouddn.com/1.jpg'
+    if (banner !== 'undefined') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "jwl00";
+    if (gitmentConfig != "undefined") {
+      var gitment = new Gitment({
+        id: "StringBuffer、Arrays、基本包装类",
+        owner: "jwl00",
+        repo: "jwl00.github.io",
+        oauth: {
+          client_id: "ae21ad25810b1f2cc193",
+          client_secret: "7b6bb525adfeee63bd087132d98e6fd015d49ed8"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

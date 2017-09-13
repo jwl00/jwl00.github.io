@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="什么也不留下">
+  <meta name="keyword" content="hexo-theme, Android">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      02-说说Service那些事 | JWL博客
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>JWL博客</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>02-说说Service那些事</h2>
+  <p class="post-date">2014-06-12</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content"><a id="more"></a>
+<h1 id="02-说说Service那些事"><a href="#02-说说Service那些事" class="headerlink" title="02-说说Service那些事"></a>02-说说Service那些事</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Service本质作用就是一个没有界面的Activity，它可以在后台执行代码永远不用到前台来，所以一个模块只要不想要与用户交互但是还要执行逻辑就可以使用Service。默认运行在程序的主线程之中。</p>
+<h2 id="重要的方法"><a href="#重要的方法" class="headerlink" title="重要的方法"></a>重要的方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">public class ExampleService extends Service &#123;</div><div class="line">    int mStartMode;       // 标识服务被杀死后的处理方式</div><div class="line">    IBinder mBinder;      // 用于客户端绑定的接口</div><div class="line">    boolean mAllowRebind; // 标识是否使用onRebind</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void onCreate() &#123;</div><div class="line">        // 服务正被创建</div><div class="line">    &#125;</div><div class="line">    @Override</div><div class="line">    public int onStartCommand(Intent intent, int flags, int startId) &#123;</div><div class="line">        // 服务正在启动，由startService()调用引发</div><div class="line">        return mStartMode;</div><div class="line">    &#125;</div><div class="line">    @Override</div><div class="line">    public IBinder onBind(Intent intent) &#123;</div><div class="line">        // 客户端用bindService()绑定服务</div><div class="line">        return mBinder;</div><div class="line">    &#125;</div><div class="line">    @Override</div><div class="line">    public boolean onUnbind(Intent intent) &#123;</div><div class="line">        // 所有的客户端都用unbindService()解除了绑定</div><div class="line">        return mAllowRebind;</div><div class="line">    &#125;</div><div class="line">    @Override</div><div class="line">    public void onRebind(Intent intent) &#123;</div><div class="line">        // 某客户端正用bindService()绑定到服务,</div><div class="line">        // 而onUnbind()已经被调用过了</div><div class="line">    &#125;</div><div class="line">    @Override</div><div class="line">    public void onDestroy() &#123;</div><div class="line">        // 服务用不上了，将被销毁</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>请注意onStartCommand()方法必须返回一个整数。这个整数是描述系统在杀死服务之后应该如何继续运行。onStartCommand()的返回值必须是以下常量之一：</p>
+<p>START_NOT_STICKY 　 如果系统在onStartCommand()返回后杀死了服务，则不会重建服务了，除非还存在未发送的intent。 当服务不再是必需的，并且应用程序能够简单地重启那些未完成的工作时，这是避免服务运行的最安全的选项。　 　 </p>
+<p>START_STICKY 如果系统在onStartCommand()返回后杀死了服务，则将重建服务并调用onStartCommand()，但不会再次送入上一个intent， 而是用null intent来调用onStartCommand() 。除非还有启动服务的intent未发送完，那么这些剩下的intent会继续发送。 这适用于媒体播放器（或类似服务），它们不执行命令，但需要一直运行并随时待命。　</p>
+<p>START_REDELIVER_INTENT 如果系统在onStartCommand()返回后杀死了服务，则将重建服务并用上一个已送过的intent调用onStartCommand()。任何未发送完的intent也都会依次送入。这适用于那些需要立即恢复工作的活跃服务，比如下载文件。</p>
+<h2 id="两种启动模式"><a href="#两种启动模式" class="headerlink" title="两种启动模式"></a>两种启动模式</h2><h3 id="StartService"><a href="#StartService" class="headerlink" title="StartService"></a>StartService</h3><p>这类服务由其它组件调用startService()来创建。然后保持运行，且必须通过调用stopSelf()自行终止。其它组件也可通过调用stopService() 终止这类服务。服务终止后，系统会把它销毁。</p>
+<p>该Service将会一直在后台运行，而不管对应程序的Activity是否在运行，直到被调用stopService，或自身的stopSelf方法。当然如果系统资源不足，android系统也可能结束服务。</p>
+<h3 id="BindService"><a href="#BindService" class="headerlink" title="BindService"></a>BindService</h3><p>　　服务由其它组件（客户端）调用bindService()来创建。然后客户端通过一个IBinder接口与服务进行通信。客户端可以通过调用unbindService()来关闭联接。多个客户端可以绑定到同一个服务上，当所有的客户端都解除绑定后，系统会销毁服务。（服务不需要自行终止。）</p>
+<p>　　如果一个Service被某个Activity 调用 Context.bindService 方法绑定启动，不管调用 bindService 调用几次，onCreate方法都只会调用一次，同时onStart方法始终不会被调用。当连接建立之后，Service将会一直运行，除非调用Context.unbindService 断开连接或者之前调用bindService 的 Context 不存在了（如Activity被finish的时候），系统将会自动停止Service，对应onDestroy将被调用，也就是这种启动模式依托于其他的组件。</p>
+<h4 id="具体启动过程"><a href="#具体启动过程" class="headerlink" title="具体启动过程"></a>具体启动过程</h4><ul>
+<li>重写onBind方法并且创建一个类继承自Binder</li>
+<li>在Activity中初始化ServiceConnection和自己刚刚继承的Binder类</li>
+<li>调用bindService绑定服务</li>
+</ul>
+<p><strong>全部代码</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">public class MyService extends Service &#123;</div><div class="line">    private int Code = 10;</div><div class="line">    MediaPlayer mPlayer;</div><div class="line"></div><div class="line">    public MyService() &#123;</div><div class="line">//        mPlayer = MediaPlayer.create(this,R.raw.wu);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void onCreate() &#123;</div><div class="line">        mPlayer = MediaPlayer.create(this,R.raw.wu);</div><div class="line">        super.onCreate();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public int onStartCommand(Intent intent, int flags, int startId) &#123;</div><div class="line">        mPlayer.start();</div><div class="line">        Log.d(&quot;ty&quot;,&quot;-----onStartCommand------&quot;);</div><div class="line">        return START_STICKY;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void onDestroy() &#123;</div><div class="line">        mPlayer.stop();</div><div class="line">        Log.d(&quot;ty&quot;,&quot;-----onDestroy------&quot;);</div><div class="line">        super.onDestroy();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public IBinder onBind(Intent intent) &#123;</div><div class="line">        Log.d(&quot;ty&quot;,&quot;-----onBind------&quot;);</div><div class="line">        mPlayer.start();</div><div class="line">        return new MyBinder();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public boolean onUnbind(Intent intent) &#123;</div><div class="line">        Log.d(&quot;ty&quot;,&quot;-----onUnbind------&quot;);</div><div class="line">//        mPlayer.stop();</div><div class="line">        return super.onUnbind(intent);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line">public class MainActivity extends AppCompatActivity &#123;</div><div class="line"></div><div class="line">    private Intent mIntent;</div><div class="line">    ServiceConnection mServiceConnection;</div><div class="line">    MyService.MyBinder mBinder;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</div><div class="line">        super.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line">        mIntent = new Intent(MainActivity.this, MyService.class);</div><div class="line"></div><div class="line">        mServiceConnection = new ServiceConnection() &#123;</div><div class="line">            @Override</div><div class="line">            public void onServiceConnected(ComponentName name, IBinder service) &#123;</div><div class="line">                mBinder = (MyService.MyBinder) service;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            @Override</div><div class="line">            public void onServiceDisconnected(ComponentName name) &#123;</div><div class="line"></div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void unBind(View view) &#123;</div><div class="line">        stopService(mIntent);</div><div class="line">        Log.d(&quot;ty&quot;,&quot;-----解绑------&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void bind(View view) &#123;</div><div class="line">        startService(mIntent);</div><div class="line">        Log.d(&quot;ty&quot;,&quot;-----绑定------&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void rebind(View view) &#123;</div><div class="line">        bindService(mIntent,mServiceConnection,BIND_AUTO_CREATE);</div><div class="line">        Log.d(&quot;ty&quot;,&quot;-----使用binder绑定------&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void reUnBind(View view) &#123;</div><div class="line">        unbindService(mServiceConnection);</div><div class="line">        Log.d(&quot;ty&quot;,&quot;-----binder解绑------&quot;);</div><div class="line">    &#125;</div><div class="line">    @Override</div><div class="line">    protected void onDestroy() &#123;</div><div class="line">        unbindService(mServiceConnection);</div><div class="line">        stopService(mIntent);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>注意bindService是Context中的方法，当没有Context时传入即可。</p>
+</blockquote>
+<p>在进行服务绑定的时，其flags有：</p>
+<ul>
+<li>Context.BIND_AUTO_CREATE</li>
+</ul>
+<p>　　表示收到绑定请求的时候，如果服务尚未创建，则即刻创建，在系统内存不足需要先摧毁优先级组件来释放内存，且只有驻留该服务的进程成为被摧毁对象时，服务才被摧毁　</p>
+<ul>
+<li>Context.BIND_DEBUG_UNBIND 　</li>
+</ul>
+<p>　　通常用于调试场景中判断绑定的服务是否正确，但容易引起内存泄漏，因此非调试目的的时候不建议使用</p>
+<ul>
+<li>Context.BIND_NOT_FOREGROUND 　</li>
+</ul>
+<p>　　表示系统将阻止驻留该服务的进程具有前台优先级，仅在后台运行。</p>
+<p><strong>注意</strong></p>
+<p><strong>在Activity中的onDestroy方法中最后一定要要解绑服务</strong></p>
+<h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><p><img src="http://oaxelf1sk.bkt.clouddn.com/sp161025_204943.png" alt="sp161025_204943"></p>
+<p>正常的生命周期有两种，有一种比较特殊就是onCreat—&gt;onStartCommend—–&gt;onBind—&gt;onUnBind</p>
+<p>Android官方的生命周期：</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/687474703a2f2f696d672e626c6f672e6373646e2e6e65742f323031363035320172281546.png" alt="guanfnag"></p>
+<h3 id="Start的生命周期"><a href="#Start的生命周期" class="headerlink" title="Start的生命周期"></a>Start的生命周期</h3><p><img src="http://oaxelf1sk.bkt.clouddn.com/sp161025_205219.png" alt="sp161025_205219"></p>
+<p>当多次启动Service的时候OnCreate方法只是执行一次，onStartCommand执行多次</p>
+<h3 id="Bind的生命周期"><a href="#Bind的生命周期" class="headerlink" title="Bind的生命周期"></a>Bind的生命周期</h3><p><img src="http://oaxelf1sk.bkt.clouddn.com/sp161025_205450.png" alt="sp161025_205450"></p>
+<p>无论绑定多少次都是onCreate然后onBind，onServiceConnected是连接成功时候调用的方法</p>
+<h3 id="两种模式联系"><a href="#两种模式联系" class="headerlink" title="两种模式联系"></a>两种模式联系</h3><p>这两条路径并不是完全隔离的。也就是说，你可以绑定到一个已经用startService()启动的服务上。例如，一个后台音乐服务可以通过调用startService()来启动，传入一个指明所需播放音乐的 Intent。 之后，用户也许需要用播放器进行一些控制，或者需要查看当前歌曲的信息，这时一个activity可以通过调用bindService()与此服务绑定。在类似这种情况下，stopService()或stopSelf()不会真的终止服务，除非所有的客户端都解除了绑定。</p>
+<blockquote>
+<p>当在旋转手机屏幕的时候，当手机屏幕在“横”“竖”变换时，此时如果你的 Activity 如果会自动旋转的话，旋转其实是 Activity 的重新创建，因此旋转之前的使用 bindService 建立的连接便会断开（Context 不存在了）。</p>
+</blockquote>
+<h2 id="Manifest文件中的标签"><a href="#Manifest文件中的标签" class="headerlink" title="Manifest文件中的标签"></a>Manifest文件中的标签</h2><p>Service 元素的属性有：</p>
+<blockquote>
+<p>android:name　　————-　　服务类名</p>
+<p>android:label　　————–　　服务的名字，如果此项不设置，那么默认显示的服务名则为类名</p>
+<p>android:icon　　————–　　服务的图标</p>
+<p>android:permission　　——-　　申明此服务的权限，这意味着只有提供了该权限的应用才能控制或连接此服务</p>
+<p>android:process　　———-　　表示该服务是否运行在另外一个进程，如果设置了此项，那么将会在包名后面加上这段字符串表示另一进程的名字</p>
+<p>android:enabled　　———-　　如果此项设置为 true，那么 Service 将会默认被系统启动，不设置默认此项为 false</p>
+<p>android:exported　　———　　表示该服务是否能够被其他应用程序所控制或连接，不设置默认此项为 false　</p>
+</blockquote>
+<h2 id="服务是否在运行"><a href="#服务是否在运行" class="headerlink" title="服务是否在运行"></a>服务是否在运行</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">/** </div><div class="line"> * 判断某个服务是否正在运行的方法 </div><div class="line"> *  </div><div class="line"> * @param mContext </div><div class="line"> * @param serviceName </div><div class="line"> *            是包名+服务的类名（例如：net.loonggg.testbackstage.TestService） </div><div class="line"> * @return true代表正在运行，false代表服务没有正在运行 </div><div class="line"> */  </div><div class="line">public boolean isServiceWork(Context mContext, String serviceName) &#123;  </div><div class="line">    boolean isWork = false;  </div><div class="line">    ActivityManager myAM = (ActivityManager) mContext  </div><div class="line">            .getSystemService(Context.ACTIVITY_SERVICE);  </div><div class="line">    List&lt;RunningServiceInfo&gt; myList = myAM.getRunningServices(40);  </div><div class="line">    if (myList.size() &lt;= 0) &#123;  </div><div class="line">        return false;  </div><div class="line">    &#125;  </div><div class="line">    for (int i = 0; i &lt; myList.size(); i++) &#123;  </div><div class="line">        String mName = myList.get(i).service.getClassName().toString();  </div><div class="line">        if (mName.equals(serviceName)) &#123;  </div><div class="line">            isWork = true;  </div><div class="line">            break;  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">    return isWork;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="IntentService"><a href="#IntentService" class="headerlink" title="IntentService"></a>IntentService</h2><p>Service中也无法执行大量的耗时操作，所以Android官方推出一个IntentService当使用它是时候系统会自动创建一个进程，不会阻塞主线程，开发者只要重写onHandleIntent方法即可：</p>
+<h3 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h3><p>分别再onHandleIntent方法和onStartCommand方法中添加耗时逻辑，看是否弹出ANR:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">protected void onHandleIntent(Intent intent) &#123;</div><div class="line">    System.out.println(&quot;---------onHandleIntent----------&quot;);</div><div class="line">    long endTime = System.currentTimeMillis() + 100 * 1000;</div><div class="line">    while (System.currentTimeMillis() &lt; endTime) &#123;</div><div class="line">        synchronized (MyIntentService.this) &#123;</div><div class="line">            try &#123;</div><div class="line">                wait(endTime - System.currentTimeMillis());</div><div class="line">            &#125; catch (InterruptedException e) &#123;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>onStartCommand</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">public int onStartCommand(Intent intent, int flags, int startId) &#123;</div><div class="line">    System.out.println(&quot;---------onStartCommand----------&quot;);</div><div class="line">    long endTime = System.currentTimeMillis() + 100 * 1000;</div><div class="line">    while (System.currentTimeMillis() &lt; endTime) &#123;</div><div class="line">        synchronized (MyService.this) &#123;</div><div class="line">            try &#123;</div><div class="line">                wait(endTime - System.currentTimeMillis());</div><div class="line">            &#125; catch (InterruptedException e) &#123;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return super.onStartCommand(intent, flags, startId);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在onStartCommand中会弹出：</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/sp161026_183335.png" alt="sp161026_183335"></p>
+<h3 id="和Intent的异同"><a href="#和Intent的异同" class="headerlink" title="和Intent的异同"></a>和Intent的异同</h3><p>　　Service不是独立的进程，也不是独立的线程，它是依赖于应用程序的主线程的，不建议在Service中编写耗时的逻辑和操作，否则会引起ANR。</p>
+<p>　　IntentService 它创建了一个独立的工作线程来处理所有的通过onStartCommand()传递给服务的intents（把intent插入到工作队列中）。通过工作队列把intent逐个发送给onHandleIntent()。IntentService不需要主动调用stopSelft()来结束服务。因为，在所有的intent被处理完后，系统会自动关闭服务。</p>
+<p>　　 默认实现的onBind()返回null。</p>
+</section>
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#Android基础" >
+    <span class="tag-code">Android基础</span>
+  </a>
+
+      </div>
+    
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="alipay-code">
+            <div class="code-image"></div>
+            <b>使用支付宝打赏</b>
+          </span>
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+    </div>
+    <div class="qrcode">
+      <canvas id="share-qrcode"></canvas>
+      <p class="notice">扫描二维码，分享此文章</p>
+    </div>
+    
+      <div id="comments"></div>
+    
+  </article>
+</main>
+
+<script>
+  (function () {
+    var url = 'http://bbbb.ml/2014/06/12/Android/02-说说Service那些事/';
+    var banner = 'http://osk1xe27i.bkt.clouddn.com/1.jpg'
+    if (banner !== 'undefined') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "jwl00";
+    if (gitmentConfig != "undefined") {
+      var gitment = new Gitment({
+        id: "02-说说Service那些事",
+        owner: "jwl00",
+        repo: "jwl00.github.io",
+        oauth: {
+          client_id: "ae21ad25810b1f2cc193",
+          client_secret: "7b6bb525adfeee63bd087132d98e6fd015d49ed8"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

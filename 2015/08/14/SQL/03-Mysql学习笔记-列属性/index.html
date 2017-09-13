@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="什么也不留下">
+  <meta name="keyword" content="hexo-theme, Android">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      03-Mysql学习笔记-列属性 | JWL博客
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>JWL博客</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>03-Mysql学习笔记-列属性</h2>
+  <p class="post-date">2015-08-14</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content"><a id="more"></a>
+<h1 id="03-Mysql学习笔记-列属性"><a href="#03-Mysql学习笔记-列属性" class="headerlink" title="03-Mysql学习笔记-列属性"></a>03-Mysql学习笔记-列属性</h1><h2 id="主键"><a href="#主键" class="headerlink" title="主键"></a>主键</h2><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170117_092652.png" alt="snipaste_20170117_092652"></p>
+<p>主键本身就不能为空，不用再指定not null</p>
+<h3 id="创建主键"><a href="#创建主键" class="headerlink" title="创建主键"></a>创建主键</h3><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170119_124812.png" alt="snipaste_20170119_124812"></p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170119_124754.png" alt="snipaste_20170119_124754"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">CREATE DATABASE demo;</div><div class="line">use demo;</div><div class="line">CREATE TABLE my_primary(</div><div class="line">  name VARCHAR(20) not NULL comment &apos;姓名&apos;,</div><div class="line">  number CHAR(10) PRIMARY KEY COMMENT &apos;学号&apos;</div><div class="line">)CHARSET utf8;</div><div class="line">SHOW TABLES ;</div><div class="line">DESC my_primary;</div></pre></td></tr></table></figure>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170119_125518.png" alt="snipaste_20170119_125518"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">CREATE TABLE my_primary2(</div><div class="line">  name CHAR(20) NOT NULL COMMENT &apos;姓名&apos;,</div><div class="line">  number CHAR(10) COMMENT &apos;学号&apos;,</div><div class="line">  score TINYINT UNSIGNED DEFAULT 60 COMMENT &apos;成绩&apos;,</div><div class="line">  PRIMARY KEY (number,score)</div><div class="line">)CHARSET utf8;</div><div class="line">DESC my_primary2;</div></pre></td></tr></table></figure>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170119_125411.png" alt="snipaste_20170119_125411"></p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170119_125448.png" alt="snipaste_20170119_125448"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">CREATE TABLE my_primary3(</div><div class="line">  name CHAR(20) NOT NULL COMMENT &apos;姓名&apos;,</div><div class="line">  number CHAR(10) COMMENT &apos;学号&apos;,</div><div class="line">  score TINYINT UNSIGNED DEFAULT 60 COMMENT &apos;成绩&apos;</div><div class="line">)CHARSET utf8;</div><div class="line">ALTER TABLE my_primary3 MODIFY score CHAR(10) PRIMARY KEY COMMENT &apos;成绩&apos;;</div><div class="line">DESC my_primary3;</div><div class="line">ALTER TABLE my_primary3 ADD PRIMARY KEY (number,score);</div></pre></td></tr></table></figure>
+<h3 id="主键约束"><a href="#主键约束" class="headerlink" title="主键约束"></a>主键约束</h3><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170119_130022.png" alt="snipaste_20170119_130022"></p>
+<h3 id="更新主键"><a href="#更新主键" class="headerlink" title="更新主键"></a>更新主键</h3><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170119_130408.png" alt="snipaste_20170119_130408"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> my_primary3(</div><div class="line">  <span class="keyword">name</span> <span class="built_in">CHAR</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'姓名'</span>,</div><div class="line">  <span class="built_in">number</span> <span class="built_in">CHAR</span>(<span class="number">10</span>) <span class="keyword">COMMENT</span> <span class="string">'学号'</span>,</div><div class="line">  score TINYINT <span class="keyword">UNSIGNED</span> <span class="keyword">DEFAULT</span> <span class="number">60</span> <span class="keyword">COMMENT</span> <span class="string">'成绩'</span></div><div class="line">)<span class="keyword">CHARSET</span> utf8;</div><div class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> my_primary3 <span class="keyword">MODIFY</span> score <span class="built_in">CHAR</span>(<span class="number">10</span>) PRIMARY <span class="keyword">KEY</span> <span class="keyword">COMMENT</span> <span class="string">'成绩'</span>;</div><div class="line">DESC my_primary3;</div><div class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> my_primary3 <span class="keyword">DROP</span> PRIMARY <span class="keyword">KEY</span> ;</div><div class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> my_primary3 <span class="keyword">ADD</span> PRIMARY <span class="keyword">KEY</span> (<span class="built_in">number</span>,score);</div><div class="line">DESC my_primary3;</div></pre></td></tr></table></figure>
+<h3 id="主键分类"><a href="#主键分类" class="headerlink" title="主键分类"></a>主键分类</h3><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170119_130839.png" alt="snipaste_20170119_130839"></p>
+<h4 id="自动增长"><a href="#自动增长" class="headerlink" title="自动增长"></a>自动增长</h4><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170119_131137.png" alt="snipaste_20170119_131137"></p>
+<p>第一个错误，要求列必须是key（索引）</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170119_131409.png" alt="snipaste_20170119_131409"></p>
+<p>正确实例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">CREATE TABLE my_auto (</div><div class="line">  id INT PRIMARY KEY AUTO_INCREMENT COMMENT &apos;测试id&apos;,</div><div class="line">  name VARCHAR(10) NOT NULL</div><div class="line">)CHARSET utf8;</div></pre></td></tr></table></figure>
+<h4 id="自增长的特点"><a href="#自增长的特点" class="headerlink" title="自增长的特点"></a>自增长的特点</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">CREATE TABLE my_auto (</div><div class="line">  id INT PRIMARY KEY AUTO_INCREMENT COMMENT &apos;测试id&apos;,</div><div class="line">  name VARCHAR(10) NOT NULL</div><div class="line">)CHARSET utf8;</div><div class="line">INSERT INTO my_auto(name) VALUES (&apos;qqq&apos;);</div><div class="line">INSERT INTO my_auto VALUES (NULL ,&apos;www&apos;);</div><div class="line">INSERT INTO my_auto VALUES (DEFAULT ,&apos;eee&apos;);</div><div class="line">SELECT *FROM my_auto;</div></pre></td></tr></table></figure>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170119_131917.png" alt="snipaste_20170119_131917"></p>
+<p>自增长默认第一个数值是1，而且每次增加1</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170119_132204.png" alt="snipaste_20170119_132204"></p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170119_132141.png" alt="snipaste_20170119_132141"></p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170119_132349.png" alt="snipaste_20170119_132349"></p>
+<p>可以通过查看创建代码来找出下一次的自动增长的数字</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">CREATE TABLE my_auto (</div><div class="line">  id INT PRIMARY KEY AUTO_INCREMENT COMMENT &apos;测试id&apos;,</div><div class="line">  name VARCHAR(10) NOT NULL</div><div class="line">)CHARSET utf8;</div><div class="line">INSERT INTO my_auto(name) VALUES (&apos;qqq&apos;);</div><div class="line">INSERT INTO my_auto VALUES (NULL ,&apos;www&apos;);</div><div class="line">INSERT INTO my_auto VALUES (DEFAULT ,&apos;eee&apos;);</div><div class="line">INSERT INTO my_auto VALUES (8 ,&apos;rrr&apos;);</div><div class="line">INSERT INTO my_auto(name) VALUES (&apos;ttt&apos;);</div><div class="line">INSERT INTO my_auto VALUES (5 ,&apos;yyy&apos;);</div><div class="line">INSERT INTO my_auto(name) VALUES (&apos;uuu&apos;);</div><div class="line">SELECT *FROM my_auto;</div><div class="line">SHOW CREATE TABLE my_auto;</div><div class="line"></div><div class="line">#运行结果</div><div class="line">CREATE TABLE `my_auto` (</div><div class="line">  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT &apos;测试id&apos;,</div><div class="line">  `name` varchar(10) NOT NULL,</div><div class="line">  PRIMARY KEY (`id`)</div><div class="line">) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8</div></pre></td></tr></table></figure>
+<p>查看到AUTO_INCREMENT=11</p>
+<h4 id="修改自增长"><a href="#修改自增长" class="headerlink" title="修改自增长"></a>修改自增长</h4><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170119_133027.png" alt="snipaste_20170119_133027"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ALTER TABLE my_auto AUTO_INCREMENT = 20;</div><div class="line">SHOW CREATE TABLE my_auto;</div></pre></td></tr></table></figure>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170119_133202.png" alt="snipaste_20170119_133202"></p>
+<h4 id="查看自增长"><a href="#查看自增长" class="headerlink" title="查看自增长"></a>查看自增长</h4><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170119_133554.png" alt="snipaste_20170119_133554"></p>
+<p>注意这种修改是会话级（当前会话结束不在有效）</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170119_133529.png" alt="snipaste_20170119_133529"></p>
+<h4 id="删除自增长"><a href="#删除自增长" class="headerlink" title="删除自增长"></a>删除自增长</h4><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170119_134216.png" alt="snipaste_20170119_134216"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#错误的写法，不用写出primary key</div><div class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> my_auto <span class="keyword">MODIFY</span> <span class="keyword">id</span> <span class="built_in">INT</span> PRIMARY <span class="keyword">KEY</span> ;</div><div class="line">#正确的写法，不用写出primary key</div><div class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> my_auto <span class="keyword">MODIFY</span> <span class="keyword">id</span> <span class="built_in">INT</span> ;</div><div class="line">DESC my_auto;</div></pre></td></tr></table></figure>
+<h2 id="唯一键"><a href="#唯一键" class="headerlink" title="唯一键"></a>唯一键</h2><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170119_134732.png" alt="snipaste_20170119_134732"></p>
+<h3 id="增加唯一键"><a href="#增加唯一键" class="headerlink" title="增加唯一键"></a>增加唯一键</h3><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170119_134808.png" alt="snipaste_20170119_134808"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">CREATE TABLE my_unique (</div><div class="line">  number INT UNIQUE</div><div class="line">  COMMENT &apos;学号，唯一，可以是空&apos;</div><div class="line">)CHARSET utf8;</div><div class="line">DESC my_unique;</div></pre></td></tr></table></figure>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170119_135051.png" alt="snipaste_20170119_135051"></p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170119_135104.png" alt="snipaste_20170119_135104"></p>
+<p><strong>再key标示pri不一定是主键</strong>，只要满足不为空而且唯一（表中没有主键），那么就显示pri</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170119_135549.png" alt="snipaste_20170119_135549"></p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170119_135637.png" alt="snipaste_20170119_135637"></p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170119_135756.png" alt="snipaste_20170119_135756"></p>
+<h3 id="唯一键约束"><a href="#唯一键约束" class="headerlink" title="唯一键约束"></a>唯一键约束</h3><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170119_135903.png" alt="snipaste_20170119_135903"></p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170119_140221.png" alt="snipaste_20170119_140221"></p>
+<h3 id="更新唯一键"><a href="#更新唯一键" class="headerlink" title="更新唯一键"></a>更新唯一键</h3><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170119_192034.png" alt="snipaste_20170119_192034"></p>
+<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_130209.png" alt="snipaste_20170121_130209"></p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_130454.png" alt="snipaste_20170121_130454"></p>
+<h2 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h2><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_130820.png" alt="snipaste_20170121_130820"></p>
+<h3 id="一对一关系"><a href="#一对一关系" class="headerlink" title="一对一关系"></a>一对一关系</h3><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_131138.png" alt="snipaste_20170121_131138"></p>
+<h3 id="一对多关系"><a href="#一对多关系" class="headerlink" title="一对多关系"></a>一对多关系</h3><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_131226.png" alt="snipaste_20170121_131226"></p>
+<h3 id="多对多关系"><a href="#多对多关系" class="headerlink" title="多对多关系"></a>多对多关系</h3><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_131320.png" alt="snipaste_20170121_131320"></p>
+<p>如：老师和学生</p>
+<h2 id="范式"><a href="#范式" class="headerlink" title="范式"></a>范式</h2><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_131628.png" alt="snipaste_20170121_131628"></p>
+<h3 id="1NF"><a href="#1NF" class="headerlink" title="1NF"></a>1NF</h3><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_131902.png" alt="snipaste_20170121_131902"></p>
+<h3 id="2NF"><a href="#2NF" class="headerlink" title="2NF"></a>2NF</h3><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_132138.png" alt="snipaste_20170121_132138"></p>
+<h3 id="3NF"><a href="#3NF" class="headerlink" title="3NF"></a>3NF</h3><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_132314.png" alt="snipaste_20170121_132314"></p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_132425.png" alt="snipaste_20170121_132425"></p>
+<h3 id="逆规范化"><a href="#逆规范化" class="headerlink" title="逆规范化"></a>逆规范化</h3><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_132929.png" alt="snipaste_20170121_132929"></p>
+<h2 id="数据高级操作"><a href="#数据高级操作" class="headerlink" title="数据高级操作"></a>数据高级操作</h2><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_133129.png" alt="snipaste_20170121_133129"></p>
+<h3 id="主键冲突"><a href="#主键冲突" class="headerlink" title="主键冲突"></a>主键冲突</h3><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_133353.png" alt="snipaste_20170121_133353"></p>
+<h4 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">test</span>(</div><div class="line">  <span class="keyword">name</span> <span class="built_in">VARCHAR</span>(<span class="number">10</span>) PRIMARY <span class="keyword">KEY</span> ,</div><div class="line">  code <span class="built_in">INT</span>(<span class="number">10</span>)</div><div class="line">)<span class="keyword">CHARSET</span> utf8;</div><div class="line">DESC test;</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="keyword">test</span> <span class="keyword">VALUES</span> (<span class="string">'qq'</span>,<span class="number">10</span>),(<span class="string">'ww'</span>,<span class="number">22</span>);</div><div class="line"><span class="keyword">SELECT</span> *</div><div class="line"><span class="keyword">FROM</span> <span class="keyword">test</span>;</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="keyword">test</span> <span class="keyword">VALUES</span> (<span class="string">'qq'</span>,<span class="number">100</span>) <span class="keyword">ON</span> <span class="keyword">DUPLICATE</span> <span class="keyword">KEY</span> <span class="keyword">UPDATE</span> code = <span class="number">100</span>;</div></pre></td></tr></table></figure>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_134309.png" alt="snipaste_20170121_134309"></p>
+<p>注意这里更新受影响的有2行，首先插入一行，然后再更新一行（没有冲突就不用更新）</p>
+<h4 id="替换"><a href="#替换" class="headerlink" title="替换"></a>替换</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">test</span>(</div><div class="line">  <span class="keyword">name</span> <span class="built_in">VARCHAR</span>(<span class="number">10</span>) PRIMARY <span class="keyword">KEY</span> ,</div><div class="line">  code <span class="built_in">INT</span>(<span class="number">10</span>)</div><div class="line">)<span class="keyword">CHARSET</span> utf8;</div><div class="line">DESC test;</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="keyword">test</span> <span class="keyword">VALUES</span> (<span class="string">'qq'</span>,<span class="number">10</span>),(<span class="string">'ww'</span>,<span class="number">22</span>);</div><div class="line"><span class="keyword">SELECT</span> *</div><div class="line"><span class="keyword">FROM</span> <span class="keyword">test</span>;</div><div class="line"><span class="keyword">REPLACE</span> <span class="keyword">INTO</span> <span class="keyword">test</span> <span class="keyword">VALUES</span> (<span class="string">'qq'</span>,<span class="number">1000000</span>);</div></pre></td></tr></table></figure>
+<h3 id="蠕虫复制"><a href="#蠕虫复制" class="headerlink" title="蠕虫复制"></a>蠕虫复制</h3><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_135508.png" alt="snipaste_20170121_135508"></p>
+<p>只是复制结构不会复制数据</p>
+<hr>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_135618.png" alt="snipaste_20170121_135618"></p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_135717.png" alt="snipaste_20170121_135717"></p>
+<h3 id="更新数据"><a href="#更新数据" class="headerlink" title="更新数据"></a>更新数据</h3><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_135923.png" alt="snipaste_20170121_135923"></p>
+<h3 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h3><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_140113.png" alt="snipaste_20170121_140113"></p>
+<h3 id="查询数据"><a href="#查询数据" class="headerlink" title="查询数据"></a>查询数据</h3><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_140238.png" alt="snipaste_20170121_140238"></p>
+<h4 id="select选项"><a href="#select选项" class="headerlink" title="select选项"></a>select选项</h4><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_140338.png" alt="snipaste_20170121_140338"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> shuJv(</div><div class="line">  <span class="built_in">number</span> <span class="built_in">CHAR</span>(<span class="number">4</span>)</div><div class="line">)<span class="keyword">CHARSET</span> utf8;</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> shuJv <span class="keyword">VALUES</span> (<span class="string">'q'</span>),(<span class="string">'q'</span>),(<span class="string">'w'</span>),(<span class="string">'e'</span>),(<span class="string">'r'</span>),(<span class="string">'t'</span>),(<span class="string">'y'</span>),(<span class="string">'y'</span>);</div><div class="line"><span class="keyword">SELECT</span> *</div><div class="line"><span class="keyword">FROM</span> shuJv;</div><div class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> *<span class="keyword">FROM</span> shuJv;</div></pre></td></tr></table></figure>
+<h4 id="字段别名"><a href="#字段别名" class="headerlink" title="字段别名"></a>字段别名</h4><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_140949.png" alt="snipaste_20170121_140949"></p>
+<hr>
+<p>可以使用as，也可以不用as</p>
+<hr>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> my_primary3(</div><div class="line">  <span class="keyword">name</span> <span class="built_in">CHAR</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'姓名'</span>,</div><div class="line">  <span class="built_in">number</span> <span class="built_in">CHAR</span>(<span class="number">10</span>) <span class="keyword">COMMENT</span> <span class="string">'学号'</span>,</div><div class="line">  score TINYINT <span class="keyword">UNSIGNED</span> <span class="keyword">DEFAULT</span> <span class="number">60</span> <span class="keyword">COMMENT</span> <span class="string">'成绩'</span></div><div class="line">)<span class="keyword">CHARSET</span> utf8;</div><div class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> my_primary3 <span class="keyword">MODIFY</span> score <span class="built_in">CHAR</span>(<span class="number">10</span>) PRIMARY <span class="keyword">KEY</span> <span class="keyword">COMMENT</span> <span class="string">'成绩'</span>;</div><div class="line">DESC my_primary3;</div><div class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> my_primary3 <span class="keyword">DROP</span> PRIMARY <span class="keyword">KEY</span> ;</div><div class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> my_primary3 <span class="keyword">ADD</span> PRIMARY <span class="keyword">KEY</span> (<span class="built_in">number</span>,score);</div><div class="line">DESC my_primary3;</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> my_primary3 <span class="keyword">VALUES</span> (<span class="string">'王五'</span>,<span class="string">'j'</span>,<span class="number">1000</span>),(<span class="string">'王五'</span>,<span class="string">'j'</span>,<span class="number">1010</span>),(<span class="string">'王五'</span>,<span class="string">'j'</span>,<span class="number">4100</span>),(<span class="string">'王五'</span>,<span class="string">'j'</span>,<span class="number">1700</span>);</div><div class="line"><span class="keyword">SELECT</span> *</div><div class="line"><span class="keyword">FROM</span> my_primary3;</div><div class="line"><span class="keyword">SELECT</span> <span class="keyword">name</span> <span class="keyword">AS</span> 名字,</div><div class="line">  <span class="built_in">number</span> <span class="keyword">AS</span> 成绩,</div><div class="line">  score <span class="keyword">AS</span> 分数</div><div class="line"><span class="keyword">FROM</span> my_primary3;</div></pre></td></tr></table></figure>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_141518.png" alt="snipaste_20170121_141518"></p>
+<p>注意这里列的显示名字</p>
+<h4 id="数据源"><a href="#数据源" class="headerlink" title="数据源"></a>数据源</h4><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_141734.png" alt="snipaste_20170121_141734"></p>
+<ul>
+<li>单表数据源</li>
+</ul>
+<p>就是普通的<code>SELECT *FROM test;</code></p>
+<ul>
+<li>多表数据源</li>
+</ul>
+<p>类似<code>SELECT *FROM test,my_primary3;</code>也就是笛卡尔积</p>
+<p>第一张表：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">CREATE TABLE my_primary3(</div><div class="line">  name CHAR(20) NOT NULL COMMENT &apos;姓名&apos;,</div><div class="line">  number CHAR(10) COMMENT &apos;学号&apos;,</div><div class="line">  score TINYINT UNSIGNED DEFAULT 60 COMMENT &apos;成绩&apos;</div><div class="line">)CHARSET utf8;</div><div class="line">ALTER TABLE my_primary3 MODIFY score CHAR(10) PRIMARY KEY COMMENT &apos;成绩&apos;;</div><div class="line">DESC my_primary3;</div><div class="line">ALTER TABLE my_primary3 DROP PRIMARY KEY ;</div><div class="line">ALTER TABLE my_primary3 ADD PRIMARY KEY (number,score);</div><div class="line">DESC my_primary3;</div><div class="line">INSERT INTO my_primary3 VALUES (&apos;王五&apos;,&apos;j&apos;,1000),(&apos;王五&apos;,&apos;j&apos;,1010),(&apos;王五&apos;,&apos;j&apos;,4100),(&apos;王五&apos;,&apos;j&apos;,1700);</div><div class="line">SELECT *</div><div class="line">FROM my_primary3;</div><div class="line">SELECT name AS 名字,</div><div class="line">  number AS 成绩,</div><div class="line">  score AS 分数</div><div class="line">FROM my_primary3;</div></pre></td></tr></table></figure>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_141518.png" alt="snipaste_20170121_141518"></p>
+<p>第二张表：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">CREATE TABLE test(</div><div class="line">  name VARCHAR(10) PRIMARY KEY ,</div><div class="line">  code INT(10)</div><div class="line">)CHARSET utf8;</div><div class="line">DESC test;</div><div class="line">INSERT INTO test VALUES (&apos;qq&apos;,10),(&apos;ww&apos;,22);</div><div class="line">REPLACE INTO test VALUES (&apos;qq&apos;,1000000);</div><div class="line">SELECT *</div><div class="line">FROM test;</div></pre></td></tr></table></figure>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_142333.png" alt="snipaste_20170121_142333"></p>
+<p>多表数据源：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">SELECT *</div><div class="line">FROM test,my_primary3;</div></pre></td></tr></table></figure>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_142427.png" alt="snipaste_20170121_142427"></p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_142520.png" alt="snipaste_20170121_142520"></p>
+<ul>
+<li>子查询</li>
+</ul>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_142642.png" alt="snipaste_20170121_142642"></p>
+<h4 id="where子句"><a href="#where子句" class="headerlink" title="where子句"></a>where子句</h4><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_143003.png" alt="snipaste_20170121_143003"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> shuJv(</div><div class="line">  <span class="built_in">number</span> <span class="built_in">CHAR</span>(<span class="number">4</span>)</div><div class="line">)<span class="keyword">CHARSET</span> utf8;</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> shuJv <span class="keyword">VALUES</span> (<span class="string">'q'</span>),(<span class="string">'q'</span>),(<span class="string">'w'</span>),(<span class="string">'e'</span>),(<span class="string">'r'</span>),(<span class="string">'t'</span>),(<span class="string">'y'</span>),(<span class="string">'y'</span>);</div><div class="line"><span class="keyword">SELECT</span> *</div><div class="line"><span class="keyword">FROM</span> shuJv;</div><div class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> *<span class="keyword">FROM</span> shuJv;</div><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> shuJv <span class="keyword">WHERE</span> <span class="built_in">number</span> = <span class="string">'q'</span>||<span class="built_in">number</span> = <span class="string">'e'</span>;</div><div class="line"><span class="keyword">SELECT</span> *</div><div class="line"><span class="keyword">FROM</span> shuJv <span class="keyword">WHERE</span> <span class="built_in">number</span> <span class="keyword">IN</span> (<span class="string">'q'</span>,<span class="string">'e'</span>);</div></pre></td></tr></table></figure>
+<p>最后的两种查询方式的效果相同：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> shuJv <span class="keyword">WHERE</span> <span class="built_in">number</span> = <span class="string">'q'</span>||<span class="built_in">number</span> = <span class="string">'e'</span>;</div><div class="line"><span class="keyword">SELECT</span> *</div><div class="line"><span class="keyword">FROM</span> shuJv <span class="keyword">WHERE</span> <span class="built_in">number</span> <span class="keyword">IN</span> (<span class="string">'q'</span>,<span class="string">'e'</span>);</div></pre></td></tr></table></figure>
+<p>查找在1和6之间的数据<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> shuJv2 (</div><div class="line">  <span class="built_in">number</span> TINYINT</div><div class="line">)</div><div class="line">  <span class="keyword">CHARSET</span> utf8;</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> shuJv2 <span class="keyword">VALUES</span> (<span class="number">2</span>), (<span class="number">3</span>), (<span class="number">4</span>), (<span class="number">4</span>), (<span class="number">5</span>), (<span class="number">5</span>), (<span class="number">6</span>), (<span class="number">7</span>), (<span class="number">8</span>);</div><div class="line"><span class="keyword">SELECT</span> *</div><div class="line"><span class="keyword">FROM</span> shuJv2</div><div class="line"><span class="keyword">WHERE</span> <span class="built_in">number</span> &gt; <span class="number">1</span> &amp;&amp; <span class="built_in">number</span> &lt; <span class="number">6</span>;</div><div class="line"><span class="keyword">SELECT</span> *</div><div class="line"><span class="keyword">FROM</span> shuJv2</div><div class="line"><span class="keyword">WHERE</span> <span class="built_in">number</span> <span class="keyword">BETWEEN</span> <span class="number">1</span> <span class="keyword">AND</span> <span class="number">6</span>;</div></pre></td></tr></table></figure></p>
+<p>最后的两种查询的结果相同</p>
+<h4 id="group-by子句"><a href="#group-by子句" class="headerlink" title="group by子句"></a>group by子句</h4><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_150137.png" alt="snipaste_20170121_150137"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> student2 (</div><div class="line">  <span class="keyword">name</span>   <span class="built_in">VARCHAR</span>(<span class="number">10</span>),</div><div class="line">  age    <span class="built_in">INT</span>,</div><div class="line">  height <span class="built_in">INT</span>,</div><div class="line">  sex    <span class="built_in">INT</span></div><div class="line">)</div><div class="line">  <span class="keyword">CHARSET</span> utf8;</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> student2 <span class="keyword">VALUES</span> (<span class="string">"王五"</span>, <span class="number">40</span>, <span class="number">160</span>, <span class="number">1</span>), (<span class="string">"王五"</span>, <span class="number">40</span>, <span class="number">160</span>, <span class="number">0</span>), (<span class="string">"王五"</span>, <span class="number">40</span>, <span class="number">170</span>, <span class="number">0</span>), (<span class="string">"王五"</span>, <span class="number">40</span>, <span class="number">160</span>, <span class="number">0</span>)</div><div class="line">  , (<span class="string">"王五"</span>, <span class="number">40</span>, <span class="number">170</span>, <span class="number">1</span>), (<span class="string">"王五"</span>, <span class="number">40</span>, <span class="number">150</span>, <span class="number">1</span>);</div><div class="line"><span class="keyword">SELECT</span> *</div><div class="line"><span class="keyword">FROM</span> student2;</div><div class="line"><span class="keyword">SELECT</span></div><div class="line">  sex,</div><div class="line">  <span class="keyword">count</span>(*),</div><div class="line">  <span class="keyword">min</span>(height),</div><div class="line">  <span class="keyword">min</span>(height),</div><div class="line">  <span class="keyword">max</span>(height),</div><div class="line">  <span class="keyword">avg</span>(age)</div><div class="line"><span class="keyword">FROM</span> student2</div><div class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> sex;</div></pre></td></tr></table></figure>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_150334.png" alt="snipaste_20170121_150334"></p>
+<p>也就是说假如某一个字段的值是null那么，*和字段名的值就会差1</p>
+<hr>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_151447.png" alt="snipaste_20170121_151447"></p>
+<p>desc降序排序</p>
+<hr>
+<h4 id="多字段分组"><a href="#多字段分组" class="headerlink" title="多字段分组"></a>多字段分组</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> student3 (</div><div class="line">  <span class="keyword">name</span>  <span class="built_in">VARCHAR</span>(<span class="number">10</span>),</div><div class="line">  age   <span class="built_in">INT</span>,</div><div class="line">  <span class="keyword">class</span> <span class="built_in">INT</span>,</div><div class="line">  sex   <span class="built_in">VARCHAR</span>(<span class="number">10</span>)</div><div class="line">)</div><div class="line">  <span class="keyword">CHARSET</span> utf8;</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> student3</div><div class="line"><span class="keyword">VALUES</span> (<span class="string">"天意8"</span>, <span class="number">22</span>, <span class="number">1</span>, <span class="string">'男'</span>), (<span class="string">"天意7"</span>, <span class="number">22</span>, <span class="number">2</span>, <span class="string">'女'</span>), (<span class="string">"天意10"</span>, <span class="number">22</span>, <span class="number">3</span>, <span class="string">'女'</span>), (<span class="string">"天意41"</span>, <span class="number">22</span>, <span class="number">4</span>, <span class="string">'男'</span>), (<span class="string">"天意51"</span>, <span class="number">22</span>, <span class="number">1</span>, <span class="string">'女'</span>);</div><div class="line"><span class="keyword">SELECT</span></div><div class="line">  <span class="keyword">class</span>,</div><div class="line">  <span class="keyword">count</span>(*),</div><div class="line">  sex,</div><div class="line">  <span class="keyword">group_concat</span>(<span class="keyword">name</span>)</div><div class="line"><span class="keyword">FROM</span> student3</div><div class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="keyword">class</span>, sex;</div></pre></td></tr></table></figure>
+<p>注意group_concat的用法</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_153730.png" alt="snipaste_20170121_153730"></p>
+<h4 id="回溯统计"><a href="#回溯统计" class="headerlink" title="回溯统计"></a>回溯统计</h4><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_161239.png" alt="snipaste_20170121_161239"></p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_161303.png" alt="snipaste_20170121_161303"></p>
+<p>回溯统计会把每个空的小组也显示到控制台</p>
+<h3 id="Having子句"><a href="#Having子句" class="headerlink" title="Having子句"></a>Having子句</h3><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_161726.png" alt="snipaste_20170121_161726"></p>
+<h4 id="分组统计的结果和统计函数只有having能使用"><a href="#分组统计的结果和统计函数只有having能使用" class="headerlink" title="分组统计的结果和统计函数只有having能使用"></a>分组统计的结果和统计函数只有having能使用</h4><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_161858.png" alt="snipaste_20170121_161858"></p>
+<h4 id="having能够使用字段的别名，where不能"><a href="#having能够使用字段的别名，where不能" class="headerlink" title="having能够使用字段的别名，where不能"></a>having能够使用字段的别名，where不能</h4><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_162135.png" alt="snipaste_20170121_162135"></p>
+<h3 id="Ooder-by子句"><a href="#Ooder-by子句" class="headerlink" title="Ooder by子句"></a>Ooder by子句</h3><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_162259.png" alt="snipaste_20170121_162259"></p>
+<p>和group by不同，group by值显示一个元素</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_162420.png" alt="snipaste_20170121_162420"></p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_162509.png" alt="snipaste_20170121_162509"></p>
+<h3 id="limit子句"><a href="#limit子句" class="headerlink" title="limit子句"></a>limit子句</h3><p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_162611.png" alt="snipaste_20170121_162611"></p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_162647.png" alt="snipaste_20170121_162647"></p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_162656.png" alt="snipaste_20170121_162656"></p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170121_162839.png" alt="snipaste_20170121_162839"></p>
+</section>
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#MySQL" >
+    <span class="tag-code">MySQL</span>
+  </a>
+
+      </div>
+    
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="alipay-code">
+            <div class="code-image"></div>
+            <b>使用支付宝打赏</b>
+          </span>
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+    </div>
+    <div class="qrcode">
+      <canvas id="share-qrcode"></canvas>
+      <p class="notice">扫描二维码，分享此文章</p>
+    </div>
+    
+      <div id="comments"></div>
+    
+  </article>
+</main>
+
+<script>
+  (function () {
+    var url = 'http://bbbb.ml/2015/08/14/SQL/03-Mysql学习笔记-列属性/';
+    var banner = 'http://osk1xe27i.bkt.clouddn.com/1.jpg'
+    if (banner !== 'undefined') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "jwl00";
+    if (gitmentConfig != "undefined") {
+      var gitment = new Gitment({
+        id: "03-Mysql学习笔记-列属性",
+        owner: "jwl00",
+        repo: "jwl00.github.io",
+        oauth: {
+          client_id: "ae21ad25810b1f2cc193",
+          client_secret: "7b6bb525adfeee63bd087132d98e6fd015d49ed8"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

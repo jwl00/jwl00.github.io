@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="什么也不留下">
+  <meta name="keyword" content="hexo-theme, Android">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      正则表达式、Math、Random、System、BigInteger、Date、SimpleDateFormat、Calendar | JWL博客
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>JWL博客</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>正则表达式、Math、Random、System、BigInteger、Date、SimpleDateFormat、Calendar</h2>
+  <p class="post-date">2014-03-07</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content"><a id="more"></a>
+<h1 id="正则表达式、Math、Random、System、BigInteger、Date、SimpleDateFormat、Calendar"><a href="#正则表达式、Math、Random、System、BigInteger、Date、SimpleDateFormat、Calendar" class="headerlink" title="正则表达式、Math、Random、System、BigInteger、Date、SimpleDateFormat、Calendar"></a>正则表达式、Math、Random、System、BigInteger、Date、SimpleDateFormat、Calendar</h1><p>[TOC]</p>
+<h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><h3 id="基本规则"><a href="#基本规则" class="headerlink" title="基本规则"></a>基本规则</h3><p>A:字符</p>
+<pre><code>x 字符 x。举例：&apos;a&apos;表示字符a
+\\ 反斜线字符。
+\n 新行（换行）符 (&apos;\u000A&apos;) 
+\r 回车符 (&apos;\u000D&apos;)
+</code></pre><p>B:字符类<br>    [abc] a、b 或 c（简单类） 三选一<br>    [^abc] 任何字符，除了 a、b 或 c（否定）<br>    [a-zA-Z] a到 z 或 A到 Z，两头的字母包括在内（范围）<br>    [0-9] 0到9的字符都包括</p>
+<p>C:预定义字符类<br>    . 任何字符。我的就是.字符本身，怎么表示呢? .<br>    \d 数字：[0-9]<br>    \w 单词字符：[a-zA-Z_0-9]<br>        在正则表达式里面组成单词的东西必须有这些东西组成</p>
+<p>D:边界匹配器<br>    ^ 行的开头<br>    $ 行的结尾<br>    \b 单词边界<br>        就是不是单词字符的地方。</p>
+<p>E:Greedy 数量词<br>    X? X，一次或一次也没有<br>    X* X，零次或多次<br>    X+ X，一次或多次<br>    X{n} X，恰好 n 次<br>    X{n,} X，至少 n 次<br>    X{n,m} X，至少 n 次，但是不超过 m 次 </p>
+<h3 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h3><h4 id="判断"><a href="#判断" class="headerlink" title="判断"></a>判断</h4><p>String类的public boolean matches(String regex)</p>
+<p>验证邮箱：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">String regex = <span class="string">"\\w+@\\w&#123;2,6&#125;(\\.\\w&#123;2,3&#125;)+"</span>;</div></pre></td></tr></table></figure>
+<h4 id="分割"><a href="#分割" class="headerlink" title="分割"></a>分割</h4><p>String类的public String[] split(String regex)</p>
+<p>分割硬盘的路径：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">String s4 = <span class="string">"E:\\JavaSE\\day14\\avi"</span>;</div><div class="line">String[] str4Array = s4.split(<span class="string">"\\\\"</span>);</div><div class="line"><span class="keyword">for</span> (<span class="keyword">int</span> x = <span class="number">0</span>; x &lt; str4Array.length; x++) &#123;</div><div class="line">	System.out.println(str4Array[x]);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>被分割字符串中有空格：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">String s3 = <span class="string">"aa    bb                cc"</span>;</div><div class="line">String[] str3Array = s3.split(<span class="string">" +"</span>);</div><div class="line"><span class="keyword">for</span> (<span class="keyword">int</span> x = <span class="number">0</span>; x &lt; str3Array.length; x++) &#123;</div><div class="line">	System.out.println(str3Array[x]);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h4><p>  我有如下一个字符串:”91 27 46 38 50”<br>  请写代码实现最终输出结果是：”27 38 46 50 91”</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RegexTest</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="comment">// 定义一个字符串</span></div><div class="line">		String s = <span class="string">"91 27 46 38 50"</span>;</div><div class="line"></div><div class="line">		<span class="comment">// 把字符串进行分割，得到一个字符串数组</span></div><div class="line">		String[] strArray = s.split(<span class="string">" "</span>);</div><div class="line"></div><div class="line">		<span class="comment">// 把字符串数组变换成int数组</span></div><div class="line">		<span class="keyword">int</span>[] arr = <span class="keyword">new</span> <span class="keyword">int</span>[strArray.length];</div><div class="line"></div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> x = <span class="number">0</span>; x &lt; arr.length; x++) &#123;</div><div class="line">			arr[x] = Integer.parseInt(strArray[x]);</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="comment">// 对int数组排序</span></div><div class="line">		Arrays.sort(arr);</div><div class="line"></div><div class="line">		<span class="comment">// 把排序后的int数组在组装成一个字符串</span></div><div class="line">		StringBuilder sb = <span class="keyword">new</span> StringBuilder();</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> x = <span class="number">0</span>; x &lt; arr.length; x++) &#123;</div><div class="line">			sb.append(arr[x]).append(<span class="string">" "</span>);</div><div class="line">		&#125;</div><div class="line">		<span class="comment">//转化为字符串</span></div><div class="line">		String result = sb.toString().trim();</div><div class="line">		</div><div class="line">		<span class="comment">//输出字符串</span></div><div class="line">		System.out.println(<span class="string">"result:"</span>+result);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="替换"><a href="#替换" class="headerlink" title="替换"></a>替换</h4><p>String类的public String replaceAll(String regex,String replacement)</p>
+<p>使用给定的 replacement 替换此字符串所有匹配给定的正则表达式的子字符串</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RegexDemo</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="comment">// 定义一个字符串</span></div><div class="line">		String s = <span class="string">"helloqq12345worldkh622112345678java"</span>;</div><div class="line"></div><div class="line">		<span class="comment">// 我要去除所有的数字,用*给替换掉</span></div><div class="line">		<span class="comment">// String regex = "\\d+"; --------------&gt;所有数字才是一个星</span></div><div class="line">		<span class="comment">// String regex = "\\d"; --------&gt;表示一个数字一个星星</span></div><div class="line">		<span class="comment">//String ss = "*";</span></div><div class="line">		</div><div class="line">		</div><div class="line">		<span class="comment">// 直接把数字干掉</span></div><div class="line">		String regex = <span class="string">"\\d+"</span>;</div><div class="line">		String ss = <span class="string">""</span>;</div><div class="line"></div><div class="line">		String result = s.replaceAll(regex, ss);</div><div class="line">		System.out.println(result);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="获取"><a href="#获取" class="headerlink" title="获取"></a>获取</h4><p>示例代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">  获取下面这个字符串中由三个字符组成的单词</div><div class="line">  da jia ting wo shuo,jin tian yao xia yu,bu shang wan zi xi,gao xing bu?</div><div class="line">  </div><div class="line">  <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RegexDemo2</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="comment">// 定义字符串</span></div><div class="line">		String s = <span class="string">"da jia ting wo shuo,jin tian yao xia yu,bu shang wan zi xi,gao xing bu?"</span>;</div><div class="line">		<span class="comment">// 规则</span></div><div class="line">		String regex = <span class="string">"\\b\\w&#123;3&#125;\\b"</span>;</div><div class="line"></div><div class="line">		<span class="comment">// 把规则编译成模式对象</span></div><div class="line">		Pattern p = Pattern.compile(regex);</div><div class="line">		<span class="comment">// 通过模式对象得到匹配器对象</span></div><div class="line">		Matcher m = p.matcher(s);</div><div class="line">		<span class="comment">// 调用匹配器对象的功能</span></div><div class="line">		<span class="comment">// 通过find方法就是查找有没有满足条件的子串</span></div><div class="line">		<span class="keyword">while</span> (m.find()) &#123;</div><div class="line">			System.out.println(m.group());</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="comment">// 注意：一定要先find()，然后才能group()</span></div><div class="line">		<span class="comment">// IllegalStateException: No match found非法状态</span></div><div class="line">		 String ss = m.group();</div><div class="line">		 System.out.println(ss);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="math类"><a href="#math类" class="headerlink" title="math类"></a>math类</h2><h3 id="成员方法"><a href="#成员方法" class="headerlink" title="成员方法"></a>成员方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">abs</span><span class="params">(<span class="keyword">int</span> a)</span>：绝对值</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">ceil</span><span class="params">(<span class="keyword">double</span> a)</span>:向上取整</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">floor</span><span class="params">(<span class="keyword">double</span> a)</span>:向下取整</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span>:最大值 <span class="params">(min自学)</span></span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">pow</span><span class="params">(<span class="keyword">double</span> a,<span class="keyword">double</span> b)</span>:a的b次幂</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">random</span><span class="params">()</span>:随机数 [0.0,1.0)</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">round</span><span class="params">(<span class="keyword">float</span> a)</span> 四舍五入</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">sqrt</span><span class="params">(<span class="keyword">double</span> a)</span>:正平方根</span></div></pre></td></tr></table></figure>
+<h3 id="练习题"><a href="#练习题" class="headerlink" title="练习题"></a>练习题</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">请设计一个方法，可以实现获取任意范围内的随机数。</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getRandom</span><span class="params">(<span class="keyword">int</span> start, <span class="keyword">int</span> end)</span> </span>&#123;</div><div class="line"></div><div class="line">		<span class="keyword">int</span> number = (<span class="keyword">int</span>) (Math.random() * (end - start + <span class="number">1</span>)) + start;</div><div class="line">		<span class="keyword">return</span> number;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<h2 id="Random类"><a href="#Random类" class="headerlink" title="Random类"></a>Random类</h2><p>产生随机数的类，给定种子后，每次得到的随机数是相同的。</p>
+<h3 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Random</span><span class="params">()</span>:没有给种子，用的是默认种子，是当前时间的毫秒值</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">Random</span><span class="params">(<span class="keyword">long</span> seed)</span>:给出指定的种子</span></div></pre></td></tr></table></figure>
+<h3 id="成员方法-1"><a href="#成员方法-1" class="headerlink" title="成员方法"></a>成员方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">nextInt</span><span class="params">()</span>：返回的是<span class="keyword">int</span>范围内的随机数</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">nextInt</span><span class="params">(<span class="keyword">int</span> n)</span>:返回的是[0,n)范围的内随机数</span></div></pre></td></tr></table></figure>
+<h2 id="System类"><a href="#System类" class="headerlink" title="System类"></a>System类</h2><p>包含一些有用的类字段和方法（就是静态的），他不能被实例化。</p>
+<h3 id="成员方法-2"><a href="#成员方法-2" class="headerlink" title="成员方法"></a>成员方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">gc</span><span class="params">()</span>：运行垃圾回收器。 会自动调用object的finalize方法</span></div><div class="line"><span class="function">       终止当前正在运行的 Java 虚拟机。参数用作状态码；根据惯例，非 0 的状态码表示异常终止。</span></div><div class="line"><span class="function">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">exit</span><span class="params">(<span class="keyword">int</span> status)</span></span></div><div class="line"><span class="function">返回以毫秒为单位的当前时间</span></div><div class="line"><span class="function">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">currentTimeMillis</span><span class="params">()</span></span></div><div class="line"><span class="function">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">arraycopy</span><span class="params">(Object src,<span class="keyword">int</span> srcPos,Object dest,<span class="keyword">int</span> destPos,<span class="keyword">int</span> length)</span>指定源数组中复制一个数组，复制从指定的位置开始，到目标数组的指定位置结束。</span></div></pre></td></tr></table></figure>
+<p>注意：arraycopy的写法是错误的</p>
+<p>arraycopy的示例代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">	<span class="comment">// 定义数组</span></div><div class="line">	<span class="keyword">int</span>[] arr = &#123; <span class="number">11</span>, <span class="number">22</span>, <span class="number">33</span>, <span class="number">44</span>, <span class="number">55</span> &#125;;</div><div class="line">	<span class="keyword">int</span>[] arr2 = &#123; <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span> &#125;;</div><div class="line"></div><div class="line">	<span class="comment">// 请大家看这个代码的意思</span></div><div class="line">	System.arraycopy(arr, <span class="number">1</span>, arr2, <span class="number">2</span>, <span class="number">2</span>);</div><div class="line"></div><div class="line">	System.out.println(Arrays.toString(arr));</div><div class="line">	System.out.println(Arrays.toString(arr2));</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//运行结果</span></div><div class="line"><span class="comment">//[11, 22, 33, 44, 55]</span></div><div class="line"><span class="comment">//[6, 7, 22, 33, 10]</span></div></pre></td></tr></table></figure>
+<h2 id="BigInteger类"><a href="#BigInteger类" class="headerlink" title="BigInteger类"></a>BigInteger类</h2><p>可以让超过Integer范围内的数据进行运算</p>
+<h3 id="构造方法-1"><a href="#构造方法-1" class="headerlink" title="构造方法"></a>构造方法</h3><p>BigInteger(String val)</p>
+<h3 id="成员方法-3"><a href="#成员方法-3" class="headerlink" title="成员方法"></a>成员方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> BigInteger <span class="title">add</span><span class="params">(BigInteger val)</span>:加</span></div><div class="line"><span class="function"><span class="keyword">public</span> BigInteger <span class="title">subtract</span><span class="params">(BigInteger val)</span>:减</span></div><div class="line"><span class="function"><span class="keyword">public</span> BigInteger <span class="title">multiply</span><span class="params">(BigInteger val)</span>:乘</span></div><div class="line"><span class="function"><span class="keyword">public</span> BigInteger <span class="title">divide</span><span class="params">(BigInteger val)</span>:除</span></div><div class="line"><span class="function"><span class="keyword">public</span> BigInteger[] <span class="title">divideAndRemainder</span><span class="params">(BigInteger val)</span>:返回商和余数的数组</span></div></pre></td></tr></table></figure>
+<h2 id="BigDecimal"><a href="#BigDecimal" class="headerlink" title="BigDecimal"></a>BigDecimal</h2><p>为了能精确的表示、计算浮点数，Java提供了BigDecimal</p>
+<h3 id="构造方法-2"><a href="#构造方法-2" class="headerlink" title="构造方法"></a>构造方法</h3><p>public BigDecimal(String val)其他重载方法1如传入doubble，仍会丢失精度</p>
+<h3 id="成员方法-4"><a href="#成员方法-4" class="headerlink" title="成员方法"></a>成员方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> BigDecimal <span class="title">add</span><span class="params">(BigDecimal augend)</span></span></div><div class="line"><span class="function"><span class="keyword">public</span> BigDecimal <span class="title">subtract</span><span class="params">(BigDecimal subtrahend)</span></span></div><div class="line"><span class="function"><span class="keyword">public</span> BigDecimal <span class="title">multiply</span><span class="params">(BigDecimal multiplicand)</span></span></div><div class="line"><span class="function"><span class="keyword">public</span> BigDecimal <span class="title">divide</span><span class="params">(BigDecimal divisor)</span></span></div><div class="line"><span class="function"><span class="keyword">public</span> BigDecimal <span class="title">divide</span><span class="params">(BigDecimal divisor,<span class="keyword">int</span> scale,<span class="keyword">int</span> roundingMode)</span>:商，几位小数，如何舍取</span></div></pre></td></tr></table></figure>
+<h2 id="Date类"><a href="#Date类" class="headerlink" title="Date类"></a>Date类</h2><p>表示特定的瞬间，精确到毫秒。 </p>
+<h3 id="构造方法-3"><a href="#构造方法-3" class="headerlink" title="构造方法"></a>构造方法</h3><p>Date(long date)：根据给定的毫秒值创建日期对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//写出结果		</span></div><div class="line"><span class="keyword">long</span> time = <span class="number">1000</span> * <span class="number">60</span> * <span class="number">60</span>; <span class="comment">// 1小时</span></div><div class="line">Date d2 = <span class="keyword">new</span> Date(time);</div><div class="line">System.out.println(<span class="string">"d2:"</span> + d2);</div></pre></td></tr></table></figure>
+<p>结果不是1970年1月1日1点而是早上9点，因为时区，差8个小时。</p>
+<h3 id="成员方法-5"><a href="#成员方法-5" class="headerlink" title="成员方法"></a>成员方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getTime</span><span class="params">()</span>:获取时间，以毫秒为单位</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setTime</span><span class="params">(<span class="keyword">long</span> time)</span>:设置时间</span></div></pre></td></tr></table></figure>
+<p>  从Date得到一个毫秒值<br>          getTime()<br>  把一个毫秒值转换为Date<br>          构造方法<br>          setTime(long time)</p>
+<h2 id="SimpleDateFormat"><a href="#SimpleDateFormat" class="headerlink" title="SimpleDateFormat"></a>SimpleDateFormat</h2><p>DateForamt:可以进行日期和字符串的格式化和解析，但是由于是抽象类，所以使用具体子类SimpleDateFormat。</p>
+<h3 id="构造方法-4"><a href="#构造方法-4" class="headerlink" title="构造方法"></a>构造方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">SimpleDateFormat():默认模式</div><div class="line">SimpleDateFormat(String pattern):给定的模式</div><div class="line">	这个模式字符串该如何写呢?</div><div class="line">	通过查看API，我们就找到了对应的模式</div><div class="line">	年 y</div><div class="line">	月 M	</div><div class="line">	日 d</div><div class="line">	时 H</div><div class="line">	分 m</div><div class="line">	秒 s</div><div class="line">      示例：yyyy年MM月dd日 HH:mm:ss</div></pre></td></tr></table></figure>
+<p>日期和字符串的相互转化：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DateFormatDemo</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ParseException </span>&#123;</div><div class="line">		<span class="comment">// Date -- String</span></div><div class="line">		<span class="comment">// 创建日期对象</span></div><div class="line">		Date d = <span class="keyword">new</span> Date();</div><div class="line">		<span class="comment">// 创建格式化对象</span></div><div class="line">		<span class="comment">// SimpleDateFormat sdf = new SimpleDateFormat();</span></div><div class="line">		<span class="comment">// 给定模式</span></div><div class="line">		SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy年MM月dd日 HH:mm:ss"</span>);</div><div class="line">		<span class="comment">// public final String format(Date date)</span></div><div class="line">		String s = sdf.format(d);</div><div class="line">		System.out.println(s);</div><div class="line">		</div><div class="line">		</div><div class="line">		<span class="comment">//String -- Date</span></div><div class="line">		String str = <span class="string">"2008-08-08 12:12:12"</span>;</div><div class="line">		<span class="comment">//在把一个字符串解析为日期的时候，请注意格式必须和给定的字符串格式匹配</span></div><div class="line">		SimpleDateFormat sdf2 = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>);</div><div class="line">		Date dd = sdf2.parse(str);</div><div class="line">		System.out.println(dd);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Calendar"><a href="#Calendar" class="headerlink" title="Calendar"></a>Calendar</h2><p>Calendar:它为特定瞬间与一组诸如 YEAR、MONTH、DAY_OF_MONTH、HOUR 等 日历字段之间的转换提供了一些方法，并为操作日历字段（例如获得下星期的日期）提供了一些方法。</p>
+<h3 id="成员方法-6"><a href="#成员方法-6" class="headerlink" title="成员方法"></a>成员方法</h3><p>public int get(int field):返回给定日历字段的值。日历类中的每个日历字段都是静态的成员变量，并且是int类型。</p>
+<p>示例代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CalendarDemo</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="comment">// 其日历字段已由当前日期和时间初始化：</span></div><div class="line">		Calendar rightNow = Calendar.getInstance(); <span class="comment">// 子类对象</span></div><div class="line"></div><div class="line">		<span class="comment">// 获取年</span></div><div class="line">		<span class="keyword">int</span> year = rightNow.get(Calendar.YEAR);</div><div class="line">		<span class="comment">// 获取月</span></div><div class="line">		<span class="keyword">int</span> month = rightNow.get(Calendar.MONTH);</div><div class="line">		<span class="comment">// 获取日</span></div><div class="line">		<span class="keyword">int</span> date = rightNow.get(Calendar.DATE);</div><div class="line"></div><div class="line">		System.out.println(year + <span class="string">"年"</span> + (month + <span class="number">1</span>) + <span class="string">"月"</span> + date + <span class="string">"日"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注意：其中getIntance的写法实际就是创建一个Canlendar的子类的实现对象；而且month要加一，month是从0</p>
+<p>开始到11。</p>
+<p>public void add(int field,int amount):根据给定的日历字段和对应的时间，来对当前的日历进行操作。</p>
+<p>public final void set(int year,int month,int date):设置当前日历的年月日</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CalendarDemo</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="comment">// 获取当前的日历时间</span></div><div class="line">		Calendar c = Calendar.getInstance();</div><div class="line"></div><div class="line">		<span class="comment">// 获取年</span></div><div class="line">		<span class="keyword">int</span> year = c.get(Calendar.YEAR);</div><div class="line">		<span class="comment">// 获取月</span></div><div class="line">		<span class="keyword">int</span> month = c.get(Calendar.MONTH);</div><div class="line">		<span class="comment">// 获取日</span></div><div class="line">		<span class="keyword">int</span> date = c.get(Calendar.DATE);</div><div class="line">		System.out.println(year + <span class="string">"年"</span> + (month + <span class="number">1</span>) + <span class="string">"月"</span> + date + <span class="string">"日"</span>);</div><div class="line"></div><div class="line">		<span class="comment">// // 三年前的今天</span></div><div class="line">		<span class="comment">// c.add(Calendar.YEAR, -3);</span></div><div class="line">		<span class="comment">// // 获取年</span></div><div class="line">		<span class="comment">// year = c.get(Calendar.YEAR);</span></div><div class="line">		<span class="comment">// // 获取月</span></div><div class="line">		<span class="comment">// month = c.get(Calendar.MONTH);</span></div><div class="line">		<span class="comment">// // 获取日</span></div><div class="line">		<span class="comment">// date = c.get(Calendar.DATE);</span></div><div class="line">		<span class="comment">// System.out.println(year + "年" + (month + 1) + "月" + date + "日");</span></div><div class="line"></div><div class="line">		<span class="comment">// 5年后的10天前</span></div><div class="line">		c.add(Calendar.YEAR, <span class="number">5</span>);</div><div class="line">		c.add(Calendar.DATE, -<span class="number">10</span>);</div><div class="line">		<span class="comment">// 获取年</span></div><div class="line">		year = c.get(Calendar.YEAR);</div><div class="line">		<span class="comment">// 获取月</span></div><div class="line">		month = c.get(Calendar.MONTH);</div><div class="line">		<span class="comment">// 获取日</span></div><div class="line">		date = c.get(Calendar.DATE);</div><div class="line">		System.out.println(year + <span class="string">"年"</span> + (month + <span class="number">1</span>) + <span class="string">"月"</span> + date + <span class="string">"日"</span>);</div><div class="line">		System.out.println(<span class="string">"--------------"</span>);</div><div class="line"></div><div class="line">		c.set(<span class="number">2011</span>, <span class="number">11</span>, <span class="number">11</span>);</div><div class="line">		<span class="comment">// 获取年</span></div><div class="line">		year = c.get(Calendar.YEAR);</div><div class="line">		<span class="comment">// 获取月</span></div><div class="line">		month = c.get(Calendar.MONTH);</div><div class="line">		<span class="comment">// 获取日</span></div><div class="line">		date = c.get(Calendar.DATE);</div><div class="line">		System.out.println(year + <span class="string">"年"</span> + (month + <span class="number">1</span>) + <span class="string">"月"</span> + date + <span class="string">"日"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="练习-1"><a href="#练习-1" class="headerlink" title="练习"></a>练习</h3><p>获取任意一年的二月有多少天</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment"> * 获取任意一年的二月有多少天</span></div><div class="line"><span class="comment"> * </span></div><div class="line"><span class="comment"> * 分析：</span></div><div class="line"><span class="comment"> * 		A:键盘录入任意的年份</span></div><div class="line"><span class="comment"> * 		B:设置日历对象的年月日</span></div><div class="line"><span class="comment"> * 			年就是A输入的数据</span></div><div class="line"><span class="comment"> * 			月是2</span></div><div class="line"><span class="comment"> * 			日是1</span></div><div class="line"><span class="comment"> * 		C:把时间往前推一天，就是2月的最后一天</span></div><div class="line"><span class="comment"> * 		D:获取这一天输出即可</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CalendarTest</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="comment">// 键盘录入任意的年份</span></div><div class="line">		Scanner sc = <span class="keyword">new</span> Scanner(System.in);</div><div class="line">		System.out.println(<span class="string">"请输入年份："</span>);</div><div class="line">		<span class="keyword">int</span> year = sc.nextInt();</div><div class="line"></div><div class="line">		<span class="comment">// 设置日历对象的年月日</span></div><div class="line">		Calendar c = Calendar.getInstance();</div><div class="line">		c.set(year, <span class="number">2</span>, <span class="number">1</span>); <span class="comment">// 其实是这一年的3月1日</span></div><div class="line">		<span class="comment">// 把时间往前推一天，就是2月的最后一天</span></div><div class="line">		c.add(Calendar.DATE, -<span class="number">1</span>);</div><div class="line"></div><div class="line">		<span class="comment">// 获取这一天输出即可</span></div><div class="line">		System.out.println(c.get(Calendar.DATE));</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</section>
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#Java笔记" >
+    <span class="tag-code">Java笔记</span>
+  </a>
+
+      </div>
+    
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="alipay-code">
+            <div class="code-image"></div>
+            <b>使用支付宝打赏</b>
+          </span>
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+    </div>
+    <div class="qrcode">
+      <canvas id="share-qrcode"></canvas>
+      <p class="notice">扫描二维码，分享此文章</p>
+    </div>
+    
+      <div id="comments"></div>
+    
+  </article>
+</main>
+
+<script>
+  (function () {
+    var url = 'http://bbbb.ml/2014/03/07/Java/正则表达式、Math、Random、System、BigInteger、Date、SimpleDateFormat、Calendar/';
+    var banner = 'http://osk1xe27i.bkt.clouddn.com/1.jpg'
+    if (banner !== 'undefined') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "jwl00";
+    if (gitmentConfig != "undefined") {
+      var gitment = new Gitment({
+        id: "正则表达式、Math、Random、System、BigInteger、Date、SimpleDateFormat、Calendar",
+        owner: "jwl00",
+        repo: "jwl00.github.io",
+        oauth: {
+          client_id: "ae21ad25810b1f2cc193",
+          client_secret: "7b6bb525adfeee63bd087132d98e6fd015d49ed8"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

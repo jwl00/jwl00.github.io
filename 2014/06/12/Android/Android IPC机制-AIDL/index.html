@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="什么也不留下">
+  <meta name="keyword" content="hexo-theme, Android">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      Android IPC机制-AIDL | JWL博客
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>JWL博客</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>Android IPC机制-AIDL</h2>
+  <p class="post-date">2014-06-12</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content"><a id="more"></a>
+<h1 id="Android-IPC机制-AIDL"><a href="#Android-IPC机制-AIDL" class="headerlink" title="Android IPC机制-AIDL"></a>Android IPC机制-AIDL</h1><p>[TOC]</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>AIDL是一个缩写，全称是<a href="http://lib.csdn.net/base/android" target="_blank" rel="external">Android</a>?Interface Definition Language，也就是Android接口定义语言，是为了<strong>实现进程间通信，尤其是在涉及多进程并发情况下的进程间通信</strong>。</p>
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><p>AIDL默认支持一些数据类型，在使用这些数据类型的时候是不需要导包的，但是除了这些类型之外的数据类型，在使用之前必须导包，<strong>就算目标文件与当前正在编写的 .aidl 文件在同一个包下</strong></p>
+<p>默认支持的数据类型包括：?<br>Java中的八种基本数据类型，包括 byte，short，int，long，float，double，boolean，char。</p>
+<p>String 类型。</p>
+<p>CharSequence类型。</p>
+<p>List类型：List中的所有元素必须是AIDL支持的类型之一，或者是一个其他AIDL生成的接口，或者是定义的parcelable（下文关于这个会有详解）。List可以使用泛型。</p>
+<p>Map类型：Map中的所有元素必须是AIDL支持的类型之一，或者是一个其他AIDL生成的接口，或者是定义的parcelable。Map是不支持泛型的。</p>
+<p><strong>AIDL中的定向 tag 表示了在跨进程通信中数据的流向，其中 in 表示数据只能由客户端流向服务端， out 表示数据只能由服务端流向客户端，而 inout 则表示数据可在服务端与客户端之间双向流通。</strong>定向tag在aidl文件的方法标识上</p>
+<h3 id="AIDL基本语法"><a href="#AIDL基本语法" class="headerlink" title="AIDL基本语法"></a>AIDL基本语法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">package com.lypeer.ipcclient;</div><div class="line">//导入所需要使用的非默认支持数据类型的包</div><div class="line">import com.lypeer.ipcclient.Book;</div><div class="line"></div><div class="line">interface BookManager &#123;</div><div class="line"></div><div class="line">    //所有的返回值前都不需要加任何东西，不管是什么数据类型</div><div class="line">    List&lt;Book&gt; getBooks();</div><div class="line">    Book getBook();</div><div class="line">    int getBookCount();</div><div class="line"></div><div class="line">    //传参时除了Java基本类型以及String，CharSequence之外的类型</div><div class="line">    //都需要在前面加上定向tag，具体加什么量需而定</div><div class="line">    void setBookPrice(in Book book , int price)</div><div class="line">    void setBookName(in Book book , String name)</div><div class="line">    void addBookIn(in Book book);</div><div class="line">    void addBookOut(out Book book);</div><div class="line">    void addBookInout(inout Book book);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注意as默认完成的Parcelable要增加一个方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public void readFromParcel(Parcel dest) &#123;</div><div class="line">    //注意，此处的读值顺序应当是和writeToParcel()方法中一致的</div><div class="line">    name = dest.readString();</div><div class="line">    price = dest.readInt();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="移动文件"><a href="#移动文件" class="headerlink" title="移动文件"></a>移动文件</h3><p>当aidl完成之后可以直接移动文件：</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170308_184115.png" alt="snipaste_20170308_184115"></p>
+<p>其中同名的java文件直接移动问价和对应的文件夹：</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170308_184226.png" alt="snipaste_20170308_184226"></p>
+<p>写完aidl直接rebuild项目即可生成对应的java文件</p>
+<h2 id="实际案例"><a href="#实际案例" class="headerlink" title="实际案例"></a>实际案例</h2><h3 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h3><p>book.aidl</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">package com.example.simaxiaochen.myapplication;</div><div class="line"></div><div class="line">// Declare any non-default types here with import statements</div><div class="line">parcelable Book;</div></pre></td></tr></table></figure>
+<p>BookManager.aidl</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">// BookManager.aidl</div><div class="line">package com.example.simaxiaochen.myapplication;</div><div class="line"></div><div class="line">// Declare any non-default types here with import statements</div><div class="line">import com.example.simaxiaochen.myapplication.Book;</div><div class="line">interface BookManager &#123;</div><div class="line"></div><div class="line">    //所有的返回值前都不需要加任何东西，不管是什么数据类型</div><div class="line">    List&lt;Book&gt; getBooks();</div><div class="line"></div><div class="line">    //传参时除了Java基本类型以及String，CharSequence之外的类型</div><div class="line">    //都需要在前面加上定向tag，具体加什么量需而定</div><div class="line">    void addBook(in Book book);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Service，主要就是具体写完aidl中定义的方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line">public class AIDLService extends Service &#123;</div><div class="line">    public final String TAG = this.getClass().getSimpleName();</div><div class="line"></div><div class="line">    //包含Book对象的list</div><div class="line">    private List&lt;Book&gt; mBooks = new ArrayList&lt;&gt;();</div><div class="line"></div><div class="line">    //由AIDL文件生成的BookManager</div><div class="line">    private final BookManager.Stub mBookManager = new BookManager.Stub() &#123;</div><div class="line">        @Override</div><div class="line">        public List&lt;Book&gt; getBooks() throws RemoteException &#123;</div><div class="line">            synchronized (this) &#123;</div><div class="line">                Log.e(TAG, &quot;invoking getBooks() method , now the list is : &quot; + mBooks.toString());</div><div class="line">                if (mBooks != null) &#123;</div><div class="line">                    return mBooks;</div><div class="line">                &#125;</div><div class="line">                return new ArrayList&lt;&gt;();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line"></div><div class="line">        @Override</div><div class="line">        public void addBook(Book book) throws RemoteException &#123;</div><div class="line">            synchronized (this) &#123;</div><div class="line">                if (mBooks == null) &#123;</div><div class="line">                    mBooks = new ArrayList&lt;&gt;();</div><div class="line">                &#125;</div><div class="line">                if (book == null) &#123;</div><div class="line">                    Log.e(TAG, &quot;Book is null in In&quot;);</div><div class="line">                    book = new Book();</div><div class="line">                &#125;</div><div class="line">                //尝试修改book的参数，主要是为了观察其到客户端的反馈</div><div class="line">                book.setPrice(2333);</div><div class="line">                if (!mBooks.contains(book)) &#123;</div><div class="line">                    mBooks.add(book);</div><div class="line">                &#125;</div><div class="line">                //打印mBooks列表，观察客户端传过来的值</div><div class="line">                Log.e(TAG, &quot;invoking addBooks() method , now the list is : &quot; + mBooks.toString());</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void onCreate() &#123;</div><div class="line">        super.onCreate();</div><div class="line">        Book book = new Book();</div><div class="line">        book.setName(&quot;Android开发艺术探索&quot;);</div><div class="line">        book.setPrice(28);</div><div class="line">        mBooks.add(book);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Nullable</div><div class="line">    @Override</div><div class="line">    public IBinder onBind(Intent intent) &#123;</div><div class="line">        Log.e(getClass().getSimpleName(), String.format(&quot;on bind,intent = %s&quot;, intent.toString()));</div><div class="line">        return mBookManager;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div></pre></td><td class="code"><pre><div class="line">public class MainActivity extends AppCompatActivity &#123;</div><div class="line"></div><div class="line">    //由AIDL文件生成的Java类</div><div class="line">    private BookManager mBookManager = null;</div><div class="line"></div><div class="line">    //标志当前与服务端连接状况的布尔值，false为未连接，true为连接中</div><div class="line">    private boolean mBound = false;</div><div class="line"></div><div class="line">    //包含Book对象的list</div><div class="line">    private List&lt;Book&gt; mBooks;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</div><div class="line">        super.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 按钮的点击事件，点击之后调用服务端的addBookIn方法</div><div class="line">     *</div><div class="line">     * @param view</div><div class="line">     */</div><div class="line">    public void addBook(View view) &#123;</div><div class="line">        //如果与服务端的连接处于未连接状态，则尝试连接</div><div class="line">        if (!mBound) &#123;</div><div class="line">            attemptToBindService();</div><div class="line">            Toast.makeText(this, &quot;当前与服务端处于未连接状态，正在尝试重连，请稍后再试&quot;, Toast.LENGTH_SHORT).show();</div><div class="line">            return;</div><div class="line">        &#125;</div><div class="line">        if (mBookManager == null) return;</div><div class="line"></div><div class="line">        Book book = new Book();</div><div class="line">        book.setName(&quot;APP研发录In&quot;);</div><div class="line">        book.setPrice(30);</div><div class="line">        try &#123;</div><div class="line">            mBookManager.addBook(book);</div><div class="line">            Log.e(getLocalClassName(), book.toString());</div><div class="line">        &#125; catch (RemoteException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 尝试与服务端建立连接</div><div class="line">     */</div><div class="line">    private void attemptToBindService() &#123;</div><div class="line">        Intent intent = new Intent();</div><div class="line">        intent.setAction(&quot;com.lypeer.aidl&quot;);</div><div class="line">        intent.setPackage(&quot;com.example.simaxiaochen.myapplication&quot;);</div><div class="line">        bindService(intent, mServiceConnection, Context.BIND_AUTO_CREATE);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    protected void onStart() &#123;</div><div class="line">        super.onStart();</div><div class="line">        if (!mBound) &#123;</div><div class="line">            attemptToBindService();</div><div class="line">            Log.e(&quot;ty&quot;, &quot;onStart: attemptToBindService&quot;);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    protected void onStop() &#123;</div><div class="line">        super.onStop();</div><div class="line">        if (mBound) &#123;</div><div class="line">            unbindService(mServiceConnection);</div><div class="line">            mBound = false;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private ServiceConnection mServiceConnection = new ServiceConnection() &#123;</div><div class="line">        @Override</div><div class="line">        public void onServiceConnected(ComponentName name, IBinder service) &#123;</div><div class="line">            Log.e(getLocalClassName(), &quot;service connected&quot;);</div><div class="line">            mBookManager = BookManager.Stub.asInterface(service);</div><div class="line">            mBound = true;</div><div class="line"></div><div class="line">            if (mBookManager != null) &#123;</div><div class="line">                try &#123;</div><div class="line">                    mBooks = mBookManager.getBooks();</div><div class="line">                    Log.e(getLocalClassName(), mBooks.toString());</div><div class="line">                &#125; catch (RemoteException e) &#123;</div><div class="line">                    e.printStackTrace();</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        @Override</div><div class="line">        public void onServiceDisconnected(ComponentName name) &#123;</div><div class="line">            Log.e(getLocalClassName(), &quot;service disconnected&quot;);</div><div class="line">            mBound = false;</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://blog.csdn.net/luoyanglizi/article/details/51980630" target="_blank" rel="external">http://blog.csdn.net/luoyanglizi/article/details/51980630</a></p>
+<p><a href="http://blog.csdn.net/luoyanglizi/article/details/52029091" target="_blank" rel="external">http://blog.csdn.net/luoyanglizi/article/details/52029091</a></p>
+<p><a href="http://blog.csdn.net/luoyanglizi/article/details/51958091" target="_blank" rel="external">http://blog.csdn.net/luoyanglizi/article/details/51958091</a></p>
+</section>
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#Android基础" >
+    <span class="tag-code">Android基础</span>
+  </a>
+
+      </div>
+    
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="alipay-code">
+            <div class="code-image"></div>
+            <b>使用支付宝打赏</b>
+          </span>
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+    </div>
+    <div class="qrcode">
+      <canvas id="share-qrcode"></canvas>
+      <p class="notice">扫描二维码，分享此文章</p>
+    </div>
+    
+      <div id="comments"></div>
+    
+  </article>
+</main>
+
+<script>
+  (function () {
+    var url = 'http://bbbb.ml/2014/06/12/Android/Android IPC机制-AIDL/';
+    var banner = 'http://osk1xe27i.bkt.clouddn.com/1.jpg'
+    if (banner !== 'undefined') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "jwl00";
+    if (gitmentConfig != "undefined") {
+      var gitment = new Gitment({
+        id: "Android IPC机制-AIDL",
+        owner: "jwl00",
+        repo: "jwl00.github.io",
+        oauth: {
+          client_id: "ae21ad25810b1f2cc193",
+          client_secret: "7b6bb525adfeee63bd087132d98e6fd015d49ed8"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

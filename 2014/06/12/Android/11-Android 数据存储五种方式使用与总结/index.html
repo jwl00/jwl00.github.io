@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="什么也不留下">
+  <meta name="keyword" content="hexo-theme, Android">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      11-Android 数据存储五种方式使用与总结 | JWL博客
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>JWL博客</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>11-Android 数据存储五种方式使用与总结</h2>
+  <p class="post-date">2014-06-12</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content"><a id="more"></a>
+<h1 id="11-Android-数据存储五种方式使用与总结"><a href="#11-Android-数据存储五种方式使用与总结" class="headerlink" title="11-Android 数据存储五种方式使用与总结"></a>11-Android 数据存储五种方式使用与总结</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>​    Android提供了5种方式来让用户保存持久化应用程序数据。根据自己的需求来做选择，比如数据是否是应用程序私有的，是否能被其他程序访问，需要多少数据存储空间等，分别是：</p>
+<p>①　使用SharedPreferences存储数据　</p>
+<p>②　文件存储数据</p>
+<p>③　 SQLite数据库存储数据</p>
+<p>④　使用ContentProvider存储数据</p>
+<p>⑤　网络存储数据　</p>
+<p>Android提供了一种方式来暴露你的数据（甚至是私有数据）给其他应用程序 - ContentProvider。</p>
+<h2 id="SharedPreferences存储"><a href="#SharedPreferences存储" class="headerlink" title="SharedPreferences存储"></a>SharedPreferences存储</h2><p>　　SharedPreference类提供了一个总体框架，使您可以保存和检索的任何基本数据类型（ boolean, float, int, long, string）的持久键-值对（基于XML文件存储的“key-value”键值对数据）。</p>
+<p>　　通常用来存储程序的一些配置信息。其存储在“data/data/程序包名/shared_prefs目录下。</p>
+<p>　　xml 处理时Dalvik会通过自带底层的本地XML Parser解析，比如XMLpull方式，这样对于内存资源占用比较好。　</p>
+<h3 id="获取SharedPreferences对象（通过Context）"><a href="#获取SharedPreferences对象（通过Context）" class="headerlink" title="获取SharedPreferences对象（通过Context）"></a>获取SharedPreferences对象（通过Context）</h3><blockquote>
+<p>①　getSharedPreferences (String name, int mode)</p>
+</blockquote>
+<p>　　当我们有多个SharedPreferences的时候，根据第一个参数name获得相应的SharedPreferences对象。</p>
+<blockquote>
+<p>②　getPreferences (int mode)</p>
+</blockquote>
+<p>　　如果你的Activity中只需要一个SharedPreferences的时候使用。</p>
+<p>这里的mode有四个选项：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Context.MODE_PRIVATE</div></pre></td></tr></table></figure>
+<p>　　该SharedPreferences数据只能被本应用程序读、写。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Context.MODE_WORLD_READABLE</div></pre></td></tr></table></figure>
+<p>　　该SharedPreferences数据能被其他应用程序读，但不能写。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Context.MODE_WORLD_WRITEABLE</div></pre></td></tr></table></figure>
+<p>　　该SharedPreferences数据能被其他应用程序读和写。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Context.MODE_MULTI_PROCESS</div></pre></td></tr></table></figure>
+<p>　　sdk2.3后添加的选项，当多个进程同时读写同一个SharedPreferences时它会检查文件是否修改。</p>
+<h3 id="向Shared-Preferences中写入值"><a href="#向Shared-Preferences中写入值" class="headerlink" title="向Shared Preferences中写入值　"></a>向Shared Preferences中写入值　</h3><p>首先要通过 SharedPreferences.Editor获取到Editor对象；</p>
+<p>然后通过Editor的putBoolean() 或 putString()等方法存入值；</p>
+<p>最后调用Editor的commit()方法提交；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">//Use 0 or MODE_PRIVATE for the default operation </div><div class="line">SharedPreferences settings = getSharedPreferences(&quot;fanrunqi&quot;, 0);</div><div class="line">SharedPreferences.Editor editor = settings.edit();</div><div class="line">editor.putBoolean(&quot;isAmazing&quot;, true); </div><div class="line"></div><div class="line">// 提交本次编辑</div><div class="line">editor.commit();</div></pre></td></tr></table></figure>
+<p>同时Edit还有两个常用的方法：</p>
+<blockquote>
+<p>editor.remove(String key) ：下一次commit的时候会移除key对应的键值对</p>
+<p>editor.clear()：移除所有键值对</p>
+</blockquote>
+<h3 id="从Shared-Preferences中读取值"><a href="#从Shared-Preferences中读取值" class="headerlink" title="从Shared Preferences中读取值"></a>从Shared Preferences中读取值</h3><p>　　读取值使用 SharedPreference对象的getBoolean()或getString()等方法就行了（没Editor 啥子事）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">SharedPreferences settings = getSharedPreferences(&quot;fanrunqi&quot;, 0);</div><div class="line">boolean isAmazing= settings.getBoolean(&quot;isAmazing&quot;,true);</div></pre></td></tr></table></figure>
+<h3 id="Shared-Preferences的优缺点"><a href="#Shared-Preferences的优缺点" class="headerlink" title="Shared Preferences的优缺点"></a>Shared Preferences的优缺点</h3><p>　　可以看出来Preferences是很轻量级的应用，使用起来也很方便，简洁。但存储数据类型比较单一（只有基本数据类型），无法进行条件查询，只能在不复杂的存储需求下使用，比如保存配置信息等。</p>
+<h2 id="内部存储"><a href="#内部存储" class="headerlink" title="内部存储"></a>内部存储</h2><p>　当文件被保存在内部存储中时，默认情况下，文件是应用程序私有的，其他应用不能访问。当用户卸载应用程序时这些文件也跟着被删除。</p>
+<p>　　文件默认存储位置：/data/data/包名/files/文件名。</p>
+<h3 id="创建和写入一个内部存储的私有文件"><a href="#创建和写入一个内部存储的私有文件" class="headerlink" title="创建和写入一个内部存储的私有文件"></a>创建和写入一个内部存储的私有文件</h3><p>①　调用Context的openFileOutput()函数，填入文件名和操作模式，它会返回一个FileOutputStream对象。</p>
+<p>②　通过FileOutputStream对象的write()函数写入数据。</p>
+<p>③　 FileOutputStream对象的close ()函数关闭流。</p>
+<p>例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">String FILENAME = &quot;a.txt&quot;;</div><div class="line">String string = &quot;fanrunqi&quot;;</div><div class="line"></div><div class="line">try &#123;</div><div class="line">    FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);</div><div class="line">    fos.write(string.getBytes());</div><div class="line">    fos.close();</div><div class="line">&#125; catch (Exception e) &#123;</div><div class="line">    e.printStackTrace();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在 openFileOutput(String name, int mode)方法中</p>
+<ul>
+<li>name参数:　用于指定文件名称，不能包含路径分隔符“/” ，如果文件不存在，Android 会自动创建它。</li>
+<li>mode参数：用于指定操作模式，分为四种：</li>
+</ul>
+<blockquote>
+<p>Context.MODE_PRIVATE = 0</p>
+</blockquote>
+<p>　　为默认操作模式，代表该文件是私有数据，只能被应用本身访问，在该模式下，写入的内容会覆盖原文件的内容。</p>
+<blockquote>
+<p>Context.MODE_APPEND = 32768</p>
+</blockquote>
+<p>　　该模式会检查文件是否存在，存在就往文件追加内容，否则就创建新文件。　</p>
+<blockquote>
+<p>Context.MODE_WORLD_READABLE = 1</p>
+</blockquote>
+<p>　　表示当前文件可以被其他应用读取。</p>
+<blockquote>
+<p>MODE_WORLD_WRITEABLE</p>
+</blockquote>
+<p>　　表示当前文件可以被其他应用写入。</p>
+<h3 id="读取一个内部存储的私有文件"><a href="#读取一个内部存储的私有文件" class="headerlink" title="读取一个内部存储的私有文件"></a>读取一个内部存储的私有文件</h3><p>① 调用openFileInput( )，参数中填入文件名，会返回一个FileInputStream对象。</p>
+<p>② 使用流对象的 read()方法读取字节</p>
+<p>③ 调用流的close()方法关闭流</p>
+<p>例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">String FILENAME = &quot;a.txt&quot;;</div><div class="line">    try &#123;</div><div class="line">        FileInputStream inStream = openFileInput(FILENAME);</div><div class="line">        int len = 0;</div><div class="line">        byte[] buf = new byte[1024];</div><div class="line">        StringBuilder sb = new StringBuilder();</div><div class="line">        while ((len = inStream.read(buf)) != -1) &#123;</div><div class="line">            sb.append(new String(buf, 0, len));</div><div class="line">        &#125;</div><div class="line">        inStream.close();</div><div class="line">    &#125; catch (Exception e) &#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>其他一些经常用到的方法：</p>
+<ul>
+<li>getFilesDir()：　得到内存储文件的绝对路径</li>
+<li>getDir()：　在内存储空间中创建或打开一个已经存在的目录</li>
+<li>deleteFile()：　删除保存在内部存储的文件。　　</li>
+<li>fileList()：　返回当前由应用程序保存的文件的数组（内存储目录下的全部文件）。　</li>
+</ul>
+<h3 id="保存内存缓存文件"><a href="#保存内存缓存文件" class="headerlink" title="保存内存缓存文件"></a>保存内存缓存文件</h3><p>　　有时候我们只想缓存一些数据而不是持久化保存，可以使用getCacheDir（）去打开一个文件，文件的存储目录（ /data/data/包名/cache ）是一个应用专门来保存临时缓存文件的内存目录。</p>
+<p>　　当设备的内部存储空间比较低的时候，Android可能会删除这些缓存文件来恢复空间，但是你不应该依赖系统来回收，要自己维护这些缓存文件把它们的大小限制在一个合理的范围内，比如1ＭＢ．当你卸载应用的时候这些缓存文件也会被移除。</p>
+<h3 id="raw-和assets异同点"><a href="#raw-和assets异同点" class="headerlink" title="raw 和assets异同点"></a>raw 和assets异同点</h3><ul>
+<li>相同点</li>
+</ul>
+<p>两者目录下的文件在打包后会原封不动的保存在apk包中，不会被编译成二进制。</p>
+<p>assets和res/raw工程目录下都可以放一些小于1M的文件（2.3版本以前要求，否则将不能读出数据。），这些文件将被打包到APK中应用使用。assets目录下的文件将不做任何处理被打包，，如果你的资源很大，例如视频等等，应该单独存储在文件系统中。</p>
+<ul>
+<li>不同点</li>
+</ul>
+<ol>
+<li>res/raw中的文件会被映射到R.java文件中，访问的时候直接使用资源ID即R.id.filename；assets文件夹下的文件不会被映射到R.java中，访问的时候需要AssetManager类。</li>
+</ol>
+<ol>
+<li>res/raw不可以有目录结构，而assets则可以有目录结构，也就是assets目录下可以再建立文件夹</li>
+</ol>
+<ol>
+<li>读取资源的方法不同：</li>
+</ol>
+<p>读取res/raw下的文件资源</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">InputStream is = getResources().openRawResource(R.id.filename);</div><div class="line">//另外一种方式</div><div class="line">InputStream is = this.getResources().openRawResource(R.raw.filename);</div></pre></td></tr></table></figure>
+<p>读取assets下的文件资源:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">AssetManager am = null;    </div><div class="line">am = getAssets();    </div><div class="line">InputStream is = am.open(&quot;filename&quot;);   </div><div class="line">//或者通过uri</div><div class="line">Uri uri = Uri.parse(&quot;android.resource://package_name/raw/sample.png&quot;);</div></pre></td></tr></table></figure>
+<h2 id="使用外部存储"><a href="#使用外部存储" class="headerlink" title="使用外部存储"></a>使用外部存储</h2><h3 id="增加读写权限"><a href="#增加读写权限" class="headerlink" title="增加读写权限"></a>增加读写权限</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">　&lt;!-- 在SDCard中创建与删除文件权限 --&gt; </div><div class="line"> &lt;uses-permission android:name=&quot;android.permission.MOUNT_UNMOUNT_FILESYSTEMS&quot;/&gt; </div><div class="line"></div><div class="line">&lt;!-- 往SDCard写入数据权限 --&gt; </div><div class="line"> &lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;/&gt;</div></pre></td></tr></table></figure>
+<h3 id="检测外部设备可用性"><a href="#检测外部设备可用性" class="headerlink" title="检测外部设备可用性"></a>检测外部设备可用性</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">//获取外存储的状态</div><div class="line">String state = Environment.getExternalStorageState();</div><div class="line">if (Environment.MEDIA_MOUNTED.equals(state)) &#123;</div><div class="line">    // 可读可写</div><div class="line">    mExternalStorageAvailable = mExternalStorageWriteable = true;</div><div class="line">&#125; else if (Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) &#123;</div><div class="line">    // 可读</div><div class="line">&#125; else &#123;</div><div class="line">    // 可能有很多其他的状态，但是我们只需要知道，不能读也不能写  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="访问外部文件"><a href="#访问外部文件" class="headerlink" title="访问外部文件"></a>访问外部文件</h3><blockquote>
+<p>getExternalFilesDir (String type)</p>
+</blockquote>
+<p>　　该方法打开一个外存储目录，此方法需要一个类型，指定你想要的子目录，如类型参数DIRECTORY_MUSIC和 DIRECTORY_RINGTONES（传null就是你应用程序的文件目录的根目录）。通过指定目录的类型，确保Android的媒体扫描仪将扫描分类系统中的文件（例如，铃声被确定为铃声）。如果用户卸载应用程序，这个目录及其所有内容将被删除。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">File file = new File(getExternalFilesDir(null), &quot;fanrunqi.jpg&quot;);</div></pre></td></tr></table></figure>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://www.jianshu.com/p/4c020b45f9e3" target="_blank" rel="external">http://www.jianshu.com/p/4c020b45f9e3</a></p>
+<p><a href="https://github.com/HaoTianYi/ForAndroidInterview/blob/master/android/Android%20%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E4%BA%94%E7%A7%8D%E6%96%B9%E5%BC%8F%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%80%BB%E7%BB%93.md" target="_blank" rel="external">https://github.com/HaoTianYi/ForAndroidInterview/blob/master/android/Android%20%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E4%BA%94%E7%A7%8D%E6%96%B9%E5%BC%8F%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%80%BB%E7%BB%93.md</a></p>
+<p><a href="http://blog.csdn.net/robertcpp/article/details/51628900" target="_blank" rel="external">http://blog.csdn.net/robertcpp/article/details/51628900</a></p>
+</section>
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#Android基础" >
+    <span class="tag-code">Android基础</span>
+  </a>
+
+      </div>
+    
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="alipay-code">
+            <div class="code-image"></div>
+            <b>使用支付宝打赏</b>
+          </span>
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+    </div>
+    <div class="qrcode">
+      <canvas id="share-qrcode"></canvas>
+      <p class="notice">扫描二维码，分享此文章</p>
+    </div>
+    
+      <div id="comments"></div>
+    
+  </article>
+</main>
+
+<script>
+  (function () {
+    var url = 'http://bbbb.ml/2014/06/12/Android/11-Android 数据存储五种方式使用与总结/';
+    var banner = 'http://osk1xe27i.bkt.clouddn.com/1.jpg'
+    if (banner !== 'undefined') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "jwl00";
+    if (gitmentConfig != "undefined") {
+      var gitment = new Gitment({
+        id: "11-Android 数据存储五种方式使用与总结",
+        owner: "jwl00",
+        repo: "jwl00.github.io",
+        oauth: {
+          client_id: "ae21ad25810b1f2cc193",
+          client_secret: "7b6bb525adfeee63bd087132d98e6fd015d49ed8"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

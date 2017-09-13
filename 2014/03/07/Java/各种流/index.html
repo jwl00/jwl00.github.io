@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="什么也不留下">
+  <meta name="keyword" content="hexo-theme, Android">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      各种流 | JWL博客
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>JWL博客</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>各种流</h2>
+  <p class="post-date">2014-03-07</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content"><h1 id="各种流"><a href="#各种流" class="headerlink" title="各种流"></a>各种流</h1><h2 id="注册IO版"><a href="#注册IO版" class="headerlink" title="注册IO版"></a>注册IO版</h2><blockquote>
+<p>在局部变量初始化是null时，那么在后面调用的时候一定要判断是否为空</p>
+<p>关闭流的操作放在finally语句中</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserDaoImpl</span> <span class="keyword">implements</span> <span class="title">UserDao</span> </span>&#123;</div><div class="line">	<span class="comment">// 为了保证文件一加载就创建</span></div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> File file = <span class="keyword">new</span> File(<span class="string">"user.txt"</span>);</div><div class="line"></div><div class="line">	<span class="keyword">static</span> &#123;</div><div class="line">		<span class="keyword">try</span> &#123;</div><div class="line">			file.createNewFile();</div><div class="line">		&#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">			System.out.println(<span class="string">"创建文件失败"</span>);</div><div class="line">			<span class="comment">// e.printStackTrace();</span></div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isLogin</span><span class="params">(String username, String password)</span> </span>&#123;</div><div class="line">		<span class="keyword">boolean</span> flag = <span class="keyword">false</span>;</div><div class="line"></div><div class="line">		BufferedReader br = <span class="keyword">null</span>;</div><div class="line">		<span class="keyword">try</span> &#123;</div><div class="line">			<span class="comment">// br = new BufferedReader(new FileReader("user.txt"));</span></div><div class="line">			br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(file));</div><div class="line">			String line = <span class="keyword">null</span>;</div><div class="line">			<span class="keyword">while</span> ((line = br.readLine()) != <span class="keyword">null</span>) &#123;</div><div class="line">				<span class="comment">// 用户名=密码</span></div><div class="line">				String[] datas = line.split(<span class="string">"="</span>);</div><div class="line">				<span class="keyword">if</span> (datas[<span class="number">0</span>].equals(username) &amp;&amp; datas[<span class="number">1</span>].equals(password)) &#123;</div><div class="line">					flag = <span class="keyword">true</span>;</div><div class="line">					<span class="keyword">break</span>;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</div><div class="line">			System.out.println(<span class="string">"用户登录找不到信息所在的文件"</span>);</div><div class="line">			<span class="comment">// e.printStackTrace();</span></div><div class="line">		&#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">			System.out.println(<span class="string">"用户登录失败"</span>);</div><div class="line">			<span class="comment">// e.printStackTrace();</span></div><div class="line">		&#125; <span class="keyword">finally</span> &#123;</div><div class="line">			<span class="keyword">if</span> (br != <span class="keyword">null</span>) &#123;</div><div class="line">				<span class="keyword">try</span> &#123;</div><div class="line">					br.close();</div><div class="line">				&#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">					System.out.println(<span class="string">"用户登录释放资源失败"</span>);</div><div class="line">					<span class="comment">// e.printStackTrace();</span></div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="keyword">return</span> flag;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">regist</span><span class="params">(User user)</span> </span>&#123;</div><div class="line">		<span class="comment">/*</span></div><div class="line"><span class="comment">		 * 为了让注册的数据能够有一定的规则，我就自己定义了一个规则： 用户名=密码</span></div><div class="line"><span class="comment">		 */</span></div><div class="line">		BufferedWriter bw = <span class="keyword">null</span>;</div><div class="line">		<span class="keyword">try</span> &#123;</div><div class="line">			<span class="comment">// bw = new BufferedWriter(new FileWriter("user.txt"));</span></div><div class="line">			<span class="comment">// bw = new BufferedWriter(new FileWriter(file));</span></div><div class="line">			<span class="comment">// 为了保证数据是追加写入，必须加true</span></div><div class="line">			bw = <span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> FileWriter(file, <span class="keyword">true</span>));</div><div class="line">			bw.write(user.getUsername() + <span class="string">"="</span> + user.getPassword());</div><div class="line">			bw.newLine();</div><div class="line">			bw.flush();</div><div class="line">		&#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">			System.out.println(<span class="string">"用户注册失败"</span>);</div><div class="line">			<span class="comment">// e.printStackTrace();</span></div><div class="line">		&#125; <span class="keyword">finally</span> &#123;</div><div class="line">			<span class="keyword">if</span> (bw != <span class="keyword">null</span>) &#123;</div><div class="line">				<span class="keyword">try</span> &#123;</div><div class="line">					bw.close();</div><div class="line">				&#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">					System.out.println(<span class="string">"用户注册释放资源失败"</span>);</div><div class="line">					<span class="comment">// e.printStackTrace();</span></div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注意：文件名的命名</p>
+<p>注意标签flag的返回，注意静态语句块的使用</p>
+<h2 id="操作基本数据类型的流"><a href="#操作基本数据类型的流" class="headerlink" title="操作基本数据类型的流"></a>操作基本数据类型的流</h2><h3 id="DataInputStream"><a href="#DataInputStream" class="headerlink" title="DataInputStream"></a>DataInputStream</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DataInputStream(InputStream in)</div></pre></td></tr></table></figure>
+<h3 id="DataOutputStream"><a href="#DataOutputStream" class="headerlink" title="DataOutputStream"></a>DataOutputStream</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DataOutputStream(OutputStream out)</div></pre></td></tr></table></figure>
+<h2 id="内存操作流"><a href="#内存操作流" class="headerlink" title="内存操作流"></a>内存操作流</h2><h3 id="字节数组"><a href="#字节数组" class="headerlink" title="字节数组"></a>字节数组</h3><ul>
+<li>ByteArrayInputStream</li>
+</ul>
+<p>底层是一个byte数组，不用关闭流，即使关闭流，在调用函数也不会产生io异常</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//close方法</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">close</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>ByteArrayOutputStream</li>
+</ul>
+<p>底层是一个byte数组，不用关闭流，即使关闭流，在调用函数也不会产生io异常</p>
+<p>示例代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">	<span class="comment">// 写数据</span></div><div class="line">	<span class="comment">// ByteArrayOutputStream()</span></div><div class="line">	ByteArrayOutputStream baos = <span class="keyword">new</span> ByteArrayOutputStream();</div><div class="line"></div><div class="line">	<span class="comment">// 写数据</span></div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> x = <span class="number">0</span>; x &lt; <span class="number">10</span>; x++) &#123;</div><div class="line">		baos.write((<span class="string">"hello"</span> + x).getBytes());</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">// 释放资源</span></div><div class="line">	<span class="comment">// 通过查看源码我们知道这里什么都没做，所以根本需要close()</span></div><div class="line">	 baos.close();</div><div class="line"></div><div class="line">	<span class="comment">// public byte[] toByteArray()</span></div><div class="line">	<span class="keyword">byte</span>[] bys = baos.toByteArray();</div><div class="line"></div><div class="line">	<span class="comment">// 读数据</span></div><div class="line">	<span class="comment">// ByteArrayInputStream(byte[] buf)</span></div><div class="line">	ByteArrayInputStream bais = <span class="keyword">new</span> ByteArrayInputStream(bys);</div><div class="line"></div><div class="line">	<span class="keyword">int</span> by = <span class="number">0</span>;</div><div class="line">	<span class="keyword">while</span> ((by = bais.read()) != -<span class="number">1</span>) &#123;</div><div class="line">		System.out.print((<span class="keyword">char</span>) by);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">// bais.close();</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>操作流程：</p>
+<ol>
+<li>创建ByteArrayOutputStream输出流</li>
+<li>写数据，注意getBytes方法</li>
+<li>通过ByteArrayOutputStream的toByteArray方法把输出内容转换从字节数组（因为ByteArrayInputStream的构造方法需要一个字节数组）</li>
+<li>创建ByteArrayInputStream输入流</li>
+<li>读取数据，和字节流的读取数据一样，注意要把byte转换成char</li>
+</ol>
+<blockquote>
+<p>当有中文字符时一个字节的byte无法表示，所以要用CharArrayReader，用法一样</p>
+</blockquote>
+<h3 id="字符数组"><a href="#字符数组" class="headerlink" title="字符数组"></a>字符数组</h3><ul>
+<li>CharArrayReader</li>
+</ul>
+<ul>
+<li>CharArrayWriter</li>
+</ul>
+<h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3><ul>
+<li>StringReader</li>
+</ul>
+<ul>
+<li>StringWriter</li>
+</ul>
+<h2 id="打印流"><a href="#打印流" class="headerlink" title="打印流"></a>打印流</h2><p>打印流只有输出流，只能写数据；可以操作任意类型的数据；开启自动刷新能够自动刷新；可以直接操作文本文件</p>
+<blockquote>
+<p>可以操作文本文件的类</p>
+<p>FileInputStream————–FileOutputStream</p>
+<p>FileReader———————-FileWriter</p>
+<p>PrintStream——————–PrintWriter</p>
+<p>buffer类不能直接操作文件</p>
+</blockquote>
+<p>流的分类：</p>
+<ol>
+<li>基本流：可以直接读取文件</li>
+<li>高级流：在基本流提供其他功能</li>
+</ol>
+<p><strong>查看API，流的构造方法如果同时又File类型和String类型的参数，一般来说就是可以直接操作文件的</strong></p>
+<h3 id="字节流打印流PrintStream"><a href="#字节流打印流PrintStream" class="headerlink" title="字节流打印流PrintStream"></a>字节流打印流PrintStream</h3><h3 id="字符打印流PrintWriter"><a href="#字符打印流PrintWriter" class="headerlink" title="字符打印流PrintWriter"></a>字符打印流PrintWriter</h3><p>作为writer的子类使用时一定要关闭流，否则数据不会写进文件</p>
+<p>可以打印任意类型的方法是print而不是write方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">pw.print(<span class="keyword">true</span>);</div><div class="line">pw.print(<span class="number">100</span>);</div><div class="line">pw.print(<span class="string">"hello"</span>);</div></pre></td></tr></table></figure>
+<p>启动自动刷新：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">PrintWriter pw = <span class="keyword">new</span> PrintWriter(<span class="keyword">new</span> FileWriter(<span class="string">"pw2.txt"</span>), <span class="keyword">true</span>);</div></pre></td></tr></table></figure>
+<p>启动自动刷新时：调用 println、printf 或 format 方法将刷新输出缓冲区，即不用close就可以写入文件</p>
+<blockquote>
+<p>println()方法其实等价于于：bw.write()    bw.newLine()        bw.flush();</p>
+</blockquote>
+<h4 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment"> * 需求：DataStreamDemo.java复制到Copy.java中</span></div><div class="line"><span class="comment"> * 数据源：</span></div><div class="line"><span class="comment"> * 		DataStreamDemo.java -- 读取数据 -- FileReader -- BufferedReader</span></div><div class="line"><span class="comment"> * 目的地：</span></div><div class="line"><span class="comment"> * 		Copy.java -- 写出数据 -- FileWriter -- BufferedWriter -- PrintWriter</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CopyFileDemo</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">		<span class="comment">// 以前的版本</span></div><div class="line">		<span class="comment">// 封装数据源</span></div><div class="line">		BufferedReader br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(<span class="string">"DataStreamDemo.java"</span>));</div><div class="line">		<span class="comment">// 封装目的地</span></div><div class="line">		BufferedWriter bw = <span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> FileWriter(<span class="string">"Copy.java"</span>));</div><div class="line"></div><div class="line">		String line = <span class="keyword">null</span>;</div><div class="line">		<span class="keyword">while</span> ((line = br.readLine()) != <span class="keyword">null</span>) &#123;</div><div class="line">			<span class="comment">//这三句通常一起写</span></div><div class="line">			bw.write(line);</div><div class="line">			bw.newLine();</div><div class="line">			bw.flush();</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		bw.close();</div><div class="line">		br.close();</div><div class="line"></div><div class="line">		<span class="comment">// 打印流的改进版</span></div><div class="line">		<span class="comment">// 封装数据源</span></div><div class="line">		BufferedReader br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(<span class="string">"DataStreamDemo.java"</span>));</div><div class="line">		<span class="comment">// 封装目的地</span></div><div class="line">		PrintWriter pw = <span class="keyword">new</span> PrintWriter(<span class="keyword">new</span> FileWriter(<span class="string">"Copy.java"</span>), <span class="keyword">true</span>);</div><div class="line"></div><div class="line">		String line = <span class="keyword">null</span>;</div><div class="line">		<span class="keyword">while</span> ((line = br.readLine()) != <span class="keyword">null</span>) &#123;</div><div class="line">			pw.println(line);</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		pw.close();</div><div class="line">		br.close();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注意：打印字符流是调用的println方法</p>
+<p>PrintWriter的底层也封装了BufferedWriter，所以此类也是高效的</p>
+<h2 id="标准输入输出流"><a href="#标准输入输出流" class="headerlink" title="标准输入输出流"></a>标准输入输出流</h2><blockquote>
+<p>public static final InputStream in “标准”输入流</p>
+<p>public static final PrintStream out “标准”输出流。</p>
+</blockquote>
+<h3 id="输出流"><a href="#输出流" class="headerlink" title="输出流"></a>输出流</h3><p>输出语句的本质：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">System.out.println(<span class="string">"helloworld"</span>);</div><div class="line"></div><div class="line"><span class="comment">// 获取标准输出流对象</span></div><div class="line">PrintStream ps = System.out;</div><div class="line">ps.println(<span class="string">"helloworld"</span>);</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//转换流的思想		</span></div><div class="line">BufferedWriter bw = <span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> OutputStreamWriter(</div><div class="line">		System.out));</div><div class="line"></div><div class="line">bw.write(<span class="string">"hello"</span>);</div><div class="line">bw.newLine();</div><div class="line"><span class="comment">// bw.flush();</span></div><div class="line">bw.write(<span class="string">"world"</span>);</div><div class="line">bw.newLine();</div><div class="line"><span class="comment">// bw.flush();</span></div><div class="line">bw.write(<span class="string">"java"</span>);</div><div class="line">bw.newLine();</div><div class="line">bw.flush();</div><div class="line"></div><div class="line">bw.close();</div></pre></td></tr></table></figure>
+<h3 id="输入流"><a href="#输入流" class="headerlink" title="输入流"></a>输入流</h3><p>键盘录入数据的几种方式：</p>
+<p>A:main方法的args接收参数。</p>
+<p>​    java HelloWorld hello world java</p>
+<p>B:Scanner(JDK5以后的)</p>
+<p>​    Scanner sc = new Scanner(System.in);</p>
+<p>​    String s = sc.nextLine();</p>
+<p>​    int x = sc.nextInt()</p>
+<p>C:通过字符缓冲流包装标准输入流实现</p>
+<p>​    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));</p>
+<h4 id="第三种方式的示例代码"><a href="#第三种方式的示例代码" class="headerlink" title="第三种方式的示例代码"></a>第三种方式的示例代码</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">BufferedReader br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(System.in));</div><div class="line"></div><div class="line">System.out.println(<span class="string">"请输入一个字符串："</span>);</div><div class="line">String line = br.readLine();</div><div class="line">System.out.println(<span class="string">"你输入的字符串是："</span> + line);</div><div class="line"></div><div class="line">System.out.println(<span class="string">"请输入一个整数："</span>);</div><div class="line"><span class="comment">// int i = Integer.parseInt(br.readLine());</span></div><div class="line">line = br.readLine();</div><div class="line"><span class="keyword">int</span> i = Integer.parseInt(line);</div><div class="line">System.out.println(<span class="string">"你输入的整数是："</span> + i);</div></pre></td></tr></table></figure>
+<p>注意：integer类的paseInt方法，还有字节流和字符流转换的思想</p>
+<h2 id="随机访问流"><a href="#随机访问流" class="headerlink" title="随机访问流"></a>随机访问流</h2><p>RandomAccessFile类不属于流，是Object类的子类。但它融合了InputStream和OutputStream的功能。支持对随机访问文件的读取和写入</p>
+<h3 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">RandomAccessFile</span><span class="params">(String name,String mode)</span>：</span></div><div class="line"><span class="function">第一个参数是文件路径，第二个参数是操作文件的模式。</span></div><div class="line"><span class="function">模式有四种，我们最常用的一种叫"rw",这种方式表示我既可以写数据，也可以读取数据</span></div></pre></td></tr></table></figure>
+<h3 id="示例代码-1"><a href="#示例代码-1" class="headerlink" title="示例代码"></a>示例代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RandomAccessFileDemo</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">		<span class="comment">// write();</span></div><div class="line">		read();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">		<span class="comment">// 创建随机访问流对象</span></div><div class="line">		RandomAccessFile raf = <span class="keyword">new</span> RandomAccessFile(<span class="string">"raf.txt"</span>, <span class="string">"rw"</span>);</div><div class="line"></div><div class="line">		<span class="keyword">int</span> i = raf.readInt();</div><div class="line">		System.out.println(i);</div><div class="line">		<span class="comment">// 该文件指针可以通过 getFilePointer方法读取，并通过 seek 方法设置。</span></div><div class="line">		System.out.println(<span class="string">"当前文件的指针位置是："</span> + raf.getFilePointer());</div><div class="line"></div><div class="line">		<span class="keyword">char</span> ch = raf.readChar();</div><div class="line">		System.out.println(ch);</div><div class="line">		System.out.println(<span class="string">"当前文件的指针位置是："</span> + raf.getFilePointer());</div><div class="line"></div><div class="line">		String s = raf.readUTF();</div><div class="line">		System.out.println(s);</div><div class="line">		System.out.println(<span class="string">"当前文件的指针位置是："</span> + raf.getFilePointer());</div><div class="line"></div><div class="line">		<span class="comment">// 我不想重头开始了，我就要读取a，怎么办呢?</span></div><div class="line">		raf.seek(<span class="number">4</span>);</div><div class="line">		ch = raf.readChar();</div><div class="line">		System.out.println(ch);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">		<span class="comment">// 创建随机访问流对象</span></div><div class="line">		RandomAccessFile raf = <span class="keyword">new</span> RandomAccessFile(<span class="string">"raf.txt"</span>, <span class="string">"rw"</span>);</div><div class="line"></div><div class="line">		<span class="comment">// 怎么玩呢?</span></div><div class="line">		raf.writeInt(<span class="number">100</span>);</div><div class="line">		raf.writeChar(<span class="string">'a'</span>);</div><div class="line">		raf.writeUTF(<span class="string">"中国"</span>);</div><div class="line"></div><div class="line">		raf.close();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="合并流SequenceInputStream"><a href="#合并流SequenceInputStream" class="headerlink" title="合并流SequenceInputStream"></a>合并流SequenceInputStream</h2><p>SequenceInputStream类可以将多个输入流串流在一起，合并为一个输入流，因此，该流也被称为合并流</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// SequenceInputStream(InputStream s1, InputStream s2)</span></div><div class="line"><span class="comment">// 需求：把ByteArrayStreamDemo.java和DataStreamDemo.java的内容复制到Copy.java中</span></div><div class="line">InputStream s1 = <span class="keyword">new</span> FileInputStream(<span class="string">"ByteArrayStreamDemo.java"</span>);</div><div class="line">InputStream s2 = <span class="keyword">new</span> FileInputStream(<span class="string">"DataStreamDemo.java"</span>);</div><div class="line">SequenceInputStream sis = <span class="keyword">new</span> SequenceInputStream(s1, s2);</div><div class="line">BufferedOutputStream bos = <span class="keyword">new</span> BufferedOutputStream(</div><div class="line">		<span class="keyword">new</span> FileOutputStream(<span class="string">"Copy.java"</span>));</div><div class="line"></div><div class="line"><span class="comment">// 如何写读写呢，其实很简单，你就按照以前怎么读写，现在还是怎么读写</span></div><div class="line"><span class="keyword">byte</span>[] bys = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</div><div class="line"><span class="keyword">int</span> len = <span class="number">0</span>;</div><div class="line"><span class="keyword">while</span> ((len = sis.read(bys)) != -<span class="number">1</span>) &#123;</div><div class="line">	bos.write(bys, <span class="number">0</span>, len);</div><div class="line">&#125;</div><div class="line"></div><div class="line">bos.close();</div><div class="line">sis.close();</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 需求：把下面的三个文件的内容复制到Copy.java中</span></div><div class="line"><span class="comment">// ByteArrayStreamDemo.java,CopyFileDemo.java,DataStreamDemo.java</span></div><div class="line"></div><div class="line"><span class="comment">// SequenceInputStream(Enumeration e)</span></div><div class="line"><span class="comment">// 通过简单的回顾我们知道了Enumeration是Vector中的一个方法的返回值类型。</span></div><div class="line"><span class="comment">// Enumeration&lt;E&gt; elements()</span></div><div class="line">		<span class="comment">// 需求：把下面的三个文件的内容复制到Copy.java中</span></div><div class="line"><span class="comment">// ByteArrayStreamDemo.java,CopyFileDemo.java,DataStreamDemo.java</span></div><div class="line"></div><div class="line"><span class="comment">// SequenceInputStream(Enumeration e)</span></div><div class="line"><span class="comment">// 通过简单的回顾我们知道了Enumeration是Vector中的一个方法的返回值类型。</span></div><div class="line"><span class="comment">// Enumeration&lt;E&gt; elements()</span></div><div class="line">Vector&lt;InputStream&gt; v = <span class="keyword">new</span> Vector&lt;InputStream&gt;();</div><div class="line">InputStream s1 = <span class="keyword">new</span> FileInputStream(<span class="string">"ByteArrayStreamDemo.java"</span>);</div><div class="line">InputStream s2 = <span class="keyword">new</span> FileInputStream(<span class="string">"CopyFileDemo.java"</span>);</div><div class="line">InputStream s3 = <span class="keyword">new</span> FileInputStream(<span class="string">"DataStreamDemo.java"</span>);</div><div class="line">v.add(s1);</div><div class="line">v.add(s2);</div><div class="line">v.add(s3);</div><div class="line">Enumeration&lt;InputStream&gt; en = v.elements();</div><div class="line">SequenceInputStream sis = <span class="keyword">new</span> SequenceInputStream(en);</div><div class="line">BufferedOutputStream bos = <span class="keyword">new</span> BufferedOutputStream(</div><div class="line">		<span class="keyword">new</span> FileOutputStream(<span class="string">"Copy.java"</span>));</div><div class="line"></div><div class="line"><span class="comment">// 如何写读写呢，其实很简单，你就按照以前怎么读写，现在还是怎么读写</span></div><div class="line"><span class="keyword">byte</span>[] bys = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</div><div class="line"><span class="keyword">int</span> len = <span class="number">0</span>;</div><div class="line"><span class="keyword">while</span> ((len = sis.read(bys)) != -<span class="number">1</span>) &#123;</div><div class="line">	bos.write(bys, <span class="number">0</span>, len);</div><div class="line">&#125;</div><div class="line"></div><div class="line">bos.close();</div><div class="line">sis.close();&lt;InputStream&gt; v = <span class="keyword">new</span> Vector&lt;InputStream&gt;();</div><div class="line">InputStream s1 = <span class="keyword">new</span> FileInputStream(<span class="string">"ByteArrayStreamDemo.java"</span>);</div><div class="line">InputStream s2 = <span class="keyword">new</span> FileInputStream(<span class="string">"CopyFileDemo.java"</span>);</div><div class="line">InputStream s3 = <span class="keyword">new</span> FileInputStream(<span class="string">"DataStreamDemo.java"</span>);</div><div class="line">v.add(s1);</div><div class="line">v.add(s2);</div><div class="line">v.add(s3);</div><div class="line">Enumeration&lt;InputStream&gt; en = v.elements();</div><div class="line">SequenceInputStream sis = <span class="keyword">new</span> SequenceInputStream(en);</div><div class="line">BufferedOutputStream bos = <span class="keyword">new</span> BufferedOutputStream(</div><div class="line">		<span class="keyword">new</span> FileOutputStream(<span class="string">"Copy.java"</span>));</div><div class="line"></div><div class="line"><span class="comment">// 如何写读写呢，其实很简单，你就按照以前怎么读写，现在还是怎么读写</span></div><div class="line"><span class="keyword">byte</span>[] bys = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</div><div class="line"><span class="keyword">int</span> len = <span class="number">0</span>;</div><div class="line"><span class="keyword">while</span> ((len = sis.read(bys)) != -<span class="number">1</span>) &#123;</div><div class="line">	bos.write(bys, <span class="number">0</span>, len);</div><div class="line">&#125;</div><div class="line"></div><div class="line">bos.close();</div><div class="line">sis.close();</div></pre></td></tr></table></figure>
+<p>注意：Vector和Enumeration的使用</p>
+<h2 id="序列化流"><a href="#序列化流" class="headerlink" title="序列化流"></a>序列化流</h2><p>Java序列化是指把Java对象转换为字节序列的过程，从而实现对象的持久化；而Java反序列化是指把字节序列恢复为Java对象的过程</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException,</span></div><div class="line"><span class="function">		ClassNotFoundException </span>&#123;</div><div class="line">	<span class="comment">// 由于我们要对对象进行序列化，所以我们先自定义一个类</span></div><div class="line">	<span class="comment">// 序列化数据其实就是把对象写到文本文件</span></div><div class="line">	<span class="comment">// write();</span></div><div class="line"></div><div class="line">	read();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">()</span> <span class="keyword">throws</span> IOException, ClassNotFoundException </span>&#123;</div><div class="line">	<span class="comment">// 创建反序列化对象</span></div><div class="line">	ObjectInputStream ois = <span class="keyword">new</span> ObjectInputStream(<span class="keyword">new</span> FileInputStream(</div><div class="line">			<span class="string">"oos.txt"</span>));</div><div class="line"></div><div class="line">	<span class="comment">// 还原对象</span></div><div class="line">	Object obj = ois.readObject();</div><div class="line"></div><div class="line">	<span class="comment">// 释放资源</span></div><div class="line">	ois.close();</div><div class="line"></div><div class="line">	<span class="comment">// 输出对象</span></div><div class="line">	System.out.println(obj);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">	<span class="comment">// 创建序列化流对象</span></div><div class="line">	ObjectOutputStream oos = <span class="keyword">new</span> ObjectOutputStream(<span class="keyword">new</span> FileOutputStream(</div><div class="line">			<span class="string">"oos.txt"</span>));</div><div class="line"></div><div class="line">	<span class="comment">// 创建对象</span></div><div class="line">	Person p = <span class="keyword">new</span> Person(<span class="string">"林青霞"</span>, <span class="number">27</span>);</div><div class="line"></div><div class="line">	<span class="comment">// public final void writeObject(Object obj)</span></div><div class="line">	oos.writeObject(p);</div><div class="line"></div><div class="line">	<span class="comment">// 释放资源</span></div><div class="line">	oos.close();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在使用序列化接口的时候，在javaBean的文件中我们必须实现序列化接口Serializable，而且要要创建一个静态的成员变量来防止当类改变造成无法读取对象的问题，ecplise可以自动生成</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = -<span class="number">2071565876962058344L</span>;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>NotSerializableException:未序列化异常</p>
+<p>使用transient关键字声明不需要序列化的成员变量</p>
+<p>  序列化流：把对象按照流一样的方式存入文本文件或者在网络中传输。对象 – 流数据(ObjectOutputStream)<br>  反序列化流:把文本文件中的流对象数据或者网络中的流对象数据还原成对象。流数据 – 对象(ObjectInputStream)</p>
+</blockquote>
+<h2 id="Properties"><a href="#Properties" class="headerlink" title="Properties"></a>Properties</h2><p>继承自Hashtable所以底层是一个Map,是一个属性集合类，可以保存在流中，也可以从流中加载</p>
+<blockquote>
+<p>该类在API中没有&lt;&gt;所以不能添加泛型</p>
+</blockquote>
+<h3 id="作为Map集合使用"><a href="#作为Map集合使用" class="headerlink" title="作为Map集合使用"></a>作为Map集合使用</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">Properties prop = <span class="keyword">new</span> Properties();</div><div class="line"></div><div class="line"><span class="comment">// 添加元素</span></div><div class="line">prop.put(<span class="string">"it002"</span>, <span class="string">"hello"</span>);</div><div class="line">prop.put(<span class="string">"it001"</span>, <span class="string">"world"</span>);</div><div class="line">prop.put(<span class="string">"it003"</span>, <span class="string">"java"</span>);</div><div class="line"></div><div class="line"><span class="comment">// System.out.println("prop:" + prop);</span></div><div class="line"></div><div class="line"><span class="comment">// 遍历集合</span></div><div class="line">Set&lt;Object&gt; set = prop.keySet();</div><div class="line"><span class="keyword">for</span> (Object key : set) &#123;</div><div class="line">	Object value = prop.get(key);</div><div class="line">	System.out.println(key + <span class="string">"---"</span> + value);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注意集合的遍历得到key的集合再增强for循环</p>
+<h3 id="特殊功能"><a href="#特殊功能" class="headerlink" title="特殊功能"></a>特殊功能</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">setProperty</span><span class="params">(String key,String value)</span>：添加元素</span></div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getProperty</span><span class="params">(String key)</span>:获取元素</span></div><div class="line"><span class="function"><span class="keyword">public</span> Set&lt;String&gt; <span class="title">stringPropertyNames</span><span class="params">()</span>:获取所有的键的集合</span></div></pre></td></tr></table></figure>
+<p>注意键的值是字符串一定要使用它的特殊功能，使用父类功能是Object类型，setProperty的本质：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> Object <span class="title">setProperty</span><span class="params">(String key, String value)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> put(key, value);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>就是调用父类的put方法，但是此时传入的参数是String类型，而不是父类的Object类型，这种封装思想可以方方便的使用特定类型的数据</p>
+<h3 id="和IO流的结合使用"><a href="#和IO流的结合使用" class="headerlink" title="和IO流的结合使用"></a>和IO流的结合使用</h3><blockquote>
+<p> public void load(Reader reader):把文件中的数据读取到集合中</p>
+<p> public void store(Writer writer,String comments):把集合中的数据存储到文件</p>
+</blockquote>
+<p>示例代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">	<span class="comment">// myLoad();</span></div><div class="line"></div><div class="line">	myStore();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">myStore</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">	<span class="comment">// 创建集合对象</span></div><div class="line">	Properties prop = <span class="keyword">new</span> Properties();</div><div class="line"></div><div class="line">	prop.setProperty(<span class="string">"林青霞"</span>, <span class="string">"27"</span>);</div><div class="line">	prop.setProperty(<span class="string">"武鑫"</span>, <span class="string">"30"</span>);</div><div class="line">	prop.setProperty(<span class="string">"刘晓曲"</span>, <span class="string">"18"</span>);</div><div class="line">	</div><div class="line">	<span class="comment">//public void store(Writer writer,String comments):把集合中的数据存储到文件</span></div><div class="line">	Writer w = <span class="keyword">new</span> FileWriter(<span class="string">"name.txt"</span>);</div><div class="line">	prop.store(w, <span class="string">"helloworld"</span>);</div><div class="line">	w.close();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">myLoad</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">	Properties prop = <span class="keyword">new</span> Properties();</div><div class="line"></div><div class="line">	<span class="comment">// public void load(Reader reader):把文件中的数据读取到集合中</span></div><div class="line">	<span class="comment">// 注意：这个文件的数据必须是键值对形式</span></div><div class="line">	Reader r = <span class="keyword">new</span> FileReader(<span class="string">"prop.txt"</span>);</div><div class="line">	prop.load(r);</div><div class="line">	r.close();</div><div class="line"></div><div class="line">	System.out.println(<span class="string">"prop:"</span> + prop);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>####练习题</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment"> * 我有一个文本文件(user.txt)，我知道数据是键值对形式的，但是不知道内容是什么。</span></div><div class="line"><span class="comment"> * 请写一个程序判断是否有“lisi”这样的键存在，如果有就改变其实为”100”</span></div><div class="line"><span class="comment"> * </span></div><div class="line"><span class="comment"> * 分析：</span></div><div class="line"><span class="comment"> * 		A:把文件中的数据加载到集合中</span></div><div class="line"><span class="comment"> * 		B:遍历集合，获取得到每一个键</span></div><div class="line"><span class="comment"> * 		C:判断键是否有为"lisi"的，如果有就修改其值为"100"</span></div><div class="line"><span class="comment"> * 		D:把集合中的数据重新存储到文件中</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PropertiesTest</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">		<span class="comment">// 把文件中的数据加载到集合中</span></div><div class="line">		Properties prop = <span class="keyword">new</span> Properties();</div><div class="line">		Reader r = <span class="keyword">new</span> FileReader(<span class="string">"user.txt"</span>);</div><div class="line">		prop.load(r);</div><div class="line">		r.close();</div><div class="line"></div><div class="line">		<span class="comment">// 遍历集合，获取得到每一个键</span></div><div class="line">		Set&lt;String&gt; set = prop.stringPropertyNames();</div><div class="line">		<span class="keyword">for</span> (String key : set) &#123;</div><div class="line">			<span class="comment">// 判断键是否有为"lisi"的，如果有就修改其值为"100"</span></div><div class="line">			<span class="keyword">if</span> (<span class="string">"lisi"</span>.equals(key)) &#123;</div><div class="line">				prop.setProperty(key, <span class="string">"100"</span>);</div><div class="line">				<span class="keyword">break</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="comment">// 把集合中的数据重新存储到文件中</span></div><div class="line">		Writer w = <span class="keyword">new</span> FileWriter(<span class="string">"user.txt"</span>);</div><div class="line">		prop.store(w, <span class="keyword">null</span>);</div><div class="line">		w.close();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注意每个流关闭的时间</p>
+<h4 id="练习题二"><a href="#练习题二" class="headerlink" title="练习题二"></a>练习题二</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment"> * 我有一个猜数字小游戏的程序，请写一个程序实现在测试类中只能用5次，超过5次提示：游戏试玩已结束，请付费。</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PropertiesTest2</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line"></div><div class="line">		<span class="comment">// 把数据加载到集合中</span></div><div class="line">		Properties prop = <span class="keyword">new</span> Properties();</div><div class="line">		Reader r = <span class="keyword">new</span> FileReader(<span class="string">"count.txt"</span>);</div><div class="line">		prop.load(r);</div><div class="line">		r.close();</div><div class="line"></div><div class="line">		<span class="comment">// 我自己的程序，我当然知道里面的键是谁</span></div><div class="line">		String value = prop.getProperty(<span class="string">"count"</span>);</div><div class="line">		<span class="keyword">int</span> number = Integer.parseInt(value);</div><div class="line"></div><div class="line">		<span class="keyword">if</span> (number &gt; <span class="number">5</span>) &#123;</div><div class="line">			System.out.println(<span class="string">"游戏试玩已结束，请付费。"</span>);</div><div class="line">			System.exit(<span class="number">0</span>);</div><div class="line">		&#125; <span class="keyword">else</span> &#123;</div><div class="line">			number++;</div><div class="line">			prop.setProperty(<span class="string">"count"</span>, String.valueOf(number));</div><div class="line">			Writer w = <span class="keyword">new</span> FileWriter(<span class="string">"count.txt"</span>);</div><div class="line">			prop.store(w, <span class="keyword">null</span>);</div><div class="line">			w.close();</div><div class="line"></div><div class="line">			GuessNumber.start();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注意stirng.valueOf的写法和Integer.parseInt(value)的写法</p>
+<h2 id="NIO"><a href="#NIO" class="headerlink" title="NIO"></a>NIO</h2><p>NIO其实就是新IO的意思，可以像访问内存一样访问文件</p>
+<h2 id="JDK的IO改进"><a href="#JDK的IO改进" class="headerlink" title="JDK的IO改进"></a>JDK的IO改进</h2><ul>
+<li>Path:与平台无关的路径。</li>
+</ul>
+<ul>
+<li>Paths:包含了返回Path的静态方法。</li>
+</ul>
+<blockquote>
+<p>public static <a href="mk:@MSITStore:E:\JavaSE\API\JDK_API7.0.CHM::/java/nio/file/Path.html" target="_blank" rel="external">Path</a> get(<a href="mk:@MSITStore:E:\JavaSE\API\JDK_API7.0.CHM::/java/net/URI.html" target="_blank" rel="external">URI</a> uri):根据给定的URI来确定文件路径。</p>
+</blockquote>
+<ul>
+<li>Files:操作文件的工具类。提供了大量的方法，简单了解如下方法</li>
+</ul>
+<blockquote>
+<p>public static long copy(<a href="mk:@MSITStore:E:\JavaSE\API\JDK_API7.0.CHM::/java/nio/file/Path.html" target="_blank" rel="external">Path</a> source,<a href="mk:@MSITStore:E:\JavaSE\API\JDK_API7.0.CHM::/java/io/OutputStream.html" target="_blank" rel="external">OutputStream</a> out):复制文件</p>
+<p>public static <a href="mk:@MSITStore:E:\JavaSE\API\JDK_API7.0.CHM::/java/nio/file/Path.html" target="_blank" rel="external">Path</a> write(<a href="mk:@MSITStore:E:\JavaSE\API\JDK_API7.0.CHM::/java/nio/file/Path.html" target="_blank" rel="external">Path</a> path, <a href="mk:@MSITStore:E:\JavaSE\API\JDK_API7.0.CHM::/java/lang/Iterable.html" target="_blank" rel="external">Iterable</a>&lt;?extends <a href="mk:@MSITStore:E:\JavaSE\API\JDK_API7.0.CHM::/java/lang/CharSequence.html" target="_blank" rel="external">CharSequence</a>&gt; lines,<a href="mk:@MSITStore:E:\JavaSE\API\JDK_API7.0.CHM::/java/nio/charset/Charset.html" target="_blank" rel="external">Charset</a> cs, <a href="mk:@MSITStore:E:\JavaSE\API\JDK_API7.0.CHM::/java/nio/file/OpenOption.html" target="_blank" rel="external">OpenOption</a>… options):</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ArrayList&lt;String&gt; array = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">array.add(<span class="string">"hello"</span>);</div><div class="line">array.add(<span class="string">"world"</span>);</div><div class="line">array.add(<span class="string">"java"</span>);</div><div class="line">Files.write(Paths.get(<span class="string">"array.txt"</span>), array, Charset.forName(<span class="string">"GBK"</span>));</div></pre></td></tr></table></figure>
+</section>
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#Java笔记" >
+    <span class="tag-code">Java笔记</span>
+  </a>
+
+      </div>
+    
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="alipay-code">
+            <div class="code-image"></div>
+            <b>使用支付宝打赏</b>
+          </span>
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+    </div>
+    <div class="qrcode">
+      <canvas id="share-qrcode"></canvas>
+      <p class="notice">扫描二维码，分享此文章</p>
+    </div>
+    
+      <div id="comments"></div>
+    
+  </article>
+</main>
+
+<script>
+  (function () {
+    var url = 'http://bbbb.ml/2014/03/07/Java/各种流/';
+    var banner = 'http://osk1xe27i.bkt.clouddn.com/1.jpg'
+    if (banner !== 'undefined') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "jwl00";
+    if (gitmentConfig != "undefined") {
+      var gitment = new Gitment({
+        id: "各种流",
+        owner: "jwl00",
+        repo: "jwl00.github.io",
+        oauth: {
+          client_id: "ae21ad25810b1f2cc193",
+          client_secret: "7b6bb525adfeee63bd087132d98e6fd015d49ed8"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

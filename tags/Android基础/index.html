@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="什么也不留下">
+  <meta name="keyword" content="hexo-theme, Android">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      JWL博客
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>JWL博客</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <main class="app-body">
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/06/12/Android/07-自定义ViewGroup内容详解/">07-01自定义ViewGroup基本概念</a>
+      </h2>
+      <p class="article-date">June 12, 2014</p>
+      
+        
+  <a href="/tags#Android基础" >
+    <span class="tag-code">Android基础</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+07-01自定义ViewGroup基本概念构造函数的调用流程12345678910111213public class MyViewGroup extends ViewGroup &#123;    public MyViewGroup(Context context) &#123;    ...
+        
+      </div>
+      <a class="more" href="/2014/06/12/Android/07-自定义ViewGroup内容详解/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/06/12/Android/02-说说Service那些事/">02-说说Service那些事</a>
+      </h2>
+      <p class="article-date">June 12, 2014</p>
+      
+        
+  <a href="/tags#Android基础" >
+    <span class="tag-code">Android基础</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+02-说说Service那些事简介Service本质作用就是一个没有界面的Activity，它可以在后台执行代码永远不用到前台来，所以一个模块只要不想要与用户交互但是还要执行逻辑就可以使用Service。默认运行在程序的主线程之中。
+重要的方法12345678910111213141516 ...
+        
+      </div>
+      <a class="more" href="/2014/06/12/Android/02-说说Service那些事/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/06/12/Android/04-说说BroadcastReceiver那些事/">04-说说BroadcastReceiver那些事</a>
+      </h2>
+      <p class="article-date">June 12, 2014</p>
+      
+        
+  <a href="/tags#Android基础" >
+    <span class="tag-code">Android基础</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+04-说说BroadcastReceiver那些事简介　　广播是一种广泛运用的在应用程序之间传输信息的机制，主要用来监听系统或者应用发出的广播信息，然后根据广播信息作为相应的逻辑处理，也可以用来传输少量、频率低的数据。
+　　在实现开机启动服务和网络状态改变、电量变化、短信和来电时通过接收系 ...
+        
+      </div>
+      <a class="more" href="/2014/06/12/Android/04-说说BroadcastReceiver那些事/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/06/12/Android/05-01-Fragment内容详解/">05--01-Fragment内容详解</a>
+      </h2>
+      <p class="article-date">June 12, 2014</p>
+      
+        
+  <a href="/tags#Android基础" >
+    <span class="tag-code">Android基础</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+05–01-Fragment内容详解概述​    Fragment必须总是被嵌入到一个activity之中，并且fragment的生命周期直接受其宿主activity的生命周期的影响。
+​    应该将每一个fragment设计为模块化的和可复用化的activity组件
+​    两个重要 ...
+        
+      </div>
+      <a class="more" href="/2014/06/12/Android/05-01-Fragment内容详解/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/06/12/Android/01-说说Activity那些事/">01-说说Activity那些事</a>
+      </h2>
+      <p class="article-date">June 12, 2014</p>
+      
+        
+  <a href="/tags#Android基础" >
+    <span class="tag-code">Android基础</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+01-说说Activity那些事简介Activity就是每一个应用的界面，凡事显示在app中的界面都是Activity或者由Activity启动。
+基本使用
+使用as快捷建立Activity
+
+
+
+常规创建
+
+
+在app/src/main/AndroidManifest.xml注册
+编写j ...
+        
+      </div>
+      <a class="more" href="/2014/06/12/Android/01-说说Activity那些事/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/06/12/Android/05-02-Fragment内容详解/">05-02-Fragment内容详解</a>
+      </h2>
+      <p class="article-date">June 12, 2014</p>
+      
+        
+  <a href="/tags#Android基础" >
+    <span class="tag-code">Android基础</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+05-02-Fragment内容详解和Activity交互
+调用fragment的函数findFragmentById()或者findFragmentByTag()
+
+1ExampleFragment fragment = (ExampleFragment) getFragmentMana ...
+        
+      </div>
+      <a class="more" href="/2014/06/12/Android/05-02-Fragment内容详解/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/06/12/Android/08-Android View事件分发机制/">08-Android View事件分发机制</a>
+      </h2>
+      <p class="article-date">June 12, 2014</p>
+      
+        
+  <a href="/tags#Android基础" >
+    <span class="tag-code">Android基础</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+08-Android View事件分发机制相关方法
+
+事件分发：public boolean dispatchTouchEvent(MotionEvent ev)
+
+　　　当有监听到事件时，首先由Activity进行捕获，进入事件分发处理流程。（因为activity没有事件拦截，View和 ...
+        
+      </div>
+      <a class="more" href="/2014/06/12/Android/08-Android View事件分发机制/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/06/12/Android/06-02-自定义view之基本流程/">06-02-自定义view之基本流程</a>
+      </h2>
+      <p class="article-date">June 12, 2014</p>
+      
+        
+  <a href="/tags#Android基础" >
+    <span class="tag-code">Android基础</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+06-02-自定义view之基本流程基本步骤　 1. 继承View类或其子类　
+　 2. 复写view中的一些函数
+　３.为自定义View类增加属性（两种方式）
+　４.绘制控件（导入布局）
+　５.响应用户事件
+　６.定义回调函数（根据自己需求来选择）
+重要方法
+onDraw()
+
+　　vi ...
+        
+      </div>
+      <a class="more" href="/2014/06/12/Android/06-02-自定义view之基本流程/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/06/12/Android/10-Android异步任务机制之AsycTask/">10-Android异步任务机制之AsycTask</a>
+      </h2>
+      <p class="article-date">June 12, 2014</p>
+      
+        
+  <a href="/tags#Android基础" >
+    <span class="tag-code">Android基础</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+10-Android异步任务机制之AsycTask原理　　AsyncTask是谷歌对Thread和Handler的进一步封装，完全隐藏起了这两个概念，而用doInBackground(Params... params)取而代之。但需要注意的是AsyncTask的效率不是很高而且资源代价也比 ...
+        
+      </div>
+      <a class="more" href="/2014/06/12/Android/10-Android异步任务机制之AsycTask/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/06/12/Android/03-说说ContentProvider那些事/">03-说说ContentProvider那些事</a>
+      </h2>
+      <p class="article-date">June 12, 2014</p>
+      
+        
+  <a href="/tags#Android基础" >
+    <span class="tag-code">Android基础</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+03-说说ContentProvider那些事简介​        ContentProvider（内容提供者）是Android的四大组件之一，以相对安全的方式封装数据（表）并且提供简易的处理机制和统一的访问接口供其他程序调用。　 　　 　　
+​        Android的数据存储方式 ...
+        
+      </div>
+      <a class="more" href="/2014/06/12/Android/03-说说ContentProvider那些事/">Read more</a>
+    </article>
+  
+
+  
+    <div class="guide-pager">
+  
+    <a class="unvisible" href="/"><span class="page-arrow">←</span> Prev</a>
+  
+  
+    <a href="/tags/Android基础/page/2/">Next<span class="page-arrow"> →</span></a>
+  
+</div>
+  
+</main>
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

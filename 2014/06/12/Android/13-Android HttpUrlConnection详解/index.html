@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="什么也不留下">
+  <meta name="keyword" content="hexo-theme, Android">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      13-Android HttpUrlConnection详解 | JWL博客
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>JWL博客</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>13-Android HttpUrlConnection详解</h2>
+  <p class="post-date">2014-06-12</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content"><a id="more"></a>
+<h1 id="13-Android-HttpUrlConnection详解"><a href="#13-Android-HttpUrlConnection详解" class="headerlink" title="13-Android HttpUrlConnection详解"></a>13-Android HttpUrlConnection详解</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>　　HttpUrlConnection是Java.net包中提供的API，我们知道Android SDK是基于Java的，所以当然优先考虑HttpUrlConnection这种最原始最基本的API，其实大多数开源的联网框架基本上也是基于JDK的HttpUrlConnection进行的封装罢了</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><ol>
+<li>添加权限</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot;/&gt;</div></pre></td></tr></table></figure>
+<ol>
+<li>将访问的路径转换成URL</li>
+</ol>
+<blockquote>
+<p>URL url = new URL(“<a href="http://www.haotianyi.win/" target="_blank" rel="external">http://www.haotianyi.win/</a>“);</p>
+</blockquote>
+<ol>
+<li>通过URL获取连接</li>
+</ol>
+<blockquote>
+<p>HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection()</p>
+</blockquote>
+<ol>
+<li>设置请求方式</li>
+</ol>
+<blockquote>
+<p>httpURLConnection.setRequestMethod(“GET”)</p>
+</blockquote>
+<ol>
+<li>设置请求超时</li>
+</ol>
+<blockquote>
+<p>httpURLConnection.setConnectTimeout(3000)</p>
+</blockquote>
+<ol>
+<li>获得相应码</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">if (httpURLConnection.getResponseCode() == 200) &#123;</div><div class="line">    System.out.println(&quot;----------&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="使用GET方式访问网址"><a href="#使用GET方式访问网址" class="headerlink" title="使用GET方式访问网址"></a>使用GET方式访问网址</h3><p>自定义线程访问网络：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">class MyThread extends Thread&#123;</div><div class="line">    @Override</div><div class="line">    public void run() &#123;</div><div class="line">        try &#123;</div><div class="line">            URL url = new URL(&quot;http://www.haotianyi.win/&quot;);</div><div class="line">            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();</div><div class="line">            httpURLConnection.setRequestMethod(&quot;GET&quot;);</div><div class="line">            httpURLConnection.setConnectTimeout(3000);</div><div class="line">            if (httpURLConnection.getResponseCode() == 200) &#123;</div><div class="line">                System.out.println(streamToString(httpURLConnection.getInputStream()));</div><div class="line">            &#125;</div><div class="line"></div><div class="line">        &#125; catch (MalformedURLException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; catch (IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="转换流的工具方法"><a href="#转换流的工具方法" class="headerlink" title="转换流的工具方法"></a>转换流的工具方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * 将输入流转换成字符串</div><div class="line"> * </div><div class="line"> * @param is</div><div class="line"> *            从网络获取的输入流</div><div class="line"> * @return</div><div class="line"> */</div><div class="line">public static String streamToString(InputStream is) &#123;</div><div class="line">    try &#123;</div><div class="line">        ByteArrayOutputStream baos = new ByteArrayOutputStream();</div><div class="line">        byte[] buffer = new byte[1024];</div><div class="line">        int len = 0;</div><div class="line">        while ((len = is.read(buffer)) != -1) &#123;</div><div class="line">            baos.write(buffer, 0, len);</div><div class="line">        &#125;</div><div class="line">        baos.close();</div><div class="line">        is.close();</div><div class="line">        byte[] byteArray = baos.toByteArray();</div><div class="line">        return new String(byteArray);</div><div class="line">    &#125; catch (Exception e) &#123;</div><div class="line">        Log.e(tag, e.toString());</div><div class="line">        return null;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="使用post方式请求网络"><a href="#使用post方式请求网络" class="headerlink" title="使用post方式请求网络"></a>使用post方式请求网络</h3><p>新建net方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">public static String net()&#123;</div><div class="line">    HttpURLConnection conn = null;</div><div class="line">    URL url = null;</div><div class="line"></div><div class="line">    Map params = new HashMap();//请求参数</div><div class="line">    params.put(&quot;com&quot;,&quot;yt&quot;);//需要查询的快递公司编号</div><div class="line">    params.put(&quot;no&quot;,&quot;884334806804115842&quot;);//需要查询的订单号</div><div class="line">    params.put(&quot;key&quot;,&quot;聚合数据接口&quot;);//应用APPKEY(应用详细页查询)</div><div class="line">    params.put(&quot;dtype&quot;,&quot;json&quot;);//返回数据的格式,xml或json，默认json</div><div class="line"></div><div class="line">    try &#123;</div><div class="line">        url = new URL(&quot;http://v.juhe.cn/exp/index&quot;);</div><div class="line">        conn = (HttpURLConnection) url.openConnection();</div><div class="line">        conn.setRequestMethod(&quot;POST&quot;);</div><div class="line">        DataOutputStream out = new DataOutputStream(conn.getOutputStream());</div><div class="line">        out.writeBytes(urlencode(params));</div><div class="line">        if (conn.getResponseCode()==200)&#123;</div><div class="line">            System.out.println(streamToString(conn.getInputStream()));</div><div class="line">        &#125;</div><div class="line">    &#125; catch (MalformedURLException e) &#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125; catch (IOException e) &#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125;</div><div class="line">    return null;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>urlencode方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">//将map型转为请求参数型</div><div class="line">public static String urlencode(Map&lt;String,Object&gt;data) &#123;</div><div class="line">    StringBuilder sb = new StringBuilder();</div><div class="line">    for (Map.Entry i : data.entrySet()) &#123;</div><div class="line">        try &#123;</div><div class="line">            sb.append(i.getKey()).append(&quot;=&quot;).append(URLEncoder.encode(i.getValue()+&quot;&quot;,&quot;UTF-8&quot;)).append(&quot;&amp;&quot;);</div><div class="line">        &#125; catch (UnsupportedEncodingException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return sb.toString();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;&quot;resultcode&quot;:&quot;200&quot;,&quot;reason&quot;:&quot;查询成功&quot;,&quot;result&quot;:&#123;&quot;company&quot;:&quot;圆通&quot;,&quot;com&quot;:&quot;yt&quot;,</div></pre></td></tr></table></figure>
+<h2 id="WebView详细解释"><a href="#WebView详细解释" class="headerlink" title="WebView详细解释"></a>WebView详细解释</h2><p>​    WebView基于webkit引擎展现web页面的控件，WebView可以直接显示和渲染web页面，直接显示网页，webview可以直接用html文件（网络上或本地assets中）作布局，和JavaScript交互调用。</p>
+<h3 id="相关的类"><a href="#相关的类" class="headerlink" title="相关的类"></a>相关的类</h3><h4 id="WebSettings"><a href="#WebSettings" class="headerlink" title="WebSettings"></a>WebSettings</h4><p>WebSettings用来对WebView的配置进行配置和管理，比如是否可以进行文件操作、缓存的设置、页面是否支持放大和缩小、是否允许使用数据库api、字体及文字编码设置、是否允许js脚本运行、是否允许图片自动加载、是否允许数据及密码保存等等</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">WebSettings webSettings = mWebView.getSettings();</div><div class="line">webSettings.setJavaScriptEnabled(true);</div><div class="line">webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);</div><div class="line">webSettings.setDomStorageEnabled(true);</div><div class="line">webSettings.setDatabaseEnabled(true);</div><div class="line">webSettings.setAppCacheEnabled(true);</div><div class="line">webSettings.setAllowFileAccess(true);</div><div class="line">webSettings.setSavePassword(true);</div><div class="line">webSettings.setSupportZoom(true);</div><div class="line">webSettings.setBuiltInZoomControls(true);</div><div class="line">/**</div><div class="line">* 用WebView显示图片，可使用这个参数 设置网页布局类型：</div><div class="line">* 1、LayoutAlgorithm.NARROW_COLUMNS ：适应内容大小</div><div class="line">* 2、LayoutAlgorithm.SINGLE_COLUMN : 适应屏幕，内容将自动缩放</div><div class="line">*/</div><div class="line">webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);</div><div class="line">webSettings.setUseWideViewPort(true);</div><div class="line"> </div><div class="line">mWebView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);</div><div class="line">mWebView.setHorizontalScrollbarOverlay(true);</div><div class="line">mWebView.setHorizontalScrollBarEnabled(true);</div><div class="line">mWebView.requestFocus();</div></pre></td></tr></table></figure>
+<h4 id="WebChromeClient"><a href="#WebChromeClient" class="headerlink" title="WebChromeClient"></a>WebChromeClient</h4><p>WebChromeClient会在一些影响浏览器ui交互动作发生时被调用，比如WebView关闭和隐藏、页面加载进展、js确认框和警告框、js加载前、js操作超时、webView获得焦点等等</p>
+<p>用于设置进度条的显示进度代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">mWebView.setWebChromeClient(new WebChromeClient() &#123;</div><div class="line">	public void onProgressChanged(WebView webView, int newProgress) &#123;</div><div class="line">		if (newProgress == 100) &#123;</div><div class="line">			mProgressBar.setVisibility(View.GONE);</div><div class="line">		&#125; else &#123;</div><div class="line">			mProgressBar.setVisibility(View.VISIBLE);</div><div class="line">			mProgressBar.setProgress(newProgress);</div><div class="line">		&#125;	</div><div class="line">	&#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h4 id="WebViewClient"><a href="#WebViewClient" class="headerlink" title="WebViewClient"></a>WebViewClient</h4><p>WebViewClient会在一些影响内容渲染的动作发生时被调用，比如表单的错误提交需要重新提交、页面开始加载及加载完成、资源加载中、接收到https认证需要处理、页面键盘响应、页面中的url打开处理等等</p>
+<p>如果希望点击链接继续在当前browser中响应,而不是新开Android的系统browser中响应该链接,必须覆盖 WebView的WebViewClient对象.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">mWebView.setWebViewClient(new WebViewClient()&#123;</div><div class="line">	public boolean shouldOverrideUrlLoading(WebView view, String url)&#123; </div><div class="line">		view.loadUrl(url);</div><div class="line">		return true;</div><div class="line">	&#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h4 id="addJavascriptInterface"><a href="#addJavascriptInterface" class="headerlink" title="addJavascriptInterface"></a>addJavascriptInterface</h4><p>使Js调用Native本地Java对象,实现本地Java代码和HTML页面进行交互，</p>
+<p>注意:因为安全问题的考虑 Google在使用Android API 17以上的版本的时候 需要通过@JavascriptInterface来注解的Java函数才能被识别可以被Js调用。</p>
+<h3 id="显示百度"><a href="#显示百度" class="headerlink" title="显示百度"></a>显示百度</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">mWebView = (WebView) findViewById(R.id.wb);</div><div class="line">mWebView.getSettings().setJavaScriptEnabled(true);</div><div class="line">mWebView.setWebViewClient(new WebViewClient()&#123;</div><div class="line">    @Override</div><div class="line">    public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) &#123;</div><div class="line">        return false;</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line">mWebView.loadUrl(&quot;https://www.baidu.com&quot;);</div><div class="line">System.out.println(&quot;---------------------&quot;);</div></pre></td></tr></table></figure>
+<ul>
+<li>增加返回按钮</li>
+</ul>
+<p>重写Activity中的按钮返回事件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">public boolean onKeyDown(int keyCode, KeyEvent event) &#123;</div><div class="line">    if (keyCode==KEYCODE_BACK&amp;&amp;mWebView.canGoBack())&#123;</div><div class="line">        mWebView.goBack();</div><div class="line">        return true;</div><div class="line">    &#125;</div><div class="line">    return super.onKeyDown(keyCode, event);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>增加进度条</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;ProgressBar</div><div class="line">    android:id=&quot;@+id/pb&quot;</div><div class="line">    style=&quot;?android:attr/progressBarStyleHorizontal&quot;</div><div class="line">    android:background=&quot;?attr/colorPrimary&quot;</div><div class="line">    android:layout_width=&quot;match_parent&quot;</div><div class="line">    android:layout_height=&quot;20dp&quot;/&gt;</div></pre></td></tr></table></figure>
+<p>修改Actiivty的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">protected void onCreate(Bundle savedInstanceState) &#123;</div><div class="line">    super.onCreate(savedInstanceState);</div><div class="line">    setContentView(R.layout.activity_main);</div><div class="line"></div><div class="line">    final ProgressBar progressBar = (ProgressBar) findViewById(R.id.pb);</div><div class="line">    progressBar.setMax(100);</div><div class="line"></div><div class="line">    mWebView = (WebView) findViewById(R.id.wb);</div><div class="line">    mWebView.getSettings().setJavaScriptEnabled(true);</div><div class="line">    mWebView.setWebViewClient(new WebViewClient()&#123;</div><div class="line">        @Override</div><div class="line">        public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) &#123;</div><div class="line">            return false;</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    mWebView.setWebChromeClient(new WebChromeClient()&#123;</div><div class="line">        @Override</div><div class="line">        public void onProgressChanged(WebView view, int newProgress) &#123;</div><div class="line">            progressBar.setProgress(newProgress);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    mWebView.loadUrl(&quot;https://www.baidu.com&quot;);</div><div class="line">    System.out.println(&quot;---------------------&quot;);</div></pre></td></tr></table></figure>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://www.androidchina.net/1225.html" target="_blank" rel="external">http://www.androidchina.net/1225.html</a></p>
+<p><a href="https://www.kymjs.com/code/2015/05/03/01/" target="_blank" rel="external">https://www.kymjs.com/code/2015/05/03/01/</a></p>
+<p><a href="http://blog.csdn.net/jueblog/article/details/12985045" target="_blank" rel="external">http://blog.csdn.net/jueblog/article/details/12985045</a></p>
+<p><a href="https://developer.android.google.cn/reference/android/webkit/WebView.html" target="_blank" rel="external">https://developer.android.google.cn/reference/android/webkit/WebView.html</a></p>
+</section>
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#Android基础" >
+    <span class="tag-code">Android基础</span>
+  </a>
+
+      </div>
+    
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="alipay-code">
+            <div class="code-image"></div>
+            <b>使用支付宝打赏</b>
+          </span>
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+    </div>
+    <div class="qrcode">
+      <canvas id="share-qrcode"></canvas>
+      <p class="notice">扫描二维码，分享此文章</p>
+    </div>
+    
+      <div id="comments"></div>
+    
+  </article>
+</main>
+
+<script>
+  (function () {
+    var url = 'http://bbbb.ml/2014/06/12/Android/13-Android HttpUrlConnection详解/';
+    var banner = 'http://osk1xe27i.bkt.clouddn.com/1.jpg'
+    if (banner !== 'undefined') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "jwl00";
+    if (gitmentConfig != "undefined") {
+      var gitment = new Gitment({
+        id: "13-Android HttpUrlConnection详解",
+        owner: "jwl00",
+        repo: "jwl00.github.io",
+        oauth: {
+          client_id: "ae21ad25810b1f2cc193",
+          client_secret: "7b6bb525adfeee63bd087132d98e6fd015d49ed8"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>
