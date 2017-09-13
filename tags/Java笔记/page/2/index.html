@@ -138,30 +138,6 @@ Collection存储的是单个元素，Collection的子类Set是唯一的，List�
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2014/03/07/Java/Scanner、String/">Scanner,String</a>
-      </h2>
-      <p class="article-date">March 7, 2014</p>
-      
-        
-  <a href="/tags#Java笔记" >
-    <span class="tag-code">Java笔记</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          
-Scanner,String[TOC]
-Scanner类构造方法Scanner是JDK5以后用于获取用户键盘输入，一个可以使用正则表达式来解析基本类型和字符串的简单文本扫描器，Pattern类中有正则表达式的语法
-1public Scanner（InputStream source）；
-S ...
-        
-      </div>
-      <a class="more" href="/2014/03/07/Java/Scanner、String/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
         <a href="/2014/03/07/Java/StringBuffer、Arrays、基本包装类/">StringBuffer、Arrays、基本包装类</a>
       </h2>
       <p class="article-date">March 7, 2014</p>
@@ -180,50 +156,6 @@ StringBuffer、Arrays、基本包装类StringBuffer概述是一个线程安全�
         
       </div>
       <a class="more" href="/2014/03/07/Java/StringBuffer、Arrays、基本包装类/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2014/03/07/Java/Java各种结构/">Java各种结构</a>
-      </h2>
-      <p class="article-date">March 7, 2014</p>
-      
-        
-  <a href="/tags#Java笔记" >
-    <span class="tag-code">Java笔记</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          
-Java各种结构[TOC]
-选择结构语法结构switch语句格式：
-switch(表达式) {
-case 值1：
-
- 语句体1;
-
- break;
-
- case 值2：
-
- 语句体2;
-
- break;
-
- …
-
- default：  
-
- 语句体n+1;
-
- break;
-   }
-语法 ...
-        
-      </div>
-      <a class="more" href="/2014/03/07/Java/Java各种结构/">Read more</a>
     </article>
   
     <article class="article-card">
@@ -256,7 +188,29 @@ final初始化 ...
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2014/03/07/Java/反射&动态代理&设计模式&1.5新特性反射&动态代理&设计模式&1.5新特性/">反射&动态代理&设计模式&1.5新特性</a>
+        <a href="/2014/03/07/Java/GUI/">GUI</a>
+      </h2>
+      <p class="article-date">March 7, 2014</p>
+      
+        
+  <a href="/tags#Java笔记" >
+    <span class="tag-code">Java笔记</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          GUI[TOC]
+GUIGraphical User Interface(图形用户接口)
+API所在的包java.awt：Abstract Window ToolKit (抽象窗口工具包)，需要调用本地系统方法实现功能。属重量级控件。javax.swing：在AWT的基础上，建立的一套图形界 ...
+        
+      </div>
+      <a class="more" href="/2014/03/07/Java/GUI/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/03/07/Java/List的实现类/">List的实现类</a>
       </h2>
       <p class="article-date">March 7, 2014</p>
       
@@ -269,11 +223,22 @@ final初始化 ...
       <div class="article-summary">
         
           
-反射&amp;动态代理&amp;设计模式&amp;1.5新特性反射reflect在运行状态，通过任意一个对象，都能够获得该类的任意方法和属性，就是通过class文件对象，去使用该文件中的成员变量，构造方法，成员方法
-类的加载当程序要使用某个类但是这个类还没有加载到内存，那么系统会通过架子啊 ...
+List的实现类list的子类特点
+ArrayList
+
+底层是数组，查询快，增删慢，线程不安全，效率高
+
+Vector
+
+底层是数组，查询快，增删慢，线程不安全，效率高
+
+LinkedList
+
+底层是链表，查询慢，增删快，线程不安全，效率高
+ArrayList遍历操作（和list一样有 ...
         
       </div>
-      <a class="more" href="/2014/03/07/Java/反射&动态代理&设计模式&1.5新特性反射&动态代理&设计模式&1.5新特性/">Read more</a>
+      <a class="more" href="/2014/03/07/Java/List的实现类/">Read more</a>
     </article>
   
     <article class="article-card">
@@ -295,6 +260,66 @@ final初始化 ...
         
       </div>
       <a class="more" href="/2014/03/07/Java/二维数组/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/03/07/Java/各种流/">各种流</a>
+      </h2>
+      <p class="article-date">March 7, 2014</p>
+      
+        
+  <a href="/tags#Java笔记" >
+    <span class="tag-code">Java笔记</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          各种流注册IO版
+在局部变量初始化是null时，那么在后面调用的时候一定要判断是否为空
+关闭流的操作放在finally语句中
+
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454 ...
+        
+      </div>
+      <a class="more" href="/2014/03/07/Java/各种流/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/03/07/Java/数组、栈、堆/">数组、栈、堆</a>
+      </h2>
+      <p class="article-date">March 7, 2014</p>
+      
+        
+  <a href="/tags#Java笔记" >
+    <span class="tag-code">Java笔记</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+数组、栈、堆[TOC]
+数组定义格式
+数据类型[]   数组名
+数据类型     数组名[ ]
+
+数组的初始化
+动态初始化:只是指定长度由系统给出初始化值
+
+
+数据类型【】 数组名 =  new    数据类型【数组长度】；
+
+
+静态初始化：只是给定初始化值，长度由系统指定
+
+
+123&g ...
+        
+      </div>
+      <a class="more" href="/2014/03/07/Java/数组、栈、堆/">Read more</a>
     </article>
   
     <article class="article-card">
@@ -350,7 +375,7 @@ B ...
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2014/03/07/Java/数组、栈、堆/">数组、栈、堆</a>
+        <a href="/2014/03/07/Java/正则表达式、Math、Random、System、BigInteger、Date、SimpleDateFormat、Calendar/">正则表达式、Math、Random、System、BigInteger、Date、SimpleDateFormat、Calendar</a>
       </h2>
       <p class="article-date">March 7, 2014</p>
       
@@ -363,49 +388,14 @@ B ...
       <div class="article-summary">
         
           
-数组、栈、堆[TOC]
-数组定义格式
-数据类型[]   数组名
-数据类型     数组名[ ]
-
-数组的初始化
-动态初始化:只是指定长度由系统给出初始化值
-
-
-数据类型【】 数组名 =  new    数据类型【数组长度】；
-
-
-静态初始化：只是给定初始化值，长度由系统指定
-
-
-123&g ...
+正则表达式、Math、Random、System、BigInteger、Date、SimpleDateFormat、Calendar[TOC]
+正则表达式基本规则A:字符
+x 字符 x。举例：&apos;a&apos;表示字符a
+\\ 反斜线字符。
+\n 新行（换行）符 (&apos;\u ...
         
       </div>
-      <a class="more" href="/2014/03/07/Java/数组、栈、堆/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2014/03/07/Java/各种流/">各种流</a>
-      </h2>
-      <p class="article-date">March 7, 2014</p>
-      
-        
-  <a href="/tags#Java笔记" >
-    <span class="tag-code">Java笔记</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          各种流注册IO版
-在局部变量初始化是null时，那么在后面调用的时候一定要判断是否为空
-关闭流的操作放在finally语句中
-
-1234567891011121314151617181920212223242526272829303132333435363738394041424344454 ...
-        
-      </div>
-      <a class="more" href="/2014/03/07/Java/各种流/">Read more</a>
+      <a class="more" href="/2014/03/07/Java/正则表达式、Math、Random、System、BigInteger、Date、SimpleDateFormat、Calendar/">Read more</a>
     </article>
   
 

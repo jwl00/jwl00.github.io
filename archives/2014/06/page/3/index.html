@@ -115,169 +115,190 @@
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2014/03/07/Java/反射&动态代理&设计模式&1.5新特性反射&动态代理&设计模式&1.5新特性/">反射&动态代理&设计模式&1.5新特性</a>
+        <a href="/2014/06/12/Android/08-Android View事件分发机制/">08-Android View事件分发机制</a>
       </h2>
-      <p class="article-date">March 7, 2014</p>
+      <p class="article-date">June 12, 2014</p>
       
         
-  <a href="/tags#Java笔记" >
-    <span class="tag-code">Java笔记</span>
+  <a href="/tags#Android基础" >
+    <span class="tag-code">Android基础</span>
   </a>
 
       
       <div class="article-summary">
         
           
-反射&amp;动态代理&amp;设计模式&amp;1.5新特性反射reflect在运行状态，通过任意一个对象，都能够获得该类的任意方法和属性，就是通过class文件对象，去使用该文件中的成员变量，构造方法，成员方法
-类的加载当程序要使用某个类但是这个类还没有加载到内存，那么系统会通过架子啊 ...
+08-Android View事件分发机制相关方法
+
+事件分发：public boolean dispatchTouchEvent(MotionEvent ev)
+
+　　　当有监听到事件时，首先由Activity进行捕获，进入事件分发处理流程。（因为activity没有事件拦截，View和 ...
         
       </div>
-      <a class="more" href="/2014/03/07/Java/反射&动态代理&设计模式&1.5新特性反射&动态代理&设计模式&1.5新特性/">Read more</a>
+      <a class="more" href="/2014/06/12/Android/08-Android View事件分发机制/">Read more</a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2014/03/07/Java/递归&IO流/">递归&IO流</a>
+        <a href="/2014/06/12/Android/05-02-Fragment内容详解/">05-02-Fragment内容详解</a>
       </h2>
-      <p class="article-date">March 7, 2014</p>
+      <p class="article-date">June 12, 2014</p>
       
         
-  <a href="/tags#Java笔记" >
-    <span class="tag-code">Java笔记</span>
+  <a href="/tags#Android基础" >
+    <span class="tag-code">Android基础</span>
   </a>
 
       
       <div class="article-summary">
         
           
-递归&amp;IO流递归方法定义中调用方法本身的现象
-示例1234567891011121314151617181920212223242526272829303132333435363738394041/* * 需求：请用代码实现求5的阶乘。 * 下面的知识要知道： * 		5! = 1 ...
+05-02-Fragment内容详解和Activity交互
+调用fragment的函数findFragmentById()或者findFragmentByTag()
+
+1ExampleFragment fragment = (ExampleFragment) getFragmentMana ...
         
       </div>
-      <a class="more" href="/2014/03/07/Java/递归&IO流/">Read more</a>
+      <a class="more" href="/2014/06/12/Android/05-02-Fragment内容详解/">Read more</a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2014/03/07/Java/集合框架：List/">集合框架：List</a>
+        <a href="/2014/06/12/algorithm/字符串包含（Java）/">字符串包含（Java）</a>
       </h2>
-      <p class="article-date">March 7, 2014</p>
+      <p class="article-date">June 12, 2014</p>
       
         
-  <a href="/tags#Java笔记" >
-    <span class="tag-code">Java笔记</span>
+  <a href="/tags#算法" >
+    <span class="tag-code">算法</span>
   </a>
 
       
       <div class="article-summary">
         
           
-集合框架：List集合框架面向对象语言对事物的体现都是一对象的形式，所以为了方便操作对象，java提供了集合类。
-数组虽然可以存储对象但是长度是固定的，集合长度是可变的，数组可以存储基本数据类型，集合只能存储对象。
-数组和集合的区别
-
-
-
-数组
-集合
-
-
-
-
-长度
-长度固定
-长度可变
-
-
- ...
+字符串包含（Java）题目给定两个分别由字母组成的字符串A和字符串B，字符串B的长度比字符串A短。请问，如何最快地判断字符串B中所有字母是否都在字符串A里？
+为了简单起见，我们规定输入的字符串只包含大写英文字母，请实现函数bool StringContains(string &amp;A, ...
         
       </div>
-      <a class="more" href="/2014/03/07/Java/集合框架：List/">Read more</a>
+      <a class="more" href="/2014/06/12/algorithm/字符串包含（Java）/">Read more</a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2014/03/06/Java/Java运算符循环流程/">Java运算符循环流程</a>
+        <a href="/2014/06/12/Android/06-01-自定义View之坐标系和颜色/">06-自定义View坐标系</a>
       </h2>
-      <p class="article-date">March 6, 2014</p>
+      <p class="article-date">June 12, 2014</p>
       
         
-  <a href="/tags#Java笔记" >
-    <span class="tag-code">Java笔记</span>
+  <a href="/tags#Android基础" >
+    <span class="tag-code">Android基础</span>
   </a>
 
       
       <div class="article-summary">
         
           
-Java运算符循环流程[TOC]
-运算符operator就是对常量和变量进行操作的符号。
-分类算术运算符，赋值运算符，比较运算符，逻辑运算符，位运算符，三目运算符
-注：定义变量应该int x = 3；应该说把3赋值给int类型的x；
-实例//定义变量
-int x = 3;  //把3赋值给 ...
+06-自定义View坐标系坐标系​    需要注意view的坐标是相对父容器而言的，包括：getTop()、getBottom()，getLeft()，getRight()。
+1234getTop();       //获取子View左上角距父View顶部的距离getLeft();     ...
         
       </div>
-      <a class="more" href="/2014/03/06/Java/Java运算符循环流程/">Read more</a>
+      <a class="more" href="/2014/06/12/Android/06-01-自定义View之坐标系和颜色/">Read more</a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2014/03/05/Java/Java规范以及进制转换/">Java规范以及进制转换</a>
+        <a href="/2014/06/12/algorithm/字符串旋转（Java）/">字符串旋转（Java）</a>
       </h2>
-      <p class="article-date">March 5, 2014</p>
+      <p class="article-date">June 12, 2014</p>
       
         
-  <a href="/tags#Java笔记" >
-    <span class="tag-code">Java笔记</span>
+  <a href="/tags#算法" >
+    <span class="tag-code">算法</span>
   </a>
 
       
       <div class="article-summary">
         
           
-Java规范以及进制转换关键字组成关键字的字母全部小写
-goto和const作为保留字存在,目前并不使用
-常见关键字
-
-标识符就是给类,接口,方法,变量variable等起名字时使用的字符序列
-组成规则l  英文大小写字母
-l  数字字符
-l  $和_
-注意事项l  不能以数字开头
-l   ...
+字符串旋转（Java）旋转给定一个字符串，要求把字符串前面的若干个字符移动到字符串的尾部，如把字符串“abcdef”前面的2个字符’a’和’b’移动到字符串的尾部，使得原字符串变成字符串“cdefab”。请写一个函数完成此功能，要求对长度为n的字符串操作的时间复杂度为 O(n)，空间复杂度 ...
         
       </div>
-      <a class="more" href="/2014/03/05/Java/Java规范以及进制转换/">Read more</a>
+      <a class="more" href="/2014/06/12/algorithm/字符串旋转（Java）/">Read more</a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2014/03/04/Java/Java相关概念/">01-Java相关概念</a>
+        <a href="/2014/06/12/Android/07-自定义ViewGroup内容详解/">07-01自定义ViewGroup基本概念</a>
       </h2>
-      <p class="article-date">March 4, 2014</p>
+      <p class="article-date">June 12, 2014</p>
       
         
-  <a href="/tags#Java笔记" >
-    <span class="tag-code">Java笔记</span>
+  <a href="/tags#Android基础" >
+    <span class="tag-code">Android基础</span>
   </a>
 
       
       <div class="article-summary">
         
           
-Java相关概念计算机基础常见键盘Ctrl  kangchou   tab   teibou     shift      alt    aiout
-常用快捷键全选    Ctrl+A        复制    Ctrl+C        粘贴    Ctrl+V        剪切    ...
+07-01自定义ViewGroup基本概念构造函数的调用流程12345678910111213public class MyViewGroup extends ViewGroup &#123;    public MyViewGroup(Context context) &#123;    ...
         
       </div>
-      <a class="more" href="/2014/03/04/Java/Java相关概念/">Read more</a>
+      <a class="more" href="/2014/06/12/Android/07-自定义ViewGroup内容详解/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/06/12/algorithm/Manacher算法及其Java实现/">Manacher算法及其Java实现</a>
+      </h2>
+      <p class="article-date">June 12, 2014</p>
+      
+        
+  <a href="/tags#算法" >
+    <span class="tag-code">算法</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+Manacher算法及其Java实现说明现给定一个已知的字符串str[]，现在想要在O(n)的时间复杂度之内求出一个最长的回文子字符串(正着和倒着顺序读一致)。
+Manacher最早发现了可以用O(n)的时间复杂度来解决该问题，所以这种方法称之为Manacher算法
+实现步骤基本过程求最大 ...
+        
+      </div>
+      <a class="more" href="/2014/06/12/algorithm/Manacher算法及其Java实现/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/06/12/Android/11-Android 数据存储五种方式使用与总结/">11-Android 数据存储五种方式使用与总结</a>
+      </h2>
+      <p class="article-date">June 12, 2014</p>
+      
+        
+  <a href="/tags#Android基础" >
+    <span class="tag-code">Android基础</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+11-Android 数据存储五种方式使用与总结概述​    Android提供了5种方式来让用户保存持久化应用程序数据。根据自己的需求来做选择，比如数据是否是应用程序私有的，是否能被其他程序访问，需要多少数据存储空间等，分别是：
+①　使用SharedPreferences存储数据　
+②　 ...
+        
+      </div>
+      <a class="more" href="/2014/06/12/Android/11-Android 数据存储五种方式使用与总结/">Read more</a>
     </article>
   
 
   
     <div class="guide-pager">
   
-    <a href="/tags/Java笔记/page/2/"><span class="page-arrow">← </span>Prev</a>
+    <a href="/archives/2014/06/page/2/"><span class="page-arrow">← </span>Prev</a>
   
   
     <a class="unvisible" href="/">Next <span class="page-arrow">→</span></a>

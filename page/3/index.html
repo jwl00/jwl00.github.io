@@ -160,7 +160,7 @@
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2014/06/12/Android/01-说说Activity那些事/">01-说说Activity那些事</a>
+        <a href="/2014/06/12/Android/02-说说Service那些事/">02-说说Service那些事</a>
       </h2>
       <p class="article-date">June 12, 2014</p>
       
@@ -173,49 +173,38 @@
       <div class="article-summary">
         
           
-01-说说Activity那些事简介Activity就是每一个应用的界面，凡事显示在app中的界面都是Activity或者由Activity启动。
-基本使用
-使用as快捷建立Activity
-
-
-
-常规创建
-
-
-在app/src/main/AndroidManifest.xml注册
-编写j ...
+02-说说Service那些事简介Service本质作用就是一个没有界面的Activity，它可以在后台执行代码永远不用到前台来，所以一个模块只要不想要与用户交互但是还要执行逻辑就可以使用Service。默认运行在程序的主线程之中。
+重要的方法12345678910111213141516 ...
         
       </div>
-      <a class="more" href="/2014/06/12/Android/01-说说Activity那些事/">Read more</a>
+      <a class="more" href="/2014/06/12/Android/02-说说Service那些事/">Read more</a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2014/06/12/Android/05-02-Fragment内容详解/">05-02-Fragment内容详解</a>
+        <a href="/2014/06/12/algorithm/背包问题Java实现/">背包问题Java实现</a>
       </h2>
       <p class="article-date">June 12, 2014</p>
       
         
-  <a href="/tags#Android基础" >
-    <span class="tag-code">Android基础</span>
+  <a href="/tags#算法" >
+    <span class="tag-code">算法</span>
   </a>
 
       
       <div class="article-summary">
         
           
-05-02-Fragment内容详解和Activity交互
-调用fragment的函数findFragmentById()或者findFragmentByTag()
-
-1ExampleFragment fragment = (ExampleFragment) getFragmentMana ...
+背包问题Java实现描述小偷在屋子里偷东西，他带着一只背包。屋子里物品数量有限——每件物品都具有一定的重量和价值——珠宝重量轻但价值高，桌子重但价值低。最重要的是小偷背包容量有限。很明显，他不能把桌子分成两份或者带走珠宝的3/4。对于一件物品他只能选择带走或者不带走。
+那么问题就是小偷怎样 ...
         
       </div>
-      <a class="more" href="/2014/06/12/Android/05-02-Fragment内容详解/">Read more</a>
+      <a class="more" href="/2014/06/12/algorithm/背包问题Java实现/">Read more</a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2014/06/12/Android/08-Android View事件分发机制/">08-Android View事件分发机制</a>
+        <a href="/2014/06/12/Android/03-说说ContentProvider那些事/">03-说说ContentProvider那些事</a>
       </h2>
       <p class="article-date">June 12, 2014</p>
       
@@ -228,14 +217,105 @@
       <div class="article-summary">
         
           
-08-Android View事件分发机制相关方法
-
-事件分发：public boolean dispatchTouchEvent(MotionEvent ev)
-
-　　　当有监听到事件时，首先由Activity进行捕获，进入事件分发处理流程。（因为activity没有事件拦截，View和 ...
+03-说说ContentProvider那些事简介​        ContentProvider（内容提供者）是Android的四大组件之一，以相对安全的方式封装数据（表）并且提供简易的处理机制和统一的访问接口供其他程序调用。　 　　 　　
+​        Android的数据存储方式 ...
         
       </div>
-      <a class="more" href="/2014/06/12/Android/08-Android View事件分发机制/">Read more</a>
+      <a class="more" href="/2014/06/12/Android/03-说说ContentProvider那些事/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/06/12/algorithm/最长回文子串—4种解法（Java版）/">最长回文子串—4种解法（Java版）</a>
+      </h2>
+      <p class="article-date">June 12, 2014</p>
+      
+        
+  <a href="/tags#算法" >
+    <span class="tag-code">算法</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+最长回文子串—4种解法（Java版）题目给定一个字符串，求它的最长回文子串的长度。
+暴力破解最容易想到的就是暴力破解，求出每一个子串，之后判断是不是回文，找到最长的那个。
+12345678910111213141516171819202122232425262728293031323334 ...
+        
+      </div>
+      <a class="more" href="/2014/06/12/algorithm/最长回文子串—4种解法（Java版）/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/06/12/algorithm/字符串解析（Java）/">字符串解析（Java）</a>
+      </h2>
+      <p class="article-date">June 12, 2014</p>
+      
+        
+  <a href="/tags#算法" >
+    <span class="tag-code">算法</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+字符串解析（Java）题目输入一个由数字组成的字符串，把它转换成整数并输出。例如：输入字符串”123”，输出整数123。
+实现字符串转换成整数的功能，不能使用库函数
+分析可以使用char[i]-&#39;0&#39;从而得到每一个数字，然后再乘以位数即可得到整数
+1234567891011 ...
+        
+      </div>
+      <a class="more" href="/2014/06/12/algorithm/字符串解析（Java）/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/06/12/algorithm/寻找最小的k个整数/">寻找最小的k个整数</a>
+      </h2>
+      <p class="article-date">June 12, 2014</p>
+      
+        
+  <a href="/tags#算法" >
+    <span class="tag-code">算法</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+寻找最小的k个整数说明输入n个整数，输出其中最小的k个。
+利用排序来解题要求一个序列中最小的k个数，按照惯有的思维方式，则是先对这个序列从小到大排序，然后输出前面的最小的k个数。
+至于选取什么的排序方法，我想你可能会第一时间想到快速排序（我们知道，快速排序平均所费时间为n*logn），然后 ...
+        
+      </div>
+      <a class="more" href="/2014/06/12/algorithm/寻找最小的k个整数/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/06/12/algorithm/寻找和为定值的两个数/">寻找和为定值的两个数</a>
+      </h2>
+      <p class="article-date">June 12, 2014</p>
+      
+        
+  <a href="/tags#算法" >
+    <span class="tag-code">算法</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+寻找和为定值的两个数说明输入一个数组和一个数字，在数组中查找两个数，使得它们的和正好是输入的那个数字。
+要求时间复杂度是O(N)。如果有多对数字的和等于输入的数字，输出任意一对即可。
+例如输入数组1、2、4、7、11、15和数字15。由于4+11=15，因此输出4和11。
+解法直接穷举，从 ...
+        
+      </div>
+      <a class="more" href="/2014/06/12/algorithm/寻找和为定值的两个数/">Read more</a>
     </article>
   
     <article class="article-card">
@@ -266,92 +346,6 @@ onDraw()
         
       </div>
       <a class="more" href="/2014/06/12/Android/06-02-自定义view之基本流程/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2014/06/12/Android/10-Android异步任务机制之AsycTask/">10-Android异步任务机制之AsycTask</a>
-      </h2>
-      <p class="article-date">June 12, 2014</p>
-      
-        
-  <a href="/tags#Android基础" >
-    <span class="tag-code">Android基础</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          
-10-Android异步任务机制之AsycTask原理　　AsyncTask是谷歌对Thread和Handler的进一步封装，完全隐藏起了这两个概念，而用doInBackground(Params... params)取而代之。但需要注意的是AsyncTask的效率不是很高而且资源代价也比 ...
-        
-      </div>
-      <a class="more" href="/2014/06/12/Android/10-Android异步任务机制之AsycTask/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2014/06/12/Android/07-自定义ViewGroup内容详解/">07-01自定义ViewGroup基本概念</a>
-      </h2>
-      <p class="article-date">June 12, 2014</p>
-      
-        
-  <a href="/tags#Android基础" >
-    <span class="tag-code">Android基础</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          
-07-01自定义ViewGroup基本概念构造函数的调用流程12345678910111213public class MyViewGroup extends ViewGroup &#123;    public MyViewGroup(Context context) &#123;    ...
-        
-      </div>
-      <a class="more" href="/2014/06/12/Android/07-自定义ViewGroup内容详解/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2014/06/12/Android/11-Android 数据存储五种方式使用与总结/">11-Android 数据存储五种方式使用与总结</a>
-      </h2>
-      <p class="article-date">June 12, 2014</p>
-      
-        
-  <a href="/tags#Android基础" >
-    <span class="tag-code">Android基础</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          
-11-Android 数据存储五种方式使用与总结概述​    Android提供了5种方式来让用户保存持久化应用程序数据。根据自己的需求来做选择，比如数据是否是应用程序私有的，是否能被其他程序访问，需要多少数据存储空间等，分别是：
-①　使用SharedPreferences存储数据　
-②　 ...
-        
-      </div>
-      <a class="more" href="/2014/06/12/Android/11-Android 数据存储五种方式使用与总结/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2014/06/12/Android/12-Android SQLite详解/">12-Android SQLite详解</a>
-      </h2>
-      <p class="article-date">June 12, 2014</p>
-      
-        
-  <a href="/tags#Android基础" >
-    <span class="tag-code">Android基础</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          
-12-Android SQLite详解创建数据库　　Android 不自动提供数据库。在 Android 应用程序中使用 SQLite，必须自己创建数据库，然后创建表、索引，填充数据。Android 提供了 SQLiteOpenHelper 帮助你创建一个数据库，你只要继承 SQLiteO ...
-        
-      </div>
-      <a class="more" href="/2014/06/12/Android/12-Android SQLite详解/">Read more</a>
     </article>
   
 

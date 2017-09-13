@@ -115,136 +115,6 @@
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2014/03/07/Java/Eclipse使用、ObjectAPI/">Eclipse的使用，ObjectAPI</a>
-      </h2>
-      <p class="article-date">March 7, 2014</p>
-      
-        
-  <a href="/tags#Java笔记" >
-    <span class="tag-code">Java笔记</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          
-Eclipse的使用，ObjectAPIeclipse的使用视窗和视图结构
-outline 显示类的结构，标示c标示构造方法，标示s标示静态方法，绿色表示public，红色标示private，f标示final，sf标示静态和final，
-hierarchy  显示java继承层次，选中类， ...
-        
-      </div>
-      <a class="more" href="/2014/03/07/Java/Eclipse使用、ObjectAPI/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2014/03/07/Java/Scanner、String/">Scanner,String</a>
-      </h2>
-      <p class="article-date">March 7, 2014</p>
-      
-        
-  <a href="/tags#Java笔记" >
-    <span class="tag-code">Java笔记</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          
-Scanner,String[TOC]
-Scanner类构造方法Scanner是JDK5以后用于获取用户键盘输入，一个可以使用正则表达式来解析基本类型和字符串的简单文本扫描器，Pattern类中有正则表达式的语法
-1public Scanner（InputStream source）；
-S ...
-        
-      </div>
-      <a class="more" href="/2014/03/07/Java/Scanner、String/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2014/03/07/Java/StringBuffer、Arrays、基本包装类/">StringBuffer、Arrays、基本包装类</a>
-      </h2>
-      <p class="article-date">March 7, 2014</p>
-      
-        
-  <a href="/tags#Java笔记" >
-    <span class="tag-code">Java笔记</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          
-StringBuffer、Arrays、基本包装类StringBuffer概述是一个线程安全的可变字符序列（所以在字符串拼接时不会有空间的浪费）
-构造方法123	public StringBuffer():无参构造方法public StringBuffer(int capacity):指定 ...
-        
-      </div>
-      <a class="more" href="/2014/03/07/Java/StringBuffer、Arrays、基本包装类/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2014/03/07/Java/List的实现类/">List的实现类</a>
-      </h2>
-      <p class="article-date">March 7, 2014</p>
-      
-        
-  <a href="/tags#Java笔记" >
-    <span class="tag-code">Java笔记</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          
-List的实现类list的子类特点
-ArrayList
-
-底层是数组，查询快，增删慢，线程不安全，效率高
-
-Vector
-
-底层是数组，查询快，增删慢，线程不安全，效率高
-
-LinkedList
-
-底层是链表，查询慢，增删快，线程不安全，效率高
-ArrayList遍历操作（和list一样有 ...
-        
-      </div>
-      <a class="more" href="/2014/03/07/Java/List的实现类/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2014/03/07/Java/final、多态、接口、抽象类/">final、多态、接口、抽象类</a>
-      </h2>
-      <p class="article-date">March 7, 2014</p>
-      
-        
-  <a href="/tags#Java笔记" >
-    <span class="tag-code">Java笔记</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          final、多态、接口、抽象类final关键字
-final修饰类，该类不能被继承
-final修饰方法，该方法不能被重写
-fina修饰变量，该变量不能再重新被赋值，变量就变成常量
-
-final面试题
-final修饰局部变量引用类型时，是地址值不改变，但是地址值的内容可以改变
-
-final初始化 ...
-        
-      </div>
-      <a class="more" href="/2014/03/07/Java/final、多态、接口、抽象类/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
         <a href="/2014/03/07/Java/反射&动态代理&设计模式&1.5新特性反射&动态代理&设计模式&1.5新特性/">反射&动态代理&设计模式&1.5新特性</a>
       </h2>
       <p class="article-date">March 7, 2014</p>
@@ -267,7 +137,7 @@ final初始化 ...
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2014/03/07/Java/二维数组/">二维数组</a>
+        <a href="/2014/03/07/Java/集合框架Map/">集合框架：Map</a>
       </h2>
       <p class="article-date">March 7, 2014</p>
       
@@ -280,10 +150,133 @@ final初始化 ...
       <div class="article-summary">
         
           
-二维数组二维数组表示方法1234A:数据类型[][] 数组名 = new 数据类型[m][n];B:数据类型[][] 数组名 = new 数据类型[m][];C:数据类型[][] 数组名 = new 数据类型[][]&#123;&#123;...&#125;,&#123;...&#125; ...
+集合框架：MapMap集合将键映射到值的对象。一个映射不能包含重复的键；每个键最多只能映射到一个值。 
+和Collection的区别Map存储元素是键值对，Map集合的键是唯一的，值是可重复的
+Collection存储的是单个元素，Collection的子类Set是唯一的，List是可重复 ...
         
       </div>
-      <a class="more" href="/2014/03/07/Java/二维数组/">Read more</a>
+      <a class="more" href="/2014/03/07/Java/集合框架Map/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/03/07/Java/类、包、修饰符、内部类/">类、包、修饰符、内部类</a>
+      </h2>
+      <p class="article-date">March 7, 2014</p>
+      
+        
+  <a href="/tags#Java笔记" >
+    <span class="tag-code">Java笔记</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+类、包、修饰符、内部类形式参数和返回值类
+形式参数：
+
+
+基本数据类型
+
+引用数据类型
+
+类：要求是该类的对象
+接口：接口也可以new出对象，所以可以作为形式参数传递给方法，一般是传入一个该接口的实现类的对象，同样利用了多态；
+抽象类：类可以new出对象，所以可以作为形式参数传递给方法，一 ...
+        
+      </div>
+      <a class="more" href="/2014/03/07/Java/类、包、修饰符、内部类/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/03/07/Java/集合框架Set/">集合框架：Set</a>
+      </h2>
+      <p class="article-date">March 7, 2014</p>
+      
+        
+  <a href="/tags#Java笔记" >
+    <span class="tag-code">Java笔记</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+集合框架：Set常用快捷键
+ctrl + shift + o 导包
+ctrl + shift + t 快速查找某个类
+先按ctrl + 2 ,再点L, 创建变量并命名
+ctrl + o , 在当前类中,快速查找某个方法
+ctrl + k, 向下查找某个字符串
+ctrl + shift +  ...
+        
+      </div>
+      <a class="more" href="/2014/03/07/Java/集合框架Set/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/03/07/Java/集合框架：List/">集合框架：List</a>
+      </h2>
+      <p class="article-date">March 7, 2014</p>
+      
+        
+  <a href="/tags#Java笔记" >
+    <span class="tag-code">Java笔记</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+集合框架：List集合框架面向对象语言对事物的体现都是一对象的形式，所以为了方便操作对象，java提供了集合类。
+数组虽然可以存储对象但是长度是固定的，集合长度是可变的，数组可以存储基本数据类型，集合只能存储对象。
+数组和集合的区别
+
+
+
+数组
+集合
+
+
+
+
+长度
+长度固定
+长度可变
+
+
+ ...
+        
+      </div>
+      <a class="more" href="/2014/03/07/Java/集合框架：List/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/03/07/Java/正则表达式、Math、Random、System、BigInteger、Date、SimpleDateFormat、Calendar/">正则表达式、Math、Random、System、BigInteger、Date、SimpleDateFormat、Calendar</a>
+      </h2>
+      <p class="article-date">March 7, 2014</p>
+      
+        
+  <a href="/tags#Java笔记" >
+    <span class="tag-code">Java笔记</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+正则表达式、Math、Random、System、BigInteger、Date、SimpleDateFormat、Calendar[TOC]
+正则表达式基本规则A:字符
+x 字符 x。举例：&apos;a&apos;表示字符a
+\\ 反斜线字符。
+\n 新行（换行）符 (&apos;\u ...
+        
+      </div>
+      <a class="more" href="/2014/03/07/Java/正则表达式、Math、Random、System、BigInteger、Date、SimpleDateFormat、Calendar/">Read more</a>
     </article>
   
     <article class="article-card">
@@ -395,6 +388,27 @@ B ...
         
       </div>
       <a class="more" href="/2014/03/07/Java/各种流/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/03/07/Java/二维数组/">二维数组</a>
+      </h2>
+      <p class="article-date">March 7, 2014</p>
+      
+        
+  <a href="/tags#Java笔记" >
+    <span class="tag-code">Java笔记</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+二维数组二维数组表示方法1234A:数据类型[][] 数组名 = new 数据类型[m][n];B:数据类型[][] 数组名 = new 数据类型[m][];C:数据类型[][] 数组名 = new 数据类型[][]&#123;&#123;...&#125;,&#123;...&#125; ...
+        
+      </div>
+      <a class="more" href="/2014/03/07/Java/二维数组/">Read more</a>
     </article>
   
 

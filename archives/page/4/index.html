@@ -115,7 +115,32 @@
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2014/06/12/Android/09-Android 异步消息处理机制（Handler 、 Looper 、MessageQueue）/">09-Android 异步消息处理机制（Handler 、 Looper 、MessageQueue）</a>
+        <a href="/2014/06/12/algorithm/字符串的排序算法/">字符串的排序算法</a>
+      </h2>
+      <p class="article-date">June 12, 2014</p>
+      
+        
+  <a href="/tags#算法" >
+    <span class="tag-code">算法</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+字符串的排序算法说明输入一个字符串，打印出该字符串中字符的所有排列。
+例如输入字符串abcd，则输出由字符a、b、c 、d所能排列出来的所有字符串
+递归解答从集合中依次选出每一个元素，作为排列的第一个元素，然后对剩余的元素进行全排列
+
+由图可知当以A开头的时候，有6中解法，同理共有24种解 ...
+        
+      </div>
+      <a class="more" href="/2014/06/12/algorithm/字符串的排序算法/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/06/12/Android/08-Android View事件分发机制/">08-Android View事件分发机制</a>
       </h2>
       <p class="article-date">June 12, 2014</p>
       
@@ -128,13 +153,60 @@
       <div class="article-summary">
         
           
-09-Android 异步消息处理机制（Handler 、 Looper 、MessageQueue）Thread，Looper和Handler的关系与Windows系统一样，Android也是消息驱动型的系统。引用一下消息驱动机制的四要素：
+08-Android View事件分发机制相关方法
 
-接收消息的“消息队列”
-阻塞式地从消息队列中 ...
+事件分发：public boolean dispatchTouchEvent(MotionEvent ev)
+
+　　　当有监听到事件时，首先由Activity进行捕获，进入事件分发处理流程。（因为activity没有事件拦截，View和 ...
         
       </div>
-      <a class="more" href="/2014/06/12/Android/09-Android 异步消息处理机制（Handler 、 Looper 、MessageQueue）/">Read more</a>
+      <a class="more" href="/2014/06/12/Android/08-Android View事件分发机制/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/06/12/Android/05-02-Fragment内容详解/">05-02-Fragment内容详解</a>
+      </h2>
+      <p class="article-date">June 12, 2014</p>
+      
+        
+  <a href="/tags#Android基础" >
+    <span class="tag-code">Android基础</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+05-02-Fragment内容详解和Activity交互
+调用fragment的函数findFragmentById()或者findFragmentByTag()
+
+1ExampleFragment fragment = (ExampleFragment) getFragmentMana ...
+        
+      </div>
+      <a class="more" href="/2014/06/12/Android/05-02-Fragment内容详解/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/06/12/algorithm/字符串包含（Java）/">字符串包含（Java）</a>
+      </h2>
+      <p class="article-date">June 12, 2014</p>
+      
+        
+  <a href="/tags#算法" >
+    <span class="tag-code">算法</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+字符串包含（Java）题目给定两个分别由字母组成的字符串A和字符串B，字符串B的长度比字符串A短。请问，如何最快地判断字符串B中所有字母是否都在字符串A里？
+为了简单起见，我们规定输入的字符串只包含大写英文字母，请实现函数bool StringContains(string &amp;A, ...
+        
+      </div>
+      <a class="more" href="/2014/06/12/algorithm/字符串包含（Java）/">Read more</a>
     </article>
   
     <article class="article-card">
@@ -161,7 +233,28 @@
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2014/06/12/Android/03-说说ContentProvider那些事/">03-说说ContentProvider那些事</a>
+        <a href="/2014/06/12/algorithm/字符串旋转（Java）/">字符串旋转（Java）</a>
+      </h2>
+      <p class="article-date">June 12, 2014</p>
+      
+        
+  <a href="/tags#算法" >
+    <span class="tag-code">算法</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+字符串旋转（Java）旋转给定一个字符串，要求把字符串前面的若干个字符移动到字符串的尾部，如把字符串“abcdef”前面的2个字符’a’和’b’移动到字符串的尾部，使得原字符串变成字符串“cdefab”。请写一个函数完成此功能，要求对长度为n的字符串操作的时间复杂度为 O(n)，空间复杂度 ...
+        
+      </div>
+      <a class="more" href="/2014/06/12/algorithm/字符串旋转（Java）/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/06/12/Android/07-自定义ViewGroup内容详解/">07-01自定义ViewGroup基本概念</a>
       </h2>
       <p class="article-date">June 12, 2014</p>
       
@@ -174,16 +267,38 @@
       <div class="article-summary">
         
           
-03-说说ContentProvider那些事简介​        ContentProvider（内容提供者）是Android的四大组件之一，以相对安全的方式封装数据（表）并且提供简易的处理机制和统一的访问接口供其他程序调用。　 　　 　　
-​        Android的数据存储方式 ...
+07-01自定义ViewGroup基本概念构造函数的调用流程12345678910111213public class MyViewGroup extends ViewGroup &#123;    public MyViewGroup(Context context) &#123;    ...
         
       </div>
-      <a class="more" href="/2014/06/12/Android/03-说说ContentProvider那些事/">Read more</a>
+      <a class="more" href="/2014/06/12/Android/07-自定义ViewGroup内容详解/">Read more</a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2014/06/12/Android/13-Android HttpUrlConnection详解/">13-Android HttpUrlConnection详解</a>
+        <a href="/2014/06/12/algorithm/Manacher算法及其Java实现/">Manacher算法及其Java实现</a>
+      </h2>
+      <p class="article-date">June 12, 2014</p>
+      
+        
+  <a href="/tags#算法" >
+    <span class="tag-code">算法</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+Manacher算法及其Java实现说明现给定一个已知的字符串str[]，现在想要在O(n)的时间复杂度之内求出一个最长的回文子字符串(正着和倒着顺序读一致)。
+Manacher最早发现了可以用O(n)的时间复杂度来解决该问题，所以这种方法称之为Manacher算法
+实现步骤基本过程求最大 ...
+        
+      </div>
+      <a class="more" href="/2014/06/12/algorithm/Manacher算法及其Java实现/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/06/12/Android/11-Android 数据存储五种方式使用与总结/">11-Android 数据存储五种方式使用与总结</a>
       </h2>
       <p class="article-date">June 12, 2014</p>
       
@@ -196,105 +311,17 @@
       <div class="article-summary">
         
           
-13-Android HttpUrlConnection详解介绍　　HttpUrlConnection是Java.net包中提供的API，我们知道Android SDK是基于Java的，所以当然优先考虑HttpUrlConnection这种最原始最基本的API，其实大多数开源的联网框架基本 ...
+11-Android 数据存储五种方式使用与总结概述​    Android提供了5种方式来让用户保存持久化应用程序数据。根据自己的需求来做选择，比如数据是否是应用程序私有的，是否能被其他程序访问，需要多少数据存储空间等，分别是：
+①　使用SharedPreferences存储数据　
+②　 ...
         
       </div>
-      <a class="more" href="/2014/06/12/Android/13-Android HttpUrlConnection详解/">Read more</a>
+      <a class="more" href="/2014/06/12/Android/11-Android 数据存储五种方式使用与总结/">Read more</a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2014/06/12/Android/Android IPC机制-Messager/">Android IPC机制-Messager</a>
-      </h2>
-      <p class="article-date">June 12, 2014</p>
-      
-        
-  <a href="/tags#Android基础" >
-    <span class="tag-code">Android基础</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          
-Android IPC机制-Messager简介如果你需要能够编写可以在远程进程客户端执行复杂的通信（不仅仅是简单的使用服务 Context.startService将命令发送到它），那么你可以使用Messenger类，而不是写全AIDL文件。
-和Binder以及AIDL区别a.只有当你需 ...
-        
-      </div>
-      <a class="more" href="/2014/06/12/Android/Android IPC机制-Messager/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2014/06/12/Android/Android设计模式MVP/">MVP的基本使用</a>
-      </h2>
-      <p class="article-date">June 12, 2014</p>
-      
-        
-  <a href="/tags#Android基础" >
-    <span class="tag-code">Android基础</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          
-MVP的基本使用简介MVP 模式（Model-View-Presenter）可以说是 MVC 模式（Model-View-Controller）在 Android 开发上的一种变种、进化模式。
-在 MVC 模式中，Activity 应该是属于 View 这一层。而实质上，它既承担了 Vie ...
-        
-      </div>
-      <a class="more" href="/2014/06/12/Android/Android设计模式MVP/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2014/06/12/Android/Android IPC机制-序列化/">Android IPC机制-序列化</a>
-      </h2>
-      <p class="article-date">June 12, 2014</p>
-      
-        
-  <a href="/tags#Android基础" >
-    <span class="tag-code">Android基础</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          
-Android IPC机制-序列化序列化简介序列化 (Serialization)将对象的状态信息转换为可以存储或传输的形式的过程。在序列化期间，对象将其当前状态写入到临时或持久性存储区。以后，可以通过从存储区中读取或反序列化对象的状态，重新创建该对象。
-序列化的意义：
-
-永久性保存对象， ...
-        
-      </div>
-      <a class="more" href="/2014/06/12/Android/Android IPC机制-序列化/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2014/06/12/Android/02-说说Service那些事/">02-说说Service那些事</a>
-      </h2>
-      <p class="article-date">June 12, 2014</p>
-      
-        
-  <a href="/tags#Android基础" >
-    <span class="tag-code">Android基础</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          
-02-说说Service那些事简介Service本质作用就是一个没有界面的Activity，它可以在后台执行代码永远不用到前台来，所以一个模块只要不想要与用户交互但是还要执行逻辑就可以使用Service。默认运行在程序的主线程之中。
-重要的方法12345678910111213141516 ...
-        
-      </div>
-      <a class="more" href="/2014/06/12/Android/02-说说Service那些事/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2014/03/07/Java/递归&IO流/">递归&IO流</a>
+        <a href="/2014/03/07/Java/StringBuffer、Arrays、基本包装类/">StringBuffer、Arrays、基本包装类</a>
       </h2>
       <p class="article-date">March 7, 2014</p>
       
@@ -307,38 +334,11 @@ Android IPC机制-序列化序列化简介序列化 (Serialization)将对象的�
       <div class="article-summary">
         
           
-递归&amp;IO流递归方法定义中调用方法本身的现象
-示例1234567891011121314151617181920212223242526272829303132333435363738394041/* * 需求：请用代码实现求5的阶乘。 * 下面的知识要知道： * 		5! = 1 ...
+StringBuffer、Arrays、基本包装类StringBuffer概述是一个线程安全的可变字符序列（所以在字符串拼接时不会有空间的浪费）
+构造方法123	public StringBuffer():无参构造方法public StringBuffer(int capacity):指定 ...
         
       </div>
-      <a class="more" href="/2014/03/07/Java/递归&IO流/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2014/03/07/Java/IO&异常/">IO&异常</a>
-      </h2>
-      <p class="article-date">March 7, 2014</p>
-      
-        
-  <a href="/tags#Java笔记" >
-    <span class="tag-code">Java笔记</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          
-IO&amp;异常IO程序异常Throwable
-分类
-error严重问题，一般不处理，如内存溢出
-exception问题
-
-Exception包括RuntimeException（运行期间问题）及其子类和非RuntimeException子类（编译期间问题）
-RuntimeExcepti ...
-        
-      </div>
-      <a class="more" href="/2014/03/07/Java/IO&异常/">Read more</a>
+      <a class="more" href="/2014/03/07/Java/StringBuffer、Arrays、基本包装类/">Read more</a>
     </article>
   
 

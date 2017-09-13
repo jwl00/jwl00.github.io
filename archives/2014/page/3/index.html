@@ -115,98 +115,208 @@
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2014/03/07/Java/递归&IO流/">递归&IO流</a>
+        <a href="/2014/06/12/algorithm/字符串的排序算法/">字符串的排序算法</a>
       </h2>
-      <p class="article-date">March 7, 2014</p>
+      <p class="article-date">June 12, 2014</p>
       
         
-  <a href="/tags#Java笔记" >
-    <span class="tag-code">Java笔记</span>
+  <a href="/tags#算法" >
+    <span class="tag-code">算法</span>
   </a>
 
       
       <div class="article-summary">
         
           
-递归&amp;IO流递归方法定义中调用方法本身的现象
-示例1234567891011121314151617181920212223242526272829303132333435363738394041/* * 需求：请用代码实现求5的阶乘。 * 下面的知识要知道： * 		5! = 1 ...
+字符串的排序算法说明输入一个字符串，打印出该字符串中字符的所有排列。
+例如输入字符串abcd，则输出由字符a、b、c 、d所能排列出来的所有字符串
+递归解答从集合中依次选出每一个元素，作为排列的第一个元素，然后对剩余的元素进行全排列
+
+由图可知当以A开头的时候，有6中解法，同理共有24种解 ...
         
       </div>
-      <a class="more" href="/2014/03/07/Java/递归&IO流/">Read more</a>
+      <a class="more" href="/2014/06/12/algorithm/字符串的排序算法/">Read more</a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2014/03/07/Java/IO&异常/">IO&异常</a>
+        <a href="/2014/06/12/Android/08-Android View事件分发机制/">08-Android View事件分发机制</a>
       </h2>
-      <p class="article-date">March 7, 2014</p>
+      <p class="article-date">June 12, 2014</p>
       
         
-  <a href="/tags#Java笔记" >
-    <span class="tag-code">Java笔记</span>
+  <a href="/tags#Android基础" >
+    <span class="tag-code">Android基础</span>
   </a>
 
       
       <div class="article-summary">
         
           
-IO&amp;异常IO程序异常Throwable
-分类
-error严重问题，一般不处理，如内存溢出
-exception问题
+08-Android View事件分发机制相关方法
 
-Exception包括RuntimeException（运行期间问题）及其子类和非RuntimeException子类（编译期间问题）
-RuntimeExcepti ...
+事件分发：public boolean dispatchTouchEvent(MotionEvent ev)
+
+　　　当有监听到事件时，首先由Activity进行捕获，进入事件分发处理流程。（因为activity没有事件拦截，View和 ...
         
       </div>
-      <a class="more" href="/2014/03/07/Java/IO&异常/">Read more</a>
+      <a class="more" href="/2014/06/12/Android/08-Android View事件分发机制/">Read more</a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2014/03/07/Java/Eclipse使用、ObjectAPI/">Eclipse的使用，ObjectAPI</a>
+        <a href="/2014/06/12/Android/05-02-Fragment内容详解/">05-02-Fragment内容详解</a>
       </h2>
-      <p class="article-date">March 7, 2014</p>
+      <p class="article-date">June 12, 2014</p>
       
         
-  <a href="/tags#Java笔记" >
-    <span class="tag-code">Java笔记</span>
+  <a href="/tags#Android基础" >
+    <span class="tag-code">Android基础</span>
   </a>
 
       
       <div class="article-summary">
         
           
-Eclipse的使用，ObjectAPIeclipse的使用视窗和视图结构
-outline 显示类的结构，标示c标示构造方法，标示s标示静态方法，绿色表示public，红色标示private，f标示final，sf标示静态和final，
-hierarchy  显示java继承层次，选中类， ...
+05-02-Fragment内容详解和Activity交互
+调用fragment的函数findFragmentById()或者findFragmentByTag()
+
+1ExampleFragment fragment = (ExampleFragment) getFragmentMana ...
         
       </div>
-      <a class="more" href="/2014/03/07/Java/Eclipse使用、ObjectAPI/">Read more</a>
+      <a class="more" href="/2014/06/12/Android/05-02-Fragment内容详解/">Read more</a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2014/03/07/Java/Scanner、String/">Scanner,String</a>
+        <a href="/2014/06/12/algorithm/字符串包含（Java）/">字符串包含（Java）</a>
       </h2>
-      <p class="article-date">March 7, 2014</p>
+      <p class="article-date">June 12, 2014</p>
       
         
-  <a href="/tags#Java笔记" >
-    <span class="tag-code">Java笔记</span>
+  <a href="/tags#算法" >
+    <span class="tag-code">算法</span>
   </a>
 
       
       <div class="article-summary">
         
           
-Scanner,String[TOC]
-Scanner类构造方法Scanner是JDK5以后用于获取用户键盘输入，一个可以使用正则表达式来解析基本类型和字符串的简单文本扫描器，Pattern类中有正则表达式的语法
-1public Scanner（InputStream source）；
-S ...
+字符串包含（Java）题目给定两个分别由字母组成的字符串A和字符串B，字符串B的长度比字符串A短。请问，如何最快地判断字符串B中所有字母是否都在字符串A里？
+为了简单起见，我们规定输入的字符串只包含大写英文字母，请实现函数bool StringContains(string &amp;A, ...
         
       </div>
-      <a class="more" href="/2014/03/07/Java/Scanner、String/">Read more</a>
+      <a class="more" href="/2014/06/12/algorithm/字符串包含（Java）/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/06/12/Android/06-01-自定义View之坐标系和颜色/">06-自定义View坐标系</a>
+      </h2>
+      <p class="article-date">June 12, 2014</p>
+      
+        
+  <a href="/tags#Android基础" >
+    <span class="tag-code">Android基础</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+06-自定义View坐标系坐标系​    需要注意view的坐标是相对父容器而言的，包括：getTop()、getBottom()，getLeft()，getRight()。
+1234getTop();       //获取子View左上角距父View顶部的距离getLeft();     ...
+        
+      </div>
+      <a class="more" href="/2014/06/12/Android/06-01-自定义View之坐标系和颜色/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/06/12/algorithm/字符串旋转（Java）/">字符串旋转（Java）</a>
+      </h2>
+      <p class="article-date">June 12, 2014</p>
+      
+        
+  <a href="/tags#算法" >
+    <span class="tag-code">算法</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+字符串旋转（Java）旋转给定一个字符串，要求把字符串前面的若干个字符移动到字符串的尾部，如把字符串“abcdef”前面的2个字符’a’和’b’移动到字符串的尾部，使得原字符串变成字符串“cdefab”。请写一个函数完成此功能，要求对长度为n的字符串操作的时间复杂度为 O(n)，空间复杂度 ...
+        
+      </div>
+      <a class="more" href="/2014/06/12/algorithm/字符串旋转（Java）/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/06/12/Android/07-自定义ViewGroup内容详解/">07-01自定义ViewGroup基本概念</a>
+      </h2>
+      <p class="article-date">June 12, 2014</p>
+      
+        
+  <a href="/tags#Android基础" >
+    <span class="tag-code">Android基础</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+07-01自定义ViewGroup基本概念构造函数的调用流程12345678910111213public class MyViewGroup extends ViewGroup &#123;    public MyViewGroup(Context context) &#123;    ...
+        
+      </div>
+      <a class="more" href="/2014/06/12/Android/07-自定义ViewGroup内容详解/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/06/12/algorithm/Manacher算法及其Java实现/">Manacher算法及其Java实现</a>
+      </h2>
+      <p class="article-date">June 12, 2014</p>
+      
+        
+  <a href="/tags#算法" >
+    <span class="tag-code">算法</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+Manacher算法及其Java实现说明现给定一个已知的字符串str[]，现在想要在O(n)的时间复杂度之内求出一个最长的回文子字符串(正着和倒着顺序读一致)。
+Manacher最早发现了可以用O(n)的时间复杂度来解决该问题，所以这种方法称之为Manacher算法
+实现步骤基本过程求最大 ...
+        
+      </div>
+      <a class="more" href="/2014/06/12/algorithm/Manacher算法及其Java实现/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/06/12/Android/11-Android 数据存储五种方式使用与总结/">11-Android 数据存储五种方式使用与总结</a>
+      </h2>
+      <p class="article-date">June 12, 2014</p>
+      
+        
+  <a href="/tags#Android基础" >
+    <span class="tag-code">Android基础</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+11-Android 数据存储五种方式使用与总结概述​    Android提供了5种方式来让用户保存持久化应用程序数据。根据自己的需求来做选择，比如数据是否是应用程序私有的，是否能被其他程序访问，需要多少数据存储空间等，分别是：
+①　使用SharedPreferences存储数据　
+②　 ...
+        
+      </div>
+      <a class="more" href="/2014/06/12/Android/11-Android 数据存储五种方式使用与总结/">Read more</a>
     </article>
   
     <article class="article-card">
@@ -229,161 +339,6 @@ StringBuffer、Arrays、基本包装类StringBuffer概述是一个线程安全�
         
       </div>
       <a class="more" href="/2014/03/07/Java/StringBuffer、Arrays、基本包装类/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2014/03/07/Java/List的实现类/">List的实现类</a>
-      </h2>
-      <p class="article-date">March 7, 2014</p>
-      
-        
-  <a href="/tags#Java笔记" >
-    <span class="tag-code">Java笔记</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          
-List的实现类list的子类特点
-ArrayList
-
-底层是数组，查询快，增删慢，线程不安全，效率高
-
-Vector
-
-底层是数组，查询快，增删慢，线程不安全，效率高
-
-LinkedList
-
-底层是链表，查询慢，增删快，线程不安全，效率高
-ArrayList遍历操作（和list一样有 ...
-        
-      </div>
-      <a class="more" href="/2014/03/07/Java/List的实现类/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2014/03/07/Java/final、多态、接口、抽象类/">final、多态、接口、抽象类</a>
-      </h2>
-      <p class="article-date">March 7, 2014</p>
-      
-        
-  <a href="/tags#Java笔记" >
-    <span class="tag-code">Java笔记</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          final、多态、接口、抽象类final关键字
-final修饰类，该类不能被继承
-final修饰方法，该方法不能被重写
-fina修饰变量，该变量不能再重新被赋值，变量就变成常量
-
-final面试题
-final修饰局部变量引用类型时，是地址值不改变，但是地址值的内容可以改变
-
-final初始化 ...
-        
-      </div>
-      <a class="more" href="/2014/03/07/Java/final、多态、接口、抽象类/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2014/03/07/Java/反射&动态代理&设计模式&1.5新特性反射&动态代理&设计模式&1.5新特性/">反射&动态代理&设计模式&1.5新特性</a>
-      </h2>
-      <p class="article-date">March 7, 2014</p>
-      
-        
-  <a href="/tags#Java笔记" >
-    <span class="tag-code">Java笔记</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          
-反射&amp;动态代理&amp;设计模式&amp;1.5新特性反射reflect在运行状态，通过任意一个对象，都能够获得该类的任意方法和属性，就是通过class文件对象，去使用该文件中的成员变量，构造方法，成员方法
-类的加载当程序要使用某个类但是这个类还没有加载到内存，那么系统会通过架子啊 ...
-        
-      </div>
-      <a class="more" href="/2014/03/07/Java/反射&动态代理&设计模式&1.5新特性反射&动态代理&设计模式&1.5新特性/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2014/03/07/Java/二维数组/">二维数组</a>
-      </h2>
-      <p class="article-date">March 7, 2014</p>
-      
-        
-  <a href="/tags#Java笔记" >
-    <span class="tag-code">Java笔记</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          
-二维数组二维数组表示方法1234A:数据类型[][] 数组名 = new 数据类型[m][n];B:数据类型[][] 数组名 = new 数据类型[m][];C:数据类型[][] 数组名 = new 数据类型[][]&#123;&#123;...&#125;,&#123;...&#125; ...
-        
-      </div>
-      <a class="more" href="/2014/03/07/Java/二维数组/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2014/03/07/Java/字符流的使用/">字符流的使用</a>
-      </h2>
-      <p class="article-date">March 7, 2014</p>
-      
-        
-  <a href="/tags#Java笔记" >
-    <span class="tag-code">Java笔记</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          
-字符流的使用编码表由现实世界的字符和对应的字符构成
-常见编码表
-
-
-编码表
-位数
-
-
-
-
-ASCII
-一个字节的7位最多128
-
-
-ISO-8859-1拉丁编码表
-一个字节8位最多256
-
-
-GB2312简体
-
-
-
-GBK简体中文的升级版
-
-
-
-GB18030码表
-GBK的取代版本
-
-
-B ...
-        
-      </div>
-      <a class="more" href="/2014/03/07/Java/字符流的使用/">Read more</a>
     </article>
   
 

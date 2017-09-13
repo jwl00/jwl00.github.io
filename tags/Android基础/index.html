@@ -136,7 +136,7 @@
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2014/06/12/Android/02-说说Service那些事/">02-说说Service那些事</a>
+        <a href="/2014/06/12/Android/01-说说Activity那些事/">01-说说Activity那些事</a>
       </h2>
       <p class="article-date">June 12, 2014</p>
       
@@ -149,11 +149,20 @@
       <div class="article-summary">
         
           
-02-说说Service那些事简介Service本质作用就是一个没有界面的Activity，它可以在后台执行代码永远不用到前台来，所以一个模块只要不想要与用户交互但是还要执行逻辑就可以使用Service。默认运行在程序的主线程之中。
-重要的方法12345678910111213141516 ...
+01-说说Activity那些事简介Activity就是每一个应用的界面，凡事显示在app中的界面都是Activity或者由Activity启动。
+基本使用
+使用as快捷建立Activity
+
+
+
+常规创建
+
+
+在app/src/main/AndroidManifest.xml注册
+编写j ...
         
       </div>
-      <a class="more" href="/2014/06/12/Android/02-说说Service那些事/">Read more</a>
+      <a class="more" href="/2014/06/12/Android/01-说说Activity那些事/">Read more</a>
     </article>
   
     <article class="article-card">
@@ -203,7 +212,7 @@
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2014/06/12/Android/01-说说Activity那些事/">01-说说Activity那些事</a>
+        <a href="/2014/06/12/Android/02-说说Service那些事/">02-说说Service那些事</a>
       </h2>
       <p class="article-date">June 12, 2014</p>
       
@@ -216,25 +225,16 @@
       <div class="article-summary">
         
           
-01-说说Activity那些事简介Activity就是每一个应用的界面，凡事显示在app中的界面都是Activity或者由Activity启动。
-基本使用
-使用as快捷建立Activity
-
-
-
-常规创建
-
-
-在app/src/main/AndroidManifest.xml注册
-编写j ...
+02-说说Service那些事简介Service本质作用就是一个没有界面的Activity，它可以在后台执行代码永远不用到前台来，所以一个模块只要不想要与用户交互但是还要执行逻辑就可以使用Service。默认运行在程序的主线程之中。
+重要的方法12345678910111213141516 ...
         
       </div>
-      <a class="more" href="/2014/06/12/Android/01-说说Activity那些事/">Read more</a>
+      <a class="more" href="/2014/06/12/Android/02-说说Service那些事/">Read more</a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2014/06/12/Android/05-02-Fragment内容详解/">05-02-Fragment内容详解</a>
+        <a href="/2014/06/12/Android/03-说说ContentProvider那些事/">03-说说ContentProvider那些事</a>
       </h2>
       <p class="article-date">June 12, 2014</p>
       
@@ -247,38 +247,11 @@
       <div class="article-summary">
         
           
-05-02-Fragment内容详解和Activity交互
-调用fragment的函数findFragmentById()或者findFragmentByTag()
-
-1ExampleFragment fragment = (ExampleFragment) getFragmentMana ...
+03-说说ContentProvider那些事简介​        ContentProvider（内容提供者）是Android的四大组件之一，以相对安全的方式封装数据（表）并且提供简易的处理机制和统一的访问接口供其他程序调用。　 　　 　　
+​        Android的数据存储方式 ...
         
       </div>
-      <a class="more" href="/2014/06/12/Android/05-02-Fragment内容详解/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2014/06/12/Android/08-Android View事件分发机制/">08-Android View事件分发机制</a>
-      </h2>
-      <p class="article-date">June 12, 2014</p>
-      
-        
-  <a href="/tags#Android基础" >
-    <span class="tag-code">Android基础</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          
-08-Android View事件分发机制相关方法
-
-事件分发：public boolean dispatchTouchEvent(MotionEvent ev)
-
-　　　当有监听到事件时，首先由Activity进行捕获，进入事件分发处理流程。（因为activity没有事件拦截，View和 ...
-        
-      </div>
-      <a class="more" href="/2014/06/12/Android/08-Android View事件分发机制/">Read more</a>
+      <a class="more" href="/2014/06/12/Android/03-说说ContentProvider那些事/">Read more</a>
     </article>
   
     <article class="article-card">
@@ -313,7 +286,7 @@ onDraw()
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2014/06/12/Android/10-Android异步任务机制之AsycTask/">10-Android异步任务机制之AsycTask</a>
+        <a href="/2014/06/12/Android/08-Android View事件分发机制/">08-Android View事件分发机制</a>
       </h2>
       <p class="article-date">June 12, 2014</p>
       
@@ -326,15 +299,19 @@ onDraw()
       <div class="article-summary">
         
           
-10-Android异步任务机制之AsycTask原理　　AsyncTask是谷歌对Thread和Handler的进一步封装，完全隐藏起了这两个概念，而用doInBackground(Params... params)取而代之。但需要注意的是AsyncTask的效率不是很高而且资源代价也比 ...
+08-Android View事件分发机制相关方法
+
+事件分发：public boolean dispatchTouchEvent(MotionEvent ev)
+
+　　　当有监听到事件时，首先由Activity进行捕获，进入事件分发处理流程。（因为activity没有事件拦截，View和 ...
         
       </div>
-      <a class="more" href="/2014/06/12/Android/10-Android异步任务机制之AsycTask/">Read more</a>
+      <a class="more" href="/2014/06/12/Android/08-Android View事件分发机制/">Read more</a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2014/06/12/Android/03-说说ContentProvider那些事/">03-说说ContentProvider那些事</a>
+        <a href="/2014/06/12/Android/06-01-自定义View之坐标系和颜色/">06-自定义View坐标系</a>
       </h2>
       <p class="article-date">June 12, 2014</p>
       
@@ -347,11 +324,35 @@ onDraw()
       <div class="article-summary">
         
           
-03-说说ContentProvider那些事简介​        ContentProvider（内容提供者）是Android的四大组件之一，以相对安全的方式封装数据（表）并且提供简易的处理机制和统一的访问接口供其他程序调用。　 　　 　　
-​        Android的数据存储方式 ...
+06-自定义View坐标系坐标系​    需要注意view的坐标是相对父容器而言的，包括：getTop()、getBottom()，getLeft()，getRight()。
+1234getTop();       //获取子View左上角距父View顶部的距离getLeft();     ...
         
       </div>
-      <a class="more" href="/2014/06/12/Android/03-说说ContentProvider那些事/">Read more</a>
+      <a class="more" href="/2014/06/12/Android/06-01-自定义View之坐标系和颜色/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/06/12/Android/05-02-Fragment内容详解/">05-02-Fragment内容详解</a>
+      </h2>
+      <p class="article-date">June 12, 2014</p>
+      
+        
+  <a href="/tags#Android基础" >
+    <span class="tag-code">Android基础</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+05-02-Fragment内容详解和Activity交互
+调用fragment的函数findFragmentById()或者findFragmentByTag()
+
+1ExampleFragment fragment = (ExampleFragment) getFragmentMana ...
+        
+      </div>
+      <a class="more" href="/2014/06/12/Android/05-02-Fragment内容详解/">Read more</a>
     </article>
   
 

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="什么也不留下">
+  <meta name="keyword" content="hexo-theme, Android">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      Manacher算法及其Java实现 | JWL博客
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>JWL博客</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>Manacher算法及其Java实现</h2>
+  <p class="post-date">2014-06-12</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content"><a id="more"></a>
+<h1 id="Manacher算法及其Java实现"><a href="#Manacher算法及其Java实现" class="headerlink" title="Manacher算法及其Java实现"></a>Manacher算法及其Java实现</h1><h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>现给定一个已知的字符串str[]，现在想要在O(n)的时间复杂度之内求出一个最长的回文子字符串(正着和倒着顺序读一致)。</p>
+<p>Manacher最早发现了可以用O(n)的时间复杂度来解决该问题，所以这种方法称之为Manacher算法</p>
+<h2 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h2><h3 id="基本过程"><a href="#基本过程" class="headerlink" title="基本过程"></a>基本过程</h3><p>求最大回文字串的长度一般要看原串的长度是奇数还是偶数，然后再分别求得，但是Manacher算法的第一个神奇之处，就是把两种字符串都转化为奇数的字符串，从而简化计算：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 1.构造新的字符串</span></div><div class="line"><span class="comment">// 为了避免奇数回文和偶数回文的不同处理问题，在原字符串中插入'#'，将所有回文变成奇数回文</span></div><div class="line">StringBuilder newStr = <span class="keyword">new</span> StringBuilder();</div><div class="line">newStr.append(<span class="string">'#'</span>);</div><div class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; str.length(); i ++) &#123;</div><div class="line">    newStr.append(str.charAt(i));</div><div class="line">    newStr.append(<span class="string">'#'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>例如原来是aaaba的字符串变化之后就是，而且无论原来的字符串是奇数还是偶数，变化之后都是奇数（方便运算）<br><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170314_141428.png" alt="snipaste_20170314_141428"></p>
+<p>当构建完成新的字符串之后，<strong>从左边第一个字符开始遍历，并且记录每一个字符的最大回文半径</strong>，（包括自身），比如第一个<code>#</code>的回文半径就是1，左边第一个<code>A</code>的回文半径是2，遍历每一个字符之后，得到一个关于半径的数组，数组最大的值减1就是最大回文字串的长度，例如：</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/snipaste_20170314_142301.png" alt="snipaste_20170314_142301"></p>
+<h3 id="完整实现"><a href="#完整实现" class="headerlink" title="完整实现"></a>完整实现</h3><p>Manacher算法引入三个重要的概念（符号可能有所不同）：</p>
+<p>第一个是表示已知回文字串的中心点位置id，第二个是已知回文字串最右边的位置right，最后一个就是表示已知字串的回文半径数组rad[]</p>
+<p>对应上面来说，id就是不断遍历的位置信息，right就是回文半径<code>+</code>id<code>-</code>1，rad[]也就是把每一个半径存放起来</p>
+<h4 id="确定最小半径"><a href="#确定最小半径" class="headerlink" title="确定最小半径"></a>确定最小半径</h4><p>假设现在求出了rad[1, …, i]，现在要求后面的rad值，再假设现在有个指针k（实际中就是1），从1循环到rad[i]，试图通过某些手段来求出[i + 1, i + rad[i] - 1]的rad值</p>
+<p>如图所示，黑色的部分是一个回文子串，两段红色的区间对称相等。因为之前已经求出了rad[i - k]，所以可以避免一些重复的查找和判断，有3种情况：</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/001az5G6gy6Gck3Wwgu5e&amp;690.jpg" alt="001az5G6gy6Gck3Wwgu5e&amp;690"></p>
+<ul>
+<li>rad[i] - k &lt; rad[i - k]</li>
+</ul>
+<p>如图，rad[i - k]的范围为青色。因为黑色的部分是回文的,且青色的部分超过了黑色的部分，所以rad[i + k]肯定至少为rad[i]-k,即橙色的部分。那橙色以外的部分就不是了吗?这是肯定的，因为如果橙色以外的部分也是回文的，那么根据青色和红色部分的关系，可以证明黑色部分再往外延伸一点也是一个回文子串,这肯定是不可能的，因此rad[i + k] = rad[i] - k</p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/001az5G6gy6Gck6wd628a&amp;69020171427.jpg" alt="001az5G6gy6Gck6wd628a&amp;69020171427"></p>
+<ul>
+<li>rad[i] - k &gt; rad[i - k]</li>
+</ul>
+<p>如图，rad[i-k]的范围为青色，因为黑色的部分是回文的，且青色的部分在黑色的部分里面，根据定义，很容易得出:rad[i + k] = rad[i - k]。</p>
+<p>根据上面两种情况，可以得出结论:当rad[i] - k != rad[i - k]的时候,<strong>rad[i + k] = min(rad[i] - k, rad[i - k])</strong></p>
+<p><img src="http://oaxelf1sk.bkt.clouddn.com/001az5G6gy6Gck8urVI76&amp;69020143141426.jpg" alt="001az5G6gy6Gck8urVI76&amp;69020143141426"></p>
+<ul>
+<li>rad[i] - k = rad[i - k]</li>
+</ul>
+<p>如图，通过和第一种情况对比之后会发现，因为青色的部分没有超出黑色的部分，所以即使橙色的部分全等，也无法像第一种情况一样引出矛盾，因此橙色的部分是有可能全等的。</p>
+<p>根据已知的信息，我们不知道橙色的部分是多长，因此就需要再去尝试和判断了，但是最少<strong>rad[i + k] = min(rad[i] - k, rad[i - k])</strong>，当然此时两者相等</p>
+<h4 id="具体代码"><a href="#具体代码" class="headerlink" title="具体代码"></a>具体代码</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getPalindromeLength</span><span class="params">(String str)</span> </span>&#123;</div><div class="line">    <span class="comment">// 1.构造新的字符串</span></div><div class="line">    <span class="comment">// 为了避免奇数回文和偶数回文的不同处理问题，在原字符串中插入'#'，将所有回文变成奇数回文</span></div><div class="line">    StringBuilder newStr = <span class="keyword">new</span> StringBuilder();</div><div class="line">    newStr.append(<span class="string">'#'</span>);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; str.length(); i ++) &#123;</div><div class="line">        newStr.append(str.charAt(i));</div><div class="line">        newStr.append(<span class="string">'#'</span>);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">// rad[i]表示以i为中心的回文的最大半径，i至少为1，即该字符本身</span></div><div class="line">    <span class="keyword">int</span> [] rad = <span class="keyword">new</span> <span class="keyword">int</span>[newStr.length()];</div><div class="line">    <span class="comment">// right表示已知的回文中，最右的边界的坐标</span></div><div class="line">    <span class="keyword">int</span> right = -<span class="number">1</span>;</div><div class="line">    <span class="comment">// id表示已知的回文中，拥有最右边界的回文的中点坐标</span></div><div class="line">    <span class="keyword">int</span> id = -<span class="number">1</span>;</div><div class="line">    <span class="comment">// 2.计算所有的rad</span></div><div class="line">    <span class="comment">// 这个算法是O(n)的，因为right只会随着里层while的迭代而增长，不会减少。</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; newStr.length(); i ++) &#123;</div><div class="line">        <span class="comment">// 2.1.确定一个最小的半径</span></div><div class="line">        <span class="keyword">int</span> r = <span class="number">1</span>;</div><div class="line">        <span class="keyword">if</span> (i &lt;= right) &#123;</div><div class="line">            r = Math.min(rad[id] - i + id, rad[<span class="number">2</span> * id - i]);</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// 2.2.尝试更大的半径</span></div><div class="line">        <span class="keyword">while</span> (i - r &gt;= <span class="number">0</span> &amp;&amp; i + r &lt; newStr.length() &amp;&amp; newStr.charAt(i - r) == newStr.charAt(i + r)) &#123;</div><div class="line">            r++;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// 2.3.更新边界和回文中心坐标</span></div><div class="line">        <span class="keyword">if</span> (i + r - <span class="number">1</span>&gt; right) &#123;</div><div class="line">            right = i + r - <span class="number">1</span>;</div><div class="line">            id = i;</div><div class="line">        &#125;</div><div class="line">        rad[i] = r;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">// 3.扫描一遍rad数组，找出最大的半径</span></div><div class="line">    <span class="keyword">int</span> maxLength = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> r : rad) &#123;</div><div class="line">        <span class="keyword">if</span> (r &gt; maxLength) &#123;</div><div class="line">            maxLength = r;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> maxLength - <span class="number">1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><p>空间复杂度：插入分隔符形成新串，占用了线性的空间大小；RL数组也占用线性大小的空间，因此空间复杂度是线性的。<br>时间复杂度：尽管代码里面有两层循环，通过amortized analysis我们可以得出，Manacher的时间复杂度是线性的。由于内层的循环只对尚未匹配的部分进行，因此对于每一个字符而言，只会进行一次，因此时间复杂度是<strong>O(n)</strong></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://blog.sina.com.cn/s/blog_3fe961ae0101iwc2.html" target="_blank" rel="external">http://blog.sina.com.cn/s/blog_3fe961ae0101iwc2.html</a></p>
+<p><a href="https://segmentfault.com/a/1190000003914228#articleHeader7" target="_blank" rel="external">https://segmentfault.com/a/1190000003914228#articleHeader7</a></p>
+<p><a href="http://blog.csdn.net/pi9nc/article/details/9251455" target="_blank" rel="external">http://blog.csdn.net/pi9nc/article/details/9251455</a></p>
+<p><a href="http://blog.csdn.net/xingyeyongheng/article/details/9310555" target="_blank" rel="external">http://blog.csdn.net/xingyeyongheng/article/details/9310555</a></p>
+</section>
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#算法" >
+    <span class="tag-code">算法</span>
+  </a>
+
+      </div>
+    
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="alipay-code">
+            <div class="code-image"></div>
+            <b>使用支付宝打赏</b>
+          </span>
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+    </div>
+    <div class="qrcode">
+      <canvas id="share-qrcode"></canvas>
+      <p class="notice">扫描二维码，分享此文章</p>
+    </div>
+    
+      <div id="comments"></div>
+    
+  </article>
+</main>
+
+<script>
+  (function () {
+    var url = 'http://bbbb.ml/2014/06/12/algorithm/Manacher算法及其Java实现/';
+    var banner = 'http://osk1xe27i.bkt.clouddn.com/1.jpg'
+    if (banner !== 'undefined') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "jwl00";
+    if (gitmentConfig != "undefined") {
+      var gitment = new Gitment({
+        id: "Manacher算法及其Java实现",
+        owner: "jwl00",
+        repo: "jwl00.github.io",
+        oauth: {
+          client_id: "ae21ad25810b1f2cc193",
+          client_secret: "7b6bb525adfeee63bd087132d98e6fd015d49ed8"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>
