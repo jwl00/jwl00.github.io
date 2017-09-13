@@ -115,7 +115,7 @@
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2014/03/07/Java/二维数组/">二维数组</a>
+        <a href="/2014/03/07/Java/字符流的使用/">字符流的使用</a>
       </h2>
       <p class="article-date">March 7, 2014</p>
       
@@ -128,10 +128,117 @@
       <div class="article-summary">
         
           
-二维数组二维数组表示方法1234A:数据类型[][] 数组名 = new 数据类型[m][n];B:数据类型[][] 数组名 = new 数据类型[m][];C:数据类型[][] 数组名 = new 数据类型[][]&#123;&#123;...&#125;,&#123;...&#125; ...
+字符流的使用编码表由现实世界的字符和对应的字符构成
+常见编码表
+
+
+编码表
+位数
+
+
+
+
+ASCII
+一个字节的7位最多128
+
+
+ISO-8859-1拉丁编码表
+一个字节8位最多256
+
+
+GB2312简体
+
+
+
+GBK简体中文的升级版
+
+
+
+GB18030码表
+GBK的取代版本
+
+
+B ...
         
       </div>
-      <a class="more" href="/2014/03/07/Java/二维数组/">Read more</a>
+      <a class="more" href="/2014/03/07/Java/字符流的使用/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/03/07/Java/final、多态、接口、抽象类/">final、多态、接口、抽象类</a>
+      </h2>
+      <p class="article-date">March 7, 2014</p>
+      
+        
+  <a href="/tags#Java笔记" >
+    <span class="tag-code">Java笔记</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          final、多态、接口、抽象类final关键字
+final修饰类，该类不能被继承
+final修饰方法，该方法不能被重写
+fina修饰变量，该变量不能再重新被赋值，变量就变成常量
+
+final面试题
+final修饰局部变量引用类型时，是地址值不改变，但是地址值的内容可以改变
+
+final初始化 ...
+        
+      </div>
+      <a class="more" href="/2014/03/07/Java/final、多态、接口、抽象类/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/03/07/Java/StringBuffer、Arrays、基本包装类/">StringBuffer、Arrays、基本包装类</a>
+      </h2>
+      <p class="article-date">March 7, 2014</p>
+      
+        
+  <a href="/tags#Java笔记" >
+    <span class="tag-code">Java笔记</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+StringBuffer、Arrays、基本包装类StringBuffer概述是一个线程安全的可变字符序列（所以在字符串拼接时不会有空间的浪费）
+构造方法123	public StringBuffer():无参构造方法public StringBuffer(int capacity):指定 ...
+        
+      </div>
+      <a class="more" href="/2014/03/07/Java/StringBuffer、Arrays、基本包装类/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/03/07/Java/集合框架Set/">集合框架：Set</a>
+      </h2>
+      <p class="article-date">March 7, 2014</p>
+      
+        
+  <a href="/tags#Java笔记" >
+    <span class="tag-code">Java笔记</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+集合框架：Set常用快捷键
+ctrl + shift + o 导包
+ctrl + shift + t 快速查找某个类
+先按ctrl + 2 ,再点L, 创建变量并命名
+ctrl + o , 在当前类中,快速查找某个方法
+ctrl + k, 向下查找某个字符串
+ctrl + shift +  ...
+        
+      </div>
+      <a class="more" href="/2014/03/07/Java/集合框架Set/">Read more</a>
     </article>
   
     <article class="article-card">
@@ -169,35 +276,7 @@ ArrayList遍历操作（和list一样有 ...
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2014/03/07/Java/final、多态、接口、抽象类/">final、多态、接口、抽象类</a>
-      </h2>
-      <p class="article-date">March 7, 2014</p>
-      
-        
-  <a href="/tags#Java笔记" >
-    <span class="tag-code">Java笔记</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          final、多态、接口、抽象类final关键字
-final修饰类，该类不能被继承
-final修饰方法，该方法不能被重写
-fina修饰变量，该变量不能再重新被赋值，变量就变成常量
-
-final面试题
-final修饰局部变量引用类型时，是地址值不改变，但是地址值的内容可以改变
-
-final初始化 ...
-        
-      </div>
-      <a class="more" href="/2014/03/07/Java/final、多态、接口、抽象类/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2014/03/07/Java/递归&IO流/">递归&IO流</a>
+        <a href="/2014/03/07/Java/Scanner、String/">Scanner,String</a>
       </h2>
       <p class="article-date">March 7, 2014</p>
       
@@ -210,56 +289,13 @@ final初始化 ...
       <div class="article-summary">
         
           
-递归&amp;IO流递归方法定义中调用方法本身的现象
-示例1234567891011121314151617181920212223242526272829303132333435363738394041/* * 需求：请用代码实现求5的阶乘。 * 下面的知识要知道： * 		5! = 1 ...
+Scanner,String[TOC]
+Scanner类构造方法Scanner是JDK5以后用于获取用户键盘输入，一个可以使用正则表达式来解析基本类型和字符串的简单文本扫描器，Pattern类中有正则表达式的语法
+1public Scanner（InputStream source）；
+S ...
         
       </div>
-      <a class="more" href="/2014/03/07/Java/递归&IO流/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2014/03/07/Java/Eclipse使用、ObjectAPI/">Eclipse的使用，ObjectAPI</a>
-      </h2>
-      <p class="article-date">March 7, 2014</p>
-      
-        
-  <a href="/tags#Java笔记" >
-    <span class="tag-code">Java笔记</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          
-Eclipse的使用，ObjectAPIeclipse的使用视窗和视图结构
-outline 显示类的结构，标示c标示构造方法，标示s标示静态方法，绿色表示public，红色标示private，f标示final，sf标示静态和final，
-hierarchy  显示java继承层次，选中类， ...
-        
-      </div>
-      <a class="more" href="/2014/03/07/Java/Eclipse使用、ObjectAPI/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2014/03/07/Java/GUI/">GUI</a>
-      </h2>
-      <p class="article-date">March 7, 2014</p>
-      
-        
-  <a href="/tags#Java笔记" >
-    <span class="tag-code">Java笔记</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          GUI[TOC]
-GUIGraphical User Interface(图形用户接口)
-API所在的包java.awt：Abstract Window ToolKit (抽象窗口工具包)，需要调用本地系统方法实现功能。属重量级控件。javax.swing：在AWT的基础上，建立的一套图形界 ...
-        
-      </div>
-      <a class="more" href="/2014/03/07/Java/GUI/">Read more</a>
+      <a class="more" href="/2014/03/07/Java/Scanner、String/">Read more</a>
     </article>
   
     <article class="article-card">
@@ -292,7 +328,29 @@ API所在的包java.awt：Abstract Window ToolKit (抽象窗口工具包)，需�
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2014/03/07/Java/IO&异常/">IO&异常</a>
+        <a href="/2014/03/07/Java/GUI/">GUI</a>
+      </h2>
+      <p class="article-date">March 7, 2014</p>
+      
+        
+  <a href="/tags#Java笔记" >
+    <span class="tag-code">Java笔记</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          GUI[TOC]
+GUIGraphical User Interface(图形用户接口)
+API所在的包java.awt：Abstract Window ToolKit (抽象窗口工具包)，需要调用本地系统方法实现功能。属重量级控件。javax.swing：在AWT的基础上，建立的一套图形界 ...
+        
+      </div>
+      <a class="more" href="/2014/03/07/Java/GUI/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/03/07/Java/JavaDoc、代码块、继承/">JavaDoc、代码块、继承</a>
       </h2>
       <p class="article-date">March 7, 2014</p>
       
@@ -305,21 +363,25 @@ API所在的包java.awt：Abstract Window ToolKit (抽象窗口工具包)，需�
       <div class="article-summary">
         
           
-IO&amp;异常IO程序异常Throwable
-分类
-error严重问题，一般不处理，如内存溢出
-exception问题
+JavaDoc、代码块、继承[TOC]
+javaDoc使用
+说明：使用/*    / 可以生成说明文档
 
-Exception包括RuntimeException（运行期间问题）及其子类和非RuntimeException子类（编译期间问题）
-RuntimeExcepti ...
+制作过程
+A:写一个工具类
+B:对这个类加入文档注释        
+C:用工具解析文档注释
+    javadoc工具
+D:格式
+    javadoc -d 目录 -author  ...
         
       </div>
-      <a class="more" href="/2014/03/07/Java/IO&异常/">Read more</a>
+      <a class="more" href="/2014/03/07/Java/JavaDoc、代码块、继承/">Read more</a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2014/03/07/Java/Java多线程相关/">Java多线程相关</a>
+        <a href="/2014/03/07/Java/Java各种结构/">Java各种结构</a>
       </h2>
       <p class="article-date">March 7, 2014</p>
       
@@ -331,36 +393,34 @@ RuntimeExcepti ...
       
       <div class="article-summary">
         
-          Java多线程相关[TOC]
-Lock接口Lock 实现提供了比使用 synchronized 方法和语句可获得的更广泛的锁定操作
-基本用法12345678910111213class X &#123;  private final ReentrantLock lock = new Reen ...
-        
-      </div>
-      <a class="more" href="/2014/03/07/Java/Java多线程相关/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2014/03/07/Java/Java多线程/">Java多线程</a>
-      </h2>
-      <p class="article-date">March 7, 2014</p>
-      
-        
-  <a href="/tags#Java笔记" >
-    <span class="tag-code">Java笔记</span>
-  </a>
+          
+Java各种结构[TOC]
+选择结构语法结构switch语句格式：
+switch(表达式) {
+case 值1：
 
-      
-      <div class="article-summary">
-        
-          Java多线程多线程进程就是正在运行的程序，进程是系统运行资源和调用的独立单位，每一个进程都有自己的内存空间和系统资源
-多进程可以提升CPU的使用率。
-线程是是程序的执行单元。是使用CPU的最基本单位。
-多进程的意义是在多个进程之间，多线程的进程能够有更高的几率签到CPU的执行权
-线程调度分 ...
+ 语句体1;
+
+ break;
+
+ case 值2：
+
+ 语句体2;
+
+ break;
+
+ …
+
+ default：  
+
+ 语句体n+1;
+
+ break;
+   }
+语法 ...
         
       </div>
-      <a class="more" href="/2014/03/07/Java/Java多线程/">Read more</a>
+      <a class="more" href="/2014/03/07/Java/Java各种结构/">Read more</a>
     </article>
   
 

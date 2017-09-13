@@ -115,7 +115,7 @@
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2014/06/12/Android/08-Android View事件分发机制/">08-Android View事件分发机制</a>
+        <a href="/2014/06/12/Android/05-01-Fragment内容详解/">05--01-Fragment内容详解</a>
       </h2>
       <p class="article-date">June 12, 2014</p>
       
@@ -128,19 +128,17 @@
       <div class="article-summary">
         
           
-08-Android View事件分发机制相关方法
-
-事件分发：public boolean dispatchTouchEvent(MotionEvent ev)
-
-　　　当有监听到事件时，首先由Activity进行捕获，进入事件分发处理流程。（因为activity没有事件拦截，View和 ...
+05–01-Fragment内容详解概述​    Fragment必须总是被嵌入到一个activity之中，并且fragment的生命周期直接受其宿主activity的生命周期的影响。
+​    应该将每一个fragment设计为模块化的和可复用化的activity组件
+​    两个重要 ...
         
       </div>
-      <a class="more" href="/2014/06/12/Android/08-Android View事件分发机制/">Read more</a>
+      <a class="more" href="/2014/06/12/Android/05-01-Fragment内容详解/">Read more</a>
     </article>
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2014/06/12/Android/05-02-Fragment内容详解/">05-02-Fragment内容详解</a>
+        <a href="/2014/06/12/Android/13-Android HttpUrlConnection详解/">13-Android HttpUrlConnection详解</a>
       </h2>
       <p class="article-date">June 12, 2014</p>
       
@@ -153,78 +151,10 @@
       <div class="article-summary">
         
           
-05-02-Fragment内容详解和Activity交互
-调用fragment的函数findFragmentById()或者findFragmentByTag()
-
-1ExampleFragment fragment = (ExampleFragment) getFragmentMana ...
+13-Android HttpUrlConnection详解介绍　　HttpUrlConnection是Java.net包中提供的API，我们知道Android SDK是基于Java的，所以当然优先考虑HttpUrlConnection这种最原始最基本的API，其实大多数开源的联网框架基本 ...
         
       </div>
-      <a class="more" href="/2014/06/12/Android/05-02-Fragment内容详解/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2014/06/12/algorithm/字符串包含（Java）/">字符串包含（Java）</a>
-      </h2>
-      <p class="article-date">June 12, 2014</p>
-      
-        
-  <a href="/tags#算法" >
-    <span class="tag-code">算法</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          
-字符串包含（Java）题目给定两个分别由字母组成的字符串A和字符串B，字符串B的长度比字符串A短。请问，如何最快地判断字符串B中所有字母是否都在字符串A里？
-为了简单起见，我们规定输入的字符串只包含大写英文字母，请实现函数bool StringContains(string &amp;A, ...
-        
-      </div>
-      <a class="more" href="/2014/06/12/algorithm/字符串包含（Java）/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2014/06/12/Android/06-01-自定义View之坐标系和颜色/">06-自定义View坐标系</a>
-      </h2>
-      <p class="article-date">June 12, 2014</p>
-      
-        
-  <a href="/tags#Android基础" >
-    <span class="tag-code">Android基础</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          
-06-自定义View坐标系坐标系​    需要注意view的坐标是相对父容器而言的，包括：getTop()、getBottom()，getLeft()，getRight()。
-1234getTop();       //获取子View左上角距父View顶部的距离getLeft();     ...
-        
-      </div>
-      <a class="more" href="/2014/06/12/Android/06-01-自定义View之坐标系和颜色/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2014/06/12/algorithm/字符串旋转（Java）/">字符串旋转（Java）</a>
-      </h2>
-      <p class="article-date">June 12, 2014</p>
-      
-        
-  <a href="/tags#算法" >
-    <span class="tag-code">算法</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          
-字符串旋转（Java）旋转给定一个字符串，要求把字符串前面的若干个字符移动到字符串的尾部，如把字符串“abcdef”前面的2个字符’a’和’b’移动到字符串的尾部，使得原字符串变成字符串“cdefab”。请写一个函数完成此功能，要求对长度为n的字符串操作的时间复杂度为 O(n)，空间复杂度 ...
-        
-      </div>
-      <a class="more" href="/2014/06/12/algorithm/字符串旋转（Java）/">Read more</a>
+      <a class="more" href="/2014/06/12/Android/13-Android HttpUrlConnection详解/">Read more</a>
     </article>
   
     <article class="article-card">
@@ -250,30 +180,7 @@
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2014/06/12/algorithm/Manacher算法及其Java实现/">Manacher算法及其Java实现</a>
-      </h2>
-      <p class="article-date">June 12, 2014</p>
-      
-        
-  <a href="/tags#算法" >
-    <span class="tag-code">算法</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          
-Manacher算法及其Java实现说明现给定一个已知的字符串str[]，现在想要在O(n)的时间复杂度之内求出一个最长的回文子字符串(正着和倒着顺序读一致)。
-Manacher最早发现了可以用O(n)的时间复杂度来解决该问题，所以这种方法称之为Manacher算法
-实现步骤基本过程求最大 ...
-        
-      </div>
-      <a class="more" href="/2014/06/12/algorithm/Manacher算法及其Java实现/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2014/06/12/Android/11-Android 数据存储五种方式使用与总结/">11-Android 数据存储五种方式使用与总结</a>
+        <a href="/2014/06/12/Android/06-02-自定义view之基本流程/">06-02-自定义view之基本流程</a>
       </h2>
       <p class="article-date">June 12, 2014</p>
       
@@ -286,12 +193,110 @@ Manacher最早发现了可以用O(n)的时间复杂度来解决该问题，所�
       <div class="article-summary">
         
           
-11-Android 数据存储五种方式使用与总结概述​    Android提供了5种方式来让用户保存持久化应用程序数据。根据自己的需求来做选择，比如数据是否是应用程序私有的，是否能被其他程序访问，需要多少数据存储空间等，分别是：
-①　使用SharedPreferences存储数据　
-②　 ...
+06-02-自定义view之基本流程基本步骤　 1. 继承View类或其子类　
+　 2. 复写view中的一些函数
+　３.为自定义View类增加属性（两种方式）
+　４.绘制控件（导入布局）
+　５.响应用户事件
+　６.定义回调函数（根据自己需求来选择）
+重要方法
+onDraw()
+
+　　vi ...
         
       </div>
-      <a class="more" href="/2014/06/12/Android/11-Android 数据存储五种方式使用与总结/">Read more</a>
+      <a class="more" href="/2014/06/12/Android/06-02-自定义view之基本流程/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/06/12/Android/08-Android View事件分发机制/">08-Android View事件分发机制</a>
+      </h2>
+      <p class="article-date">June 12, 2014</p>
+      
+        
+  <a href="/tags#Android基础" >
+    <span class="tag-code">Android基础</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+08-Android View事件分发机制相关方法
+
+事件分发：public boolean dispatchTouchEvent(MotionEvent ev)
+
+　　　当有监听到事件时，首先由Activity进行捕获，进入事件分发处理流程。（因为activity没有事件拦截，View和 ...
+        
+      </div>
+      <a class="more" href="/2014/06/12/Android/08-Android View事件分发机制/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/06/12/Android/09-Android 异步消息处理机制（Handler 、 Looper 、MessageQueue）/">09-Android 异步消息处理机制（Handler 、 Looper 、MessageQueue）</a>
+      </h2>
+      <p class="article-date">June 12, 2014</p>
+      
+        
+  <a href="/tags#Android基础" >
+    <span class="tag-code">Android基础</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+09-Android 异步消息处理机制（Handler 、 Looper 、MessageQueue）Thread，Looper和Handler的关系与Windows系统一样，Android也是消息驱动型的系统。引用一下消息驱动机制的四要素：
+
+接收消息的“消息队列”
+阻塞式地从消息队列中 ...
+        
+      </div>
+      <a class="more" href="/2014/06/12/Android/09-Android 异步消息处理机制（Handler 、 Looper 、MessageQueue）/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/06/12/Android/10-Android异步任务机制之AsycTask/">10-Android异步任务机制之AsycTask</a>
+      </h2>
+      <p class="article-date">June 12, 2014</p>
+      
+        
+  <a href="/tags#Android基础" >
+    <span class="tag-code">Android基础</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+10-Android异步任务机制之AsycTask原理　　AsyncTask是谷歌对Thread和Handler的进一步封装，完全隐藏起了这两个概念，而用doInBackground(Params... params)取而代之。但需要注意的是AsyncTask的效率不是很高而且资源代价也比 ...
+        
+      </div>
+      <a class="more" href="/2014/06/12/Android/10-Android异步任务机制之AsycTask/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/06/12/Android/12-Android SQLite详解/">12-Android SQLite详解</a>
+      </h2>
+      <p class="article-date">June 12, 2014</p>
+      
+        
+  <a href="/tags#Android基础" >
+    <span class="tag-code">Android基础</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+12-Android SQLite详解创建数据库　　Android 不自动提供数据库。在 Android 应用程序中使用 SQLite，必须自己创建数据库，然后创建表、索引，填充数据。Android 提供了 SQLiteOpenHelper 帮助你创建一个数据库，你只要继承 SQLiteO ...
+        
+      </div>
+      <a class="more" href="/2014/06/12/Android/12-Android SQLite详解/">Read more</a>
     </article>
   
 

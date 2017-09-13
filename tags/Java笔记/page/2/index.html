@@ -115,7 +115,35 @@
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2014/03/07/Java/集合框架Map/">集合框架：Map</a>
+        <a href="/2014/03/07/Java/Java网络编程/">Java网络编程</a>
+      </h2>
+      <p class="article-date">March 7, 2014</p>
+      
+        
+  <a href="/tags#Java笔记" >
+    <span class="tag-code">Java笔记</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          Java网络编程网络网络模型
+三要素ip地址，端口号，传输协议
+
+127.0.0.1 回环地址,可用于测试本机的网络是否有问题. ping 127.0.0.1   
+
+端口号正在运行的程序的标识。
+有效端口：0~65535，其中0~1024系统使用或保留端口。
+协议UDP：
+    把数据打 ...
+        
+      </div>
+      <a class="more" href="/2014/03/07/Java/Java网络编程/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/03/07/Java/Scanner、String/">Scanner,String</a>
       </h2>
       <p class="article-date">March 7, 2014</p>
       
@@ -128,12 +156,69 @@
       <div class="article-summary">
         
           
-集合框架：MapMap集合将键映射到值的对象。一个映射不能包含重复的键；每个键最多只能映射到一个值。 
-和Collection的区别Map存储元素是键值对，Map集合的键是唯一的，值是可重复的
-Collection存储的是单个元素，Collection的子类Set是唯一的，List是可重复 ...
+Scanner,String[TOC]
+Scanner类构造方法Scanner是JDK5以后用于获取用户键盘输入，一个可以使用正则表达式来解析基本类型和字符串的简单文本扫描器，Pattern类中有正则表达式的语法
+1public Scanner（InputStream source）；
+S ...
         
       </div>
-      <a class="more" href="/2014/03/07/Java/集合框架Map/">Read more</a>
+      <a class="more" href="/2014/03/07/Java/Scanner、String/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/03/07/Java/List的实现类/">List的实现类</a>
+      </h2>
+      <p class="article-date">March 7, 2014</p>
+      
+        
+  <a href="/tags#Java笔记" >
+    <span class="tag-code">Java笔记</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+List的实现类list的子类特点
+ArrayList
+
+底层是数组，查询快，增删慢，线程不安全，效率高
+
+Vector
+
+底层是数组，查询快，增删慢，线程不安全，效率高
+
+LinkedList
+
+底层是链表，查询慢，增删快，线程不安全，效率高
+ArrayList遍历操作（和list一样有 ...
+        
+      </div>
+      <a class="more" href="/2014/03/07/Java/List的实现类/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2014/03/07/Java/Eclipse使用、ObjectAPI/">Eclipse的使用，ObjectAPI</a>
+      </h2>
+      <p class="article-date">March 7, 2014</p>
+      
+        
+  <a href="/tags#Java笔记" >
+    <span class="tag-code">Java笔记</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+Eclipse的使用，ObjectAPIeclipse的使用视窗和视图结构
+outline 显示类的结构，标示c标示构造方法，标示s标示静态方法，绿色表示public，红色标示private，f标示final，sf标示静态和final，
+hierarchy  显示java继承层次，选中类， ...
+        
+      </div>
+      <a class="more" href="/2014/03/07/Java/Eclipse使用、ObjectAPI/">Read more</a>
     </article>
   
     <article class="article-card">
@@ -188,29 +273,7 @@ final初始化 ...
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2014/03/07/Java/GUI/">GUI</a>
-      </h2>
-      <p class="article-date">March 7, 2014</p>
-      
-        
-  <a href="/tags#Java笔记" >
-    <span class="tag-code">Java笔记</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          GUI[TOC]
-GUIGraphical User Interface(图形用户接口)
-API所在的包java.awt：Abstract Window ToolKit (抽象窗口工具包)，需要调用本地系统方法实现功能。属重量级控件。javax.swing：在AWT的基础上，建立的一套图形界 ...
-        
-      </div>
-      <a class="more" href="/2014/03/07/Java/GUI/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2014/03/07/Java/List的实现类/">List的实现类</a>
+        <a href="/2014/03/07/Java/字符流的使用/">字符流的使用</a>
       </h2>
       <p class="article-date">March 7, 2014</p>
       
@@ -223,43 +286,40 @@ API所在的包java.awt：Abstract Window ToolKit (抽象窗口工具包)，需�
       <div class="article-summary">
         
           
-List的实现类list的子类特点
-ArrayList
+字符流的使用编码表由现实世界的字符和对应的字符构成
+常见编码表
 
-底层是数组，查询快，增删慢，线程不安全，效率高
 
-Vector
+编码表
+位数
 
-底层是数组，查询快，增删慢，线程不安全，效率高
 
-LinkedList
 
-底层是链表，查询慢，增删快，线程不安全，效率高
-ArrayList遍历操作（和list一样有 ...
+
+ASCII
+一个字节的7位最多128
+
+
+ISO-8859-1拉丁编码表
+一个字节8位最多256
+
+
+GB2312简体
+
+
+
+GBK简体中文的升级版
+
+
+
+GB18030码表
+GBK的取代版本
+
+
+B ...
         
       </div>
-      <a class="more" href="/2014/03/07/Java/List的实现类/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2014/03/07/Java/二维数组/">二维数组</a>
-      </h2>
-      <p class="article-date">March 7, 2014</p>
-      
-        
-  <a href="/tags#Java笔记" >
-    <span class="tag-code">Java笔记</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          
-二维数组二维数组表示方法1234A:数据类型[][] 数组名 = new 数据类型[m][n];B:数据类型[][] 数组名 = new 数据类型[m][];C:数据类型[][] 数组名 = new 数据类型[][]&#123;&#123;...&#125;,&#123;...&#125; ...
-        
-      </div>
-      <a class="more" href="/2014/03/07/Java/二维数组/">Read more</a>
+      <a class="more" href="/2014/03/07/Java/字符流的使用/">Read more</a>
     </article>
   
     <article class="article-card">
@@ -324,7 +384,7 @@ ArrayList遍历操作（和list一样有 ...
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2014/03/07/Java/字符流的使用/">字符流的使用</a>
+        <a href="/2014/03/07/Java/反射&动态代理&设计模式&1.5新特性反射&动态代理&设计模式&1.5新特性/">反射&动态代理&设计模式&1.5新特性</a>
       </h2>
       <p class="article-date">March 7, 2014</p>
       
@@ -337,65 +397,11 @@ ArrayList遍历操作（和list一样有 ...
       <div class="article-summary">
         
           
-字符流的使用编码表由现实世界的字符和对应的字符构成
-常见编码表
-
-
-编码表
-位数
-
-
-
-
-ASCII
-一个字节的7位最多128
-
-
-ISO-8859-1拉丁编码表
-一个字节8位最多256
-
-
-GB2312简体
-
-
-
-GBK简体中文的升级版
-
-
-
-GB18030码表
-GBK的取代版本
-
-
-B ...
+反射&amp;动态代理&amp;设计模式&amp;1.5新特性反射reflect在运行状态，通过任意一个对象，都能够获得该类的任意方法和属性，就是通过class文件对象，去使用该文件中的成员变量，构造方法，成员方法
+类的加载当程序要使用某个类但是这个类还没有加载到内存，那么系统会通过架子啊 ...
         
       </div>
-      <a class="more" href="/2014/03/07/Java/字符流的使用/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2014/03/07/Java/正则表达式、Math、Random、System、BigInteger、Date、SimpleDateFormat、Calendar/">正则表达式、Math、Random、System、BigInteger、Date、SimpleDateFormat、Calendar</a>
-      </h2>
-      <p class="article-date">March 7, 2014</p>
-      
-        
-  <a href="/tags#Java笔记" >
-    <span class="tag-code">Java笔记</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          
-正则表达式、Math、Random、System、BigInteger、Date、SimpleDateFormat、Calendar[TOC]
-正则表达式基本规则A:字符
-x 字符 x。举例：&apos;a&apos;表示字符a
-\\ 反斜线字符。
-\n 新行（换行）符 (&apos;\u ...
-        
-      </div>
-      <a class="more" href="/2014/03/07/Java/正则表达式、Math、Random、System、BigInteger、Date、SimpleDateFormat、Calendar/">Read more</a>
+      <a class="more" href="/2014/03/07/Java/反射&动态代理&设计模式&1.5新特性反射&动态代理&设计模式&1.5新特性/">Read more</a>
     </article>
   
 
